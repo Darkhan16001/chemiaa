@@ -1,0 +1,2412 @@
+
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>§68 Циклоалкандар — BY DARKHAN</title>
+
+<style>
+:root{
+ --bg:#071725;
+ --panel:#153d55;
+ --line:#5689a7;
+ --blue:#8bdfff;
+ --green:#96efc2;
+ --gold:#ffdb92;
+ --white:#f7fcff
+}
+*{box-sizing:border-box}
+html,body{
+ height:100%;
+ margin:0;
+ font-family:Arial,"Segoe UI",sans-serif;
+ background:var(--bg);
+ color:var(--white)
+}
+button,input{font:inherit}
+button{cursor:pointer}
+button:disabled{
+ opacity:.45;
+ cursor:not-allowed
+}
+[hidden]{display:none!important}
+
+.app{
+ height:100vh;
+ height:100dvh;
+ display:flex;
+ flex-direction:column;
+ background:
+ radial-gradient(circle at 90% 8%,#167a9b66,transparent 43%),
+ radial-gradient(circle at 5% 95%,#116c5a66,transparent 46%),
+ linear-gradient(130deg,#061726,#113a52,#081e30)
+}
+header,footer{
+ flex-shrink:0;
+ background:#071b2d;
+ border-color:var(--line);
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:14px;
+ padding:12px 20px
+}
+header{border-bottom:1px solid var(--line)}
+footer{border-top:1px solid var(--line)}
+.brand{
+ color:var(--blue);
+ font-size:27px;
+ font-weight:900
+}
+.brand small{
+ display:block;
+ color:var(--gold);
+ font-size:14px;
+ margin-top:5px
+}
+.status{
+ display:flex;
+ align-items:center;
+ gap:16px;
+ font-weight:900;
+ font-size:20px
+}
+#timer{
+ color:var(--gold);
+ font-size:30px;
+ font-variant-numeric:tabular-nums
+}
+#counter{color:var(--blue)}
+#clock{
+ color:var(--blue);
+ font-size:24px;
+ font-weight:900;
+ font-variant-numeric:tabular-nums
+}
+.signature{
+ font-size:26px;
+ font-weight:900;
+ color:var(--gold)
+}
+main{
+ flex:1;
+ min-height:0;
+ overflow-y:auto;
+ padding:22px 34px 35px
+}
+.slide{
+ max-width:1480px;
+ min-height:100%;
+ margin:auto;
+ display:flex;
+ flex-direction:column;
+ justify-content:center
+}
+h1{
+ font-size:clamp(42px,4.5vw,74px);
+ line-height:1.14;
+ margin:9px 0 18px
+}
+h2{
+ font-size:clamp(31px,3vw,49px);
+ line-height:1.2;
+ margin:0 0 18px
+}
+h3{
+ font-size:clamp(24px,2vw,34px);
+ color:var(--blue);
+ margin:0 0 12px
+}
+p,li{
+ font-size:clamp(21px,1.65vw,28px);
+ line-height:1.48
+}
+li{margin:8px 0}
+.eyebrow{
+ color:var(--blue);
+ font-size:20px;
+ font-weight:900;
+ margin-bottom:12px
+}
+.grid2,.grid3{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ align-items:center;
+ gap:18px
+}
+.grid3{
+ grid-template-columns:repeat(3,minmax(0,1fr))
+}
+.card{
+ min-width:0;
+ background:linear-gradient(140deg,#1b465f,#103047);
+ padding:23px;
+ border:1px solid #72aec9;
+ border-radius:17px
+}
+.card p{margin:8px 0}
+.formula{
+ background:#104553;
+ color:var(--green);
+ border:1px solid #70c6d1;
+ border-radius:13px;
+ padding:17px;
+ text-align:center;
+ font-size:clamp(26px,2.6vw,43px);
+ font-weight:900;
+ overflow-wrap:anywhere;
+ margin:14px 0
+}
+.note{
+ background:#1b435b;
+ border-left:6px solid var(--gold);
+ border-radius:11px;
+ margin-top:15px;
+ padding:15px 19px
+}
+.note p{margin:5px 0}
+.btn{
+ border:1px solid #86b6d0;
+ background:#2a607e;
+ color:white;
+ border-radius:10px;
+ padding:12px 19px;
+ font-size:18px;
+ font-weight:900
+}
+.btn.primary{background:#0989ad}
+.btn.good{background:#157d5c}
+.btn.gold{background:#957034}
+.actions{
+ display:flex;
+ gap:10px;
+ flex-wrap:wrap;
+ margin-top:17px
+}
+.ring{
+ background:#10384c;
+ border:1px solid #78b9d0;
+ border-radius:18px;
+ padding:15px;
+ text-align:center
+}
+.ring svg{
+ width:100%;
+ max-width:430px;
+ height:220px
+}
+.ring strong{
+ display:block;
+ color:var(--green);
+ font-size:29px
+}
+.ring small{
+ font-size:17px;
+ color:#d4e8f3
+}
+.task{
+ padding:13px 18px;
+ margin:9px 0;
+ background:#1b445b;
+ border:1px solid #669db9;
+ border-radius:11px
+}
+.task p{margin:5px 0}
+.answer{
+ background:#12533e;
+ border:1px solid #83e7b8;
+ border-radius:13px;
+ padding:18px;
+ margin-top:15px
+}
+.answer p{margin:8px 0}
+.big{
+ font-size:clamp(29px,2.8vw,46px);
+ font-weight:900;
+ line-height:1.4
+}
+.tag{
+ display:inline-block;
+ padding:10px 17px;
+ border:2px solid var(--gold);
+ border-radius:12px;
+ color:var(--gold);
+ font-size:30px;
+ font-weight:900
+}
+.progress{
+ height:13px;
+ margin:15px 0;
+ background:#284c64;
+ border-radius:20px;
+ overflow:hidden
+}
+.progress span{
+ display:block;
+ height:100%;
+ background:linear-gradient(90deg,#0baad1,#91f0c0)
+}
+.team{
+ background:#173c55;
+ border:1px solid #7aa9c6;
+ border-radius:14px;
+ text-align:center;
+ padding:15px
+}
+.team.active{outline:4px solid var(--gold)}
+.score{
+ color:var(--gold);
+ font-size:53px;
+ font-weight:900
+}
+.options{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:12px;
+ margin-top:16px
+}
+.option{
+ background:#285c78;
+ color:white;
+ border:2px solid #82b5cf;
+ border-radius:11px;
+ text-align:left;
+ font-weight:900;
+ font-size:clamp(21px,1.7vw,29px);
+ padding:18px
+}
+.option.correct{background:#167c5a}
+.option.wrong{background:#964354}
+.tools{
+ position:fixed;
+ bottom:104px;
+ left:9px;
+ z-index:20;
+ display:flex;
+ flex-direction:column;
+ align-items:flex-start;
+ gap:6px
+}
+.tool{
+ background:#087f9d;
+ color:white;
+ border:1px solid #82d8f0;
+ border-radius:8px;
+ padding:10px 12px;
+ font-size:13px;
+ font-weight:900
+}
+
+/* КАЛЬКУЛЯТОР */
+
+.calculator{
+ position:fixed;
+ z-index:100;
+ left:15px;
+ top:100px;
+ width:218px;
+ max-width:calc(100vw - 10px);
+ background:#0e3249;
+ border:2px solid #8bdfff;
+ border-radius:14px;
+ box-shadow:0 16px 40px #000a;
+ padding:9px;
+ touch-action:none;
+ user-select:none;
+ -webkit-user-select:none;
+ cursor:grab
+}
+.calculator.dragging{cursor:grabbing}
+.calculator button{touch-action:none}
+.calc-title{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:6px;
+ background:#28546b;
+ padding:7px;
+ border-radius:7px;
+ font-size:12px
+}
+.calc-title button{
+ border:0;
+ background:#ad4754;
+ color:white;
+ border-radius:5px;
+ padding:5px 8px
+}
+.calculator input{
+ width:100%;
+ height:43px;
+ margin:8px 0;
+ padding:5px;
+ border:1px solid #77a8c0;
+ border-radius:6px;
+ background:#071d2b;
+ color:white;
+ text-align:right;
+ font-size:21px;
+ pointer-events:none
+}
+.calc-keys{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:4px
+}
+.calc-keys button{
+ height:40px;
+ min-width:0;
+ padding:0;
+ background:#2b5f7c;
+ color:white;
+ border:1px solid #7ba9c6;
+ border-radius:6px;
+ font-size:16px
+}
+.calc-keys button:active{background:#1397b5}
+.calc-hint{
+ font-size:11px;
+ color:#c1dce9;
+ text-align:center;
+ padding-top:7px
+}
+
+/* МЕНДЕЛЕЕВ КЕСТЕСІ */
+
+.overlay{
+ position:fixed;
+ inset:0;
+ z-index:200;
+ background:#000e;
+ display:grid;
+ place-items:center;
+ padding:10px
+}
+.modal{
+ background:#0d2b40;
+ border:1px solid #7aacc6;
+ border-radius:15px;
+ padding:16px;
+ width:min(1540px,99vw);
+ max-height:97vh;
+ overflow:auto
+}
+.modal-head{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:12px
+}
+.scroll-table{
+ overflow:auto;
+ background:#071d2e;
+ padding:11px;
+ border-radius:10px
+}
+.ptable{
+ display:grid;
+ grid-template-columns:60px repeat(18,90px);
+ grid-template-rows:36px repeat(10,88px);
+ gap:4px;
+ width:max-content
+}
+.period-label{
+ display:grid;
+ place-items:center;
+ text-align:center;
+ border-radius:6px;
+ background:#19455c;
+ color:var(--gold);
+ border:1px solid #648fa9;
+ font-size:12px;
+ font-weight:900
+}
+.element{
+ position:relative;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ justify-content:center;
+ gap:2px;
+ background:#245e7a;
+ color:white;
+ border:1px solid #8ebbd1;
+ border-radius:6px;
+ padding:11px 2px 2px
+}
+.element b{font-size:25px}
+.element small{font-size:11px}
+.element i{
+ position:absolute;
+ top:3px;
+ left:4px;
+ font-size:10px;
+ font-style:normal
+}
+.element.fblock{background:#337d83}
+.element.featured{background:#8e5470}
+#elementInfo{
+ padding:14px;
+ background:#1e485f;
+ border-radius:9px;
+ margin-top:12px;
+ font-size:20px
+}
+
+@media(max-width:860px){
+ .grid2,.grid3{grid-template-columns:1fr}
+ .options{grid-template-columns:1fr}
+ main{padding:14px}
+ header,footer{padding:8px}
+ .brand{font-size:17px}
+ .brand small,#sectionName{display:none}
+ .status{gap:7px;font-size:13px}
+ #timer{font-size:20px}
+ .signature{font-size:15px}
+ #clock{font-size:17px}
+ .btn{font-size:14px;padding:9px}
+ .tools{bottom:79px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+ <div class="brand">
+  ⚗ CHEMISTRY PRO
+  <small>§68 · ЦИКЛОАЛКАНДАР</small>
+ </div>
+
+ <div class="status">
+  <span id="sectionName">Кіріспе</span>
+  <span id="timer">80:00</span>
+  <span id="counter">1 / 1</span>
+ </div>
+</header>
+
+<main id="main">
+ <section id="slide" class="slide">
+
+  <div class="eyebrow">
+   §68 · ОРГАНИКАЛЫҚ ХИМИЯ
+  </div>
+
+  <h1>Циклоалкандар</h1>
+
+  <h2>
+   Сақиналы қаныққан көмірсутектер
+  </h2>
+
+  <p>
+   Циклоалкандардың жалпы формуласы —
+   CₙH₂ₙ. Сабақтың түсіндірмелері мен
+   тапсырмалары осы жерде ашылады.
+  </p>
+
+  <div class="formula">
+   CₙH₂ₙ, n ≥ 3
+  </div>
+
+ </section>
+</main>
+
+<footer>
+ <div class="actions" style="margin:0">
+
+  <button class="btn" id="prev">
+   ← Артқа
+  </button>
+
+  <button class="btn primary" id="next">
+   Келесі →
+  </button>
+
+ </div>
+
+ <strong class="signature">
+  BY DARKHAN
+ </strong>
+
+ <span id="clock">
+  00:00:00
+ </span>
+</footer>
+
+</div>
+
+<div class="tools">
+
+ <button class="tool" id="showCalc">
+  🧮 Калькулятор
+ </button>
+
+ <button class="tool" id="showTable">
+  ⚛ Менделеев кестесі
+ </button>
+
+</div>
+
+<div class="calculator" id="calculator" hidden>
+
+ <div class="calc-title">
+  <strong>🧮 Калькулятор</strong>
+  <button id="closeCalc" type="button">
+   ✕
+  </button>
+ </div>
+
+ <input
+  id="calcDisplay"
+  readonly
+  aria-label="Калькулятор нәтижесі"
+ >
+
+ <div class="calc-keys" id="calcKeys"></div>
+
+ <div class="calc-hint">
+  Кез келген жерінен жылжыт
+ </div>
+
+</div>
+
+<div class="overlay" id="tableOverlay" hidden>
+
+ <div class="modal">
+
+  <div class="modal-head">
+   <h2>Менделеев кестесі</h2>
+   <button class="btn" id="closeTable">
+    Жабу ✕
+   </button>
+  </div>
+
+  <p style="font-size:17px">
+   118 элемент · 18 топ · 7 период
+  </p>
+
+  <div class="scroll-table">
+   <div class="ptable" id="ptable"></div>
+  </div>
+
+  <div id="elementInfo">
+   Элементті таңда.
+  </div>
+
+ </div>
+</div>
+
+<script>
+"use strict";
+
+/* НЕГІЗГІ ЖҮЙЕ */
+
+const $=id=>document.getElementById(id);
+
+const slides=[];
+let page=0;
+
+function add(title,section,content){
+ slides.push({title,section,content});
+}
+
+function dynamic(title,section,fn){
+ slides.push({title,section,fn});
+}
+
+function draw(){
+ const s=slides[page];
+ if(!s)return;
+
+ $("slide").innerHTML=s.fn?s.fn():s.content;
+
+ $("sectionName").textContent=s.section;
+
+ $("counter").textContent=
+  (page+1)+" / "+slides.length;
+
+ $("prev").disabled=page===0;
+ $("next").disabled=page===slides.length-1;
+
+ $("main").scrollTop=0;
+}
+
+function go(title){
+ const i=slides.findIndex(s=>s.title===title);
+
+ if(i>=0){
+  page=i;
+  draw();
+ }
+}
+
+$("prev").onclick=()=>{
+ if(page>0){
+  page--;
+  draw();
+ }
+};
+
+$("next").onclick=()=>{
+ if(page<slides.length-1){
+  page++;
+  draw();
+ }
+};
+
+/* САҚТАУ */
+
+const storageKey="cyclo68_darkhan_complete_v6";
+
+function fresh(){
+ return{
+  level:{},
+  oral:0,
+  oralShow:false,
+  game:0,
+  choice:null,
+  scores:[0,0,0],
+  home:false
+ };
+}
+
+let state=fresh();
+
+try{
+ const saved=JSON.parse(
+  localStorage.getItem(storageKey)
+ );
+
+ if(
+  saved &&
+  Array.isArray(saved.scores) &&
+  saved.scores.length===3
+ ){
+  state={...fresh(),...saved};
+ }
+}catch(e){
+ console.warn(e);
+}
+
+function save(){
+ try{
+  localStorage.setItem(
+   storageKey,
+   JSON.stringify(state)
+  );
+ }catch(e){
+  console.warn(e);
+ }
+}
+
+/* САҚИНА СУРЕТІ */
+
+const subs=n=>String(n).replace(
+ /\d/g,
+ c=>"₀₁₂₃₄₅₆₇₈₉"[Number(c)]
+);
+
+function ring(n){
+ const names={
+  3:"Циклопропан",
+  4:"Циклобутан",
+  5:"Циклопентан",
+  6:"Циклогексан",
+  7:"Циклогептан",
+  8:"Циклооктан"
+ };
+
+ const ps=Array.from({length:n},(_,i)=>{
+  const a=-Math.PI/2+i*2*Math.PI/n;
+
+  return [
+   210+119*Math.cos(a),
+   140+107*Math.sin(a)
+  ];
+ });
+
+ let bonds="";
+ let atoms="";
+
+ ps.forEach((p,i)=>{
+  const q=ps[(i+1)%n];
+
+  const dx=q[0]-p[0];
+  const dy=q[1]-p[1];
+  const len=Math.hypot(dx,dy);
+
+  const ux=dx/len;
+  const uy=dy/len;
+
+  bonds+=`
+   <line
+    x1="${p[0]+ux*25}"
+    y1="${p[1]+uy*25}"
+    x2="${q[0]-ux*25}"
+    y2="${q[1]-uy*25}"
+    stroke="#96efc2"
+    stroke-width="5"
+   />
+  `;
+
+  atoms+=`
+   <circle
+    cx="${p[0]}"
+    cy="${p[1]}"
+    r="24"
+    fill="#19516a"
+    stroke="#8bdfff"
+    stroke-width="2"
+   />
+
+   <text
+    x="${p[0]}"
+    y="${p[1]+7}"
+    text-anchor="middle"
+    font-size="21"
+    font-weight="bold"
+    fill="white"
+   >CH₂</text>
+  `;
+ });
+
+ return `
+  <div class="ring">
+
+   <svg
+    viewBox="0 0 420 280"
+    role="img"
+    aria-label="${names[n]} сақинасы"
+   >
+    ${bonds}
+    ${atoms}
+   </svg>
+
+   <strong>
+    C${subs(n)}H${subs(2*n)}
+   </strong>
+
+   <small>
+    ${names[n]} · шартты 2D сызба
+   </small>
+
+  </div>
+ `;
+}
+
+/* КІРІСПЕ */
+
+dynamic(
+ "Кіріспе",
+ "Кіріспе · 5 минут",
+ ()=>`
+  <div class="grid2">
+
+   <div>
+    <div class="eyebrow">
+     §68 · ОРГАНИКАЛЫҚ ХИМИЯ
+    </div>
+
+    <h1>Циклоалкандар</h1>
+
+    <h2>
+     Сақиналы қаныққан көмірсутектер
+    </h2>
+
+    <p>
+     Циклоалкандардың құрылысы,
+     формуласы, атаулары, изомериясы,
+     реакциялары және химиялық есептері.
+    </p>
+
+    <div class="formula">
+     CₙH₂ₙ, n ≥ 3
+    </div>
+
+    <div class="actions">
+
+     <button
+      class="btn good"
+      data-action="start"
+     >
+      ▶ Сабақты бастау
+     </button>
+
+     <button
+      class="btn gold"
+      data-action="reset-time"
+     >
+      ↺ Таймерді жаңарту
+     </button>
+
+    </div>
+   </div>
+
+   ${ring(6)}
+
+  </div>
+ `
+);
+
+add(
+ "Мақсаты",
+ "Кіріспе",
+ `
+  <h2>Сабақтың мақсаты</h2>
+
+  <div class="grid2">
+
+   <div class="card">
+    <h3>Білу</h3>
+    <p>
+     Сақиналы көмірсутектердің құрылысы,
+     CₙH₂ₙ формуласы, негізгі өкілдері,
+     изомериясы мен қасиеттері.
+    </p>
+   </div>
+
+   <div class="card">
+    <h3>Қолдану</h3>
+    <p>
+     Сақиналарды сызу, молярлық массаларды
+     есептеу, жану реакцияларын теңестіру
+     және қорытынды жасау.
+    </p>
+   </div>
+
+  </div>
+
+  <div class="note">
+   <p>
+    80 минут: кіріспе — 5;
+    түсіндірме — 20;
+    конспект — 8;
+    4 деңгей — 10;
+    жеке жұмыс — 20;
+    ойын — 12;
+    қорытынды — 5 минут.
+   </p>
+  </div>
+ `
+);
+
+/* 15 ТЕОРИЯЛЫҚ ТҮСІНДІРМЕ */
+
+const theory=[
+ [
+  "Циклоалкандар деген не?",
+  "Циклоалкандар — көміртек атомдары тұйық сақина түзетін қаныққан көмірсутектер. Көміртек атомдарының өзара байланысы дара болады. Қарапайым бір сақиналы өкілдерінде әр сақиналық көміртек екі сутекпен байланысады.",
+  3,
+  "Сақина + дара C–C байланыстар",
+  "Сақинадағы көміртектер тұйық тізбек түзеді."
+ ],
+ [
+  "Жалпы формуласы",
+  "Бір сақиналы және тек дара байланысы бар циклоалкандардың жалпы формуласы CₙH₂ₙ. Мұнда n — көміртек атомдарының саны, n кемінде 3. Формуладан сутек саны көміртек санынан екі есе көп екенін көреміз.",
+  5,
+  "CₙH₂ₙ · n ≥ 3",
+  "n=5 болса, молекулалық формула C₅H₁₀."
+ ],
+ [
+  "Алкандармен салыстыру",
+  "Алкандарда көміртек тізбегі ашық болып, жалпы формуласы CₙH₂ₙ₊₂ болады. Циклоалкандарда тізбек тұйықталған. Бірдей көміртек саны болғанда сақиналы қосылыста екі сутек атомы кем болады.",
+  3,
+  "Пропан C₃H₈ · Циклопропан C₃H₆",
+  "Екі класс та қаныққан, бірақ көміртек қаңқасы әртүрлі."
+ ],
+ [
+  "Циклопропан",
+  "Циклопропанның молекулалық формуласы C₃H₆. Сақинасы үш мүшелі. Байланыстардың геометриялық шектелуі сақина кернеуін жоғарылатады, сондықтан кейбір реакциялары үлкен сақиналы циклоалкандардан өзгеше.",
+  3,
+  "M(C₃H₆)=42 г/моль",
+  "Циклопропан — үш мүшелі сақина."
+ ],
+ [
+  "Циклобутан",
+  "Циклобутанда төрт көміртек пен сегіз сутек бар. Оның формуласы C₄H₈. Шаршы ретінде сызылатын сақина нақты кеңістікте толық жазық емес. Молекуладағы сақина кернеуі де маңызды.",
+  4,
+  "M(C₄H₈)=56 г/моль",
+  "Циклобутан — төрт мүшелі сақина."
+ ],
+ [
+  "Циклопентан",
+  "Циклопентан бес көміртек атомының сақинасынан тұрады. Молекулалық формуласы C₅H₁₀. Шартты бесбұрыш сызбасы көміртектердің байланысу ретін көрсетеді, нақты молекула жазық болмауы мүмкін.",
+  5,
+  "M(C₅H₁₀)=70 г/моль",
+  "Циклопентан — бес мүшелі сақина."
+ ],
+ [
+  "Циклогексан",
+  "Циклогексан — алты мүшелі сақиналы көмірсутек, формуласы C₆H₁₂. Ол кеңістікте әртүрлі конформация қабылдай алады. Ең белгілі салыстырмалы тұрақты конформациясы — орындық пішіні.",
+  6,
+  "M(C₆H₁₂)=84 г/моль",
+  "Алтыбұрышты жазық сызба — шартты модель."
+ ],
+ [
+  "Аталу ережелері",
+  "Қарапайым сақиналы көмірсутектің атауы сәйкес алкан атауының алдына цикло- қосымшасын қосу арқылы жасалады. Мысалы, бес көміртекті сақина циклопентан, ал алты көміртекті сақина циклогексан деп аталады.",
+  6,
+  "Цикло- + алкан атауы",
+  "Атау сақинадағы көміртек санына байланысты."
+ ],
+ [
+  "Гомологтық қатар",
+  "Циклопропан, циклобутан, циклопентан және циклогексан бір гомологтық қатарға кіреді. Көршілес мүшелер құрамы бір CH₂ тобына ерекшеленеді. Сондықтан олардың молярлық массаларының айырмасы 14 г/моль.",
+  4,
+  "CH₂ · ΔM=14 г/моль",
+  "C₃H₆ → C₄H₈ → C₅H₁₀."
+ ],
+ [
+  "Изомерия",
+  "Циклоалкандарда көміртек қаңқасына және орынбасарлардың орналасуына байланысты құрылымдық изомерия болуы мүмкін. Кейбір екі орынбасарлы сақиналарда цис-транс изомериясы кездеседі: орынбасарлар сақинаға қатысты бір немесе қарама-қарсы жақта орналасады.",
+  4,
+  "Құрылымдық · цис-транс",
+  "Цис-транс изомериясы барлық циклоалканға бірдей тән емес."
+ ],
+ [
+  "Алкендермен салыстыру",
+  "Бір қос байланысы бар ашық тізбекті алкендердің де жалпы формуласы CₙH₂ₙ болады. Алайда алкендерде C=C қос байланысы, ал циклоалкандарда тұйық сақина және дара C–C байланыстары бар. Сондықтан бірдей формула әртүрлі құрылымға сәйкес келуі мүмкін.",
+  3,
+  "Пропен C₃H₆ ≠ циклопропан C₃H₆",
+  "Молекулалық формула бірдей болса да, құрылымы өзгеруі мүмкін."
+ ],
+ [
+  "Физикалық қасиеттер",
+  "Циклоалкандар негізінен полюссіз органикалық заттар, суда өте нашар ериді. Олардың агрегаттық күйі молекула массасы мен сақина құрылысына тәуелді. Циклопропан әдеттегі жағдайда газ, ал циклогексан бөлме температурасында сұйық.",
+  6,
+  "Газ және сұйық күйлері",
+  "Қасиеттері көміртек санына және молекула құрылысына байланысты."
+ ],
+ [
+  "Толық жану",
+  "Циклоалкандар оттек жеткілікті болса, көмірқышқыл газы мен су түзе отырып жанады. Бұл процесс жылу бөледі. Теңдеуді теңестіруде әр элементтің реакцияға дейінгі және кейінгі атом саны бірдей болуы керек.",
+  6,
+  "C₆H₁₂ + 9O₂ → 6CO₂ + 6H₂O",
+  "Жану өнімдері — CO₂ және H₂O."
+ ],
+ [
+  "Кіші сақиналардың реакциясы",
+  "Циклопропан мен циклобутанда сақина кернеуі жоғары. Циклопропан тиісті катализдік жағдайда сутекті қосып, сақина ашылғаннан кейін пропан түзе алады. Бұл үш мүшелі сақинаның ерекше реакциялық қасиетіне мысал.",
+  3,
+  "C₃H₆ + H₂ → C₃H₈",
+  "Көрсетілген реакция тиісті катализдік жағдайда жүреді."
+ ],
+ [
+  "Есеп шығару",
+  "CₙH₂ₙ үшін молярлық масса M=12n+2n=14n г/моль. Масса m=νM формуласымен, зат мөлшері ν=m/M формуласымен анықталады. Реакция теңдеуіндегі коэффициенттер зат мөлшерлерінің қатынасын береді.",
+  6,
+  "M=14n · m=νM",
+  "0,5 моль C₆H₁₂ массасы 0,5×84=42 г."
+ ]
+];
+
+theory.forEach((t,i)=>{
+ add(
+  t[0],
+  `Түсіндірме ${i+1}/15`,
+  `
+   <div class="eyebrow">
+    ТҮСІНДІРМЕ ${i+1}/15
+   </div>
+
+   <h2>${t[0]}</h2>
+
+   <div class="grid2">
+
+    <div class="card">
+     <h3>Толық түсіндірме</h3>
+     <p>${t[1]}</p>
+    </div>
+
+    ${ring(t[2])}
+
+   </div>
+
+   <div class="formula">
+    ${t[3]}
+   </div>
+
+   <div class="note">
+    <p>
+     <strong style="color:var(--gold)">
+      Дәптерге жаз:
+     </strong>
+     ${t[4]}
+    </p>
+   </div>
+  `
+ );
+});
+
+/* КӨРНЕКІЛІК */
+
+add(
+ "Сақиналардың салыстырылуы",
+ "Көрнекілік",
+ `
+  <h2>Сақиналардың құрылысы</h2>
+
+  <div class="grid3">
+   ${ring(3)}
+   ${ring(4)}
+   ${ring(6)}
+  </div>
+
+  <div class="note">
+   <p>
+    Бұл сызбалар — көміртек атомдарының
+    байланысу ретін көрсететін жазық
+    модельдер. Нақты молекула кеңістікте
+    басқа конформация қабылдай алады.
+   </p>
+  </div>
+ `
+);
+
+/* ЖАНУ РЕАКЦИЯЛАРЫ */
+
+add(
+ "Жану реакциялары",
+ "Химиялық қасиеттер",
+ `
+  <h2>Циклоалкандардың толық жануы</h2>
+
+  <div class="card">
+
+   <h3>Циклопропан</h3>
+
+   <div class="formula">
+    2C₃H₆ + 9O₂ → 6CO₂ + 6H₂O
+   </div>
+
+   <h3>Циклобутан</h3>
+
+   <div class="formula">
+    C₄H₈ + 6O₂ → 4CO₂ + 4H₂O
+   </div>
+
+   <h3>Циклопентан</h3>
+
+   <div class="formula">
+    2C₅H₁₀ + 15O₂ → 10CO₂ + 10H₂O
+   </div>
+
+   <h3>Циклогексан</h3>
+
+   <div class="formula">
+    C₆H₁₂ + 9O₂ → 6CO₂ + 6H₂O
+   </div>
+
+  </div>
+ `
+);
+
+/* 3 КОНСПЕКТ */
+
+const notes=[
+ [
+  "Құрылысы мен атаулары",
+  [
+   "Циклоалкандар — сақиналы қаныққан көмірсутектер.",
+   "Бір сақиналы қаныққан қосылыстар үшін жалпы формула CₙH₂ₙ.",
+   "Циклопропан — C₃H₆.",
+   "Циклобутан — C₄H₈.",
+   "Циклопентан — C₅H₁₀.",
+   "Циклогексан — C₆H₁₂.",
+   "Атауда цикло- қосымшасы қолданылады."
+  ]
+ ],
+ [
+  "Қасиеттер мен изомерия",
+  [
+   "Циклоалкандарда дара C–C байланыстар болады.",
+   "Олар суда өте нашар ериді.",
+   "Құрылымдық изомерия кездесуі мүмкін.",
+   "Кейбір орынбасарлы сақиналарда цис-транс изомерия бар.",
+   "Кіші сақиналардың кернеуі жоғары.",
+   "Циклогексанның орындық конформациясы салыстырмалы тұрақты.",
+   "Толық жану өнімдері: CO₂ және H₂O."
+  ]
+ ],
+ [
+  "Формулалар мен есептер",
+  [
+   "Ar(C)=12, Ar(H)=1, Ar(O)=16.",
+   "Циклоалканның молярлық массасы M=14n г/моль.",
+   "M(C₃H₆)=42 г/моль.",
+   "M(C₄H₈)=56 г/моль.",
+   "M(C₅H₁₀)=70 г/моль.",
+   "M(C₆H₁₂)=84 г/моль.",
+   "Масса: m=νM.",
+   "Зат мөлшері: ν=m/M."
+  ]
+ ]
+];
+
+notes.forEach((n,i)=>{
+ add(
+  "Конспект "+(i+1),
+  "Конспект · 8 минут",
+  `
+   <div class="eyebrow">
+    ДӘПТЕРГЕ ЖАЗЫП АЛ
+   </div>
+
+   <h2>Конспект №${i+1}</h2>
+   <h3>${n[0]}</h3>
+
+   <div class="card">
+    <ol>
+     ${n[1].map(x=>`
+      <li>${x}</li>
+     `).join("")}
+    </ol>
+   </div>
+  `
+ );
+});
+
+/* 4 ДЕҢГЕЙЛІК ЖҰМЫС */
+
+const levels=[
+ [
+  "1-деңгей: негізгі формулалар",
+  [
+   ["Циклоалкандардың жалпы формуласы қандай?","CₙH₂ₙ."],
+   ["Циклопропанның формуласы?","C₃H₆."],
+   ["Циклобутанның формуласы?","C₄H₈."],
+   ["Циклогексанның формуласы?","C₆H₁₂."]
+  ]
+ ],
+ [
+  "2-деңгей: атаулар",
+  [
+   ["Бес мүшелі сақинаның атауы?","Циклопентан."],
+   ["Жеті мүшелі сақинаның атауы?","Циклогептан."],
+   ["Циклоалкандардағы C–C байланысы?","Дара байланыс."],
+   ["Циклогексанның салыстырмалы тұрақты конформациясы?","Орындық."]
+  ]
+ ],
+ [
+  "3-деңгей: реакциялар",
+  [
+   ["C₄H₈+O₂→CO₂+H₂O теңестір.","C₄H₈+6O₂→4CO₂+4H₂O."],
+   ["C₆H₁₂+O₂→CO₂+H₂O теңестір.","C₆H₁₂+9O₂→6CO₂+6H₂O."],
+   ["Циклопропанның сутек қосу реакциясын жаз.","C₃H₆+H₂→C₃H₈ (катализдік жағдайда)."],
+   ["Циклопентанның жануын теңестір.","2C₅H₁₀+15O₂→10CO₂+10H₂O."]
+  ]
+ ],
+ [
+  "4-деңгей: есептер",
+  [
+   ["0,5 моль циклогексанның массасы?","42 г."],
+   ["35 г циклопентанның зат мөлшері?","0,5 моль."],
+   ["1,5 моль циклобутанның массасы?","84 г."],
+   ["2 моль циклогексан жанғанда CO₂ мөлшері?","12 моль."]
+  ]
+ ]
+];
+
+levels.forEach((level,i)=>{
+ dynamic(
+  "Деңгей "+(i+1),
+  "4 деңгей · 10 минут",
+  ()=>`
+   <div class="eyebrow">
+    ДЕҢГЕЙЛІК ЖҰМЫС ${i+1}/4
+   </div>
+
+   <h2>${level[0]}</h2>
+
+   ${level[1].map((q,j)=>`
+    <div class="task">
+     <p>
+      <strong>${j+1}.</strong>
+      ${q[0]}
+     </p>
+    </div>
+   `).join("")}
+
+   <button
+    class="btn gold"
+    data-action="level"
+    data-index="${i}"
+   >
+    ${state.level[i]?
+     "Жауаптарды жасыру":
+     "Жауаптарды көру"}
+   </button>
+
+   ${state.level[i]?`
+    <div class="answer">
+     ${level[1].map((q,j)=>`
+      <p>${j+1}. ${q[1]}</p>
+     `).join("")}
+    </div>
+   `:""}
+  `
+ );
+});
+
+/* 25 ЖЕКЕ ТАПСЫРМА */
+
+const oral=[
+ ["Циклоалкандар деген не?","Сақиналы қаныққан көмірсутектер."],
+ ["Жалпы формуласы?","CₙH₂ₙ."],
+ ["Циклопропанның формуласы?","C₃H₆."],
+ ["Циклобутанның формуласы?","C₄H₈."],
+ ["Циклопентанның формуласы?","C₅H₁₀."],
+ ["Циклогексанның формуласы?","C₆H₁₂."],
+ ["Циклогептанның формуласы?","C₇H₁₄."],
+ ["Циклооктанның формуласы?","C₈H₁₆."],
+ ["Үш мүшелі сақина қалай аталады?","Циклопропан."],
+ ["Төрт мүшелі сақина қалай аталады?","Циклобутан."],
+ ["Бес мүшелі сақина қалай аталады?","Циклопентан."],
+ ["Алты мүшелі сақина қалай аталады?","Циклогексан."],
+ ["Пропан мен циклопропан айырмашылығы?","Пропан C₃H₈ — ашық; циклопропан C₃H₆ — сақиналы."],
+ ["Циклоалкандардағы C–C байланысы?","Дара."],
+ ["Циклогексанның белгілі конформациясы?","Орындық."],
+ ["Кіші сақиналардың ерекшелігі?","Сақина кернеуі жоғары."],
+ ["Циклоалкандар толық жанғанда не түзіледі?","CO₂ және H₂O."],
+ ["Циклобутан жануын теңестір.","C₄H₈+6O₂→4CO₂+4H₂O."],
+ ["Циклогексан жануын теңестір.","C₆H₁₂+9O₂→6CO₂+6H₂O."],
+ ["M(C₃H₆) қанша?","42 г/моль."],
+ ["M(C₄H₈) қанша?","56 г/моль."],
+ ["M(C₅H₁₀) қанша?","70 г/моль."],
+ ["M(C₆H₁₂) қанша?","84 г/моль."],
+ ["0,5 моль циклогексанның массасы?","42 г."],
+ ["1 моль циклогексан жанғанда CO₂ мөлшері?","6 моль."]
+];
+
+dynamic(
+ "Жеке тапсырмалар",
+ "25 оқушы · 20 минут",
+ ()=>{
+  const i=state.oral;
+
+  if(i>=oral.length){
+   return `
+    <h1>25 тапсырма аяқталды!</h1>
+
+    <div class="actions">
+     <button
+      class="btn gold"
+      data-action="oral-reset"
+     >
+      Қайта бастау
+     </button>
+
+     <button
+      class="btn primary"
+      data-action="go-game"
+     >
+      Командалық ойын →
+     </button>
+    </div>
+   `;
+  }
+
+  return `
+   <div class="eyebrow">
+    ЖЕКЕ ТАҚТА ТАПСЫРМАСЫ
+   </div>
+
+   <h2>Тақтаға шығып орында</h2>
+
+   <span class="tag">
+    ${i+1}-оқушы · ${i+1}/25
+   </span>
+
+   <div class="progress">
+    <span style="width:${i/25*100}%"></span>
+   </div>
+
+   <div class="card">
+    <h3>Тапсырма</h3>
+    <p class="big">${oral[i][0]}</p>
+   </div>
+
+   ${state.oralShow?`
+    <div class="answer">
+     <h3>Дұрыс жауап</h3>
+     <p>${oral[i][1]}</p>
+    </div>
+   `:""}
+
+   <div class="actions">
+
+    <button
+     class="btn gold"
+     data-action="oral-show"
+    >
+     ${state.oralShow?
+      "Жауапты жасыру":
+      "Жауапты көру"}
+    </button>
+
+    <button
+     class="btn primary"
+     data-action="oral-next"
+    >
+     Келесі оқушы →
+    </button>
+
+   </div>
+  `;
+ }
+);
+
+/* 3 КОМАНДА — 15 СҰРАҚ */
+
+const quiz=[
+ [
+  "Жалпы формула?",
+  ["CₙH₂ₙ₊₂","CₙH₂ₙ","CₙH₂ₙ₋₂","CₙHₙ"],
+  1
+ ],
+ [
+  "Циклопропан формуласы?",
+  ["C₃H₈","C₃H₄","C₃H₆","C₂H₆"],
+  2
+ ],
+ [
+  "Циклобутан формуласы?",
+  ["C₄H₈","C₄H₁₀","C₄H₆","C₅H₁₀"],
+  0
+ ],
+ [
+  "Циклопентан формуласы?",
+  ["C₅H₁₂","C₆H₁₂","C₄H₈","C₅H₁₀"],
+  3
+ ],
+ [
+  "Циклогексан формуласы?",
+  ["C₆H₁₄","C₆H₁₂","C₆H₁₀","C₅H₁₀"],
+  1
+ ],
+ [
+  "Циклогександа көміртек саны?",
+  ["6","5","4","7"],
+  0
+ ],
+ [
+  "Циклоалкандардағы C–C байланысы?",
+  ["Қос","Үштік","Дара","Иондық"],
+  2
+ ],
+ [
+  "Циклопропан неше мүшелі?",
+  ["4","5","6","3"],
+  3
+ ],
+ [
+  "Циклогексанның тұрақтырақ конформациясы?",
+  ["Жазық","Орындық","Сызық","Үшбұрыш"],
+  1
+ ],
+ [
+  "Толық жануда не түзіледі?",
+  ["CO₂ мен H₂O","H₂ мен O₂","N₂ мен H₂","HCl мен Cl₂"],
+  0
+ ],
+ [
+  "M(C₃H₆) мәні?",
+  ["36","44","42","56"],
+  2
+ ],
+ [
+  "M(C₄H₈) мәні?",
+  ["42","70","84","56"],
+  3
+ ],
+ [
+  "M(C₅H₁₀) мәні?",
+  ["56","70","72","84"],
+  1
+ ],
+ [
+  "0,5 моль циклогексанның массасы?",
+  ["42 г","84 г","21 г","70 г"],
+  0
+ ],
+ [
+  "1 моль циклогексан жанғанда CO₂ мөлшері?",
+  ["3","4","6","9"],
+  2
+ ]
+];
+
+dynamic(
+ "Командалық ойын",
+ "3 команда · 12 минут",
+ ()=>{
+  const i=state.game;
+
+  if(i>=quiz.length){
+   const max=Math.max(...state.scores);
+
+   const winners=state.scores
+    .map((s,j)=>
+     s===max?(j+1)+"-команда":null
+    )
+    .filter(Boolean);
+
+   return `
+    <h1>Командалық ойын аяқталды!</h1>
+
+    <div class="grid3">
+     ${state.scores.map((s,j)=>`
+      <div class="team">
+       <h3>${j+1}-команда</h3>
+       <div class="score">${s}</div>
+       <p>ұпай</p>
+      </div>
+     `).join("")}
+    </div>
+
+    <div class="note">
+     <p>
+      Жеңімпаз: ${winners.join(", ")}
+     </p>
+    </div>
+
+    <button
+     class="btn gold"
+     data-action="game-reset"
+    >
+     Ойынды қайта бастау
+    </button>
+   `;
+  }
+
+  const [q,options,right]=quiz[i];
+  const team=i%3;
+  const choice=state.choice;
+
+  return `
+   <div class="eyebrow">
+    КОМАНДАЛЫҚ ОЙЫН ${i+1}/15
+   </div>
+
+   <h2>${team+1}-команданың кезегі</h2>
+
+   <div class="grid3">
+    ${state.scores.map((s,j)=>`
+     <div class="team ${j===team?"active":""}">
+      <h3>${j+1}-команда</h3>
+      <div class="score">${s}</div>
+      <p>ұпай</p>
+     </div>
+    `).join("")}
+   </div>
+
+   <div class="card" style="margin-top:16px">
+    <p class="big">${q}</p>
+   </div>
+
+   <div class="options">
+    ${options.map((a,j)=>`
+     <button
+      class="option ${
+       choice===null
+        ?""
+        :j===right
+         ?"correct"
+         :j===choice
+          ?"wrong"
+          :""
+      }"
+      data-action="game-answer"
+      data-index="${j}"
+      ${choice!==null?"disabled":""}
+     >
+      ${"ABCD"[j]}. ${a}
+     </button>
+    `).join("")}
+   </div>
+
+   ${choice!==null?`
+    <div class="answer">
+
+     <h3>
+      ${choice===right?
+       "Дұрыс! +10 ұпай":
+       "Қате. 0 ұпай"}
+     </h3>
+
+     <p>
+      Дұрыс жауап: ${options[right]}
+     </p>
+
+    </div>
+
+    <div class="actions">
+     <button
+      class="btn primary"
+      data-action="game-next"
+     >
+      Келесі команда →
+     </button>
+    </div>
+   `:""}
+  `;
+ }
+);
+
+/* ҮЙ ТАПСЫРМАСЫ */
+
+const homeQuestions=[
+ [
+  "Циклопропан мен циклобутанның сақинасын сыз.",
+  "Үш және төрт мүшелі сақиналар."
+ ],
+ [
+  "Циклопентан мен циклогексан формуласын жаз.",
+  "C₅H₁₀ және C₆H₁₂."
+ ],
+ [
+  "Пропан мен циклопропанды салыстыр.",
+  "Пропан C₃H₈ — ашық, циклопропан C₃H₆ — сақиналы."
+ ],
+ [
+  "Циклогексанның конформациясы қандай?",
+  "Орындық конформациясы салыстырмалы тұрақты."
+ ]
+];
+
+const homeMath=[
+ [
+  "0,75 моль циклогексанның массасын тап.",
+  "M=84 г/моль, m=0,75×84=63 г."
+ ],
+ [
+  "35 г циклопентанның зат мөлшерін тап.",
+  "M=70 г/моль, ν=35/70=0,5 моль."
+ ]
+];
+
+dynamic(
+ "Үй тапсырмасы",
+ "Үй жұмысы",
+ ()=>`
+  <div class="eyebrow">
+   §68 · ҮЙ ТАПСЫРМАСЫ
+  </div>
+
+  <h2>«Сақиналы молекулалар»</h2>
+
+  <div class="grid2">
+
+   <div class="card">
+    <h3>1. Сызба</h3>
+
+    <p>
+     Циклопропан, циклобутан,
+     циклопентан және циклогексанның
+     сақиналарын сыз, молекулалық
+     формулаларын жаз.
+    </p>
+   </div>
+
+   <div class="card">
+    <h3>2. Теориялық сұрақтар</h3>
+
+    ${homeQuestions.map((x,i)=>`
+     <p>${i+1}. ${x[0]}</p>
+    `).join("")}
+   </div>
+
+  </div>
+
+  <div class="card" style="margin-top:15px">
+   <h3>3. Екі химиялық есеп</h3>
+
+   ${homeMath.map((x,i)=>`
+    <p>${i+1}. ${x[0]}</p>
+   `).join("")}
+
+   <div class="note">
+    <p>
+     Берілгені → формула → шешуі → жауап.
+    </p>
+   </div>
+  </div>
+
+  <div class="actions">
+   <button
+    class="btn gold"
+    data-action="home"
+   >
+    ${state.home?
+     "Жауаптарды жасыру":
+     "Жауаптарды көру"}
+   </button>
+  </div>
+
+  ${state.home?`
+   <div class="answer">
+
+    <h3>Теория</h3>
+
+    ${homeQuestions.map((x,i)=>`
+     <p>${i+1}. ${x[1]}</p>
+    `).join("")}
+
+    <h3>Есептер</h3>
+
+    ${homeMath.map((x,i)=>`
+     <p>${i+1}. ${x[1]}</p>
+    `).join("")}
+
+   </div>
+  `:""}
+ `
+);
+
+/* ҚОРЫТЫНДЫ */
+
+add(
+ "Қорытынды",
+ "Сабақ аяқталды",
+ `
+  <div style="text-align:center">
+
+   <div class="eyebrow">§68 · ХИМИЯ</div>
+
+   <h1>Сабақ аяқталды!</h1>
+   <h2>Циклоалкандар</h2>
+
+   <div class="grid3">
+
+    <div class="card">
+     <h3>15 түсіндірме</h3>
+     <p>Тақырып толық түсіндірілді</p>
+    </div>
+
+    <div class="card">
+     <h3>25 тапсырма</h3>
+     <p>Жеке жұмыс</p>
+    </div>
+
+    <div class="card">
+     <h3>15 сұрақ</h3>
+     <p>3 командалық ойын</p>
+    </div>
+
+   </div>
+
+   <div class="formula">
+    BY DARKHAN
+   </div>
+
+  </div>
+ `
+);
+
+/* БАТЫРМАЛАРДЫ БАСҚАРУ */
+
+$("slide").addEventListener("click",event=>{
+ const button=event.target.closest("[data-action]");
+ if(!button)return;
+
+ const action=button.dataset.action;
+ const index=Number(button.dataset.index);
+
+ switch(action){
+
+  case "start":
+   startTimer();
+   break;
+
+  case "reset-time":
+   resetTimer();
+   break;
+
+  case "level":
+   state.level[index]=!state.level[index];
+   break;
+
+  case "oral-show":
+   state.oralShow=!state.oralShow;
+   break;
+
+  case "oral-next":
+   state.oral=Math.min(
+    state.oral+1,
+    oral.length
+   );
+   state.oralShow=false;
+   break;
+
+  case "oral-reset":
+   state.oral=0;
+   state.oralShow=false;
+   break;
+
+  case "go-game":
+   go("Командалық ойын");
+   break;
+
+  case "game-answer":
+   if(state.choice!==null)return;
+
+   state.choice=index;
+
+   if(index===quiz[state.game][2]){
+    state.scores[state.game%3]+=10;
+   }
+   break;
+
+  case "game-next":
+   if(state.choice===null)return;
+
+   state.game++;
+   state.choice=null;
+   break;
+
+  case "game-reset":
+   state.game=0;
+   state.choice=null;
+   state.scores=[0,0,0];
+   break;
+
+  case "home":
+   state.home=!state.home;
+   break;
+ }
+
+ save();
+ draw();
+});
+
+/* ТАЙМЕР ЖӘНЕ АЛМАТЫ САҒАТЫ */
+
+const timerKey=storageKey+"_timer";
+let deadline=null;
+
+try{
+ const x=localStorage.getItem(timerKey);
+
+ if(
+  x!==null &&
+  Number.isFinite(Number(x))
+ ){
+  deadline=Number(x);
+ }
+}catch(e){}
+
+function tick(){
+ const sec=deadline===null
+  ?4800
+  :Math.max(
+   0,
+   Math.ceil((deadline-Date.now())/1000)
+  );
+
+ $("timer").textContent=
+  String(Math.floor(sec/60)).padStart(2,"0")+
+  ":"+
+  String(sec%60).padStart(2,"0");
+
+ $("clock").textContent=
+  new Intl.DateTimeFormat("en-GB",{
+   timeZone:"Asia/Almaty",
+   hour:"2-digit",
+   minute:"2-digit",
+   second:"2-digit",
+   hourCycle:"h23"
+  }).format(new Date());
+}
+
+function startTimer(){
+ if(deadline!==null){
+  alert(
+   "Таймер бұрын іске қосылған. " +
+   "Жаңарту батырмасын пайдалан."
+  );
+  return;
+ }
+
+ deadline=Date.now()+4800000;
+
+ try{
+  localStorage.setItem(
+   timerKey,
+   String(deadline)
+  );
+ }catch(e){}
+
+ tick();
+}
+
+function resetTimer(){
+ if(!confirm(
+  "80 минуттық таймерді жаңартамыз ба?"
+ ))return;
+
+ deadline=null;
+
+ try{
+  localStorage.removeItem(timerKey);
+ }catch(e){}
+
+ tick();
+}
+
+setInterval(tick,1000);
+
+/* КАЛЬКУЛЯТОР */
+
+const calculator=$("calculator");
+
+$("showCalc").onclick=()=>{
+ calculator.hidden=!calculator.hidden;
+ fitCalculator();
+};
+
+$("closeCalc").onclick=()=>{
+ calculator.hidden=true;
+};
+
+const calcButtons=[
+ "7","8","9","/",
+ "4","5","6","*",
+ "1","2","3","-",
+ "C","0",".","+",
+ "(",")","⌫","="
+];
+
+$("calcKeys").innerHTML=calcButtons.map(k=>`
+ <button type="button" data-key="${k}">
+  ${k==="/"?"÷":k==="*"?"×":k}
+ </button>
+`).join("");
+
+let calcText="";
+
+/* ҚАУІПСІЗ АРИФМЕТИКАЛЫҚ ЕСЕПТЕУ */
+
+function evaluate(input){
+ let i=0;
+
+ function factor(){
+
+  if(input[i]==="+"){
+   i++;
+   return factor();
+  }
+
+  if(input[i]==="-"){
+   i++;
+   return -factor();
+  }
+
+  if(input[i]==="("){
+   i++;
+   const x=sum();
+
+   if(input[i]!==")"){
+    throw Error("Жақша қатесі");
+   }
+
+   i++;
+   return x;
+  }
+
+  const m=/^(?:\d+\.?\d*|\.\d+)/
+   .exec(input.slice(i));
+
+  if(!m){
+   throw Error("Сан қатесі");
+  }
+
+  i+=m[0].length;
+
+  return Number(m[0]);
+ }
+
+ function product(){
+  let x=factor();
+
+  while(
+   input[i]==="*" ||
+   input[i]==="/"
+  ){
+   const op=input[i++];
+   const y=factor();
+
+   x=op==="*"
+    ?x*y
+    :x/y;
+  }
+
+  return x;
+ }
+
+ function sum(){
+  let x=product();
+
+  while(
+   input[i]==="+" ||
+   input[i]==="-"
+  ){
+   const op=input[i++];
+   const y=product();
+
+   x=op==="+"
+    ?x+y
+    :x-y;
+  }
+
+  return x;
+ }
+
+ if(!/^[0-9+*/().-]+$/.test(input)){
+  throw Error("Таңба қатесі");
+ }
+
+ const result=sum();
+
+ if(
+  i!==input.length ||
+  !Number.isFinite(result)
+ ){
+  throw Error("Өрнек қатесі");
+ }
+
+ return Number(result.toPrecision(12));
+}
+
+/* КАЛЬКУЛЯТОР БАТЫРМАЛАРЫ */
+
+$("calcKeys").addEventListener("click",event=>{
+ const b=event.target.closest("[data-key]");
+ if(!b)return;
+
+ const k=b.dataset.key;
+
+ if(k==="C"){
+  calcText="";
+ }else if(k==="⌫"){
+  calcText=calcText.slice(0,-1);
+ }else if(k==="="){
+  try{
+   calcText=String(evaluate(calcText));
+  }catch(e){
+   calcText="Қате";
+  }
+ }else{
+  if(calcText==="Қате"){
+   calcText="";
+  }
+
+  calcText+=k;
+ }
+
+ $("calcDisplay").value=calcText;
+});
+
+/* ======================================
+   КАЛЬКУЛЯТОРДЫ КЕЗ КЕЛГЕН ЖЕРІНЕН
+   ҰСТАП ЖЫЛЖЫТУ
+====================================== */
+
+let drag=null;
+
+function clamp(x,a,b){
+ return Math.max(a,Math.min(b,x));
+}
+
+function fitCalculator(){
+ if(calculator.hidden)return;
+
+ const r=calculator.getBoundingClientRect();
+
+ calculator.style.left=clamp(
+  r.left,
+  0,
+  Math.max(0,innerWidth-r.width)
+ )+"px";
+
+ calculator.style.top=clamp(
+  r.top,
+  0,
+  Math.max(0,innerHeight-r.height)
+ )+"px";
+}
+
+/* Барлық бөлігі сүйреуге жарайды */
+
+calculator.addEventListener("pointerdown",e=>{
+ if(
+  drag ||
+  (e.pointerType==="mouse" && e.button!==0)
+ ){
+  return;
+ }
+
+ const r=calculator.getBoundingClientRect();
+
+ drag={
+  id:e.pointerId,
+  x:e.clientX,
+  y:e.clientY,
+  left:r.left,
+  top:r.top,
+  moved:false
+ };
+});
+
+/* Сүйреу қозғалысы */
+
+window.addEventListener("pointermove",e=>{
+ if(!drag || e.pointerId!==drag.id)return;
+
+ const dx=e.clientX-drag.x;
+ const dy=e.clientY-drag.y;
+
+ if(
+  !drag.moved &&
+  Math.hypot(dx,dy)>7
+ ){
+  drag.moved=true;
+  calculator.classList.add("dragging");
+ }
+
+ if(!drag.moved)return;
+
+ if(e.cancelable){
+  e.preventDefault();
+ }
+
+ calculator.style.left=clamp(
+  drag.left+dx,
+  0,
+  Math.max(
+   0,
+   innerWidth-calculator.offsetWidth
+  )
+ )+"px";
+
+ calculator.style.top=clamp(
+  drag.top+dy,
+  0,
+  Math.max(
+   0,
+   innerHeight-calculator.offsetHeight
+  )
+ )+"px";
+
+},{passive:false});
+
+/* Ұстау аяқталды */
+
+let suppress=false;
+
+window.addEventListener("pointerup",e=>{
+ if(!drag || e.pointerId!==drag.id)return;
+
+ if(drag.moved){
+  suppress=true;
+
+  setTimeout(()=>{
+   suppress=false;
+  },250);
+ }
+
+ drag=null;
+ calculator.classList.remove("dragging");
+});
+
+window.addEventListener("pointercancel",e=>{
+ if(drag && e.pointerId===drag.id){
+  drag=null;
+  calculator.classList.remove("dragging");
+ }
+});
+
+/* Жылжытқанда сан терілмеуі үшін */
+
+calculator.addEventListener("click",e=>{
+ if(!suppress)return;
+
+ e.preventDefault();
+ e.stopImmediatePropagation();
+
+ suppress=false;
+},true);
+
+window.addEventListener("resize",fitCalculator);
+
+/* ======================================
+   МЕНДЕЛЕЕВ КЕСТЕСІ
+====================================== */
+
+const elementData=`
+H|Сутек He|Гелий Li|Литий Be|Бериллий B|Бор C|Көміртек N|Азот O|Оттек F|Фтор Ne|Неон
+Na|Натрий Mg|Магний Al|Алюминий Si|Кремний P|Фосфор S|Күкірт Cl|Хлор Ar|Аргон
+K|Калий Ca|Кальций Sc|Скандий Ti|Титан V|Ванадий Cr|Хром Mn|Марганец Fe|Темір Co|Кобальт Ni|Никель Cu|Мыс Zn|Мырыш
+Ga|Галлий Ge|Германий As|Мышьяк Se|Селен Br|Бром Kr|Криптон
+Rb|Рубидий Sr|Стронций Y|Иттрий Zr|Цирконий Nb|Ниобий Mo|Молибден Tc|Технеций Ru|Рутений Rh|Родий Pd|Палладий Ag|Күміс Cd|Кадмий
+In|Индий Sn|Қалайы Sb|Сурьма Te|Теллур I|Йод Xe|Ксенон
+Cs|Цезий Ba|Барий La|Лантан Ce|Церий Pr|Празеодим Nd|Неодим Pm|Прометий Sm|Самарий Eu|Еуропий Gd|Гадолиний Tb|Тербий Dy|Диспрозий Ho|Гольмий Er|Эрбий Tm|Тулий Yb|Иттербий Lu|Лютеций
+Hf|Гафний Ta|Тантал W|Вольфрам Re|Рений Os|Осмий Ir|Иридий Pt|Платина Au|Алтын Hg|Сынап Tl|Таллий Pb|Қорғасын Bi|Висмут Po|Полоний At|Астат Rn|Радон
+Fr|Франций Ra|Радий Ac|Актиний Th|Торий Pa|Протактиний U|Уран Np|Нептуний Pu|Плутоний Am|Америций Cm|Кюрий Bk|Берклий Cf|Калифорний Es|Эйнштейний Fm|Фермий Md|Менделевий No|Нобелий Lr|Лоуренсий
+Rf|Резерфордий Db|Дубний Sg|Сиборгий Bh|Борий Hs|Хассий Mt|Мейтнерий Ds|Дармштадтий Rg|Рентгений Cn|Коперниций Nh|Нихоний Fl|Флеровий Mc|Московий Lv|Ливерморий Ts|Теннессин Og|Оганесон
+`;
+
+const elements=elementData
+ .trim()
+ .split(/\s+/)
+ .map((item,i)=>{
+  const [symbol,name]=item.split("|");
+
+  return{
+   z:i+1,
+   symbol,
+   name
+  };
+ });
+
+const columns=[
+ [1,18],
+ [1,2,13,14,15,16,17,18],
+ [1,2,13,14,15,16,17,18],
+ Array.from({length:18},(_,i)=>i+1),
+ Array.from({length:18},(_,i)=>i+1)
+];
+
+function pos(z){
+ if(z<=54){
+  let k=z-1;
+
+  for(let i=0;i<5;i++){
+   if(k<columns[i].length){
+    return{
+     row:i+1,
+     col:columns[i][k]
+    };
+   }
+
+   k-=columns[i].length;
+  }
+ }
+
+ if(z<=56)return{row:6,col:z-54};
+ if(z<=71)return{row:9,col:z-53};
+ if(z<=86)return{row:6,col:z-68};
+ if(z<=88)return{row:7,col:z-86};
+ if(z<=103)return{row:10,col:z-85};
+
+ return{row:7,col:z-100};
+}
+
+function buildTable(){
+ let html="";
+
+ for(let g=1;g<=18;g++){
+  html+=`
+   <span
+    class="period-label"
+    style="grid-row:1;grid-column:${g+1}"
+   >
+    ${g}
+   </span>
+  `;
+ }
+
+ for(let p=1;p<=7;p++){
+  html+=`
+   <span
+    class="period-label"
+    style="grid-row:${p+1};grid-column:1"
+   >
+    ${p}
+   </span>
+  `;
+ }
+
+ html+=`
+  <span class="period-label"
+   style="grid-row:10;grid-column:1">
+   La–Lu
+  </span>
+
+  <span class="period-label"
+   style="grid-row:11;grid-column:1">
+   Ac–Lr
+  </span>
+
+  <span class="period-label"
+   style="grid-row:7;grid-column:4">
+   57–71
+  </span>
+
+  <span class="period-label"
+   style="grid-row:8;grid-column:4">
+   89–103
+  </span>
+ `;
+
+ for(const e of elements){
+  const p=pos(e.z);
+
+  const cls=
+   (e.z>=57&&e.z<=71) ||
+   (e.z>=89&&e.z<=103)
+    ?"fblock"
+    :["H","C","N","O"].includes(e.symbol)
+     ?"featured"
+     :"";
+
+  html+=`
+   <button
+    class="element ${cls}"
+    data-z="${e.z}"
+    style="
+     grid-row:${p.row+1};
+     grid-column:${p.col+1}
+    "
+   >
+    <i>${e.z}</i>
+    <b>${e.symbol}</b>
+    <small>${e.name}</small>
+   </button>
+  `;
+ }
+
+ $("ptable").innerHTML=html;
+}
+
+/* ЭЛЕМЕНТТІ ТАҢДАУ */
+
+$("ptable").onclick=e=>{
+ const button=e.target.closest("[data-z]");
+ if(!button)return;
+
+ const z=Number(button.dataset.z);
+ const item=elements[z-1];
+ const p=pos(z);
+
+ const period=p.row===9
+  ?6
+  :p.row===10
+   ?7
+   :p.row;
+
+ const group=p.row>7
+  ?"f-блок"
+  :p.col+"-топ";
+
+ $("elementInfo").textContent=
+  `${z}. ${item.name} (${item.symbol}) · `+
+  `${period}-период · ${group}`;
+};
+
+$("showTable").onclick=()=>{
+ $("tableOverlay").hidden=false;
+};
+
+$("closeTable").onclick=()=>{
+ $("tableOverlay").hidden=true;
+};
+
+$("tableOverlay").onclick=e=>{
+ if(e.target===$("tableOverlay")){
+  $("tableOverlay").hidden=true;
+ }
+};
+
+/* ПЕРНЕТАҚТАМЕН БАСҚАРУ */
+
+document.addEventListener("keydown",e=>{
+ if(e.key==="Escape"){
+  $("tableOverlay").hidden=true;
+  calculator.hidden=true;
+  return;
+ }
+
+ if(
+  !$("tableOverlay").hidden ||
+  e.target.closest("input,textarea")
+ ){
+  return;
+ }
+
+ if(
+  e.key==="ArrowRight" &&
+  page<slides.length-1
+ ){
+  page++;
+  draw();
+ }else if(
+  e.key==="ArrowLeft" &&
+  page>0
+ ){
+  page--;
+  draw();
+ }
+});
+
+/* АВТОМАТТЫ ТЕКСЕРУЛЕР */
+
+console.assert(
+ theory.length===15,
+ "Түсіндірме 15 емес"
+);
+
+console.assert(
+ notes.length===3,
+ "Конспект 3 емес"
+);
+
+console.assert(
+ levels.length===4,
+ "Деңгей 4 емес"
+);
+
+console.assert(
+ oral.length===25,
+ "Жеке сұрақ 25 емес"
+);
+
+console.assert(
+ quiz.length===15,
+ "Командалық сұрақ 15 емес"
+);
+
+console.assert(
+ elements.length===118,
+ "Периодтық кестеде 118 элемент жоқ"
+);
+
+console.assert(
+ evaluate("2+3*4")===14 &&
+ evaluate("(2+3)*4")===20,
+ "Калькулятор дұрыс есептемейді"
+);
+
+/* САЙТТЫ ІСКЕ ҚОСУ */
+
+try{
+ buildTable();
+ tick();
+ draw();
+}catch(error){
+ console.error(error);
+
+ $("slide").innerHTML+=`
+  <div class="note">
+   <p>
+    Сайт қатесі: ${String(error.message)}
+   </p>
+  </div>
+ `;
+}
+
+</script>
+</body>
+</html>

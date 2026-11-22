@@ -1,0 +1,2375 @@
+
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>§73 Полиэтилен өндіру — BY DARKHAN</title>
+
+<style>
+:root{
+ --bg:#071827;
+ --card:#173e56;
+ --cyan:#96e2ff;
+ --mint:#91efbf;
+ --gold:#ffdc95;
+ --text:#f7fcff;
+ --line:#72a9c4;
+}
+
+*{box-sizing:border-box}
+
+html,body{
+ margin:0;
+ height:100%;
+ font-family:Arial,"Segoe UI",sans-serif;
+ color:var(--text);
+ background:var(--bg);
+}
+
+button,input{font:inherit}
+button{cursor:pointer}
+
+button:disabled{
+ opacity:.45;
+ cursor:not-allowed;
+}
+
+[hidden]{display:none!important}
+
+.app{
+ height:100vh;
+ height:100dvh;
+ display:flex;
+ flex-direction:column;
+ background:
+ radial-gradient(circle at 90% 10%,#167b9c70,transparent 45%),
+ radial-gradient(circle at 8% 90%,#166c5c55,transparent 40%),
+ linear-gradient(125deg,#071827,#123950,#081b2c);
+}
+
+header,footer{
+ flex-shrink:0;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:12px;
+ padding:11px 20px;
+ background:#081c2e;
+ border-color:var(--line);
+}
+
+header{border-bottom:1px solid var(--line)}
+footer{border-top:1px solid var(--line)}
+
+.brand{
+ color:var(--cyan);
+ font-size:27px;
+ font-weight:900;
+}
+
+.brand small{
+ display:block;
+ margin-top:5px;
+ font-size:14px;
+ color:var(--gold);
+}
+
+.status{
+ display:flex;
+ align-items:center;
+ gap:15px;
+ font-size:19px;
+ font-weight:900;
+}
+
+#timer{
+ font-size:29px;
+ color:var(--gold);
+ font-variant-numeric:tabular-nums;
+}
+
+#counter{color:var(--cyan)}
+
+#clock{
+ color:var(--cyan);
+ font-size:23px;
+ font-weight:900;
+ font-variant-numeric:tabular-nums;
+}
+
+.signature{
+ color:var(--gold);
+ font-size:25px;
+ font-weight:900;
+}
+
+main{
+ flex:1;
+ min-height:0;
+ overflow:auto;
+ padding:24px 34px 42px;
+}
+
+.slide{
+ max-width:1480px;
+ min-height:100%;
+ margin:auto;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+}
+
+h1{
+ font-size:clamp(43px,4.5vw,75px);
+ line-height:1.13;
+ margin:10px 0 19px;
+}
+
+h2{
+ font-size:clamp(32px,3vw,51px);
+ line-height:1.2;
+ margin:0 0 18px;
+}
+
+h3{
+ color:var(--cyan);
+ font-size:clamp(24px,2vw,34px);
+ margin:0 0 12px;
+}
+
+p,li{
+ font-size:clamp(21px,1.7vw,29px);
+ line-height:1.49;
+}
+
+li{margin:8px 0}
+
+.eyebrow{
+ font-size:20px;
+ font-weight:900;
+ color:var(--cyan);
+ margin-bottom:12px;
+}
+
+.grid2,.grid3{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:18px;
+ align-items:center;
+}
+
+.grid3{
+ grid-template-columns:repeat(3,minmax(0,1fr));
+}
+
+.card{
+ min-width:0;
+ padding:24px;
+ background:linear-gradient(145deg,#1c4960,#102e43);
+ border:1px solid var(--line);
+ border-radius:18px;
+}
+
+.card p{margin:9px 0}
+
+.formula{
+ margin:16px 0;
+ padding:19px;
+ background:#104654;
+ color:var(--mint);
+ border:1px solid #7ecbbd;
+ border-radius:14px;
+ font-size:clamp(26px,2.6vw,43px);
+ text-align:center;
+ font-weight:900;
+ overflow-wrap:anywhere;
+}
+
+.note{
+ margin-top:16px;
+ padding:16px 21px;
+ background:#20475e;
+ border-left:6px solid var(--gold);
+ border-radius:12px;
+}
+
+.note p{margin:6px 0}
+
+.step{
+ margin:9px 0;
+ padding:12px 16px;
+ background:#28556d;
+ border-radius:10px;
+ font-size:clamp(20px,1.6vw,27px);
+}
+
+.btn{
+ padding:12px 18px;
+ background:#2a607e;
+ border:1px solid #8cbdd1;
+ border-radius:10px;
+ color:white;
+ font-size:18px;
+ font-weight:900;
+}
+
+.btn.primary{background:#098caf}
+.btn.good{background:#137d5d}
+.btn.gold{background:#926e35}
+
+.actions{
+ display:flex;
+ flex-wrap:wrap;
+ gap:10px;
+ margin-top:18px;
+}
+
+.task{
+ padding:13px 18px;
+ margin:10px 0;
+ background:#1b435c;
+ border:1px solid #6ca8c4;
+ border-radius:12px;
+}
+
+.task p{margin:5px 0}
+
+.answer{
+ padding:18px;
+ margin-top:16px;
+ background:#12513e;
+ border:1px solid #83eabc;
+ border-radius:13px;
+}
+
+.answer p{margin:8px 0}
+
+.big{
+ font-size:clamp(30px,2.75vw,46px);
+ line-height:1.4;
+ font-weight:900;
+}
+
+.tag{
+ display:inline-block;
+ padding:12px 20px;
+ font-size:30px;
+ font-weight:900;
+ color:var(--gold);
+ border:2px solid var(--gold);
+ background:#66502f;
+ border-radius:12px;
+}
+
+.progress{
+ height:13px;
+ margin:17px 0;
+ background:#2d5067;
+ border-radius:20px;
+ overflow:hidden;
+}
+
+.progress span{
+ display:block;
+ height:100%;
+ background:linear-gradient(90deg,#17a5d0,#90efc0);
+}
+
+.team{
+ padding:17px;
+ background:#19435a;
+ border:1px solid #7baac5;
+ border-radius:15px;
+ text-align:center;
+}
+
+.team.active{
+ outline:4px solid var(--gold);
+}
+
+.score{
+ color:var(--gold);
+ font-size:55px;
+ font-weight:900;
+}
+
+.options{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:12px;
+ margin-top:17px;
+}
+
+.option{
+ padding:18px;
+ color:white;
+ background:#285f7a;
+ border:2px solid #84bad2;
+ border-radius:11px;
+ text-align:left;
+ font-size:clamp(21px,1.7vw,29px);
+ font-weight:900;
+}
+
+.option.correct{background:#15805b}
+.option.wrong{background:#934455}
+
+/* КӨРНЕКІ МОДЕЛЬ */
+
+.diagram{
+ padding:17px;
+ background:#103b50;
+ border:1px solid #80bad2;
+ border-radius:17px;
+ text-align:center;
+}
+
+.diagram svg{
+ display:block;
+ width:100%;
+ height:225px;
+}
+
+.diagram strong{
+ color:var(--mint);
+ display:block;
+ font-size:27px;
+}
+
+.diagram p{
+ font-size:21px;
+}
+
+/* ҚҰРАЛДАР */
+
+.tools{
+ position:fixed;
+ z-index:30;
+ left:10px;
+ bottom:101px;
+ display:flex;
+ flex-direction:column;
+ align-items:flex-start;
+ gap:7px;
+}
+
+.tool{
+ padding:10px 12px;
+ color:white;
+ background:#0b7f9d;
+ border:1px solid #89def2;
+ border-radius:8px;
+ font-size:13px;
+ font-weight:900;
+}
+
+/* КАЛЬКУЛЯТОР */
+
+.calculator{
+ position:fixed;
+ left:16px;
+ top:105px;
+ width:228px;
+ max-width:calc(100vw - 12px);
+ padding:9px;
+ z-index:150;
+ background:#103249;
+ border:2px solid #93dff9;
+ border-radius:14px;
+ box-shadow:0 17px 40px #000a;
+ cursor:grab;
+ touch-action:none;
+ user-select:none;
+ -webkit-user-select:none;
+}
+
+.calculator.dragging{
+ cursor:grabbing;
+}
+
+.calculator *{
+ touch-action:none;
+}
+
+.calc-head{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:6px;
+ background:#29546b;
+ padding:8px;
+ border-radius:8px;
+ font-size:12px;
+}
+
+.calc-head button{
+ padding:5px 9px;
+ color:white;
+ background:#a8495b;
+ border:0;
+ border-radius:5px;
+}
+
+#calcDisplay{
+ display:block;
+ width:100%;
+ height:46px;
+ margin:8px 0;
+ text-align:right;
+ background:#071e30;
+ color:white;
+ border:1px solid #88b4cc;
+ border-radius:7px;
+ padding:7px;
+ font-size:21px;
+ pointer-events:none;
+}
+
+.calc-keys{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:5px;
+}
+
+.calc-keys button{
+ height:42px;
+ min-width:0;
+ padding:0;
+ color:white;
+ background:#2d657e;
+ border:1px solid #82afc7;
+ border-radius:7px;
+ font-size:17px;
+}
+
+.calc-hint{
+ padding-top:8px;
+ text-align:center;
+ color:#cadce7;
+ font-size:11px;
+}
+
+/* МЕНДЕЛЕЕВ КЕСТЕСІ */
+
+.overlay{
+ position:fixed;
+ inset:0;
+ z-index:300;
+ display:grid;
+ place-items:center;
+ background:#000e;
+ padding:10px;
+}
+
+.modal{
+ width:min(1570px,99vw);
+ max-height:97vh;
+ overflow:auto;
+ background:#0d2e43;
+ border:1px solid #7bacc7;
+ border-radius:15px;
+ padding:17px;
+}
+
+.modal-head{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:12px;
+}
+
+.period-scroll{
+ overflow:auto;
+ padding:12px;
+ background:#071d2f;
+ border-radius:10px;
+}
+
+.period{
+ display:grid;
+ grid-template-columns:65px repeat(18,90px);
+ grid-template-rows:38px repeat(10,89px);
+ gap:4px;
+ width:max-content;
+}
+
+.period-label{
+ display:grid;
+ place-items:center;
+ text-align:center;
+ background:#19495e;
+ color:var(--gold);
+ border:1px solid #6b9bb7;
+ border-radius:6px;
+ font-size:12px;
+ font-weight:900;
+}
+
+.element{
+ position:relative;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+ gap:3px;
+ background:#285f79;
+ color:white;
+ border:1px solid #87bad2;
+ border-radius:6px;
+ padding:13px 2px 3px;
+}
+
+.element i{
+ position:absolute;
+ top:3px;
+ left:4px;
+ font-style:normal;
+ font-size:11px;
+}
+
+.element b{font-size:26px}
+.element small{font-size:11px}
+.element.fblock{background:#347e83}
+.element.featured{background:#8f5571}
+
+#elementInfo{
+ padding:15px;
+ margin-top:12px;
+ background:#1a4961;
+ border-radius:10px;
+ font-size:20px;
+}
+
+@media(max-width:850px){
+ .grid2,.grid3,.options{
+  grid-template-columns:1fr;
+ }
+ main{padding:13px}
+ header,footer{padding:8px}
+ .brand{font-size:18px}
+ .brand small,#sectionName{display:none}
+ .status{gap:7px;font-size:13px}
+ #timer{font-size:20px}
+ #clock{font-size:16px}
+ .signature{font-size:15px}
+ .btn{font-size:14px;padding:9px}
+ .tools{bottom:78px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+ <div class="brand">
+  ⚗ CHEMISTRY PRO
+  <small>§73 · ПОЛИЭТИЛЕН ӨНДІРУ</small>
+ </div>
+
+ <div class="status">
+  <span id="sectionName">Кіріспе</span>
+  <span id="timer">80:00</span>
+  <span id="counter">1 / 29</span>
+ </div>
+</header>
+
+<main id="main">
+
+ <section class="slide" id="slide">
+  <div class="eyebrow">
+   §73 · ОРГАНИКАЛЫҚ ХИМИЯ
+  </div>
+
+  <h1>Полиэтилен өндіру</h1>
+
+  <p>
+   Полиэтиленнің түзілуі, өнеркәсіптік
+   өндірісі, түрлері, қолданылуы
+   және қайта өңделуі.
+  </p>
+
+  <div class="formula">
+   nCH₂=CH₂ → (–CH₂–CH₂–)ₙ
+  </div>
+ </section>
+
+</main>
+
+<footer>
+
+ <div class="actions" style="margin:0">
+  <button class="btn" id="prev">← Артқа</button>
+  <button class="btn primary" id="next">
+   Келесі →
+  </button>
+ </div>
+
+ <strong class="signature">BY DARKHAN</strong>
+
+ <span id="clock">00:00:00</span>
+
+</footer>
+</div>
+
+<div class="tools">
+
+ <button class="tool" id="showCalc">
+  🧮 Калькулятор
+ </button>
+
+ <button class="tool" id="showTable">
+  ⚛ Менделеев кестесі
+ </button>
+
+</div>
+
+<div class="calculator" id="calculator" hidden>
+
+ <div class="calc-head">
+  <strong>🧮 Калькулятор</strong>
+  <button id="closeCalc" type="button">✕</button>
+ </div>
+
+ <input id="calcDisplay" readonly>
+
+ <div class="calc-keys" id="calcKeys"></div>
+
+ <div class="calc-hint">
+  Кез келген жерінен жылжыт
+ </div>
+
+</div>
+
+<div class="overlay" id="tableOverlay" hidden>
+
+ <div class="modal">
+
+  <div class="modal-head">
+   <h2>Менделеевтің периодтық кестесі</h2>
+
+   <button class="btn" id="closeTable">
+    Жабу ✕
+   </button>
+  </div>
+
+  <p style="font-size:17px">
+   118 элемент · 18 топ · 7 период
+  </p>
+
+  <div class="period-scroll">
+   <div class="period" id="period"></div>
+  </div>
+
+  <div id="elementInfo">
+   Элементті таңда.
+  </div>
+
+ </div>
+</div>
+
+<script>
+"use strict";
+
+/* ===============================
+   НЕГІЗГІ СЛАЙД ЖҮЙЕСІ
+=============================== */
+
+const $=id=>document.getElementById(id);
+
+const slides=[];
+let page=0;
+
+function add(title,section,html){
+ slides.push({title,section,html});
+}
+
+function dynamic(title,section,fn){
+ slides.push({title,section,fn});
+}
+
+function draw(){
+ const s=slides[page];
+
+ if(!s)return;
+
+ $("slide").innerHTML=s.fn
+  ?s.fn()
+  :s.html;
+
+ $("sectionName").textContent=s.section;
+
+ $("counter").textContent=
+  (page+1)+" / "+slides.length;
+
+ $("prev").disabled=page===0;
+ $("next").disabled=page===slides.length-1;
+
+ $("main").scrollTop=0;
+}
+
+function go(title){
+ const i=slides.findIndex(s=>s.title===title);
+
+ if(i>=0){
+  page=i;
+  draw();
+ }
+}
+
+$("prev").onclick=()=>{
+ if(page>0){
+  page--;
+  draw();
+ }
+};
+
+$("next").onclick=()=>{
+ if(page<slides.length-1){
+  page++;
+  draw();
+ }
+};
+
+/* ===============================
+   САБАҚ НӘТИЖЕЛЕРІН САҚТАУ
+=============================== */
+
+const STORE="darkhan_chem73_polyethylene_v1";
+
+function initialState(){
+ return{
+  levels:{},
+  oral:0,
+  oralShow:false,
+  game:0,
+  choice:null,
+  scores:[0,0,0],
+  home:false
+ };
+}
+
+let state=initialState();
+
+try{
+ const saved=JSON.parse(
+  localStorage.getItem(STORE)
+ );
+
+ if(
+  saved &&
+  Array.isArray(saved.scores) &&
+  saved.scores.length===3
+ ){
+  state={...initialState(),...saved};
+ }
+}catch(error){
+ console.warn(error);
+}
+
+function save(){
+ try{
+  localStorage.setItem(
+   STORE,
+   JSON.stringify(state)
+  );
+ }catch(error){
+  console.warn(error);
+ }
+}
+
+/* ===============================
+   КӨРНЕКІ МОДЕЛЬ
+=============================== */
+
+function polymerDiagram(){
+ return `
+  <div class="diagram">
+
+   <svg viewBox="0 0 530 225">
+
+    <g fill="#225e77"
+       stroke="#96e2ff"
+       stroke-width="3">
+
+     <rect x="12" y="50"
+      width="115" height="90" rx="15"/>
+
+     <rect x="145" y="50"
+      width="115" height="90" rx="15"/>
+
+     <rect x="278" y="50"
+      width="115" height="90" rx="15"/>
+
+    </g>
+
+    <g fill="white"
+       font-size="24"
+       font-weight="bold"
+       text-anchor="middle">
+
+     <text x="69" y="104">C=C</text>
+     <text x="202" y="104">C=C</text>
+     <text x="335" y="104">C=C</text>
+
+    </g>
+
+    <path d="M400 95 H440
+             M428 83 L441 95 L428 107"
+     fill="none"
+     stroke="#ffdc95"
+     stroke-width="5"
+     stroke-linecap="round"/>
+
+    <rect x="453" y="52"
+     width="65" height="86" rx="13"
+     fill="#17684f"
+     stroke="#91efbf"
+     stroke-width="3"/>
+
+    <text x="485" y="104"
+     text-anchor="middle"
+     fill="white"
+     font-size="26"
+     font-weight="bold">PE</text>
+
+    <text x="265" y="190"
+     text-anchor="middle"
+     fill="#ffdc95"
+     font-size="22">
+     Этен → Полиэтилен
+    </text>
+
+   </svg>
+
+   <strong>
+    nCH₂=CH₂ → (–CH₂–CH₂–)ₙ
+   </strong>
+
+   <p>Полимерлену реакциясы</p>
+
+  </div>
+ `;
+}
+
+/* ===============================
+   КІРІСПЕ
+=============================== */
+
+dynamic(
+ "Кіріспе",
+ "Кіріспе · 5 минут",
+ ()=>`
+  <div class="grid2">
+
+   <div>
+    <div class="eyebrow">
+     §73 · ОРГАНИКАЛЫҚ ХИМИЯ
+    </div>
+
+    <h1>Полиэтилен өндіру</h1>
+
+    <p>
+     Полиэтиленнің қалай түзілетінін,
+     құрылысын, түрлерін, қасиеттерін,
+     өндірісте қолданылуын
+     және қайта өңделуін үйренеміз.
+    </p>
+
+    <div class="formula">
+     nCH₂=CH₂ → (–CH₂–CH₂–)ₙ
+    </div>
+
+    <div class="actions">
+
+     <button class="btn good"
+      data-action="start">
+      ▶ Сабақты бастау
+     </button>
+
+     <button class="btn gold"
+      data-action="reset-time">
+      ↺ Таймерді жаңарту
+     </button>
+
+    </div>
+   </div>
+
+   ${polymerDiagram()}
+
+  </div>
+ `
+);
+
+add("Мақсат","Кіріспе",`
+ <h2>Сабақтың мақсаты</h2>
+
+ <div class="grid2">
+
+  <div class="card">
+   <h3>Білімдік мақсат</h3>
+
+   <p>
+    Полиэтиленнің құрылысы,
+    полимерлену реакциясы,
+    өндірістік түрлері және
+    физикалық қасиеттерін түсіну.
+   </p>
+  </div>
+
+  <div class="card">
+   <h3>Практикалық мақсат</h3>
+
+   <p>
+    Полимерлену теңдеуін жазу,
+    қайталанатын буынды анықтау,
+    полиэтилен түрлерін салыстыру
+    және есептер шығару.
+   </p>
+  </div>
+
+ </div>
+
+ <div class="note">
+  <p>
+   Жалпы сабақ — 80 минут.
+   Кіріспе — 5;
+   теория — 20;
+   конспект — 8;
+   деңгейлік жұмыс — 10;
+   жеке жұмыс — 20;
+   командалық ойын — 12;
+   қорытынды — 5 минут.
+  </p>
+ </div>
+`);
+
+/* ===============================
+   15 ТЕОРИЯЛЫҚ ТҮСІНДІРМЕ
+=============================== */
+
+const theory=[
+ [
+  "Полиэтилен дегеніміз не?",
+  "Полиэтилен — этен молекулаларының полимерленуінен түзілетін жоғары молекулалық органикалық қосылыс. Оның құрылымы көміртек атомдарынан тұратын ұзын тізбекке негізделген. Полиэтилен көптеген тұрмыстық және өндірістік материалдарға қолданылады.",
+  "Полиэтилен: (–CH₂–CH₂–)ₙ",
+  "Полиэтилен — этеннен түзілетін полимер."
+ ],
+ [
+  "Полиэтиленнің мономері",
+  "Полиэтиленнің бастапқы мономері — этен. Этеннің молекулалық формуласы C₂H₄, құрылымдық формуласы CH₂=CH₂. Оның көміртек атомдары арасындағы қос байланыс полимерлену барысында жаңа тізбектік байланыстардың түзілуіне қатысады.",
+  "CH₂=CH₂",
+  "Мономер — этен."
+ ],
+ [
+  "Полимерлену теңдеуі",
+  "Этеннің көптеген молекулалары қосылу полимерлену реакциясы арқылы ұзын полимер тізбегін түзеді. Реакция теңдеуіндегі n саны тізбекке біріккен мономерлер санын білдіреді. Қайталанатын буынның құрамы этеннің атомдық құрамына сәйкес келеді.",
+  "nCH₂=CH₂ → (–CH₂–CH₂–)ₙ",
+  "Полиэтилен қосылу полимерленуі арқылы түзіледі."
+ ],
+ [
+  "Полиэтиленнің қайталанатын буыны",
+  "Полиэтиленнің қайталанатын құрылымдық буыны –CH₂–CH₂– болып жазылады. Бұл буында екі көміртек және төрт сутек атомы болады. Буындардың саны полимерлену дәрежесіне байланысты өзгеріп отырады.",
+  "–CH₂–CH₂–",
+  "Қайталанатын буын — C₂H₄."
+ ],
+ [
+  "Полимерлену дәрежесі",
+  "Полимерлену дәрежесі n — полимер макромолекуласындағы қайталанатын буындар саны. Бұл сан артқан сайын тізбектің молярлық массасы да өседі. Нақты өндірілген полиэтилен әдетте әртүрлі ұзындықтағы молекулалар қоспасынан тұрады.",
+  "n = буын саны",
+  "Полимерлену дәрежесі тізбек ұзындығын сипаттайды."
+ ],
+ [
+  "Полиэтилен өндірудің жалпы принципі",
+  "Өнеркәсіпте полиэтилен этенді полимерлендіру арқылы алынады. Өндірісте этен шикізат ретінде пайдаланылады, ал реакцияны басқару үшін арнайы технологиялық жүйелер қолданылады. Әртүрлі өндірістік тәсілдер полимер тізбектерінің құрылымына және дайын материалдың қасиеттеріне әсер етеді.",
+  "Этен → Полимерлену → Полиэтилен",
+  "Өндірістің негізі — этеннің полимерленуі."
+ ],
+ [
+  "Жоғары қысымдық полиэтилен",
+  "Төмен тығыздықты полиэтиленнің кең тараған өндірістік түрі LDPE деп аталады. Ол көбіне жоғары қысымды технологиялық процестермен байланысты. Оның тізбегінде тармақтар көбірек кездесетіндіктен, молекулалар бір-біріне тығыз орналаса алмайды. Сондықтан материал икемдірек болуы мүмкін.",
+  "LDPE — төмен тығыздықты полиэтилен",
+  "LDPE көбіне иілгіш материалдар жасауға қолданылады."
+ ],
+ [
+  "Төмен қысымдық полиэтилен",
+  "Жоғары тығыздықты полиэтилен HDPE деп аталады. Оның құрылымында тармақталу деңгейі салыстырмалы түрде аз болады, сондықтан тізбектер тығыздау орналасады. HDPE өндірісі тиісті катализдік технологиялармен байланысты және нәтижесінде берік, салыстырмалы қатты материал алынуы мүмкін.",
+  "HDPE — жоғары тығыздықты полиэтилен",
+  "HDPE көбіне қатты ыдыстар мен техникалық бұйымдарға қолданылады."
+ ],
+ [
+  "LDPE мен HDPE айырмашылығы",
+  "LDPE мен HDPE екеуі де полиэтилен болғанымен, олардың молекулалық құрылымы және тізбектерінің орналасуы өзгеше. LDPE әдетте икемдірек, HDPE салыстырмалы тығыз әрі қаттырақ болады. Материал таңдау кезінде беріктік, икемділік және қолдану мақсаты ескеріледі.",
+  "LDPE — икемдірек · HDPE — тығыздау",
+  "Бір полимердің әртүрлі құрылымы әртүрлі қасиет береді."
+ ],
+ [
+  "Полиэтиленнің физикалық қасиеттері",
+  "Полиэтилен әдетте жеңіл, электр тогын нашар өткізетін және суға төзімді материал болып саналады. Оның нақты механикалық қасиеттері полиэтилен түріне тәуелді. Қыздырғанда термопласт ретінде жұмсарып, қайта қалыптауға мүмкіндік береді.",
+  "Жеңіл · Су өткізбейтін · Термопласт",
+  "Полиэтилен — кең таралған термопласт."
+ ],
+ [
+  "Полиэтиленнің химиялық тұрақтылығы",
+  "Полиэтилен көптеген күнделікті жағдайда химиялық әсерге салыстырмалы тұрақты. Алайда оның барлық химиялық заттарға және кез келген температураға бірдей төзімді екенін айту дұрыс емес. Ультракүлгін сәуле, жоғары температура және кейбір химиялық орталар материалдың қасиетін өзгертуі мүмкін.",
+  "Қасиет → ортаға тәуелді",
+  "Полиэтиленнің тұрақтылығы қолдану жағдайына байланысты."
+ ],
+ [
+  "Полиэтиленнің қолданылуы",
+  "Полиэтиленнің әртүрлі түрлері қаптамалар, пленкалар, құбырлар, ыдыстар және электр кабельдерінің оқшаулағыш қабаттары үшін пайдаланылады. Нақты өнімге қажетті қасиеттеріне қарай тиісті полиэтилен түрі таңдалады.",
+  "Қаптама · Құбыр · Оқшаулағыш",
+  "Полиэтилен көптеген салаларда қолданылады."
+ ],
+ [
+  "Полиэтиленді қайта өңдеу",
+  "Полиэтилен термопласт болғандықтан, тиісті жағдайда қайта өңдеуге жарамды болуы мүмкін. Дегенмен қалдықтың тазалығы, қоспалар, материал түрі және жергілікті қайта өңдеу инфрақұрылымы маңызды. HDPE үшін көбіне 2, LDPE үшін 4 сандық материал коды қолданылады.",
+  "HDPE — 2 · LDPE — 4",
+  "Қайта өңдеу коды қайта өңдеу мүмкіндігін толық кепілдендірмейді."
+ ],
+ [
+  "Полиэтиленнің молярлық массасы",
+  "Полиэтиленнің бір қайталанатын буыны C₂H₄ құрамына сәйкес келеді, оның молярлық массасы 28 г/моль. Мектептік есепте полимердің жуық молярлық массасы буын саны мен бір буынның молярлық массасын көбейту арқылы анықталады. Бұл есепте тізбек ұштарының массасы ескерілмейді.",
+  "M(полимер) ≈ 28n",
+  "Полиэтилен үшін жуық молярлық масса 28n г/моль."
+ ],
+ [
+  "Қорытынды есеп алгоритмі",
+  "Полимерге есеп шығарғанда алдымен мономер мен құрылымдық буынды анықта. Екінші қадамда буынның молярлық массасын есепте. Үшінші қадамда полимерлену дәрежесі мен молярлық масса арасындағы байланысты пайдалан. Соңында өлшем бірлігін жазып, нәтижені тексер.",
+  "n ≈ M(полимер)/28",
+  "Молярлық масса мен полимерлену дәрежесін ажырата біл."
+ ]
+];
+
+theory.forEach((t,i)=>{
+ add(
+  t[0],
+  `Түсіндірме ${i+1}/15`,
+  `
+   <div class="eyebrow">
+    ТҮСІНДІРМЕ ${i+1}/15
+   </div>
+
+   <h2>${t[0]}</h2>
+
+   <div class="grid2">
+
+    <div class="card">
+     <h3>Толық түсіндірме</h3>
+     <p>${t[1]}</p>
+    </div>
+
+    <div class="card">
+     <h3>Негізгі түсінік</h3>
+     <div class="formula">${t[2]}</div>
+     <p>Маңызды тұсты анықтап, мысал келтір.</p>
+    </div>
+
+   </div>
+
+   <div class="note">
+    <h3 style="color:var(--gold)">
+     Дәптерге жаз:
+    </h3>
+    <p>${t[3]}</p>
+   </div>
+  `
+ );
+});
+
+/* ===============================
+   КӨРНЕКІ САЛЫСТЫРУ
+=============================== */
+
+add(
+ "LDPE және HDPE",
+ "Көрнекілік",
+ `
+  <h2>Полиэтиленнің негізгі түрлері</h2>
+
+  <div class="grid2">
+
+   <div class="card">
+    <h3>LDPE</h3>
+
+    <div class="formula">
+     Төмен тығыздық
+    </div>
+
+    <p>
+     Тізбектерінің тармақталуы
+     көбірек болады.
+    </p>
+
+    <p>
+     Әдетте икемдірек және
+     иілгіш материалдарда қолданылады.
+    </p>
+
+    <p><b>Материал коды: 4</b></p>
+   </div>
+
+   <div class="card">
+    <h3>HDPE</h3>
+
+    <div class="formula">
+     Жоғары тығыздық
+    </div>
+
+    <p>
+     Тізбектерінің тармақталуы
+     салыстырмалы аз болады.
+    </p>
+
+    <p>
+     Көбіне қаттырақ, берік
+     бұйымдарда қолданылады.
+    </p>
+
+    <p><b>Материал коды: 2</b></p>
+   </div>
+
+  </div>
+ `
+);
+
+/* ===============================
+   3 КОНСПЕКТ
+=============================== */
+
+const notes=[
+ [
+  "Полиэтиленнің құрылысы",
+  [
+   "Полиэтилен — этеннен алынатын полимер.",
+   "Мономер — этен, C₂H₄.",
+   "Құрылымдық формуласы: CH₂=CH₂.",
+   "Полимерлену: nCH₂=CH₂ → (–CH₂–CH₂–)ₙ.",
+   "Полиэтиленнің буыны — C₂H₄.",
+   "Полимерлену дәрежесі — n.",
+   "Полимер макромолекуладан тұрады."
+  ]
+ ],
+ [
+  "Өндіру және қасиеттері",
+  [
+   "Полиэтилен этенді полимерлендіру арқылы өндіріледі.",
+   "LDPE — төмен тығыздықты полиэтилен.",
+   "HDPE — жоғары тығыздықты полиэтилен.",
+   "LDPE әдетте икемдірек болады.",
+   "HDPE салыстырмалы қаттырақ болады.",
+   "Полиэтилен — термопласт.",
+   "Полиэтилен электр тогын нашар өткізеді."
+  ]
+ ],
+ [
+  "Қолданылуы және есептер",
+  [
+   "Полиэтилен қаптама, құбыр, ыдыс жасауға қолданылады.",
+   "HDPE материалының кең тараған коды — 2.",
+   "LDPE материалының кең тараған коды — 4.",
+   "Қайта өңдеу жергілікті жүйеге тәуелді.",
+   "M(C₂H₄)=28 г/моль.",
+   "M(полимер)≈28n г/моль.",
+   "n≈M(полимер)/28.",
+   "Молярлық масса есептері жуықтап шығарылады."
+  ]
+ ]
+];
+
+notes.forEach((n,i)=>{
+ add(
+  "Конспект "+(i+1),
+  "Конспект · 8 минут",
+  `
+   <div class="eyebrow">
+    ДӘПТЕРГЕ ЖАЗ
+   </div>
+
+   <h2>Конспект №${i+1}</h2>
+
+   <h3>${n[0]}</h3>
+
+   <div class="card">
+    <ol>
+     ${n[1].map(x=>`
+      <li>${x}</li>
+     `).join("")}
+    </ol>
+   </div>
+  `
+ );
+});
+
+/* ===============================
+   4 ДЕҢГЕЙЛІК ТАПСЫРМА
+=============================== */
+
+const levels=[
+ [
+  "1-деңгей. Негізгі ұғымдар",
+  [
+   ["Полиэтиленнің мономері?","Этен."],
+   ["Этеннің формуласы?","C₂H₄."],
+   ["Полиэтиленнің қайталанатын буыны?","–CH₂–CH₂–."],
+   ["Полимерлену дәрежесі нені көрсетеді?","Буындар санын."]
+  ]
+ ],
+ [
+  "2-деңгей. Полиэтилен түрлері",
+  [
+   ["LDPE қандай полиэтилен?","Төмен тығыздықты."],
+   ["HDPE қандай полиэтилен?","Жоғары тығыздықты."],
+   ["Қай түрі әдетте икемдірек?","LDPE."],
+   ["HDPE материалының коды?","2."]
+  ]
+ ],
+ [
+  "3-деңгей. Құрылым және қасиеттер",
+  [
+   ["Полиэтиленнің полимерлену схемасын жаз.","nCH₂=CH₂→(–CH₂–CH₂–)ₙ."],
+   ["Полиэтиленнің буын молярлық массасы?","28 г/моль."],
+   ["LDPE материалының коды?","4."],
+   ["Полиэтилен термопласт па?","Иә."]
+  ]
+ ],
+ [
+  "4-деңгей. Есептер",
+  [
+   ["n=100 болса, M жуық мәнін тап.","2800 г/моль."],
+   ["n=500 болса, M жуық мәнін тап.","14000 г/моль."],
+   ["M≈28000 г/моль болса, n мәні?","1000."],
+   ["M≈56000 г/моль болса, n мәні?","2000."]
+  ]
+ ]
+];
+
+levels.forEach((lev,i)=>{
+ dynamic(
+  "Деңгей "+(i+1),
+  "Деңгейлік жұмыс · 10 минут",
+  ()=>`
+   <div class="eyebrow">
+    ДЕҢГЕЙ ${i+1}/4
+   </div>
+
+   <h2>${lev[0]}</h2>
+
+   ${lev[1].map((q,j)=>`
+    <div class="task">
+     <p>${j+1}. ${q[0]}</p>
+    </div>
+   `).join("")}
+
+   <button
+    class="btn gold"
+    data-action="level"
+    data-index="${i}"
+   >
+    ${state.levels[i]
+     ?"Жауаптарды жасыру"
+     :"Жауаптарды көру"}
+   </button>
+
+   ${state.levels[i]?`
+    <div class="answer">
+     ${lev[1].map((q,j)=>`
+      <p>${j+1}. ${q[1]}</p>
+     `).join("")}
+    </div>
+   `:""}
+  `
+ );
+});
+
+/* ===============================
+   25 ЖЕКЕ ТАПСЫРМА
+=============================== */
+
+const oral=[
+ ["Полиэтилен дегеніміз не?","Этеннен түзілетін полимер."],
+ ["Полиэтиленнің мономері?","Этен."],
+ ["Этеннің формуласы?","C₂H₄."],
+ ["Этеннің құрылымдық формуласы?","CH₂=CH₂."],
+ ["Полиэтиленнің буыны?","–CH₂–CH₂–."],
+ ["Полимерлену дәрежесі деген не?","Қайталанатын буындар саны."],
+ ["n=1000 нені білдіреді?","1000 қайталанатын буын."],
+ ["LDPE деген не?","Төмен тығыздықты полиэтилен."],
+ ["HDPE деген не?","Жоғары тығыздықты полиэтилен."],
+ ["Қай полиэтилен икемдірек?","Әдетте LDPE."],
+ ["Қай полиэтилен қаттырақ?","Әдетте HDPE."],
+ ["LDPE-нің материал коды?","4."],
+ ["HDPE-нің материал коды?","2."],
+ ["Полиэтилен термопласт па?","Иә."],
+ ["Полиэтилен электр өткізгіш пе?","Электр тогын нашар өткізеді."],
+ ["Полиэтиленнің қолданылуына мысал?","Қаптама, құбыр, ыдыс."],
+ ["Қайта өңдеу не үшін керек?","Қалдықты және ресурстың шығынын азайтуға көмектеседі."],
+ ["M(C₂H₄) қанша?","28 г/моль."],
+ ["n=100 болса, M жуық мәні?","2800 г/моль."],
+ ["n=200 болса, M жуық мәні?","5600 г/моль."],
+ ["n=500 болса, M жуық мәні?","14000 г/моль."],
+ ["n=1000 болса, M жуық мәні?","28000 г/моль."],
+ ["M≈14000 болса, n қанша?","500."],
+ ["M≈28000 болса, n қанша?","1000."],
+ ["M≈56000 болса, n қанша?","2000."]
+];
+
+dynamic(
+ "Жеке тапсырмалар",
+ "25 оқушы · 20 минут",
+ ()=>{
+  const i=state.oral;
+
+  if(i>=oral.length){
+   return `
+    <h1>25 тапсырма аяқталды!</h1>
+
+    <div class="actions">
+     <button class="btn gold"
+      data-action="oral-reset">
+      Қайта бастау
+     </button>
+
+     <button class="btn primary"
+      data-action="go-game">
+      Командалық ойын →
+     </button>
+    </div>
+   `;
+  }
+
+  return `
+   <div class="eyebrow">
+    ЖЕКЕ ТАҚТА ТАПСЫРМАСЫ
+   </div>
+
+   <h2>Тақтаға шығып орында</h2>
+
+   <span class="tag">
+    ${i+1}-оқушы · ${i+1}/25
+   </span>
+
+   <div class="progress">
+    <span style="width:${100*i/25}%"></span>
+   </div>
+
+   <div class="card">
+    <h3>Тапсырма</h3>
+    <p class="big">${oral[i][0]}</p>
+   </div>
+
+   ${state.oralShow?`
+    <div class="answer">
+     <h3>Дұрыс жауап</h3>
+     <p>${oral[i][1]}</p>
+    </div>
+   `:""}
+
+   <div class="actions">
+
+    <button class="btn gold"
+     data-action="oral-show">
+     ${state.oralShow
+      ?"Жасыру"
+      :"Жауапты көру"}
+    </button>
+
+    <button class="btn primary"
+     data-action="oral-next">
+     Келесі оқушы →
+    </button>
+
+   </div>
+  `;
+ }
+);
+
+/* ===============================
+   3 КОМАНДА — 15 СҰРАҚ
+=============================== */
+
+const quiz=[
+ ["Полиэтиленнің мономері?",["Этен","Пропен","Метан","Этин"],0],
+ ["Этеннің формуласы?",["C₂H₆","C₂H₄","C₂H₂","CH₄"],1],
+ ["Полиэтилен буынының формуласы?",["CH₄","C₃H₆","C₂H₄","C₂H₂"],2],
+ ["Полимерлену дәрежесі?",["Тығыздық","Қысым","Температура","Буын саны"],3],
+ ["LDPE қандай полиэтилен?",["Төмен тығыздықты","Жоғары тығыздықты","Металл","Шыны"],0],
+ ["HDPE қандай полиэтилен?",["Төмен тығыздықты","Жоғары тығыздықты","Қағаз","Резеңке"],1],
+ ["LDPE материалының коды?",["2","3","4","5"],2],
+ ["HDPE материалының коды?",["1","3","4","2"],3],
+ ["Полиэтилен қандай материал?",["Термопласт","Металл","Керамика","Тұз"],0],
+ ["M(C₂H₄) қанша?",["30","28","26","42"],1],
+ ["n=100 болса M жуық мәні?",["280","1400","2800","4200"],2],
+ ["n=500 болса M жуық мәні?",["5000","7000","10000","14000"],3],
+ ["M≈28000 болса n?",["1000","500","2000","250"],0],
+ ["M≈56000 болса n?",["1000","2000","500","4000"],1],
+ ["Қалдықты азайтудың бір жолы?",["Араластырып төгу","Өзенге тастау","Сұрыптап жинау","Кез келген жерде жағу"],2]
+];
+
+dynamic(
+ "Командалық ойын",
+ "3 команда · 12 минут",
+ ()=>{
+  const i=state.game;
+
+  if(i>=quiz.length){
+   const max=Math.max(...state.scores);
+
+   const winners=state.scores
+    .map((score,j)=>
+     score===max?(j+1)+"-команда":null
+    )
+    .filter(Boolean);
+
+   return `
+    <h1>Командалық ойын аяқталды!</h1>
+
+    <div class="grid3">
+     ${state.scores.map((score,j)=>`
+      <div class="team">
+       <h3>${j+1}-команда</h3>
+       <div class="score">${score}</div>
+       <p>ұпай</p>
+      </div>
+     `).join("")}
+    </div>
+
+    <div class="note">
+     <p>Жеңімпаз: ${winners.join(", ")}</p>
+    </div>
+
+    <button class="btn gold"
+     data-action="game-reset">
+     Қайта бастау
+    </button>
+   `;
+  }
+
+  const [question,options,right]=quiz[i];
+
+  return `
+   <div class="eyebrow">
+    КОМАНДАЛЫҚ ОЙЫН ${i+1}/15
+   </div>
+
+   <h2>${i%3+1}-команданың кезегі</h2>
+
+   <div class="grid3">
+    ${state.scores.map((score,j)=>`
+     <div class="team ${j===i%3?"active":""}">
+      <h3>${j+1}-команда</h3>
+      <div class="score">${score}</div>
+     </div>
+    `).join("")}
+   </div>
+
+   <div class="card" style="margin-top:16px">
+    <p class="big">${question}</p>
+   </div>
+
+   <div class="options">
+    ${options.map((o,j)=>`
+     <button
+      class="option ${
+       state.choice===null?""
+        :j===right?"correct"
+        :j===state.choice?"wrong":""
+      }"
+      data-action="game-answer"
+      data-index="${j}"
+      ${state.choice!==null?"disabled":""}
+     >
+      ${"ABCD"[j]}. ${o}
+     </button>
+    `).join("")}
+   </div>
+
+   ${state.choice!==null?`
+    <div class="answer">
+     <h3>
+      ${state.choice===right
+       ?"Дұрыс! +10 ұпай"
+       :"Қате. 0 ұпай"}
+     </h3>
+     <p>Дұрыс жауап: ${options[right]}</p>
+    </div>
+
+    <button class="btn primary"
+     data-action="game-next">
+     Келесі команда →
+    </button>
+   `:""}
+  `;
+ }
+);
+
+/* ===============================
+   ҮЙ ТАПСЫРМАСЫ
+=============================== */
+
+const homeQuestions=[
+ [
+  "LDPE мен HDPE полиэтилендерінің айырмашылығын салыстыр.",
+  "LDPE тізбектері көбірек тармақталған, әдетте икемдірек. HDPE салыстырмалы аз тармақталған, тығыз әрі қаттырақ."
+ ],
+ [
+  "Полиэтиленнің қолданылуы мен қайта өңделуі туралы бес сөйлем жаз.",
+  "Полиэтилен қаптамада, ыдыста, құбырда қолданылады. Түріне қарай қасиеті өзгереді. Тиісті жағдайда қайта өңдеуге жарайды. Қалдық сұрыптау маңызды. Қайта өңдеу мүмкіндігі жергілікті инфрақұрылымға тәуелді."
+ ]
+];
+
+const homeMath=[
+ [
+  "Полиэтилен тізбегінің M≈84000 г/моль. Полимерлену дәрежесін тап.",
+  "n≈84000/28=3000."
+ ],
+ [
+  "Полимерлену дәрежесі 1250 болатын полиэтилен тізбегінің молярлық массасын жуықтап анықта.",
+  "M≈1250×28=35000 г/моль."
+ ]
+];
+
+dynamic(
+ "Үй тапсырмасы",
+ "Үй жұмысы",
+ ()=>`
+  <div class="eyebrow">
+   §73 · ҮЙ ТАПСЫРМАСЫ
+  </div>
+
+  <h2>«Полиэтилен өндірісі және экология»</h2>
+
+  <div class="grid2">
+
+   <div class="card">
+    <h3>Теориялық тапсырмалар</h3>
+
+    ${homeQuestions.map((q,i)=>`
+     <div class="task">
+      <p>${i+1}. ${q[0]}</p>
+     </div>
+    `).join("")}
+   </div>
+
+   <div class="card">
+    <h3>Екі химиялық есеп</h3>
+
+    ${homeMath.map((q,i)=>`
+     <div class="task">
+      <p>${i+1}. ${q[0]}</p>
+     </div>
+    `).join("")}
+   </div>
+
+  </div>
+
+  <div class="note">
+   <p>
+    Есептерде тізбек ұштарының массасы
+    ескерілмейтін жуықтау қолданылады.
+   </p>
+  </div>
+
+  <button class="btn gold" data-action="home">
+   ${state.home
+    ?"Жауаптарды жасыру"
+    :"Жауаптарды көру"}
+  </button>
+
+  ${state.home?`
+   <div class="answer">
+
+    <h3>Теория</h3>
+
+    ${homeQuestions.map((q,i)=>`
+     <p>${i+1}. ${q[1]}</p>
+    `).join("")}
+
+    <h3>Есептердің шешуі</h3>
+
+    ${homeMath.map((q,i)=>`
+     <p>${i+1}. ${q[1]}</p>
+    `).join("")}
+
+   </div>
+  `:""}
+ `
+);
+
+/* ===============================
+   ҚОРЫТЫНДЫ
+=============================== */
+
+add(
+ "Қорытынды",
+ "Сабақ аяқталды",
+ `
+  <div style="text-align:center">
+
+   <div class="eyebrow">§73 · ХИМИЯ</div>
+
+   <h1>Сабақ аяқталды!</h1>
+
+   <h2>Полиэтилен өндіру</h2>
+
+   <div class="grid3">
+
+    <div class="card">
+     <h3>15 түсіндірме</h3>
+     <p>Өндіріс және қасиеттер</p>
+    </div>
+
+    <div class="card">
+     <h3>25 тапсырма</h3>
+     <p>Жеке жұмыс</p>
+    </div>
+
+    <div class="card">
+     <h3>15 сұрақ</h3>
+     <p>3 команда</p>
+    </div>
+
+   </div>
+
+   <div class="formula">
+    BY DARKHAN
+   </div>
+
+  </div>
+ `
+);
+
+/* ===============================
+   БАРЛЫҚ БАТЫРМАЛАР
+=============================== */
+
+$("slide").addEventListener("click",event=>{
+ const b=event.target.closest("[data-action]");
+
+ if(!b)return;
+
+ const a=b.dataset.action;
+ const i=Number(b.dataset.index);
+
+ switch(a){
+
+  case "start":
+   startTimer();
+   break;
+
+  case "reset-time":
+   resetTimer();
+   break;
+
+  case "level":
+   state.levels[i]=!state.levels[i];
+   break;
+
+  case "oral-show":
+   state.oralShow=!state.oralShow;
+   break;
+
+  case "oral-next":
+   state.oral=Math.min(
+    oral.length,
+    state.oral+1
+   );
+
+   state.oralShow=false;
+   break;
+
+  case "oral-reset":
+   state.oral=0;
+   state.oralShow=false;
+   break;
+
+  case "go-game":
+   go("Командалық ойын");
+   break;
+
+  case "game-answer":
+   if(state.choice!==null)return;
+
+   state.choice=i;
+
+   if(i===quiz[state.game][2]){
+    state.scores[state.game%3]+=10;
+   }
+   break;
+
+  case "game-next":
+   if(state.choice===null)return;
+
+   state.game++;
+   state.choice=null;
+   break;
+
+  case "game-reset":
+   state.game=0;
+   state.choice=null;
+   state.scores=[0,0,0];
+   break;
+
+  case "home":
+   state.home=!state.home;
+   break;
+ }
+
+ save();
+ draw();
+});
+
+/* ===============================
+   80 МИНУТТЫҚ ТАЙМЕР
+=============================== */
+
+const TIMER_KEY=STORE+"_timer";
+
+let deadline=null;
+
+try{
+ const t=localStorage.getItem(TIMER_KEY);
+
+ if(
+  t!==null &&
+  Number.isFinite(Number(t))
+ ){
+  deadline=Number(t);
+ }
+}catch(error){}
+
+function tick(){
+ const seconds=deadline===null
+  ?4800
+  :Math.max(
+   0,
+   Math.ceil((deadline-Date.now())/1000)
+  );
+
+ $("timer").textContent=
+  String(Math.floor(seconds/60)).padStart(2,"0")+
+  ":"+
+  String(seconds%60).padStart(2,"0");
+
+ $("clock").textContent=
+  new Intl.DateTimeFormat("en-GB",{
+   timeZone:"Asia/Almaty",
+   hour:"2-digit",
+   minute:"2-digit",
+   second:"2-digit",
+   hourCycle:"h23"
+  }).format(new Date());
+}
+
+function startTimer(){
+ if(deadline!==null){
+  alert("Таймер бұрын іске қосылған.");
+  return;
+ }
+
+ deadline=Date.now()+4800000;
+
+ try{
+  localStorage.setItem(
+   TIMER_KEY,
+   String(deadline)
+  );
+ }catch(error){}
+
+ tick();
+}
+
+function resetTimer(){
+ if(!confirm(
+  "80 минуттық таймерді жаңартамыз ба?"
+ ))return;
+
+ deadline=null;
+
+ try{
+  localStorage.removeItem(TIMER_KEY);
+ }catch(error){}
+
+ tick();
+}
+
+setInterval(tick,1000);
+
+/* ===============================
+   КАЛЬКУЛЯТОР
+=============================== */
+
+const calculator=$("calculator");
+
+$("showCalc").onclick=()=>{
+ calculator.hidden=!calculator.hidden;
+ fitCalculator();
+};
+
+$("closeCalc").onclick=()=>{
+ calculator.hidden=true;
+};
+
+const calcButtons=[
+ "7","8","9","/",
+ "4","5","6","*",
+ "1","2","3","-",
+ "C","0",".","+",
+ "(",")","⌫","="
+];
+
+$("calcKeys").innerHTML=calcButtons.map(k=>`
+ <button type="button" data-key="${k}">
+  ${k==="/"?"÷":k==="*"?"×":k}
+ </button>
+`).join("");
+
+let calcText="";
+
+/* ҚАУІПСІЗ ЕСЕПТЕУ */
+
+function calculate(input){
+ let i=0;
+
+ function factor(){
+  if(input[i]==="+"){
+   i++;
+   return factor();
+  }
+
+  if(input[i]==="-"){
+   i++;
+   return -factor();
+  }
+
+  if(input[i]==="("){
+   i++;
+
+   const v=sum();
+
+   if(input[i]!==")"){
+    throw Error("Жақша қатесі");
+   }
+
+   i++;
+   return v;
+  }
+
+  const match=/^(?:\d+\.?\d*|\.\d+)/
+   .exec(input.slice(i));
+
+  if(!match){
+   throw Error("Сан қатесі");
+  }
+
+  i+=match[0].length;
+
+  return Number(match[0]);
+ }
+
+ function product(){
+  let v=factor();
+
+  while(
+   input[i]==="*" ||
+   input[i]==="/"
+  ){
+   const op=input[i++];
+   const next=factor();
+
+   v=op==="*"
+    ?v*next
+    :v/next;
+  }
+
+  return v;
+ }
+
+ function sum(){
+  let v=product();
+
+  while(
+   input[i]==="+" ||
+   input[i]==="-"
+  ){
+   const op=input[i++];
+   const next=product();
+
+   v=op==="+"
+    ?v+next
+    :v-next;
+  }
+
+  return v;
+ }
+
+ if(!/^[0-9+*/().-]+$/.test(input)){
+  throw Error("Таңба қатесі");
+ }
+
+ const v=sum();
+
+ if(
+  i!==input.length ||
+  !Number.isFinite(v)
+ ){
+  throw Error("Өрнек қатесі");
+ }
+
+ return Number(v.toPrecision(12));
+}
+
+$("calcKeys").addEventListener("click",event=>{
+ const b=event.target.closest("[data-key]");
+
+ if(!b)return;
+
+ const k=b.dataset.key;
+
+ if(k==="C"){
+  calcText="";
+ }else if(k==="⌫"){
+  calcText=calcText.slice(0,-1);
+ }else if(k==="="){
+  try{
+   calcText=String(calculate(calcText));
+  }catch(error){
+   calcText="Қате";
+  }
+ }else{
+  if(calcText==="Қате"){
+   calcText="";
+  }
+
+  calcText+=k;
+ }
+
+ $("calcDisplay").value=calcText;
+});
+
+/* ===============================
+   КАЛЬКУЛЯТОРДЫ ЖЫЛЖЫТУ
+=============================== */
+
+function clamp(v,min,max){
+ return Math.max(
+  min,
+  Math.min(max,v)
+ );
+}
+
+function fitCalculator(){
+ if(calculator.hidden)return;
+
+ const r=calculator.getBoundingClientRect();
+
+ calculator.style.left=clamp(
+  r.left,
+  0,
+  Math.max(0,innerWidth-r.width)
+ )+"px";
+
+ calculator.style.top=clamp(
+  r.top,
+  0,
+  Math.max(0,innerHeight-r.height)
+ )+"px";
+}
+
+let drag=null;
+let suppressClick=false;
+
+calculator.addEventListener("pointerdown",event=>{
+ if(
+  drag ||
+  (
+   event.pointerType==="mouse" &&
+   event.button!==0
+  )
+ )return;
+
+ const r=calculator.getBoundingClientRect();
+
+ drag={
+  id:event.pointerId,
+  x:event.clientX,
+  y:event.clientY,
+  left:r.left,
+  top:r.top,
+  moved:false
+ };
+
+ calculator.setPointerCapture(event.pointerId);
+});
+
+calculator.addEventListener("pointermove",event=>{
+ if(
+  !drag ||
+  drag.id!==event.pointerId
+ )return;
+
+ const dx=event.clientX-drag.x;
+ const dy=event.clientY-drag.y;
+
+ if(
+  !drag.moved &&
+  Math.hypot(dx,dy)>7
+ ){
+  drag.moved=true;
+
+  calculator.classList.add("dragging");
+ }
+
+ if(!drag.moved)return;
+
+ calculator.style.left=clamp(
+  drag.left+dx,
+  0,
+  Math.max(
+   0,
+   innerWidth-calculator.offsetWidth
+  )
+ )+"px";
+
+ calculator.style.top=clamp(
+  drag.top+dy,
+  0,
+  Math.max(
+   0,
+   innerHeight-calculator.offsetHeight
+  )
+ )+"px";
+});
+
+calculator.addEventListener("pointerup",event=>{
+ if(
+  !drag ||
+  drag.id!==event.pointerId
+ )return;
+
+ suppressClick=drag.moved;
+
+ drag=null;
+
+ calculator.classList.remove("dragging");
+
+ if(calculator.hasPointerCapture(event.pointerId)){
+  calculator.releasePointerCapture(event.pointerId);
+ }
+});
+
+calculator.addEventListener("pointercancel",()=>{
+ drag=null;
+
+ calculator.classList.remove("dragging");
+});
+
+calculator.addEventListener("click",event=>{
+ if(!suppressClick)return;
+
+ event.preventDefault();
+
+ event.stopImmediatePropagation();
+
+ suppressClick=false;
+},true);
+
+window.addEventListener(
+ "resize",
+ fitCalculator
+);
+
+/* ===============================
+   МЕНДЕЛЕЕВ КЕСТЕСІ
+=============================== */
+
+const elementData=`
+H|Сутек He|Гелий Li|Литий Be|Бериллий B|Бор C|Көміртек N|Азот O|Оттек F|Фтор Ne|Неон
+Na|Натрий Mg|Магний Al|Алюминий Si|Кремний P|Фосфор S|Күкірт Cl|Хлор Ar|Аргон
+K|Калий Ca|Кальций Sc|Скандий Ti|Титан V|Ванадий Cr|Хром Mn|Марганец Fe|Темір Co|Кобальт Ni|Никель Cu|Мыс Zn|Мырыш
+Ga|Галлий Ge|Германий As|Мышьяк Se|Селен Br|Бром Kr|Криптон
+Rb|Рубидий Sr|Стронций Y|Иттрий Zr|Цирконий Nb|Ниобий Mo|Молибден Tc|Технеций Ru|Рутений Rh|Родий Pd|Палладий Ag|Күміс Cd|Кадмий
+In|Индий Sn|Қалайы Sb|Сурьма Te|Теллур I|Йод Xe|Ксенон
+Cs|Цезий Ba|Барий La|Лантан Ce|Церий Pr|Празеодим Nd|Неодим Pm|Прометий Sm|Самарий Eu|Еуропий Gd|Гадолиний Tb|Тербий Dy|Диспрозий Ho|Гольмий Er|Эрбий Tm|Тулий Yb|Иттербий Lu|Лютеций
+Hf|Гафний Ta|Тантал W|Вольфрам Re|Рений Os|Осмий Ir|Иридий Pt|Платина Au|Алтын Hg|Сынап Tl|Таллий Pb|Қорғасын Bi|Висмут Po|Полоний At|Астат Rn|Радон
+Fr|Франций Ra|Радий Ac|Актиний Th|Торий Pa|Протактиний U|Уран Np|Нептуний Pu|Плутоний Am|Америций Cm|Кюрий Bk|Берклий Cf|Калифорний Es|Эйнштейний Fm|Фермий Md|Менделевий No|Нобелий Lr|Лоуренсий
+Rf|Резерфордий Db|Дубний Sg|Сиборгий Bh|Борий Hs|Хассий Mt|Мейтнерий Ds|Дармштадтий Rg|Рентгений Cn|Коперниций Nh|Нихоний Fl|Флеровий Mc|Московий Lv|Ливерморий Ts|Теннессин Og|Оганесон
+`;
+
+const elements=elementData
+ .trim()
+ .split(/\s+/)
+ .map((entry,i)=>{
+  const [symbol,name]=entry.split("|");
+
+  return{
+   z:i+1,
+   symbol,
+   name
+  };
+ });
+
+const rowGroups=[
+ [1,18],
+ [1,2,13,14,15,16,17,18],
+ [1,2,13,14,15,16,17,18],
+ Array.from({length:18},(_,i)=>i+1),
+ Array.from({length:18},(_,i)=>i+1)
+];
+
+function position(z){
+ if(z<=54){
+  let k=z-1;
+
+  for(let p=0;p<5;p++){
+   if(k<rowGroups[p].length){
+    return{
+     row:p+1,
+     col:rowGroups[p][k]
+    };
+   }
+
+   k-=rowGroups[p].length;
+  }
+ }
+
+ if(z<=56)return{row:6,col:z-54};
+
+ if(z<=71)return{row:9,col:z-53};
+
+ if(z<=86)return{row:6,col:z-68};
+
+ if(z<=88)return{row:7,col:z-86};
+
+ if(z<=103)return{row:10,col:z-85};
+
+ return{row:7,col:z-100};
+}
+
+function buildTable(){
+ let html="";
+
+ for(let g=1;g<=18;g++){
+  html+=`
+   <span
+    class="period-label"
+    style="
+     grid-row:1;
+     grid-column:${g+1}
+    "
+   >
+    ${g}
+   </span>
+  `;
+ }
+
+ for(let p=1;p<=7;p++){
+  html+=`
+   <span
+    class="period-label"
+    style="
+     grid-row:${p+1};
+     grid-column:1
+    "
+   >
+    ${p}
+   </span>
+  `;
+ }
+
+ html+=`
+  <span class="period-label"
+   style="grid-row:10;grid-column:1">
+   La–Lu
+  </span>
+
+  <span class="period-label"
+   style="grid-row:11;grid-column:1">
+   Ac–Lr
+  </span>
+
+  <span class="period-label"
+   style="grid-row:7;grid-column:4">
+   57–71
+  </span>
+
+  <span class="period-label"
+   style="grid-row:8;grid-column:4">
+   89–103
+  </span>
+ `;
+
+ for(const e of elements){
+  const p=position(e.z);
+
+  const cls=
+   (e.z>=57&&e.z<=71) ||
+   (e.z>=89&&e.z<=103)
+    ?"fblock"
+    :["H","C","N","O"].includes(e.symbol)
+     ?"featured"
+     :"";
+
+  html+=`
+   <button
+    class="element ${cls}"
+    data-z="${e.z}"
+    style="
+     grid-row:${p.row+1};
+     grid-column:${p.col+1}
+    "
+   >
+    <i>${e.z}</i>
+    <b>${e.symbol}</b>
+    <small>${e.name}</small>
+   </button>
+  `;
+ }
+
+ $("period").innerHTML=html;
+}
+
+$("period").onclick=event=>{
+ const b=event.target.closest("[data-z]");
+
+ if(!b)return;
+
+ const z=Number(b.dataset.z);
+
+ const item=elements[z-1];
+
+ const p=position(z);
+
+ const period=p.row===9
+  ?6
+  :p.row===10
+   ?7
+   :p.row;
+
+ const group=p.row>7
+  ?"f-блок"
+  :p.col+"-топ";
+
+ $("elementInfo").textContent=
+  `${z}. ${item.name} (${item.symbol}) · `+
+  `${period}-период · ${group}`;
+};
+
+$("showTable").onclick=()=>{
+ $("tableOverlay").hidden=false;
+};
+
+$("closeTable").onclick=()=>{
+ $("tableOverlay").hidden=true;
+};
+
+$("tableOverlay").onclick=event=>{
+ if(event.target===$("tableOverlay")){
+  $("tableOverlay").hidden=true;
+ }
+};
+
+/* ===============================
+   ПЕРНЕТАҚТАМЕН БАСҚАРУ
+=============================== */
+
+document.addEventListener("keydown",event=>{
+ if(event.key==="Escape"){
+  $("tableOverlay").hidden=true;
+  calculator.hidden=true;
+  return;
+ }
+
+ if(!$("tableOverlay").hidden)return;
+
+ if(event.target.closest("input,textarea"))return;
+
+ if(
+  event.key==="ArrowRight" &&
+  page<slides.length-1
+ ){
+  page++;
+  draw();
+ }
+
+ if(
+  event.key==="ArrowLeft" &&
+  page>0
+ ){
+  page--;
+  draw();
+ }
+});
+
+/* ===============================
+   ТЕКСЕРУ ЖӘНЕ БАСТАУ
+=============================== */
+
+try{
+ console.assert(
+  theory.length===15,
+  "15 түсіндірме қажет"
+ );
+
+ console.assert(
+  notes.length===3,
+  "3 конспект қажет"
+ );
+
+ console.assert(
+  levels.length===4,
+  "4 деңгей қажет"
+ );
+
+ console.assert(
+  oral.length===25,
+  "25 жеке тапсырма қажет"
+ );
+
+ console.assert(
+  quiz.length===15,
+  "15 ойын сұрағы қажет"
+ );
+
+ console.assert(
+  elements.length===118,
+  "118 элемент қажет"
+ );
+
+ console.assert(
+  slides.length===29,
+  "29 слайд қажет"
+ );
+
+ console.assert(
+  calculate("7*3")===21,
+  "Калькулятор қатесі"
+ );
+
+ console.assert(
+  calculate("(2+3)*4")===20,
+  "Жақша есептеу қатесі"
+ );
+
+ buildTable();
+ tick();
+ draw();
+
+}catch(error){
+ console.error(error);
+
+ const div=document.createElement("div");
+ div.className="note";
+
+ div.textContent=
+  "Сайт қатесі: "+error.message;
+
+ $("slide").appendChild(div);
+}
+
+</script>
+</body>
+</html>

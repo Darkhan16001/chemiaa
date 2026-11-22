@@ -1,0 +1,1769 @@
+
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>§85 Элиминирлеу реакциялары | CHEMISTRY PRO</title>
+
+<style>
+:root{
+ --bg:#071725;--panel:#19445d;
+ --cyan:#95e3ff;--green:#98efc4;
+ --gold:#ffdd92;--white:#f7fcff;
+ --line:#7bacc9;
+}
+*{box-sizing:border-box}
+html,body{
+ margin:0;width:100%;height:100%;
+ background:var(--bg);color:var(--white);
+ font-family:"Segoe UI",Arial,sans-serif
+}
+button,input{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.45;cursor:default}
+[hidden]{display:none!important}
+
+.app{
+ height:100vh;height:100dvh;
+ display:flex;flex-direction:column;
+ background:
+ radial-gradient(circle at 89% 8%,#177b9c77,transparent 43%),
+ radial-gradient(circle at 5% 92%,#147a6055,transparent 42%),
+ linear-gradient(125deg,#071725,#153e55,#081d2e)
+}
+header,footer{
+ flex-shrink:0;display:flex;align-items:center;
+ justify-content:space-between;gap:12px;
+ padding:11px 19px;background:#081d2d
+}
+header{border-bottom:1px solid var(--line)}
+footer{border-top:1px solid var(--line)}
+.brand{
+ color:var(--cyan);font-size:27px;font-weight:900
+}
+.brand small{
+ display:block;margin-top:4px;
+ color:var(--gold);font-size:13px
+}
+.status{
+ display:flex;align-items:center;gap:13px;
+ font-size:18px;font-weight:900
+}
+#timer{
+ color:var(--gold);font-size:29px;
+ font-variant-numeric:tabular-nums
+}
+#counter{color:var(--cyan)}
+#clock{
+ color:var(--cyan);font-size:23px;
+ font-weight:900;font-variant-numeric:tabular-nums
+}
+.signature{
+ color:var(--gold);font-size:24px;font-weight:900
+}
+main{
+ flex:1;min-height:0;overflow:auto;
+ padding:24px 35px 44px
+}
+.slide{
+ max-width:1490px;min-height:100%;margin:auto;
+ display:flex;flex-direction:column;
+ justify-content:center
+}
+h1{
+ font-size:clamp(43px,4.5vw,76px);
+ line-height:1.15;margin:10px 0 20px
+}
+h2{
+ font-size:clamp(32px,3vw,51px);
+ line-height:1.2;margin:0 0 18px
+}
+h3{
+ color:var(--cyan);
+ font-size:clamp(24px,2vw,35px);
+ margin:0 0 13px
+}
+p,li{
+ font-size:clamp(21px,1.7vw,29px);
+ line-height:1.5
+}
+li{margin:8px 0}
+.eyebrow{
+ font-size:20px;color:var(--cyan);
+ font-weight:900;margin-bottom:12px
+}
+.grid2,.grid3{
+ display:grid;gap:18px;align-items:center;
+ grid-template-columns:repeat(2,minmax(0,1fr))
+}
+.grid3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.card{
+ min-width:0;padding:23px;
+ background:linear-gradient(145deg,#1d4962,#102e45);
+ border:1px solid var(--line);border-radius:18px
+}
+.card p{margin:9px 0}
+.formula{
+ background:#104754;color:var(--green);
+ border:1px solid #84d1c5;
+ border-radius:14px;
+ padding:19px;margin:15px 0;
+ text-align:center;overflow-wrap:anywhere;
+ font-size:clamp(26px,2.55vw,43px);
+ font-weight:900
+}
+.note{
+ margin-top:16px;padding:17px 21px;
+ background:#21485f;
+ border-left:6px solid var(--gold);
+ border-radius:11px
+}
+.note p{margin:6px 0}
+.btn{
+ padding:12px 18px;
+ background:#2b617e;color:white;
+ border:1px solid #8dbbd3;
+ border-radius:10px;
+ font-size:18px;font-weight:900
+}
+.btn.primary{background:#0a8eac}
+.btn.good{background:#147f5d}
+.btn.gold{background:#946e35}
+.actions{
+ display:flex;flex-wrap:wrap;
+ gap:10px;margin-top:18px
+}
+.task{
+ padding:14px 18px;margin:10px 0;
+ background:#1b455d;
+ border:1px solid #78afcc;
+ border-radius:11px
+}
+.task p{margin:5px 0}
+.answer{
+ margin-top:16px;padding:18px;
+ background:#15533f;
+ border:1px solid #8deec1;
+ border-radius:12px
+}
+.answer p{margin:8px 0}
+.big{
+ font-size:clamp(30px,2.8vw,47px);
+ font-weight:900;line-height:1.4
+}
+.tag{
+ display:inline-block;
+ padding:12px 20px;
+ background:#705633;color:var(--gold);
+ border:2px solid var(--gold);
+ border-radius:12px;
+ font-size:29px;font-weight:900
+}
+.progress{
+ height:13px;margin:17px 0;
+ background:#315269;
+ border-radius:20px;overflow:hidden
+}
+.progress span{
+ display:block;height:100%;
+ background:linear-gradient(90deg,#14a8d4,#95eec5)
+}
+.team{
+ background:#19435b;
+ border:1px solid #86b5ce;
+ border-radius:14px;
+ padding:17px;text-align:center
+}
+.team.active{outline:4px solid var(--gold)}
+.score{
+ color:var(--gold);
+ font-size:55px;font-weight:900
+}
+.options{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:12px;margin-top:16px
+}
+.option{
+ padding:18px;text-align:left;
+ background:#295f7c;color:white;
+ border:2px solid #88b8d0;
+ border-radius:11px;
+ font-size:clamp(20px,1.7vw,29px);
+ font-weight:900
+}
+.option.correct{background:#137e5c}
+.option.wrong{background:#98465b}
+.visual{
+ background:#103b51;
+ border:1px solid #83bad1;
+ border-radius:18px;
+ padding:19px;text-align:center
+}
+.visual svg{width:100%;height:225px}
+.visual strong{
+ color:var(--green);font-size:29px
+}
+.stage{
+ width:100%;margin:7px 0;
+ padding:17px;text-align:left;
+ background:#295e7a;color:white;
+ border:2px solid #8cbad2;
+ border-radius:12px;
+ font-size:24px;font-weight:900
+}
+.stage.active{
+ background:#147366;
+ border-color:var(--gold)
+}
+.stage small{
+ display:block;margin-top:5px;
+ font-size:16px;color:#dbedf5
+}
+
+/* ҚҰРАЛДАР */
+.tools{
+ position:fixed;left:10px;bottom:99px;
+ z-index:35;display:flex;
+ flex-direction:column;align-items:flex-start;
+ gap:8px
+}
+.tool{
+ background:#0c819e;color:white;
+ border:1px solid #93e0f2;
+ border-radius:8px;padding:10px 13px;
+ font-size:13px;font-weight:900
+}
+
+/* КАЛЬКУЛЯТОР */
+.calculator{
+ position:fixed;top:105px;left:16px;
+ z-index:150;width:234px;
+ max-width:calc(100vw - 12px);
+ background:#113048;padding:10px;
+ border:2px solid #92dff6;
+ border-radius:15px;
+ box-shadow:0 18px 45px #000a;
+ touch-action:none;user-select:none;
+ -webkit-user-select:none;cursor:grab
+}
+.calculator.dragging{cursor:grabbing}
+.calculator *{touch-action:none}
+.calc-head{
+ display:flex;align-items:center;
+ justify-content:space-between;gap:7px;
+ background:#29576f;
+ padding:8px;border-radius:8px;font-size:13px
+}
+.calc-head button{
+ padding:5px 10px;
+ background:#ab485a;color:white;
+ border:0;border-radius:6px
+}
+#calcDisplay{
+ display:block;width:100%;height:47px;
+ margin:9px 0;padding:7px;
+ background:#071d30;color:white;
+ border:1px solid #86b5cc;
+ border-radius:8px;
+ text-align:right;font-size:22px;
+ pointer-events:none
+}
+.calc-keys{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:5px
+}
+.calc-keys button{
+ min-width:0;height:43px;padding:0;
+ background:#2d657f;color:white;
+ border:1px solid #85b3ca;
+ border-radius:7px;font-size:17px
+}
+.calc-hint{
+ padding-top:8px;text-align:center;
+ color:#cfe0eb;font-size:11px
+}
+
+/* МЕНДЕЛЕЕВ КЕСТЕСІ */
+.overlay{
+ position:fixed;inset:0;z-index:300;
+ display:grid;place-items:center;
+ background:#000e;padding:10px
+}
+.modal{
+ width:min(1550px,99vw);
+ max-height:97vh;overflow:auto;
+ padding:17px;background:#0d2d44;
+ border:1px solid #83b2cb;
+ border-radius:15px
+}
+.modal-head{
+ display:flex;align-items:center;
+ justify-content:space-between;gap:12px
+}
+.period-scroll{
+ background:#071e30;overflow:auto;
+ padding:12px;border-radius:10px
+}
+.period{
+ display:grid;
+ grid-template-columns:65px repeat(18,89px);
+ grid-template-rows:38px repeat(10,89px);
+ gap:4px;width:max-content
+}
+.period-label{
+ display:grid;place-items:center;
+ color:var(--gold);background:#1b4860;
+ border:1px solid #78a8c0;
+ border-radius:6px;
+ font-size:12px;font-weight:900;
+ text-align:center
+}
+.element{
+ position:relative;display:flex;
+ flex-direction:column;
+ align-items:center;justify-content:center;
+ gap:3px;padding:13px 2px 3px;
+ background:#2a627c;color:white;
+ border:1px solid #88b7cf;border-radius:6px
+}
+.element i{
+ position:absolute;left:4px;top:3px;
+ font-size:11px;font-style:normal
+}
+.element b{font-size:26px}
+.element small{font-size:10px}
+.element.fblock{background:#337e83}
+.element.featured{background:#965471}
+#elementInfo{
+ margin-top:12px;padding:15px;
+ background:#1c4960;
+ border-radius:9px;font-size:20px
+}
+
+@media(max-width:850px){
+ .grid2,.grid3,.options{grid-template-columns:1fr}
+ main{padding:13px}
+ header,footer{padding:8px}
+ .brand{font-size:18px}
+ .brand small,#sectionName{display:none}
+ .status{gap:7px;font-size:13px}
+ #timer{font-size:20px}
+ #clock{font-size:16px}
+ .signature{font-size:15px}
+ .btn{font-size:14px;padding:9px}
+ .tools{bottom:78px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+ <div class="brand">
+  ⚗ CHEMISTRY PRO
+  <small>§85 · ГАЛОГЕНАЛКАНДАРДЫҢ ЭЛИМИНИРЛЕУ РЕАКЦИЯЛАРЫ</small>
+ </div>
+
+ <div class="status">
+  <span id="sectionName">Кіріспе</span>
+  <span id="timer">80:00</span>
+  <span id="counter">1 / 29</span>
+ </div>
+</header>
+
+<main id="main">
+ <section id="slide" class="slide">
+  <h1>§85. Галогеналкандардың элиминирлеу реакциялары</h1>
+  <div class="formula">
+   Галогеналкан → Алкен
+  </div>
+ </section>
+</main>
+
+<footer>
+ <div class="actions" style="margin:0">
+  <button class="btn" id="prev">
+   ← Артқа
+  </button>
+  <button class="btn primary" id="next">
+   Келесі →
+  </button>
+ </div>
+
+ <strong class="signature">BY DARKHAN</strong>
+ <span id="clock">00:00:00</span>
+</footer>
+
+</div>
+
+<div class="tools">
+ <button class="tool" id="showCalc">
+  🧮 Калькулятор
+ </button>
+ <button class="tool" id="showTable">
+  ⚛ Менделеев кестесі
+ </button>
+</div>
+
+<div id="calculator" class="calculator" hidden>
+ <div class="calc-head">
+  <strong>🧮 Калькулятор</strong>
+  <button id="closeCalc" type="button">✕</button>
+ </div>
+ <input id="calcDisplay" readonly>
+ <div id="calcKeys" class="calc-keys"></div>
+ <div class="calc-hint">
+  Кез келген жерінен жылжыт
+ </div>
+</div>
+
+<div class="overlay" id="tableOverlay" hidden>
+ <div class="modal">
+  <div class="modal-head">
+   <h2>Менделеев кестесі</h2>
+   <button class="btn" id="closeTable">
+    Жабу ✕
+   </button>
+  </div>
+
+  <p style="font-size:17px">
+   118 элемент · 18 топ · 7 период
+  </p>
+
+  <div class="period-scroll">
+   <div class="period" id="period"></div>
+  </div>
+
+  <div id="elementInfo">
+   Элементті таңда.
+  </div>
+ </div>
+</div>
+
+<script>
+"use strict";
+
+/* 1. СЛАЙД ЖҮЙЕСІ */
+
+const $=id=>document.getElementById(id);
+const slides=[];
+let page=0;
+
+function add(title,section,html){
+ slides.push({title,section,html});
+}
+
+function dynamic(title,section,render){
+ slides.push({title,section,render});
+}
+
+function draw(){
+ const s=slides[page];
+ if(!s)return;
+
+ $("slide").innerHTML=s.render?s.render():s.html;
+ $("sectionName").textContent=s.section;
+ $("counter").textContent=
+  (page+1)+" / "+slides.length;
+
+ $("prev").disabled=page===0;
+ $("next").disabled=page===slides.length-1;
+ $("main").scrollTop=0;
+}
+
+function go(title){
+ const i=slides.findIndex(s=>s.title===title);
+ if(i>=0){page=i;draw();}
+}
+
+$("prev").onclick=()=>{
+ if(page>0){page--;draw();}
+};
+
+$("next").onclick=()=>{
+ if(page<slides.length-1){page++;draw();}
+};
+
+/* 2. ЖАДЫ */
+
+const STORE="darkhan_chem85_elimination_v1";
+
+function fresh(){
+ return{
+  levels:{},oral:0,oralShow:false,
+  game:0,choice:null,scores:[0,0,0],
+  home:false,mechanism:0
+ };
+}
+
+let state=fresh();
+
+try{
+ const saved=JSON.parse(localStorage.getItem(STORE));
+ if(saved&&Array.isArray(saved.scores)&&
+    saved.scores.length===3){
+  state={...fresh(),...saved};
+ }
+}catch(e){console.warn(e);}
+
+function save(){
+ try{
+  localStorage.setItem(STORE,JSON.stringify(state));
+ }catch(e){console.warn(e);}
+}
+
+/* 3. КӨРНЕКІ СЫЗБА */
+
+function diagram(){
+ return `
+ <div class="visual">
+  <svg viewBox="0 0 560 230">
+   <g fill="#24546e" stroke="#95e3ff" stroke-width="3">
+    <circle cx="93" cy="105" r="34"/>
+    <circle cx="216" cy="105" r="34"/>
+    <circle cx="405" cy="105" r="33"/>
+    <circle cx="514" cy="105" r="33"/>
+   </g>
+
+   <g fill="none" stroke="#95efc4"
+    stroke-width="5" stroke-linecap="round">
+    <line x1="128" y1="105" x2="181" y2="105"/>
+    <line x1="439" y1="95" x2="480" y2="95"/>
+    <line x1="439" y1="110" x2="480" y2="110"/>
+   </g>
+
+   <g fill="white" font-size="26"
+    text-anchor="middle" font-weight="bold">
+    <text x="93" y="115">C</text>
+    <text x="216" y="115">C</text>
+    <text x="405" y="115">C</text>
+    <text x="514" y="115">C</text>
+   </g>
+
+   <path d="M270 105 H356 M343 92 L357 105 L343 118"
+    fill="none" stroke="#ffdc92" stroke-width="5"/>
+
+   <g fill="#ffdc92" text-anchor="middle"
+    font-size="19">
+    <text x="155" y="55">Бастапқы қосылыс</text>
+    <text x="463" y="55">Алкен</text>
+    <text x="310" y="145">Элиминирлеу</text>
+   </g>
+
+   <text x="155" y="189" fill="#fff"
+    text-anchor="middle" font-size="22">
+    CH₃–CH₂Br
+   </text>
+   <text x="463" y="189" fill="#fff"
+    text-anchor="middle" font-size="22">
+    CH₂=CH₂
+   </text>
+  </svg>
+
+  <strong>Галогеналканнан алкен түзілуі</strong>
+  <p>Теориялық құрылымдық өзгеріс</p>
+ </div>
+ `;
+}
+
+/* 4. КІРІСПЕ */
+
+dynamic("Кіріспе","Кіріспе · 5 минут",()=>`
+ <div class="grid2">
+  <div>
+   <div class="eyebrow">
+    §85 · ОРГАНИКАЛЫҚ ХИМИЯ
+   </div>
+
+   <h1>
+    Галогеналкандардың
+    элиминирлеу реакциялары
+   </h1>
+
+   <p>
+    Элиминирлеу, қос байланыстың
+    түзілуі, β-элиминирлеу,
+    E1 және E2 механизмдері,
+    орынбасумен айырмашылығы.
+   </p>
+
+   <div class="formula">
+    Галогеналкан → Алкен
+   </div>
+
+   <div class="actions">
+    <button class="btn good" data-action="start">
+     ▶ Сабақты бастау
+    </button>
+    <button class="btn gold" data-action="reset-time">
+     ↺ Таймерді жаңарту
+    </button>
+   </div>
+  </div>
+
+  ${diagram()}
+ </div>
+`);
+
+add("Сабақ мақсаты","Кіріспе",`
+ <h2>Сабақтың мақсаты</h2>
+
+ <div class="grid2">
+  <div class="card">
+   <h3>Білімдік мақсат</h3>
+   <p>
+    Галогеналкандардың элиминирлеу
+    реакцияларының мәнін түсіну.
+    Алкендердің түзілуін,
+    E1 және E2 механизмдерінің
+    негізгі айырмашылықтарын ажырату.
+   </p>
+  </div>
+
+  <div class="card">
+   <h3>Практикалық мақсат</h3>
+   <p>
+    Теориялық реакция теңдеулерін
+    талдау, бастапқы қосылыс пен
+    өнімді атау, молярлық масса
+    бойынша есептер шығару
+    және реакцияларды салыстыру.
+   </p>
+  </div>
+ </div>
+
+ <div class="note">
+  <p>
+   80 минут: кіріспе — 5;
+   теория — 20; конспект — 8;
+   деңгейлік жұмыс — 10;
+   жеке тапсырмалар — 20;
+   командалық ойын — 12;
+   қорытынды — 5 минут.
+  </p>
+ </div>
+`);
+
+/* 5. 15 ТҮСІНДІРМЕ */
+
+const theory=[
+ [
+  "Элиминирлеу дегеніміз не?",
+  "Элиминирлеу — органикалық молекуладан екі атомның немесе атомдар тобының бөлініп шығуына байланысты реакция түрі. Галогеналкандарда мұндай өзгеріс нәтижесінде көміртек атомдары арасындағы қос байланыс пайда болуы мүмкін. Реакция өнімін бастапқы қосылыстың құрылымы арқылы түсіндіреміз.",
+  "Элиминирлеу → Қос байланыс",
+  "Элиминирлеу кезінде молекулада жаңа қанықпаған байланыс түзілуі мүмкін."
+ ],
+ [
+  "Галогеналкандарды еске түсіру",
+  "Галогеналкандар — құрамындағы бір немесе бірнеше сутек атомы галоген атомына орынбасқан алкандардың туындылары. Қарапайым бір галогенді туындылар R–X түрінде белгіленеді. Мұнда X — фтор, хлор, бром немесе йод.",
+  "R–X",
+  "Галогеналкандарда көміртек пен галоген арасында байланыс бар."
+ ],
+ [
+  "Алкендер қалай түзіледі?",
+  "Алкендер құрамында көміртек-көміртек қос байланысы болатын қанықпаған көмірсутектер. Кейбір галогеналкандардың элиминирлеу реакцияларында көміртек тізбегінде қос байланыс қалыптасады. Реакцияның өнімі молекуланың құрылысына байланысты.",
+  "C–C → C=C",
+  "Элиминирлеу өнімдерінің бірі — алкен."
+ ],
+ [
+  "β-элиминирлеу ұғымы",
+  "Галогеналкандардағы β-элиминирлеуді түсіну үшін галоген байланысқан көміртек және оған көршілес көміртек атомы ажыратылады. Теориялық модельде көрші көміртектегі сутек пен галогеннің бөлінуі нәтижесінде екі көміртек арасында қос байланыс пайда болады.",
+  "β-элиминирлеу → Алкен",
+  "Қос байланыс көршілес көміртек атомдарының арасында түзіледі."
+ ],
+ [
+  "Бромэтанның өзгеруі",
+  "Бромэтан молекуласындағы екі көміртек атомының арасында бастапқыда дара байланыс болады. Элиминирлеудің шартты жиынтық теңдеуінде бромэтаннан этен және бромсутек бөлінуі көрсетіледі. Бұл реакцияның нақты механизмі мен өнімдері ортаға байланысты.",
+  "C₂H₅Br → C₂H₄ + HBr",
+  "Этеннің формуласы — C₂H₄."
+ ],
+ [
+  "Хлорэтанның өзгеруі",
+  "Хлорэтан — C₂H₅Cl формулалы галогеналкан. Элиминирлеудің теориялық өзгерісінде этен түзілуін көрсетуге болады. Реакция теңдеуіндегі көміртек, сутек және хлор атомдарының саны екі жақта сақталуға тиіс.",
+  "C₂H₅Cl → C₂H₄ + HCl",
+  "Галогеналкан мен алкен құрамын салыстырып үйрен."
+ ],
+ [
+  "Орынбасу мен элиминирлеу",
+  "Нуклеофильді орынбасу кезінде молекуладағы белгілі бір топтың орнына басқа топ келеді. Элиминирлеуде молекуладан атомдар немесе топтар бөлініп, қос байланыс түзілуі мүмкін. Бұл екі реакция түрі бастапқы зат бірдей болғанның өзінде әртүрлі өнімдерге әкелуі мүмкін.",
+  "Орынбасу ≠ Элиминирлеу",
+  "Орынбасуда топ алмасады, элиминирлеуде қанықпаған байланыс пайда болуы мүмкін."
+ ],
+ [
+  "E2 механизмі",
+  "E2 — элиминирлеудің бір келісімді кезеңмен сипатталатын механизмі. Онда байланыстардың үзілуі мен қос байланыстың қалыптасуы өзара байланысқан өзгеріс ретінде қарастырылады. Жылдамдық заңы субстрат пен негіз бөлшегінің концентрацияларына тәуелді болуы мүмкін.",
+  "E2 — бір келісімді кезең",
+  "E2 механизмі бір кезеңдік модель ретінде түсіндіріледі."
+ ],
+ [
+  "E2 кезіндегі электрондардың қозғалысы",
+  "E2 механизмін талдауда көміртек-сутек, көміртек-галоген және көміртек-көміртек байланыстарының өзгеруі қарастырылады. Электрон жұптарының қозғалысы химиялық механизмнің қисық жебелерімен көрсетіледі. Мұндай схема молекулалық қайта құрылуды түсіндіреді.",
+  "C–H · C–X · C=C",
+  "E2 кезінде бірнеше байланыстағы өзгеріс бір-бірімен байланысты."
+ ],
+ [
+  "E1 механизмі",
+  "E1 — басқа элиминирлеу механизмі. Бұл механизмде карбкатиондық аралық бөлшек қарастырылуы мүмкін. Жылдамдықты анықтайтын кезең бастапқы органикалық қосылыстың өзгеруіне байланысты. E1 және E2 механизмдерінің қайсысы басым болатыны молекула мен реакциялық ортаға тәуелді.",
+  "E1 — карбкатиондық аралық бөлшек",
+  "E1 механизмінде аралық карбкатион маңызды болуы мүмкін."
+ ],
+ [
+  "E1 және E2 айырмашылығы",
+  "E2 механизмі бір келісімді кезеңмен сипатталады, ал E1 механизмінде аралық карбкатион түзілуі мүмкін. Екі механизмнің жылдамдық заңдылықтары да ерекшеленеді. Оқушы оларды тек атауымен емес, негізгі химиялық белгілерімен салыстыруы керек.",
+  "E1 ≠ E2",
+  "E1 және E2 механизмдерінің кезеңдері бірдей емес."
+ ],
+ [
+  "Алкен изомерлері",
+  "Құрамында бірнеше көміртек атомы бар галогеналкандардан теориялық тұрғыда әртүрлі құрылымды алкендер түзілуі мүмкін. Бұл құбылысты молекуладағы көміртек тізбегінің және қос байланыстың мүмкін болатын орналасуымен түсіндіруге болады.",
+  "Алкеннің орны әртүрлі болуы мүмкін",
+  "Бір бастапқы қосылыстан әртүрлі алкен құрылымдары пайда болуы ықтимал."
+ ],
+ [
+  "Зайцев ережесі туралы түсінік",
+  "Кейбір элиминирлеу реакцияларында көбірек орынбасқан алкен негізгі өнім ретінде байқалуы мүмкін. Бұл үрдіс Зайцев ережесімен байланыстырылады. Алайда ереже әмбебап емес: нақты өнімдердің таралуы молекуланың құрылысына және реакциялық факторларға тәуелді.",
+  "Зайцев ережесі — жалпы үрдіс",
+  "Негізгі өнімді болжағанда ереженің ерекшеліктерін ескеру керек."
+ ],
+ [
+  "Элиминирлеудің химиялық маңызы",
+  "Элиминирлеу реакциялары қаныққан органикалық туындылар мен қанықпаған көмірсутектер арасындағы құрылымдық байланысты көрсетеді. Мұндай өзгерістер органикалық химиядағы реакция түрлерін салыстыруда маңызды. Алкендердің пайда болуы қос байланысқа тән қасиеттерді әрі қарай түсінуге көмектеседі.",
+  "Галогеналкан → Алкен",
+  "Элиминирлеу — органикалық қосылыстардың түрлену жолдарының бірі."
+ ],
+ [
+  "Элиминирлеуге есеп шығару",
+  "Бромэтанның этенге айналуын сипаттайтын шартты теориялық теңдеудегі коэффициенттер 1:1 қатынас береді. Сондықтан толық түрлену деп берілген есепте бір моль бромэтанға бір моль этен сәйкес келеді. Есеп нәтижесі теориялық өнімге арналған.",
+  "C₂H₅Br : C₂H₄ = 1 : 1",
+  "Стехиометриялық есептерде алдымен теңдеудің коэффициенттері анықталады."
+ ]
+];
+
+theory.forEach((t,i)=>{
+ add(t[0],`Түсіндірме ${i+1}/15`,`
+  <div class="eyebrow">
+   ТҮСІНДІРМЕ ${i+1}/15
+  </div>
+  <h2>${t[0]}</h2>
+  <div class="grid2">
+   <div class="card">
+    <h3>Толық түсіндірме</h3>
+    <p>${t[1]}</p>
+   </div>
+   <div class="card">
+    <h3>Негізгі ұғым</h3>
+    <div class="formula">${t[2]}</div>
+    <p>Бастапқы зат, өнім және реакция түрін анықта.</p>
+   </div>
+  </div>
+  <div class="note">
+   <h3 style="color:var(--gold)">
+    Дәптерге жазып алыңдар
+   </h3>
+   <p>${t[3]}</p>
+  </div>
+ `);
+});
+
+/* 6. ИНТЕРАКТИВТІ СЫЗБА */
+
+const mechanism=[
+ {
+  title:"1. Бастапқы қосылыс",
+  type:"Галогеналкан",
+  formula:"CH₃–CH₂Br",
+  text:"Бромэтан құрамында көміртек-көміртек дара байланысы және көміртек-бром байланысы бар. Элиминирлеудің теориялық моделінде осы байланыстың өзгеруі қарастырылады."
+ },
+ {
+  title:"2. Байланыстардың өзгеруі",
+  type:"Элиминирлеу",
+  formula:"C–C → C=C",
+  text:"Элиминирлеудің жалпы нәтижесінде көршілес көміртек атомдарының арасында қос байланыс қалыптасуы мүмкін. Бұл жаңа алкен молекуласының түзілуін түсіндіреді."
+ },
+ {
+  title:"3. Органикалық өнім",
+  type:"Алкен",
+  formula:"CH₂=CH₂",
+  text:"Этен — құрамында екі көміртек және бір қос байланыс бар алкен. Оның молекулалық формуласы C₂H₄."
+ }
+];
+
+dynamic("Интерактивті механизм","Көрнекілік",()=>`
+ <div class="eyebrow">
+  ИНТЕРАКТИВТІ ТЕОРИЯЛЫҚ МОДЕЛЬ
+ </div>
+ <h2>Элиминирлеу кезінде не өзгереді?</h2>
+
+ <div class="grid2">
+  <div class="card">
+   ${mechanism.map((m,i)=>`
+    <button
+     class="stage ${state.mechanism===i?"active":""}"
+     data-action="mechanism"
+     data-index="${i}">
+     ${m.title}
+     <small>${m.type}</small>
+    </button>
+   `).join("")}
+  </div>
+
+  <div class="card">
+   <h3>${mechanism[state.mechanism].title}</h3>
+   <div class="formula">
+    ${mechanism[state.mechanism].formula}
+   </div>
+   <p>${mechanism[state.mechanism].text}</p>
+   <div class="note">
+    <p>Сызба — химиялық құрылымның оқу моделі.</p>
+   </div>
+  </div>
+ </div>
+`);
+
+/* 7. ҮШ КОНСПЕКТ */
+
+const notes=[
+ [
+  "Элиминирлеудің негізгі ұғымдары",
+  [
+   "Элиминирлеу — молекуладан атомдардың немесе топтардың бөлінуімен байланысты реакция.",
+   "Галогеналкандардың жалпы белгіленуі: R–X.",
+   "Элиминирлеу нәтижесінде C=C қос байланысы түзілуі мүмкін.",
+   "Алкендер — қанықпаған көмірсутектер.",
+   "Алкендердің ашық тізбекті бір қос байланысы бар өкілдерінің жалпы формуласы: CₙH₂ₙ.",
+   "Бромэтан: C₂H₅Br.",
+   "Этен: C₂H₄."
+  ]
+ ],
+ [
+  "E1 және E2 механизмдері",
+  [
+   "E2 — бір келісімді кезеңмен сипатталатын элиминирлеу.",
+   "E2 жылдамдығы субстрат пен негізге тәуелді болуы мүмкін.",
+   "E1 механизмінде карбкатион аралық бөлшек болуы мүмкін.",
+   "E1 және E2 механизмдері бірдей емес.",
+   "Орынбасуда бір топ басқа топпен алмасады.",
+   "Элиминирлеуде қанықпаған байланыс пайда болуы мүмкін.",
+   "Зайцев ережесі кейбір элиминирлеулердің негізгі өнімін түсіндіруге көмектеседі."
+  ]
+ ],
+ [
+  "Формулалар мен есептер",
+  [
+   "Бромэтан: C₂H₅Br.",
+   "Хлорэтан: C₂H₅Cl.",
+   "Этен: C₂H₄.",
+   "Пропен: C₃H₆.",
+   "M(C₂H₅Br)=109 г/моль.",
+   "M(C₂H₄)=28 г/моль.",
+   "M(C₃H₆)=42 г/моль.",
+   "ν=m/M.",
+   "m=νM.",
+   "Теориялық қатынас: C₂H₅Br:C₂H₄=1:1."
+  ]
+ ]
+];
+
+notes.forEach((n,i)=>{
+ add("Конспект "+(i+1),"Конспект · 8 минут",`
+  <div class="eyebrow">ДӘПТЕРГЕ ЖАЗЫП АЛЫҢДАР</div>
+  <h2>Конспект №${i+1}</h2>
+  <h3>${n[0]}</h3>
+  <div class="card">
+   <ol>${n[1].map(x=>`<li>${x}</li>`).join("")}</ol>
+  </div>
+ `);
+});
+
+/* 8. ТӨРТ ДЕҢГЕЙ */
+
+const levels=[
+ [
+  "1-деңгей. Ұғымдарды анықтау",
+  [
+   ["Элиминирлеу деген не?","Атомдар немесе топтар бөлініп шығатын реакция."],
+   ["Алкенде қандай байланыс бар?","C=C қос байланысы."],
+   ["Бромэтанның формуласы?","C₂H₅Br."],
+   ["Этеннің формуласы?","C₂H₄."]
+  ]
+ ],
+ [
+  "2-деңгей. Реакцияны түсіндіру",
+  [
+   ["Элиминирлеудің органикалық өніміне мысал?","Этен."],
+   ["Орынбасу мен элиминирлеудің айырмасы?","Орынбасуда топ ауысады, элиминирлеуде қос байланыс түзілуі мүмкін."],
+   ["Хлорэтанның формуласы?","C₂H₅Cl."],
+   ["Пропеннің формуласы?","C₃H₆."]
+  ]
+ ],
+ [
+  "3-деңгей. Механизмдер",
+  [
+   ["E2 механизмінің ерекшелігі?","Бір келісімді кезең."],
+   ["E1 механизмінің аралық бөлшегі?","Карбкатион."],
+   ["E1 мен E2 бірдей ме?","Жоқ."],
+   ["Зайцев ережесі нені сипаттайды?","Кейбір элиминирлеулерде негізгі алкен өнімінің түзілу үрдісін."]
+  ]
+ ],
+ [
+  "4-деңгей. Есептер",
+  [
+   ["M(C₂H₅Br) анықта.","109 г/моль."],
+   ["M(C₂H₄) анықта.","28 г/моль."],
+   ["218 г бромэтан неше моль?","2 моль."],
+   ["0,5 моль этеннің массасы?","14 г."]
+  ]
+ ]
+];
+
+levels.forEach((lev,i)=>{
+ dynamic("Деңгей "+(i+1),"Деңгейлік жұмыс · 10 минут",()=>`
+  <div class="eyebrow">ДЕҢГЕЙ ${i+1}/4</div>
+  <h2>${lev[0]}</h2>
+
+  ${lev[1].map((q,j)=>`
+   <div class="task">
+    <p>${j+1}. ${q[0]}</p>
+   </div>
+  `).join("")}
+
+  <div class="actions">
+   <button class="btn gold"
+    data-action="level" data-index="${i}">
+    ${state.levels[i]
+     ?"Жауаптарды жасыру"
+     :"Жауаптарды көру"}
+   </button>
+  </div>
+
+  ${state.levels[i]?`
+   <div class="answer">
+    ${lev[1].map((q,j)=>`
+     <p>${j+1}. ${q[1]}</p>
+    `).join("")}
+   </div>
+  `:""}
+ `);
+});
+
+/* 9. 25 ЖЕКЕ ТАПСЫРМА */
+
+const oral=[
+ ["Элиминирлеу деген не?","Атомдар немесе топтар бөлінетін реакция."],
+ ["Галогеналканның жалпы белгісі?","R–X."],
+ ["Алкеннің негізгі байланысы?","C=C."],
+ ["Бромэтанның формуласы?","C₂H₅Br."],
+ ["Хлорэтанның формуласы?","C₂H₅Cl."],
+ ["Этеннің формуласы?","C₂H₄."],
+ ["Пропеннің формуласы?","C₃H₆."],
+ ["Элиминирлеу өніміне мысал?","Этен."],
+ ["Бромэтанның теориялық элиминирлеуіндегі органикалық өнім?","Этен."],
+ ["Хлорэтанның теориялық элиминирлеуіндегі органикалық өнім?","Этен."],
+ ["Элиминирлеуде қандай байланыс пайда болуы мүмкін?","Қос байланыс."],
+ ["Этен қаныққан ба?","Жоқ, қанықпаған."],
+ ["Бір қос байланысы бар ашық тізбекті алкендердің формуласы?","CₙH₂ₙ."],
+ ["Орынбасу деген не?","Бір топтың басқа топпен алмасуы."],
+ ["Элиминирлеу мен орынбасу бірдей ме?","Жоқ."],
+ ["E2 қандай механизм?","Бір келісімді кезең."],
+ ["E1 үшін қандай аралық бөлшек маңызды?","Карбкатион."],
+ ["E1 мен E2 айырмашылығы?","Механизм кезеңдері өзгеше."],
+ ["Зайцев ережесімен не байланысты?","Алкеннің негізгі өнім ретінде түзілу үрдісі."],
+ ["Бромэтанның молярлық массасы?","109 г/моль."],
+ ["Этеннің молярлық массасы?","28 г/моль."],
+ ["Пропеннің молярлық массасы?","42 г/моль."],
+ ["109 г бромэтан неше моль?","1 моль."],
+ ["1 моль этеннің массасы?","28 г."],
+ ["Элиминирлеу органикалық химияда нені түсіндіреді?","Қанықпаған байланысы бар өнімдердің түзілуін."]
+];
+
+dynamic("Жеке тапсырмалар","25 оқушы · 20 минут",()=>{
+ const i=state.oral;
+
+ if(i>=oral.length)return `
+  <h1>25 тапсырма аяқталды!</h1>
+  <div class="actions">
+   <button class="btn gold"
+    data-action="oral-reset">
+    ↺ Қайта бастау
+   </button>
+   <button class="btn primary"
+    data-action="go-game">
+    Командалық ойын →
+   </button>
+  </div>
+ `;
+
+ return `
+  <div class="eyebrow">ЖЕКЕ ТАПСЫРМА</div>
+  <h2>Тақтаға шығып орында</h2>
+  <span class="tag">${i+1}-оқушы · ${i+1}/25</span>
+
+  <div class="progress">
+   <span style="width:${i*100/25}%"></span>
+  </div>
+
+  <div class="card">
+   <h3>Тапсырма</h3>
+   <p class="big">${oral[i][0]}</p>
+  </div>
+
+  ${state.oralShow?`
+   <div class="answer">
+    <h3>Дұрыс жауап</h3>
+    <p>${oral[i][1]}</p>
+   </div>
+  `:""}
+
+  <div class="actions">
+   <button class="btn gold"
+    data-action="oral-show">
+    ${state.oralShow
+     ?"Жауапты жасыру"
+     :"Жауапты көру"}
+   </button>
+
+   <button class="btn primary"
+    data-action="oral-next">
+    Келесі оқушы →
+   </button>
+  </div>
+ `;
+});
+
+/* 10. КОМАНДАЛЫҚ ОЙЫН */
+
+const quiz=[
+ ["Элиминирлеуде не пайда болуы мүмкін?",["Қос байланыс","Атом ядросы","Металл","Тұз кристалы"],0],
+ ["Алкеннің негізгі байланысы?",["C–C","C=C","C≡C ғана","O–H"],1],
+ ["Бромэтан формуласы?",["CH₄","C₂H₆","C₂H₅Br","C₃H₈"],2],
+ ["Этен формуласы?",["C₂H₆","CH₄","C₂H₂","C₂H₄"],3],
+ ["Бромэтаннан теориялық түзілетін алкен?",["Этен","Пропан","Метан","Бутан"],0],
+ ["Хлорэтан формуласы?",["C₂H₆","C₂H₅Cl","C₂H₄","C₃H₇Cl"],1],
+ ["E2 механизмі қандай?",["Екі бөлек тұрақты саты","Тек жану","Бір келісімді кезең","Тек айдау"],2],
+ ["E1 аралық бөлшегі?",["Электрон","Нейтрон","Протон","Карбкатион"],3],
+ ["Орынбасуда не болады?",["Топ алмасады","Қос байланыс міндетті түрде түзіледі","Ядро өзгереді","Протон саны өзгереді"],0],
+ ["Элиминирлеу өніміне мысал?",["Этан","Этен","Метан","Пропан"],1],
+ ["Пропеннің формуласы?",["C₃H₈","C₃H₄","C₃H₆","C₂H₆"],2],
+ ["M(C₂H₄) қанша?",["26","30","32","28"],3],
+ ["M(C₂H₅Br) қанша?",["109","95","80","120"],0],
+ ["218 г бромэтан неше моль?",["1","2","0,5","3"],1],
+ ["Зайцев ережесі неге қатысты?",["Балқу температурасына","Металл өткізгіштігіне","Элиминирлеудің негізгі алкен өніміне","Газдың түсіне"],2]
+];
+
+dynamic("Командалық ойын","3 команда · 12 минут",()=>{
+ const i=state.game;
+
+ if(i>=quiz.length){
+  const best=Math.max(...state.scores);
+  const winners=state.scores
+   .map((s,j)=>s===best?`${j+1}-команда`:null)
+   .filter(Boolean);
+
+  return `
+   <h1>Командалық ойын аяқталды!</h1>
+   <div class="grid3">
+    ${state.scores.map((score,j)=>`
+     <div class="team">
+      <h3>${j+1}-команда</h3>
+      <div class="score">${score}</div>
+      <p>ұпай</p>
+     </div>
+    `).join("")}
+   </div>
+
+   <div class="note">
+    <p>Жеңімпаз: ${winners.join(", ")}</p>
+   </div>
+
+   <div class="actions">
+    <button class="btn gold"
+     data-action="game-reset">
+     ↺ Қайта бастау
+    </button>
+   </div>
+  `;
+ }
+
+ const [q,options,right]=quiz[i];
+
+ return `
+  <div class="eyebrow">
+   КОМАНДАЛЫҚ ОЙЫН ${i+1}/15
+  </div>
+  <h2>${i%3+1}-команданың кезегі</h2>
+
+  <div class="grid3">
+   ${state.scores.map((score,j)=>`
+    <div class="team ${j===i%3?"active":""}">
+     <h3>${j+1}-команда</h3>
+     <div class="score">${score}</div>
+    </div>
+   `).join("")}
+  </div>
+
+  <div class="card" style="margin-top:16px">
+   <p class="big">${q}</p>
+  </div>
+
+  <div class="options">
+   ${options.map((option,j)=>`
+    <button
+     class="option ${
+      state.choice===null?""
+      :j===right?"correct"
+      :j===state.choice?"wrong":""
+     }"
+     data-action="game-answer"
+     data-index="${j}"
+     ${state.choice!==null?"disabled":""}>
+     ${"ABCD"[j]}. ${option}
+    </button>
+   `).join("")}
+  </div>
+
+  ${state.choice!==null?`
+   <div class="answer">
+    <h3>
+     ${state.choice===right
+      ?"Дұрыс! +10 ұпай"
+      :"Қате. 0 ұпай"}
+    </h3>
+    <p>Дұрыс жауап: ${options[right]}</p>
+   </div>
+   <div class="actions">
+    <button class="btn primary"
+     data-action="game-next">
+     Келесі команда →
+    </button>
+   </div>
+  `:""}
+ `;
+});
+
+/* 11. ҮЙ ТАПСЫРМАСЫ */
+
+const creativeHome=[
+ [
+  "«Элиминирлеу және орынбасу» салыстыру постерін жаса.",
+  "Постерде екі реакцияның айырмасын түсіндір. Орынбасу кезінде топ алмасатынын, элиминирлеуде қос байланыс түзілуі мүмкін екенін көрсет."
+ ],
+ [
+  "«E1 және E2 механизмдері» атты салыстыру кестесін толтыр.",
+  "E1-дегі карбкатиондық аралық бөлшекті және E2-дегі бір келісімді кезеңді сипатта. Әр механизмнің бір маңызды ерекшелігін жаз."
+ ]
+];
+
+const homeMath=[
+ [
+  "Массасы 163,5 г бромэтанның зат мөлшерін анықта.",
+  "M(C₂H₅Br)=109 г/моль. ν=163,5/109=1,5 моль."
+ ],
+ [
+  "C₂H₅Br→C₂H₄+HBr шартты теңдеуіне сәйкес 0,75 моль бромэтан толық түрленсе, түзілетін этен массасын анықта.",
+  "Мольдік қатынас 1:1. ν(C₂H₄)=0,75 моль. M(C₂H₄)=28 г/моль. m=0,75×28=21 г."
+ ]
+];
+
+dynamic("Үй тапсырмасы","Үй жұмысы",()=>`
+ <div class="eyebrow">§85 · ҮЙ ТАПСЫРМАСЫ</div>
+ <h2>Элиминирлеу және орынбасу</h2>
+
+ <div class="grid2">
+  <div class="card">
+   <h3>1. Салыстыру жұмысы</h3>
+   ${creativeHome.map((q,i)=>`
+    <div class="task">
+     <p>${i+1}. ${q[0]}</p>
+    </div>
+   `).join("")}
+
+   <div class="note">
+    <p>
+     Орынбасуды көк,
+     элиминирлеуді жасыл,
+     негізгі айырмашылықтарды
+     сары түспен белгіле.
+    </p>
+   </div>
+  </div>
+
+  <div class="card">
+   <h3>2. Екі химиялық есеп</h3>
+   ${homeMath.map((q,i)=>`
+    <div class="task">
+     <p>${i+1}. ${q[0]}</p>
+    </div>
+   `).join("")}
+
+   <div class="note">
+    <p>
+     Берілгені → формула немесе
+     теңдеу → шешуі → жауап.
+    </p>
+   </div>
+  </div>
+ </div>
+
+ <div class="actions">
+  <button class="btn gold" data-action="home">
+   ${state.home
+    ?"Жауаптарды жасыру"
+    :"Жауаптарды көру"}
+  </button>
+ </div>
+
+ ${state.home?`
+  <div class="answer">
+   <h3>Салыстыру жұмысының үлгісі</h3>
+   ${creativeHome.map((q,i)=>`
+    <p>${i+1}. ${q[1]}</p>
+   `).join("")}
+
+   <h3>Есептердің шешуі</h3>
+   ${homeMath.map((q,i)=>`
+    <p>${i+1}. ${q[1]}</p>
+   `).join("")}
+  </div>
+ `:""}
+`);
+
+/* 12. ҚОРЫТЫНДЫ */
+
+add("Қорытынды","Сабақ аяқталды",`
+ <div style="text-align:center">
+  <div class="eyebrow">§85 · ХИМИЯ</div>
+
+  <h1>Сабақ аяқталды!</h1>
+  <h2>Галогеналкандардың элиминирлеу реакциялары</h2>
+
+  <div class="grid3">
+   <div class="card">
+    <h3>15 түсіндірме</h3>
+    <p>Элиминирлеу · E1 · E2</p>
+   </div>
+   <div class="card">
+    <h3>25 тапсырма</h3>
+    <p>Жеке жұмыс</p>
+   </div>
+   <div class="card">
+    <h3>15 сұрақ</h3>
+    <p>3 команда</p>
+   </div>
+  </div>
+
+  <div class="formula">BY DARKHAN</div>
+ </div>
+`);
+
+/* 13. БАТЫРМАЛАР */
+
+$("slide").addEventListener("click",e=>{
+ const b=e.target.closest("[data-action]");
+ if(!b)return;
+
+ const action=b.dataset.action;
+ const i=Number(b.dataset.index);
+
+ switch(action){
+  case "start":
+   startTimer();break;
+
+  case "reset-time":
+   resetTimer();break;
+
+  case "mechanism":
+   state.mechanism=i;break;
+
+  case "level":
+   state.levels[i]=!state.levels[i];break;
+
+  case "oral-show":
+   state.oralShow=!state.oralShow;break;
+
+  case "oral-next":
+   state.oral=Math.min(oral.length,state.oral+1);
+   state.oralShow=false;break;
+
+  case "oral-reset":
+   state.oral=0;
+   state.oralShow=false;break;
+
+  case "go-game":
+   go("Командалық ойын");break;
+
+  case "game-answer":
+   if(state.choice!==null)return;
+   if(i<0||i>3)return;
+   state.choice=i;
+   if(i===quiz[state.game][2]){
+    state.scores[state.game%3]+=10;
+   }
+   break;
+
+  case "game-next":
+   if(state.choice===null)return;
+   state.game++;
+   state.choice=null;break;
+
+  case "game-reset":
+   state.game=0;
+   state.choice=null;
+   state.scores=[0,0,0];break;
+
+  case "home":
+   state.home=!state.home;break;
+ }
+
+ save();
+ draw();
+});
+
+/* 14. ТАЙМЕР ЖӘНЕ АЛМАТЫ УАҚЫТЫ */
+
+const TIMER_KEY=STORE+"_timer";
+let deadline=null;
+
+try{
+ const saved=localStorage.getItem(TIMER_KEY);
+ if(saved!==null&&Number.isFinite(Number(saved))){
+  deadline=Number(saved);
+ }
+}catch(e){console.warn(e);}
+
+function tick(){
+ const seconds=deadline===null
+  ?4800
+  :Math.max(0,Math.ceil((deadline-Date.now())/1000));
+
+ $("timer").textContent=
+  String(Math.floor(seconds/60)).padStart(2,"0")+
+  ":"+String(seconds%60).padStart(2,"0");
+
+ $("clock").textContent=
+  new Intl.DateTimeFormat("en-GB",{
+   timeZone:"Asia/Almaty",
+   hour:"2-digit",
+   minute:"2-digit",
+   second:"2-digit",
+   hourCycle:"h23"
+  }).format(new Date());
+}
+
+function startTimer(){
+ if(deadline!==null){
+  alert("Таймер іске қосылған.");
+  return;
+ }
+ deadline=Date.now()+4800000;
+ try{
+  localStorage.setItem(TIMER_KEY,String(deadline));
+ }catch(e){console.warn(e);}
+ tick();
+}
+
+function resetTimer(){
+ if(!confirm("80 минуттық таймерді жаңартамыз ба?")){
+  return;
+ }
+ deadline=null;
+ try{
+  localStorage.removeItem(TIMER_KEY);
+ }catch(e){console.warn(e);}
+ tick();
+}
+
+setInterval(tick,1000);
+
+/* 15. КАЛЬКУЛЯТОР */
+
+const calculator=$("calculator");
+
+$("showCalc").onclick=()=>{
+ calculator.hidden=!calculator.hidden;
+ fitCalculator();
+};
+
+$("closeCalc").onclick=()=>{
+ calculator.hidden=true;
+};
+
+const calcButtons=[
+ "7","8","9","/",
+ "4","5","6","*",
+ "1","2","3","-",
+ "C","0",".","+",
+ "(",")","⌫","="
+];
+
+$("calcKeys").innerHTML=calcButtons.map(k=>`
+ <button type="button" data-key="${k}">
+  ${k==="/"?"÷":k==="*"?"×":k}
+ </button>
+`).join("");
+
+let calcText="";
+
+function calculate(input){
+ let i=0;
+
+ function factor(){
+  if(input[i]==="+"){i++;return factor();}
+  if(input[i]==="-"){i++;return -factor();}
+
+  if(input[i]==="("){
+   i++;
+   const value=sum();
+   if(input[i]!==")"){
+    throw Error("Жақша қатесі");
+   }
+   i++;
+   return value;
+  }
+
+  const m=/^(?:\d+\.?\d*|\.\d+)/
+   .exec(input.slice(i));
+
+  if(!m)throw Error("Сан қатесі");
+
+  i+=m[0].length;
+  return Number(m[0]);
+ }
+
+ function product(){
+  let v=factor();
+  while(input[i]==="*"||input[i]==="/"){
+   const op=input[i++];
+   const next=factor();
+   v=op==="*"?v*next:v/next;
+  }
+  return v;
+ }
+
+ function sum(){
+  let v=product();
+  while(input[i]==="+"||input[i]==="-"){
+   const op=input[i++];
+   const next=product();
+   v=op==="+"?v+next:v-next;
+  }
+  return v;
+ }
+
+ if(!/^[0-9+*/().-]+$/.test(input)){
+  throw Error("Таңба қатесі");
+ }
+
+ const result=sum();
+ if(i!==input.length||!Number.isFinite(result)){
+  throw Error("Өрнек қатесі");
+ }
+
+ return Number(result.toPrecision(12));
+}
+
+$("calcKeys").addEventListener("click",e=>{
+ const b=e.target.closest("[data-key]");
+ if(!b)return;
+
+ const k=b.dataset.key;
+ if(k==="C"){
+  calcText="";
+ }else if(k==="⌫"){
+  calcText=calcText.slice(0,-1);
+ }else if(k==="="){
+  try{
+   calcText=String(calculate(calcText));
+  }catch(e){
+   calcText="Қате";
+  }
+ }else{
+  if(calcText==="Қате")calcText="";
+  calcText+=k;
+ }
+ $("calcDisplay").value=calcText;
+});
+
+/* 16. КАЛЬКУЛЯТОРДЫ ЖЫЛЖЫТУ */
+
+function clamp(v,min,max){
+ return Math.max(min,Math.min(max,v));
+}
+
+function fitCalculator(){
+ if(calculator.hidden)return;
+ const r=calculator.getBoundingClientRect();
+
+ calculator.style.left=clamp(
+  r.left,0,Math.max(0,innerWidth-r.width)
+ )+"px";
+
+ calculator.style.top=clamp(
+  r.top,0,Math.max(0,innerHeight-r.height)
+ )+"px";
+}
+
+let drag=null;
+let suppressClick=false;
+
+calculator.addEventListener("pointerdown",e=>{
+ if(drag||(e.pointerType==="mouse"&&e.button!==0)){
+  return;
+ }
+
+ const r=calculator.getBoundingClientRect();
+ drag={
+  id:e.pointerId,
+  x:e.clientX,
+  y:e.clientY,
+  left:r.left,
+  top:r.top,
+  moved:false
+ };
+
+ calculator.setPointerCapture(e.pointerId);
+});
+
+calculator.addEventListener("pointermove",e=>{
+ if(!drag||drag.id!==e.pointerId)return;
+
+ const dx=e.clientX-drag.x;
+ const dy=e.clientY-drag.y;
+
+ if(!drag.moved&&Math.hypot(dx,dy)>7){
+  drag.moved=true;
+  calculator.classList.add("dragging");
+ }
+ if(!drag.moved)return;
+
+ calculator.style.left=clamp(
+  drag.left+dx,0,
+  Math.max(0,innerWidth-calculator.offsetWidth)
+ )+"px";
+
+ calculator.style.top=clamp(
+  drag.top+dy,0,
+  Math.max(0,innerHeight-calculator.offsetHeight)
+ )+"px";
+});
+
+calculator.addEventListener("pointerup",e=>{
+ if(!drag||drag.id!==e.pointerId)return;
+
+ suppressClick=drag.moved;
+ drag=null;
+ calculator.classList.remove("dragging");
+
+ if(calculator.hasPointerCapture(e.pointerId)){
+  calculator.releasePointerCapture(e.pointerId);
+ }
+});
+
+calculator.addEventListener("pointercancel",()=>{
+ drag=null;
+ calculator.classList.remove("dragging");
+});
+
+calculator.addEventListener("click",e=>{
+ if(!suppressClick)return;
+ e.preventDefault();
+ e.stopImmediatePropagation();
+ suppressClick=false;
+},true);
+
+window.addEventListener("resize",fitCalculator);
+
+/* 17. МЕНДЕЛЕЕВ КЕСТЕСІ */
+
+const elementData=`
+H|Сутек He|Гелий Li|Литий Be|Бериллий B|Бор C|Көміртек N|Азот O|Оттек F|Фтор Ne|Неон
+Na|Натрий Mg|Магний Al|Алюминий Si|Кремний P|Фосфор S|Күкірт Cl|Хлор Ar|Аргон
+K|Калий Ca|Кальций Sc|Скандий Ti|Титан V|Ванадий Cr|Хром Mn|Марганец Fe|Темір Co|Кобальт Ni|Никель Cu|Мыс Zn|Мырыш
+Ga|Галлий Ge|Германий As|Мышьяк Se|Селен Br|Бром Kr|Криптон
+Rb|Рубидий Sr|Стронций Y|Иттрий Zr|Цирконий Nb|Ниобий Mo|Молибден Tc|Технеций Ru|Рутений Rh|Родий Pd|Палладий Ag|Күміс Cd|Кадмий
+In|Индий Sn|Қалайы Sb|Сурьма Te|Теллур I|Йод Xe|Ксенон
+Cs|Цезий Ba|Барий La|Лантан Ce|Церий Pr|Празеодим Nd|Неодим Pm|Прометий Sm|Самарий Eu|Еуропий Gd|Гадолиний Tb|Тербий Dy|Диспрозий Ho|Гольмий Er|Эрбий Tm|Тулий Yb|Иттербий Lu|Лютеций
+Hf|Гафний Ta|Тантал W|Вольфрам Re|Рений Os|Осмий Ir|Иридий Pt|Платина Au|Алтын Hg|Сынап Tl|Таллий Pb|Қорғасын Bi|Висмут Po|Полоний At|Астат Rn|Радон
+Fr|Франций Ra|Радий Ac|Актиний Th|Торий Pa|Протактиний U|Уран Np|Нептуний Pu|Плутоний Am|Америций Cm|Кюрий Bk|Берклий Cf|Калифорний Es|Эйнштейний Fm|Фермий Md|Менделевий No|Нобелий Lr|Лоуренсий
+Rf|Резерфордий Db|Дубний Sg|Сиборгий Bh|Борий Hs|Хассий Mt|Мейтнерий Ds|Дармштадтий Rg|Рентгений Cn|Коперниций Nh|Нихоний Fl|Флеровий Mc|Московий Lv|Ливерморий Ts|Теннессин Og|Оганесон
+`;
+
+const elements=elementData.trim()
+ .split(/\s+/)
+ .map((entry,i)=>{
+  const [symbol,name]=entry.split("|");
+  return{z:i+1,symbol,name};
+ });
+
+const rowGroups=[
+ [1,18],
+ [1,2,13,14,15,16,17,18],
+ [1,2,13,14,15,16,17,18],
+ Array.from({length:18},(_,i)=>i+1),
+ Array.from({length:18},(_,i)=>i+1)
+];
+
+function position(z){
+ if(z<=54){
+  let k=z-1;
+  for(let p=0;p<5;p++){
+   if(k<rowGroups[p].length){
+    return{row:p+1,col:rowGroups[p][k]};
+   }
+   k-=rowGroups[p].length;
+  }
+ }
+
+ if(z<=56)return{row:6,col:z-54};
+ if(z<=71)return{row:9,col:z-54};
+ if(z<=86)return{row:6,col:z-68};
+ if(z<=88)return{row:7,col:z-86};
+ if(z<=103)return{row:10,col:z-86};
+ return{row:7,col:z-100};
+}
+
+function buildTable(){
+ let html="";
+
+ for(let g=1;g<=18;g++){
+  html+=`
+   <span class="period-label"
+    style="grid-row:1;grid-column:${g+1}">
+    ${g}
+   </span>
+  `;
+ }
+
+ for(let p=1;p<=7;p++){
+  html+=`
+   <span class="period-label"
+    style="grid-row:${p+1};grid-column:1">
+    ${p}
+   </span>
+  `;
+ }
+
+ html+=`
+  <span class="period-label"
+   style="grid-row:10;grid-column:1">La–Lu</span>
+  <span class="period-label"
+   style="grid-row:11;grid-column:1">Ac–Lr</span>
+  <span class="period-label"
+   style="grid-row:7;grid-column:4">57–71</span>
+  <span class="period-label"
+   style="grid-row:8;grid-column:4">89–103</span>
+ `;
+
+ for(const e of elements){
+  const p=position(e.z);
+
+  const cls=
+   (e.z>=57&&e.z<=71)||
+   (e.z>=89&&e.z<=103)
+    ?"fblock"
+    :["H","C","N","O","Cl","Br"].includes(e.symbol)
+     ?"featured":"";
+
+  html+=`
+   <button class="element ${cls}"
+    data-z="${e.z}"
+    style="grid-row:${p.row+1};grid-column:${p.col+1}">
+    <i>${e.z}</i>
+    <b>${e.symbol}</b>
+    <small>${e.name}</small>
+   </button>
+  `;
+ }
+
+ $("period").innerHTML=html;
+}
+
+$("period").addEventListener("click",e=>{
+ const b=e.target.closest("[data-z]");
+ if(!b)return;
+
+ const z=Number(b.dataset.z);
+ const item=elements[z-1];
+ const p=position(z);
+
+ const period=p.row===9?6:p.row===10?7:p.row;
+ const group=p.row>7?"f-блок":p.col+"-топ";
+
+ $("elementInfo").textContent=
+  `${z}. ${item.name} (${item.symbol}) · `+
+  `${period}-период · ${group}`;
+});
+
+$("showTable").onclick=()=>{
+ $("tableOverlay").hidden=false;
+};
+
+$("closeTable").onclick=()=>{
+ $("tableOverlay").hidden=true;
+};
+
+$("tableOverlay").onclick=e=>{
+ if(e.target===$("tableOverlay")){
+  $("tableOverlay").hidden=true;
+ }
+};
+
+/* 18. ПЕРНЕТАҚТАМЕН БАСҚАРУ */
+
+document.addEventListener("keydown",e=>{
+ if(e.key==="Escape"){
+  $("tableOverlay").hidden=true;
+  calculator.hidden=true;
+  return;
+ }
+
+ if(!$("tableOverlay").hidden)return;
+ if(e.target.closest("input,textarea"))return;
+
+ if(e.key==="ArrowRight"&&page<slides.length-1){
+  page++;draw();
+ }else if(e.key==="ArrowLeft"&&page>0){
+  page--;draw();
+ }
+});
+
+/* 19. ТЕКСЕРУ ЖӘНЕ ІСКЕ ҚОСУ */
+
+try{
+ const checks=[
+  [theory.length===15,"15 түсіндірме"],
+  [notes.length===3,"3 конспект"],
+  [levels.length===4,"4 деңгей"],
+  [oral.length===25,"25 жеке тапсырма"],
+  [quiz.length===15,"15 ойын сұрағы"],
+  [slides.length===29,"29 бет"],
+  [elements.length===118,"118 элемент"],
+  [calculate("7*3")===21,"Көбейту"],
+  [calculate("(2+3)*4")===20,"Жақша"],
+  [calculate("163.5/109")===1.5,"Бөлшек есеп"]
+ ];
+
+ for(const [ok,name] of checks){
+  if(!ok)throw Error(name+" тексеру қатесі");
+ }
+
+ buildTable();
+ tick();
+ draw();
+
+ console.log("§85: бастапқы тексерулер өтті");
+}catch(error){
+ console.error(error);
+ const box=document.createElement("div");
+ box.className="note";
+ box.textContent="Сайт қатесі: "+error.message;
+ $("slide").appendChild(box);
+}
+</script>
+
+</body>
+</html>

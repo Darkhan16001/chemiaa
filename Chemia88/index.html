@@ -1,0 +1,2255 @@
+
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>§88 Көпатомды спирттер | CHEMISTRY PRO</title>
+
+<style>
+:root {
+  --bg:#071827;
+  --panel:#153a52;
+  --panel2:#20516b;
+  --blue:#a1e6ff;
+  --green:#9df1c8;
+  --gold:#ffdc94;
+  --red:#ffa4ab;
+  --text:#f8fcff;
+  --line:#83b4cb;
+}
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  height:100%;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Segoe UI",Arial,sans-serif;
+}
+button,input{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.4;cursor:default}
+[hidden]{display:none!important}
+
+.app{
+  height:100vh;
+  height:100dvh;
+  display:flex;
+  flex-direction:column;
+  background:
+    radial-gradient(circle at 94% 7%,#1682a477,transparent 43%),
+    radial-gradient(circle at 5% 94%,#187a6566,transparent 43%),
+    linear-gradient(125deg,#071827,#153b55,#081b2b);
+}
+header,footer{
+  display:flex;
+  flex-shrink:0;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:11px 20px;
+  background:#081d2e;
+}
+header{border-bottom:1px solid var(--line)}
+footer{border-top:1px solid var(--line)}
+.brand{
+  color:var(--blue);
+  font-size:27px;
+  font-weight:900;
+}
+.brand small{
+  display:block;
+  color:var(--gold);
+  font-size:14px;
+  margin-top:4px;
+}
+.status{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  font-size:19px;
+  font-weight:900;
+}
+#timer{
+  color:var(--gold);
+  font-size:29px;
+  font-variant-numeric:tabular-nums;
+}
+#counter{color:var(--blue)}
+#clock{
+  color:var(--blue);
+  font-size:22px;
+  font-weight:900;
+  font-variant-numeric:tabular-nums;
+}
+.signature{
+  color:var(--gold);
+  font-size:23px;
+  font-weight:900;
+}
+main{
+  flex:1;
+  min-height:0;
+  overflow:auto;
+  padding:23px 35px 44px;
+}
+.slide{
+  max-width:1490px;
+  min-height:100%;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+h1{
+  font-size:clamp(44px,4.6vw,78px);
+  line-height:1.13;
+  margin:10px 0 20px;
+}
+h2{
+  font-size:clamp(34px,3.1vw,53px);
+  line-height:1.2;
+  margin:0 0 19px;
+}
+h3{
+  color:var(--blue);
+  font-size:clamp(25px,2vw,36px);
+  margin:0 0 13px;
+}
+p,li{
+  font-size:clamp(22px,1.75vw,30px);
+  line-height:1.5;
+}
+li{margin:9px 0}
+.eyebrow{
+  color:var(--blue);
+  font-size:21px;
+  font-weight:900;
+  margin-bottom:12px;
+}
+.grid2,.grid3{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  align-items:center;
+  gap:18px;
+}
+.grid3{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+}
+.card{
+  min-width:0;
+  padding:23px;
+  background:linear-gradient(145deg,#1c4a63,#102e45);
+  border:1px solid var(--line);
+  border-radius:18px;
+}
+.card p{margin:9px 0}
+.formula{
+  background:#114955;
+  color:var(--green);
+  border:1px solid #88d4c5;
+  border-radius:14px;
+  padding:20px;
+  margin:15px 0;
+  text-align:center;
+  font-size:clamp(26px,2.6vw,44px);
+  font-weight:900;
+  overflow-wrap:anywhere;
+}
+.note{
+  background:#21485f;
+  border-left:6px solid var(--gold);
+  border-radius:11px;
+  padding:17px 22px;
+  margin-top:17px;
+}
+.note p{margin:7px 0}
+.btn{
+  padding:12px 19px;
+  color:white;
+  background:#2b627e;
+  border:1px solid #8cbcd3;
+  border-radius:10px;
+  font-size:18px;
+  font-weight:900;
+}
+.btn.primary{background:#088eae}
+.btn.good{background:#147c5e}
+.btn.gold{background:#926b32}
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:17px;
+}
+.task{
+  margin:10px 0;
+  padding:15px 19px;
+  background:#1c455e;
+  border:1px solid #7fb4cf;
+  border-radius:12px;
+}
+.task p{margin:5px 0}
+.answer{
+  background:#15543f;
+  border:1px solid #8dedc0;
+  border-radius:12px;
+  padding:18px;
+  margin-top:17px;
+}
+.answer p{margin:8px 0}
+.big{
+  font-size:clamp(31px,2.9vw,48px);
+  line-height:1.4;
+  font-weight:900;
+}
+.tag{
+  display:inline-block;
+  width:max-content;
+  max-width:100%;
+  padding:13px 21px;
+  color:var(--gold);
+  background:#6b5431;
+  border:2px solid var(--gold);
+  border-radius:12px;
+  font-size:29px;
+  font-weight:900;
+}
+.progress{
+  height:14px;
+  background:#33536c;
+  border-radius:30px;
+  overflow:hidden;
+  margin:17px 0;
+}
+.progress span{
+  display:block;
+  height:100%;
+  background:linear-gradient(90deg,#15a7d3,#98f2c7);
+}
+.team{
+  padding:18px;
+  background:#1c465e;
+  border:1px solid #87bad0;
+  border-radius:15px;
+  text-align:center;
+}
+.team.active{outline:4px solid var(--gold)}
+.score{
+  font-size:55px;
+  font-weight:900;
+  color:var(--gold);
+}
+.options{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:16px;
+}
+.option{
+  color:white;
+  background:#2c627e;
+  border:2px solid #8bb9d0;
+  border-radius:12px;
+  padding:18px;
+  text-align:left;
+  font-size:clamp(21px,1.75vw,30px);
+  font-weight:900;
+}
+.option.correct{background:#147e5e}
+.option.wrong{background:#964657}
+.visual{
+  padding:20px;
+  text-align:center;
+  background:#103d51;
+  border:1px solid #87bbd1;
+  border-radius:17px;
+}
+.visual svg{
+  display:block;
+  width:100%;
+  height:235px;
+}
+.visual strong{
+  font-size:29px;
+  color:var(--green);
+}
+.molecule-choice{
+  display:block;
+  width:100%;
+  text-align:left;
+  margin:8px 0;
+  padding:16px 19px;
+  color:white;
+  background:#2c607c;
+  border:2px solid #8cbcd3;
+  border-radius:12px;
+  font-size:25px;
+  font-weight:900;
+}
+.molecule-choice.active{
+  background:#137461;
+  border-color:var(--gold);
+}
+.molecule-choice small{
+  display:block;
+  color:#e0edf5;
+  font-size:17px;
+  margin-top:5px;
+}
+.molecule-visual{
+  min-height:140px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  padding:20px 12px;
+  border:1px solid #80b5ca;
+  border-radius:15px;
+  background:#0c3043;
+}
+.atom{
+  min-width:55px;
+  height:55px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#245b7a;
+  border:2px solid #a5e5ff;
+  font-size:21px;
+  font-weight:900;
+}
+.atom.oh{
+  background:#13765e;
+  border-color:#a3f3cc;
+}
+.bond{
+  color:var(--gold);
+  font-size:35px;
+  font-weight:900;
+}
+
+/* ҚҰРАЛДАР */
+.tools{
+  position:fixed;
+  z-index:40;
+  left:10px;
+  bottom:99px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:8px;
+}
+.tool{
+  background:#0c83a0;
+  color:white;
+  border:1px solid #96e0f3;
+  border-radius:9px;
+  padding:11px 13px;
+  font-size:13px;
+  font-weight:900;
+}
+
+/* КАЛЬКУЛЯТОР */
+.calculator{
+  position:fixed;
+  z-index:160;
+  top:106px;
+  left:16px;
+  width:240px;
+  max-width:calc(100vw - 12px);
+  padding:10px;
+  background:#113049;
+  border:2px solid #92dff8;
+  border-radius:15px;
+  box-shadow:0 20px 45px #000a;
+  touch-action:none;
+  user-select:none;
+  cursor:grab;
+}
+.calculator.dragging{cursor:grabbing}
+.calc-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:6px;
+  background:#285972;
+  border-radius:8px;
+  padding:8px;
+  font-size:13px;
+}
+.calc-head button{
+  color:white;
+  background:#a74959;
+  border:0;
+  border-radius:6px;
+  padding:5px 9px;
+}
+#calcDisplay{
+  display:block;
+  width:100%;
+  height:48px;
+  margin:9px 0;
+  padding:7px;
+  background:#061c2e;
+  color:white;
+  border:1px solid #87b7cf;
+  border-radius:8px;
+  text-align:right;
+  font-size:23px;
+  pointer-events:none;
+}
+.calc-keys{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:5px;
+}
+.calc-keys button{
+  min-width:0;
+  height:44px;
+  padding:0;
+  background:#2c657f;
+  color:white;
+  border:1px solid #87b7d0;
+  border-radius:7px;
+  font-size:18px;
+}
+.calc-hint{
+  padding-top:8px;
+  text-align:center;
+  color:#d4e4ee;
+  font-size:11px;
+}
+
+/* МЕНДЕЛЕЕВ КЕСТЕСІ */
+.overlay{
+  position:fixed;
+  inset:0;
+  z-index:300;
+  padding:10px;
+  background:#000e;
+  display:grid;
+  place-items:center;
+}
+.modal{
+  width:min(1550px,99vw);
+  max-height:97vh;
+  overflow:auto;
+  background:#0f2d43;
+  border:1px solid #8dbbd2;
+  border-radius:15px;
+  padding:17px;
+}
+.modal-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.period-scroll{
+  background:#061e30;
+  overflow:auto;
+  border-radius:10px;
+  padding:12px;
+}
+.period{
+  display:grid;
+  grid-template-columns:65px repeat(18,89px);
+  grid-template-rows:38px repeat(10,87px);
+  gap:4px;
+  width:max-content;
+}
+.period-label{
+  display:grid;
+  place-items:center;
+  background:#1d4860;
+  color:var(--gold);
+  border:1px solid #79abc3;
+  border-radius:6px;
+  font-size:12px;
+  font-weight:900;
+}
+.element{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:3px;
+  padding:13px 2px 3px;
+  background:#29637e;
+  color:white;
+  border:1px solid #83b6d0;
+  border-radius:6px;
+}
+.element i{
+  position:absolute;
+  top:3px;
+  left:4px;
+  font-size:11px;
+  font-style:normal;
+}
+.element b{font-size:26px}
+.element small{font-size:11px}
+.element.fblock{background:#337e83}
+.element.featured{background:#915772}
+#elementInfo{
+  margin-top:12px;
+  padding:15px;
+  background:#1b4960;
+  border-radius:10px;
+  font-size:20px;
+}
+@media(max-width:850px){
+  .grid2,.grid3,.options{
+    grid-template-columns:1fr;
+  }
+  main{padding:13px}
+  header,footer{padding:8px}
+  .brand{font-size:17px}
+  .brand small,#sectionName{display:none}
+  .status{gap:7px;font-size:13px}
+  #timer{font-size:20px}
+  #clock{font-size:16px}
+  .signature{font-size:14px}
+  .btn{font-size:14px;padding:9px}
+  .tools{bottom:77px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+<header>
+  <div class="brand">
+    ⚗ CHEMISTRY PRO
+    <small>§88 · КӨПАТОМДЫ СПИРТТЕР</small>
+  </div>
+  <div class="status">
+    <span id="sectionName">Кіріспе</span>
+    <span id="timer">80:00</span>
+    <span id="counter">1 / 29</span>
+  </div>
+</header>
+
+<main id="main">
+  <section class="slide" id="slide"></section>
+</main>
+
+<footer>
+  <div class="actions" style="margin:0">
+    <button class="btn" id="prev">← Артқа</button>
+    <button class="btn primary" id="next">
+      Келесі →
+    </button>
+  </div>
+  <strong class="signature">BY DARKHAN</strong>
+  <span id="clock">00:00:00</span>
+</footer>
+</div>
+
+<div class="tools">
+  <button id="showCalc" class="tool">
+    🧮 Калькулятор
+  </button>
+  <button id="showTable" class="tool">
+    ⚛ Менделеев кестесі
+  </button>
+</div>
+
+<div class="calculator" id="calculator" hidden>
+  <div class="calc-head">
+    <strong>🧮 Калькулятор</strong>
+    <button id="closeCalc">✕</button>
+  </div>
+  <input id="calcDisplay" readonly>
+  <div class="calc-keys" id="calcKeys"></div>
+  <div class="calc-hint">
+    Жоғарғы панельден ұстап жылжыт
+  </div>
+</div>
+
+<div class="overlay" id="tableOverlay" hidden>
+  <div class="modal">
+    <div class="modal-head">
+      <h2>Менделеев кестесі</h2>
+      <button class="btn" id="closeTable">
+        Жабу ✕
+      </button>
+    </div>
+    <p>118 элемент · 18 топ · 7 период</p>
+    <div class="period-scroll">
+      <div class="period" id="period"></div>
+    </div>
+    <div id="elementInfo">Элементті таңда.</div>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+/* 1. СЛАЙД ЖҮЙЕСІ */
+
+const $=id=>document.getElementById(id);
+const slides=[];
+let page=0;
+
+function add(title,section,html){
+  slides.push({title,section,html});
+}
+
+function dynamic(title,section,render){
+  slides.push({title,section,render});
+}
+
+function draw(){
+  const item=slides[page];
+  if(!item)return;
+
+  $("slide").innerHTML=
+    item.render?item.render():item.html;
+
+  $("sectionName").textContent=item.section;
+  $("counter").textContent=
+    `${page+1} / ${slides.length}`;
+
+  $("prev").disabled=page===0;
+  $("next").disabled=
+    page===slides.length-1;
+
+  $("main").scrollTop=0;
+}
+
+function go(title){
+  const index=slides.findIndex(
+    s=>s.title===title
+  );
+  if(index>=0){
+    page=index;
+    draw();
+  }
+}
+
+$("prev").onclick=()=>{
+  if(page>0){
+    page--;
+    draw();
+  }
+};
+
+$("next").onclick=()=>{
+  if(page<slides.length-1){
+    page++;
+    draw();
+  }
+};
+
+/* 2. САҚТАУ */
+
+const STORE="darkhan_chem88_polyols_v1";
+
+function initialState(){
+  return{
+    molecule:0,
+    levels:{},
+    oral:0,
+    oralShow:false,
+    game:0,
+    choice:null,
+    scores:[0,0,0],
+    home:false
+  };
+}
+
+let state=initialState();
+
+try{
+  const saved=JSON.parse(
+    localStorage.getItem(STORE)
+  );
+
+  if(
+    saved &&
+    Array.isArray(saved.scores) &&
+    saved.scores.length===3
+  ){
+    state={...initialState(),...saved};
+  }
+}catch(error){
+  console.warn(error);
+}
+
+function save(){
+  try{
+    localStorage.setItem(
+      STORE,
+      JSON.stringify(state)
+    );
+  }catch(error){
+    console.warn(error);
+  }
+}
+
+/* 3. МОЛЕКУЛА СЫЗБАСЫ */
+
+function diagram(){
+  return `
+    <div class="visual">
+      <svg viewBox="0 0 560 235">
+        <g stroke="#9af1c9" stroke-width="5"
+          stroke-linecap="round">
+          <line x1="122" y1="108"
+            x2="200" y2="108"/>
+          <line x1="263" y1="108"
+            x2="340" y2="108"/>
+          <line x1="233" y1="72"
+            x2="233" y2="40"/>
+        </g>
+
+        <g fill="#235975" stroke="#a1e6ff"
+          stroke-width="4">
+          <circle cx="91" cy="108" r="32"/>
+          <circle cx="232" cy="108" r="32"/>
+        </g>
+
+        <g fill="#14755f" stroke="#9af1c9"
+          stroke-width="4">
+          <circle cx="374" cy="108" r="37"/>
+          <circle cx="233" cy="21" r="18"/>
+        </g>
+
+        <g text-anchor="middle"
+          font-size="28" fill="#fff"
+          font-weight="bold">
+          <text x="91" y="119">C</text>
+          <text x="232" y="119">C</text>
+          <text x="374" y="119">OH</text>
+          <text x="233" y="29" font-size="17">
+            OH
+          </text>
+        </g>
+
+        <g fill="#ffdc94" font-size="23"
+          text-anchor="middle" font-weight="bold">
+          <text x="280" y="203">
+            HO–CH₂–CH₂–OH
+          </text>
+        </g>
+      </svg>
+
+      <strong>Этиленгликоль</strong>
+      <p>Екі гидроксил тобы бар спирт</p>
+    </div>
+  `;
+}
+
+/* 4. КІРІСПЕ */
+
+dynamic("Кіріспе","Кіріспе · 5 минут",()=>`
+  <div class="grid2">
+    <div>
+      <div class="eyebrow">
+        §88 · ОРГАНИКАЛЫҚ ХИМИЯ
+      </div>
+
+      <h1>Көпатомды спирттер</h1>
+
+      <p>
+        Этиленгликоль мен глицериннің
+        құрылысы, гидроксил топтары,
+        сутектік байланыс,
+        химиялық қасиеттері,
+        қолданылуы және қауіпсіздігі.
+      </p>
+
+      <div class="formula">
+        –OH · –OH · –OH
+      </div>
+
+      <div class="actions">
+        <button class="btn good"
+          data-act="start">
+          ▶ Сабақты бастау
+        </button>
+
+        <button class="btn gold"
+          data-act="reset-time">
+          ↺ Таймерді жаңарту
+        </button>
+      </div>
+    </div>
+
+    ${diagram()}
+  </div>
+`);
+
+add("Сабақ мақсаты","Кіріспе",`
+  <h2>Сабақтың мақсаты</h2>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Білімдік мақсат</h3>
+      <p>
+        Көпатомды спирттерді анықтау,
+        этиленгликоль мен глицериннің
+        құрылымын салыстыру,
+        гидроксил топтарының
+        қасиеттерге әсерін түсіндіру.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Практикалық мақсат</h3>
+      <p>
+        Құрылымдық формулаларды
+        дұрыс жазу, спирттерді
+        гидроксил топтарының саны
+        бойынша жіктеу, молярлық
+        масса мен зат мөлшеріне
+        байланысты есептер шығару.
+      </p>
+    </div>
+  </div>
+
+  <div class="note">
+    <p>
+      80 минут: кіріспе — 5,
+      түсіндірме — 20,
+      конспект — 8,
+      төрт деңгей — 10,
+      жеке тапсырмалар — 20,
+      командалық ойын — 12,
+      қорытынды — 5 минут.
+    </p>
+  </div>
+`);
+
+/* 5. 15 ТҮСІНДІРМЕ */
+
+const theory=[
+[
+  "Көпатомды спирт дегеніміз не?",
+  "Көпатомды спирттер — молекуласында екі немесе одан да көп гидроксил тобы бар спирттер. Гидроксил топтары молекуланың физикалық және химиялық қасиеттеріне әсер етеді. Спирттерді түсінгенде –OH тобының санын ғана емес, оның көміртек атомдарына қалай байланысқанын да ескеру қажет.",
+  "Екі немесе одан көп –OH",
+  "Көпатомды спирт құрамында бірнеше гидроксил тобы болады."
+],
+[
+  "Гидроксил тобы",
+  "Гидроксил тобы оттек пен сутек атомдарынан тұрады. Спирт молекуласында бұл топ қаныққан көміртек атомымен байланысады. Оттек атомының электртерістілігі жоғары болғандықтан, спирттердегі O–H және C–O байланыстары полярлы болады.",
+  "–OH",
+  "Гидроксил тобы — спирттердің функционалдық тобы."
+],
+[
+  "Екіатомды спирттер",
+  "Екіатомды спирттердің молекуласында екі гидроксил тобы болады. Мұндай спирттерді диолдар деп те атайды. Қарапайым өкілдердің бірі — этан-1,2-диол. Бұл зат этиленгликоль деген дәстүрлі атаумен белгілі.",
+  "Диол → 2 гидроксил тобы",
+  "Екіатомды спиртте екі –OH тобы бар."
+],
+[
+  "Этиленгликольдің құрылысы",
+  "Этиленгликольдің молекулалық формуласы C₂H₆O₂. Оның құрылымында екі көміртек атомы және екі гидроксил тобы болады. Әр гидроксил тобы жеке көміртек атомымен байланысқан. Бұл ерекшелікті HO–CH₂–CH₂–OH түрінде көрсетеміз.",
+  "HO–CH₂–CH₂–OH",
+  "Этиленгликоль — этан-1,2-диол."
+],
+[
+  "Этиленгликольдің молярлық массасы",
+  "Этиленгликоль молекуласында екі көміртек, алты сутек және екі оттек атомы болады. Сондықтан оның молярлық массасы көміртек үшін 24, сутек үшін 6 және оттек үшін 32 қосындысына тең. Нәтиже — 62 г/моль.",
+  "M(C₂H₆O₂)=62 г/моль",
+  "Этиленгликольдің молярлық массасы — 62 г/моль."
+],
+[
+  "Үшатомды спирттер",
+  "Үшатомды спирттердің молекуласында үш гидроксил тобы болады. Осындай қосылыстардың белгілі өкілі — глицерин. Құрылымдағы үш –OH тобы заттың сутектік байланыстарға қатысуына және физикалық қасиеттеріне әсер етеді.",
+  "Триол → 3 гидроксил тобы",
+  "Үшатомды спирттің молекуласында үш –OH тобы бар."
+],
+[
+  "Глицериннің құрылысы",
+  "Глицериннің жүйелік атауы — пропан-1,2,3-триол. Оның молекуласында үш көміртек атомы және үш гидроксил тобы болады. Қысқаша құрылымдық формуласы HO–CH₂–CH(OH)–CH₂–OH. Барлық гидроксил топтары көміртек тізбегі бойымен орналасқан.",
+  "HO–CH₂–CH(OH)–CH₂–OH",
+  "Глицерин — пропан-1,2,3-триол."
+],
+[
+  "Глицериннің молярлық массасы",
+  "Глицериннің молекулалық формуласы C₃H₈O₃. Оның құрамындағы үш көміртек атомының массасы 36, сегіз сутектің массасы 8, үш оттектің массасы 48 болады. Қосындысы 92 г/моль.",
+  "M(C₃H₈O₃)=92 г/моль",
+  "Глицериннің молярлық массасы — 92 г/моль."
+],
+[
+  "Біратомды және көпатомды спирттер",
+  "Этанол молекуласында бір гидроксил тобы, этиленгликольде екі, ал глицеринде үш гидроксил тобы бар. Бұл заттар бір класқа жатса да, молекулалық құрылысы мен қасиеттері бірдей емес. Көпатомды спирттердің ерекшелігін функционалдық топтарының саны арқылы түсіндіруге болады.",
+  "Этанол: 1 · Диол: 2 · Триол: 3",
+  "Спирттер гидроксил топтарының саны бойынша жіктеледі."
+],
+[
+  "Сутектік байланыс",
+  "Спирттердің гидроксил топтары молекулааралық сутектік байланыс түзе алады. Көпатомды спирттерде мұндай байланыстарға қатыса алатын гидроксил топтары көбірек болады. Бұл құбылыс олардың физикалық қасиеттерінің кейбір ерекшеліктерін түсіндіреді.",
+  "–OH ··· OH–",
+  "Сутектік байланыс көпатомды спирттердің қасиеттеріне әсер етеді."
+],
+[
+  "Суда ерігіштігі",
+  "Этиленгликоль мен глицерин су молекулаларымен сутектік байланыс түзе алады. Сондықтан олар сумен жақсы араласатын заттарға жатады. Ерітінді түзілуін химиялық реакциямен шатастырмау керек: ерігіштік көбіне физикалық құбылыс болып саналады.",
+  "Спирт + Су → Қоспа",
+  "Суда ерігіштік гидроксил тобының полярлығымен байланысты."
+],
+[
+  "Тұтқырлық қасиеті",
+  "Көпатомды спирттердің кейбір өкілдері тұтқыр сұйықтық болып келеді. Молекулалар арасындағы әсерлесулер сұйықтықтың ағу ерекшеліктеріне ықпал етеді. Мысалы, глицериннің тұтқырлығы оның молекулалық құрылысы және молекулааралық байланыстарымен түсіндіріледі.",
+  "Молекулааралық байланыс → Тұтқырлық",
+  "Глицериннің тұтқырлығы молекулалық әсерлесулерге байланысты."
+],
+[
+  "Көпатомды спирттердің химиялық қасиеттері",
+  "Көпатомды спирттер спирттер класына тән кейбір химиялық реакцияларға қатыса алады. Олардың реакцияға түсуі гидроксил топтарының санына және молекуланың жалпы құрылысына байланысты. Бірнеше функционалдық топтың болуы реакциялық мүмкіндіктерді кеңейтеді.",
+  "Бірнеше –OH → Түрлі химиялық өзгерістер",
+  "Көпатомды спирттердің қасиеттері молекула құрылысына тәуелді."
+],
+[
+  "Сапалық реакция ұғымы",
+  "Химияда сапалық реакциялар белгілі затты немесе функционалдық топты анықтау үшін қолданылады. Көпатомды спирттердің кейбір өкілдері мыс(II) қосылыстарымен ерекше түсті кешендер түзу қабілетімен белгілі. Бұл құбылыс мектеп химиясында тек мұғалімнің қауіпсіз көрсетілімі немесе теориялық талдау арқылы қарастырылады.",
+  "Сапалық реакция → Затты ажырату",
+  "Кейбір көпатомды спирттердің сапалық белгілері болады."
+],
+[
+  "Қолданылуы және қауіпсіздік",
+  "Көпатомды спирттер химия өнеркәсібінде әртүрлі мақсатта қолданылады. Этиленгликоль кейбір техникалық сұйықтықтардың құрамына кіреді және өте улы болуы мүмкін. Глицерин әртүрлі өндірістік өнімдерде пайдаланылады. Олардың қолданылуы әртүрлі болғандықтан, қауіпсіздік сипаттамаларын шатастыруға болмайды.",
+  "Қолданылуы · Қауіпсіздік · Экология",
+  "Әр көпатомды спирттің қауіпсіздік қасиетін жеке бағалау керек."
+]
+];
+
+theory.forEach((t,i)=>{
+  add(t[0],`Түсіндірме ${i+1}/15`,`
+    <div class="eyebrow">
+      ТҮСІНДІРМЕ ${i+1}/15
+    </div>
+
+    <h2>${t[0]}</h2>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Толық түсіндірме</h3>
+        <p>${t[1]}</p>
+      </div>
+
+      <div class="card">
+        <h3>Негізгі ұғым</h3>
+        <div class="formula">
+          ${t[2]}
+        </div>
+        <p>
+          Молекулалық құрылысты
+          түсіндіріп, негізгі
+          ерекшелігін анықта.
+        </p>
+      </div>
+    </div>
+
+    <div class="note">
+      <h3 style="color:var(--gold)">
+        Дәптерге жазып алыңдар
+      </h3>
+      <p>${t[3]}</p>
+    </div>
+  `);
+});
+
+/* 6. ИНТЕРАКТИВТІ МОЛЕКУЛАЛАР */
+
+const molecules=[
+{
+  name:"Этанол",
+  formula:"CH₃–CH₂–OH",
+  molecular:"C₂H₆O",
+  groups:1,
+  mass:46,
+  category:"Біратомды спирт",
+  info:"Екі көміртек атомы және бір гидроксил тобы бар.",
+  model:["CH₃","CH₂","OH"]
+},
+{
+  name:"Этиленгликоль",
+  formula:"HO–CH₂–CH₂–OH",
+  molecular:"C₂H₆O₂",
+  groups:2,
+  mass:62,
+  category:"Екіатомды спирт",
+  info:"Екі көміртек атомы және екі гидроксил тобы бар. Уытты зат.",
+  model:["HO","CH₂","CH₂","OH"]
+},
+{
+  name:"Глицерин",
+  formula:"HO–CH₂–CH(OH)–CH₂–OH",
+  molecular:"C₃H₈O₃",
+  groups:3,
+  mass:92,
+  category:"Үшатомды спирт",
+  info:"Үш көміртек атомы және үш гидроксил тобы бар.",
+  model:["HO","CH₂","CH(OH)","CH₂","OH"]
+}
+];
+
+dynamic(
+  "Спирттердің интерактивті моделі",
+  "Интерактивті көрнекілік",
+  ()=>{
+    const m=molecules[state.molecule];
+
+    return `
+      <div class="eyebrow">
+        ИНТЕРАКТИВТІ МОЛЕКУЛАЛЫҚ МОДЕЛЬ
+      </div>
+
+      <h2>Гидроксил топтарын салыстыр</h2>
+
+      <div class="grid2">
+        <div class="card">
+          <h3>Қосылысты таңда</h3>
+
+          ${molecules.map((item,i)=>`
+            <button
+              class="molecule-choice
+                ${state.molecule===i?"active":""}"
+              data-act="molecule"
+              data-i="${i}">
+              ${i+1}. ${item.name}
+              <small>${item.category}</small>
+            </button>
+          `).join("")}
+        </div>
+
+        <div class="card">
+          <h3>${m.name}</h3>
+
+          <div class="molecule-visual">
+            ${m.model.map((part,i)=>`
+              ${i>0?'<span class="bond">—</span>':""}
+              <span class="atom
+                ${part.includes("OH")||part==="HO"?"oh":""}">
+                ${part}
+              </span>
+            `).join("")}
+          </div>
+
+          <div class="formula">${m.formula}</div>
+
+          <p>
+            <strong>–OH саны:</strong>
+            ${m.groups}
+          </p>
+          <p>
+            <strong>Молярлық массасы:</strong>
+            ${m.mass} г/моль
+          </p>
+
+          <div class="note">
+            <p>${m.info}</p>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+);
+
+/* 7. ҮШ КОНСПЕКТ */
+
+const notes=[
+[
+  "Көпатомды спирттердің құрылысы",
+  [
+    "Спирттердің функционалдық тобы — гидроксил тобы.",
+    "Көпатомды спирттерде екі немесе одан көп –OH болады.",
+    "Екіатомды спирт — диол.",
+    "Үшатомды спирт — триол.",
+    "Этиленгликоль: HO–CH₂–CH₂–OH.",
+    "Глицерин: HO–CH₂–CH(OH)–CH₂–OH.",
+    "Этанол — біратомды спирт."
+  ]
+],
+[
+  "Физикалық және химиялық қасиеттер",
+  [
+    "Көпатомды спирттердегі O–H байланысы полярлы.",
+    "Гидроксил топтары сутектік байланыс түзе алады.",
+    "Этиленгликоль суда жақсы араласады.",
+    "Глицерин суда жақсы араласады.",
+    "Көпатомды спирттердің кейбірі тұтқыр келеді.",
+    "Қасиеттер гидроксил топтарының санына байланысты.",
+    "Кейбір көпатомды спирттерде ерекше сапалық белгілер болады.",
+    "Этиленгликоль — улы зат."
+  ]
+],
+[
+  "Формулалар және есептер",
+  [
+    "Этиленгликоль: C₂H₆O₂.",
+    "Глицерин: C₃H₈O₃.",
+    "M(C₂H₆O₂)=62 г/моль.",
+    "M(C₃H₈O₃)=92 г/моль.",
+    "M(C₂H₆O)=46 г/моль.",
+    "Зат мөлшері: ν=m/M.",
+    "Масса: m=νM.",
+    "Массалық үлес: w=m(компонент)/m(қоспа)×100%.",
+    "Бір моль затта Авогадро санына тең бөлшек болады."
+  ]
+]
+];
+
+notes.forEach((n,i)=>{
+  add(`Конспект ${i+1}`,
+      "Конспект · 8 минут",`
+    <div class="eyebrow">
+      ДӘПТЕРГЕ ЖАЗЫП АЛЫҢДАР
+    </div>
+
+    <h2>Конспект №${i+1}</h2>
+    <h3>${n[0]}</h3>
+
+    <div class="card">
+      <ol>
+        ${n[1].map(x=>`<li>${x}</li>`).join("")}
+      </ol>
+    </div>
+  `);
+});
+
+/* 8. ТӨРТ ДЕҢГЕЙ */
+
+const levels=[
+[
+  "1-деңгей. Негізгі формулалар",
+  [
+    ["Көпатомды спирт дегеніміз не?","Екі немесе одан да көп гидроксил тобы бар спирт."],
+    ["Этиленгликольдің формуласы?","C₂H₆O₂."],
+    ["Глицериннің формуласы?","C₃H₈O₃."],
+    ["Глицеринде неше –OH бар?","Үш."]
+  ]
+],
+[
+  "2-деңгей. Жіктеу",
+  [
+    ["Этанол қандай спирт?","Біратомды."],
+    ["Этиленгликоль қандай спирт?","Екіатомды."],
+    ["Глицерин қандай спирт?","Үшатомды."],
+    ["Диол дегеніміз не?","Екі гидроксил тобы бар спирт."]
+  ]
+],
+[
+  "3-деңгей. Қасиеттер",
+  [
+    ["Спирттердегі қандай байланыс полярлы?","O–H."],
+    ["Суда ерігіштік немен байланысты?","Полярлық және сутектік байланыспен."],
+    ["Глицерин қандай сұйықтық?","Тұтқыр."],
+    ["Көпатомды спирттердің қасиеттері неге тәуелді?","Молекулалық құрылымы мен гидроксил топтарына."]
+  ]
+],
+[
+  "4-деңгей. Химиялық есептер",
+  [
+    ["M(C₂H₆O₂) анықта.","62 г/моль."],
+    ["M(C₃H₈O₃) анықта.","92 г/моль."],
+    ["124 г этиленгликоль неше моль?","2 моль."],
+    ["0,5 моль глицериннің массасы?","46 г."]
+  ]
+]
+];
+
+levels.forEach((lev,i)=>{
+  dynamic(
+    `Деңгей ${i+1}`,
+    "Деңгейлік жұмыс · 10 минут",
+    ()=>`
+      <div class="eyebrow">
+        ДЕҢГЕЙ ${i+1}/4
+      </div>
+
+      <h2>${lev[0]}</h2>
+
+      ${lev[1].map((q,j)=>`
+        <div class="task">
+          <p>${j+1}. ${q[0]}</p>
+        </div>
+      `).join("")}
+
+      <div class="actions">
+        <button
+          class="btn gold"
+          data-act="level"
+          data-i="${i}">
+          ${state.levels[i]
+            ?"Жауаптарды жасыру"
+            :"Жауаптарды көру"}
+        </button>
+      </div>
+
+      ${state.levels[i]?`
+        <div class="answer">
+          ${lev[1].map((q,j)=>`
+            <p>${j+1}. ${q[1]}</p>
+          `).join("")}
+        </div>
+      `:""}
+    `
+  );
+});
+
+/* 9. 25 ЖЕКЕ ТАПСЫРМА */
+
+const oral=[
+  ["Көпатомды спирт дегеніміз не?","Екі немесе одан да көп –OH тобы бар спирт."],
+  ["Гидроксил тобы қалай жазылады?","–OH."],
+  ["Екіатомды спирт қалай аталады?","Диол."],
+  ["Үшатомды спирт қалай аталады?","Триол."],
+  ["Этанолдағы –OH саны?","Бір."],
+  ["Этиленгликольдегі –OH саны?","Екі."],
+  ["Глицериндегі –OH саны?","Үш."],
+  ["Этиленгликольдің формуласы?","C₂H₆O₂."],
+  ["Глицериннің формуласы?","C₃H₈O₃."],
+  ["Этиленгликольдің жүйелік атауы?","Этан-1,2-диол."],
+  ["Глицериннің жүйелік атауы?","Пропан-1,2,3-триол."],
+  ["Этиленгликольдің молярлық массасы?","62 г/моль."],
+  ["Глицериннің молярлық массасы?","92 г/моль."],
+  ["Этанолдың молярлық массасы?","46 г/моль."],
+  ["Глицеринде көміртек атомы нешеу?","Үш."],
+  ["Этиленгликольде көміртек атомы нешеу?","Екі."],
+  ["Спирттердегі O–H байланысы қандай?","Полярлы."],
+  ["Спирттер қандай молекулааралық байланыс түзе алады?","Сутектік."],
+  ["Глицериннің тұтқырлығы немен байланысты?","Молекулааралық әсерлесулермен."],
+  ["Көпатомды спирттер суда қалай араласады?","Кейбір қарапайым өкілдері жақсы араласады."],
+  ["Сапалық реакция не үшін қажет?","Белгілі затты немесе топты анықтау үшін."],
+  ["Этиленгликольдің қауіптілігі қандай?","Уытты."],
+  ["124 г этиленгликоль неше моль?","2 моль."],
+  ["184 г глицерин неше моль?","2 моль."],
+  ["Гидроксил топтарының саны неліктен маңызды?","Ол молекуланың қасиеттеріне әсер етеді."]
+];
+
+dynamic(
+  "Жеке тапсырмалар",
+  "25 оқушы · 20 минут",
+  ()=>{
+    const i=state.oral;
+
+    if(i>=oral.length){
+      return `
+        <h1>25 жеке тапсырма аяқталды!</h1>
+
+        <div class="actions">
+          <button class="btn gold"
+            data-act="oral-reset">
+            ↺ Қайта бастау
+          </button>
+
+          <button class="btn primary"
+            data-act="to-game">
+            Командалық ойын →
+          </button>
+        </div>
+      `;
+    }
+
+    return `
+      <div class="eyebrow">
+        ЖЕКЕ ТАПСЫРМА
+      </div>
+
+      <h2>Тақтаға шығып орында</h2>
+
+      <span class="tag">
+        ${i+1}-оқушы · ${i+1}/25
+      </span>
+
+      <div class="progress">
+        <span style="width:${100*i/25}%"></span>
+      </div>
+
+      <div class="card">
+        <h3>Тапсырма</h3>
+        <p class="big">${oral[i][0]}</p>
+      </div>
+
+      ${state.oralShow?`
+        <div class="answer">
+          <h3>Дұрыс жауап</h3>
+          <p>${oral[i][1]}</p>
+        </div>
+      `:""}
+
+      <div class="actions">
+        <button class="btn gold"
+          data-act="oral-show">
+          ${state.oralShow
+            ?"Жауапты жасыру"
+            :"Жауапты көру"}
+        </button>
+
+        <button class="btn primary"
+          data-act="oral-next">
+          Келесі оқушы →
+        </button>
+      </div>
+    `;
+  }
+);
+
+/* 10. КОМАНДАЛЫҚ ОЙЫН */
+
+const quiz=[
+  ["Көпатомды спиртте неше –OH болуы керек?",["Кемінде екі","Тек бір","Мүлде болмайды","Тек төрт"],0],
+  ["Этиленгликоль қандай спирт?",["Біратомды","Екіатомды","Үшатомды","Төртатомды"],1],
+  ["Глицерин қандай спирт?",["Біратомды","Екіатомды","Үшатомды","Алкан"],2],
+  ["Этиленгликольдің формуласы?",["C₂H₆O","C₃H₈O₃","CH₄","C₂H₆O₂"],3],
+  ["Глицериннің формуласы?",["C₃H₈O₃","C₂H₆O₂","C₂H₆O","C₃H₈"],0],
+  ["Этиленгликольдің –OH саны?",["1","2","3","4"],1],
+  ["Глицериннің –OH саны?",["1","2","3","5"],2],
+  ["Гидроксил тобының формуласы?",["–COOH","–CHO","–NH₂","–OH"],3],
+  ["Этиленгликольдің молярлық массасы?",["62","46","92","60"],0],
+  ["Глицериннің молярлық массасы?",["62","92","46","44"],1],
+  ["Глицериннің жүйелік атауы?",["Этанол","Метанол","Пропан-1,2,3-триол","Этен"],2],
+  ["Сутектік байланысты не түзуге қатыса алады?",["Металл ядросы","Протон ғана","Электрон қабығы ғана","Гидроксил тобы"],3],
+  ["124 г этиленгликоль неше моль?",["2","1","3","4"],0],
+  ["46 г глицерин неше моль?",["1","0,5","2","3"],1],
+  ["Этиленгликольдің маңызды қауіптілігі?",["Инертті газ","Тағамдық дәрумен","Уыттылық","Металдық қасиет"],2]
+];
+
+dynamic(
+  "Командалық ойын",
+  "3 команда · 12 минут",
+  ()=>{
+    const i=state.game;
+
+    if(i>=quiz.length){
+      const highest=Math.max(...state.scores);
+      const winners=state.scores
+        .map((score,j)=>
+          score===highest
+            ?`${j+1}-команда`
+            :null
+        )
+        .filter(Boolean);
+
+      return `
+        <h1>Командалық ойын аяқталды!</h1>
+
+        <div class="grid3">
+          ${state.scores.map((score,j)=>`
+            <div class="team">
+              <h3>${j+1}-команда</h3>
+              <div class="score">${score}</div>
+              <p>ұпай</p>
+            </div>
+          `).join("")}
+        </div>
+
+        <div class="note">
+          <p>Жеңімпаз: ${winners.join(", ")}</p>
+        </div>
+
+        <div class="actions">
+          <button class="btn gold"
+            data-act="game-reset">
+            ↺ Қайта бастау
+          </button>
+        </div>
+      `;
+    }
+
+    const [question,options,right]=quiz[i];
+
+    return `
+      <div class="eyebrow">
+        КОМАНДАЛЫҚ ОЙЫН ${i+1}/15
+      </div>
+
+      <h2>${i%3+1}-команданың кезегі</h2>
+
+      <div class="grid3">
+        ${state.scores.map((score,j)=>`
+          <div class="team
+            ${j===i%3?"active":""}">
+            <h3>${j+1}-команда</h3>
+            <div class="score">${score}</div>
+          </div>
+        `).join("")}
+      </div>
+
+      <div class="card" style="margin-top:17px">
+        <p class="big">${question}</p>
+      </div>
+
+      <div class="options">
+        ${options.map((option,j)=>`
+          <button
+            class="option ${
+              state.choice===null?""
+                :j===right?"correct"
+                :j===state.choice?"wrong":""
+            }"
+            data-act="answer"
+            data-i="${j}"
+            ${state.choice!==null?"disabled":""}>
+            ${"ABCD"[j]}. ${option}
+          </button>
+        `).join("")}
+      </div>
+
+      ${state.choice!==null?`
+        <div class="answer">
+          <h3>
+            ${state.choice===right
+              ?"Дұрыс! +10 ұпай"
+              :"Қате. 0 ұпай"}
+          </h3>
+          <p>
+            Дұрыс жауап:
+            ${options[right]}
+          </p>
+        </div>
+
+        <div class="actions">
+          <button class="btn primary"
+            data-act="game-next">
+            Келесі команда →
+          </button>
+        </div>
+      `:""}
+    `;
+  }
+);
+
+/* 11. ҮЙ ЖҰМЫСЫ */
+
+const homework=[
+[
+  "«Көпатомды спирттердің молекулалық паспорты» атты салыстыру кестесін жаса.",
+  "Этанол, этиленгликоль және глицериннің молекулалық формулаларын, –OH топтарының санын, молярлық массаларын және спирт түрлерін салыстыр."
+],
+[
+  "«Құрылыс пен қасиет» түсіндірме сызбасын құрастыр.",
+  "Гидроксил топтарының саны, сутектік байланыс, суда ерігіштік және тұтқырлық арасындағы байланысты түсіндір. Этиленгликольдің уыттылығы туралы қауіпсіздік ескертуін қос."
+]
+];
+
+const mathHome=[
+[
+  "Массасы 155 г этиленгликольдің зат мөлшерін есепте.",
+  "M(C₂H₆O₂)=62 г/моль. ν=155/62=2,5 моль."
+],
+[
+  "Зат мөлшері 1,25 моль глицериннің массасын анықта.",
+  "M(C₃H₈O₃)=92 г/моль. m=1,25×92=115 г."
+]
+];
+
+dynamic("Үй тапсырмасы","Үй жұмысы",()=>`
+  <div class="eyebrow">
+    §88 · ҮЙ ТАПСЫРМАСЫ
+  </div>
+
+  <h2>Көпатомды спирттердің молекулалық паспорты</h2>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>1. Зерттеу және салыстыру</h3>
+
+      ${homework.map((q,i)=>`
+        <div class="task">
+          <p>${i+1}. ${q[0]}</p>
+        </div>
+      `).join("")}
+
+      <div class="note">
+        <p>
+          Біратомды спирттерді көк,
+          екіатомдыны жасыл,
+          үшатомдыны сары түспен белгіле.
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>2. Екі химиялық есеп</h3>
+
+      ${mathHome.map((q,i)=>`
+        <div class="task">
+          <p>${i+1}. ${q[0]}</p>
+        </div>
+      `).join("")}
+
+      <div class="note">
+        <p>
+          Берілгені → формула →
+          шешуі → жауап.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn gold" data-act="home">
+      ${state.home
+        ?"Жауаптарды жасыру"
+        :"Жауаптарды көру"}
+    </button>
+  </div>
+
+  ${state.home?`
+    <div class="answer">
+      <h3>Зерттеу жұмысының үлгісі</h3>
+
+      ${homework.map((q,i)=>`
+        <p>${i+1}. ${q[1]}</p>
+      `).join("")}
+
+      <h3>Есептердің шешуі</h3>
+
+      ${mathHome.map((q,i)=>`
+        <p>${i+1}. ${q[1]}</p>
+      `).join("")}
+    </div>
+  `:""}
+`);
+
+/* 12. ҚОРЫТЫНДЫ */
+
+add("Қорытынды","Сабақ аяқталды",`
+  <div style="text-align:center">
+    <div class="eyebrow">
+      §88 · ХИМИЯ
+    </div>
+
+    <h1>Сабақ аяқталды!</h1>
+    <h2>Көпатомды спирттер</h2>
+
+    <div class="grid3">
+      <div class="card">
+        <h3>15 түсіндірме</h3>
+        <p>Этиленгликоль · Глицерин</p>
+      </div>
+
+      <div class="card">
+        <h3>25 тапсырма</h3>
+        <p>Жеке жұмыс</p>
+      </div>
+
+      <div class="card">
+        <h3>15 сұрақ</h3>
+        <p>3 команда</p>
+      </div>
+    </div>
+
+    <div class="formula">
+      BY DARKHAN
+    </div>
+  </div>
+`);
+
+/* 13. БАТЫРМАЛАР */
+
+$("slide").addEventListener("click",event=>{
+  const button=event.target.closest(
+    "[data-act]"
+  );
+
+  if(!button)return;
+
+  const action=button.dataset.act;
+  const i=Number(button.dataset.i);
+
+  switch(action){
+    case "start":
+      startTimer();
+      break;
+
+    case "reset-time":
+      resetTimer();
+      break;
+
+    case "molecule":
+      state.molecule=i;
+      break;
+
+    case "level":
+      state.levels[i]=!state.levels[i];
+      break;
+
+    case "oral-show":
+      state.oralShow=!state.oralShow;
+      break;
+
+    case "oral-next":
+      state.oral=Math.min(
+        oral.length,
+        state.oral+1
+      );
+      state.oralShow=false;
+      break;
+
+    case "oral-reset":
+      state.oral=0;
+      state.oralShow=false;
+      break;
+
+    case "to-game":
+      go("Командалық ойын");
+      break;
+
+    case "answer":
+      if(state.choice!==null)return;
+      if(i<0||i>3)return;
+
+      state.choice=i;
+
+      if(i===quiz[state.game][2]){
+        state.scores[state.game%3]+=10;
+      }
+      break;
+
+    case "game-next":
+      if(state.choice===null)return;
+
+      state.game++;
+      state.choice=null;
+      break;
+
+    case "game-reset":
+      state.game=0;
+      state.choice=null;
+      state.scores=[0,0,0];
+      break;
+
+    case "home":
+      state.home=!state.home;
+      break;
+  }
+
+  save();
+  draw();
+});
+
+/* 14. 80 МИНУТТЫҚ ТАЙМЕР */
+
+const TIMER_KEY=STORE+"_timer";
+let deadline=null;
+
+try{
+  const value=localStorage.getItem(
+    TIMER_KEY
+  );
+
+  if(
+    value!==null &&
+    Number.isFinite(Number(value))
+  ){
+    deadline=Number(value);
+  }
+}catch(error){
+  console.warn(error);
+}
+
+function tick(){
+  const seconds=deadline===null
+    ?4800
+    :Math.max(
+        0,
+        Math.ceil(
+          (deadline-Date.now())/1000
+        )
+      );
+
+  $("timer").textContent=
+    String(
+      Math.floor(seconds/60)
+    ).padStart(2,"0")+
+    ":"+
+    String(seconds%60).padStart(2,"0");
+
+  $("clock").textContent=
+    new Intl.DateTimeFormat("en-GB",{
+      timeZone:"Asia/Almaty",
+      hour:"2-digit",
+      minute:"2-digit",
+      second:"2-digit",
+      hourCycle:"h23"
+    }).format(new Date());
+}
+
+function startTimer(){
+  if(deadline!==null){
+    alert("Таймер іске қосылған.");
+    return;
+  }
+
+  deadline=Date.now()+4800000;
+
+  try{
+    localStorage.setItem(
+      TIMER_KEY,
+      String(deadline)
+    );
+  }catch(error){
+    console.warn(error);
+  }
+
+  tick();
+}
+
+function resetTimer(){
+  if(!confirm(
+    "80 минуттық таймерді жаңартамыз ба?"
+  ))return;
+
+  deadline=null;
+
+  try{
+    localStorage.removeItem(TIMER_KEY);
+  }catch(error){
+    console.warn(error);
+  }
+
+  tick();
+}
+
+setInterval(tick,1000);
+
+/* 15. КАЛЬКУЛЯТОР */
+
+const calculator=$("calculator");
+
+$("showCalc").onclick=()=>{
+  calculator.hidden=!calculator.hidden;
+  fitCalculator();
+};
+
+$("closeCalc").onclick=()=>{
+  calculator.hidden=true;
+};
+
+const calcButtons=[
+  "7","8","9","/",
+  "4","5","6","*",
+  "1","2","3","-",
+  "C","0",".","+",
+  "(",")","⌫","="
+];
+
+$("calcKeys").innerHTML=
+  calcButtons.map(key=>`
+    <button
+      type="button"
+      data-key="${key}">
+      ${key==="/"?"÷":
+        key==="*"?"×":key}
+    </button>
+  `).join("");
+
+let calcText="";
+
+/* ҚАУІПСІЗ АРИФМЕТИКАЛЫҚ ПАРСЕР */
+
+function calculate(input){
+  let i=0;
+
+  function factor(){
+    if(input[i]==="+"){
+      i++;
+      return factor();
+    }
+
+    if(input[i]==="-"){
+      i++;
+      return -factor();
+    }
+
+    if(input[i]==="("){
+      i++;
+      const value=sum();
+
+      if(input[i]!==")"){
+        throw Error("Жақша қатесі");
+      }
+
+      i++;
+      return value;
+    }
+
+    const match=
+      /^(?:\d+\.?\d*|\.\d+)/
+      .exec(input.slice(i));
+
+    if(!match){
+      throw Error("Сан қатесі");
+    }
+
+    i+=match[0].length;
+    return Number(match[0]);
+  }
+
+  function product(){
+    let value=factor();
+
+    while(
+      input[i]==="*" ||
+      input[i]==="/"
+    ){
+      const operator=input[i++];
+      const next=factor();
+
+      value=operator==="*"
+        ?value*next
+        :value/next;
+    }
+
+    return value;
+  }
+
+  function sum(){
+    let value=product();
+
+    while(
+      input[i]==="+" ||
+      input[i]==="-"
+    ){
+      const operator=input[i++];
+      const next=product();
+
+      value=operator==="+"
+        ?value+next
+        :value-next;
+    }
+
+    return value;
+  }
+
+  if(!/^[0-9+*/().-]+$/.test(input)){
+    throw Error("Таңба қатесі");
+  }
+
+  const result=sum();
+
+  if(
+    i!==input.length ||
+    !Number.isFinite(result)
+  ){
+    throw Error("Өрнек қатесі");
+  }
+
+  return Number(result.toPrecision(12));
+}
+
+$("calcKeys").addEventListener(
+  "click",event=>{
+    const button=event.target.closest(
+      "[data-key]"
+    );
+    if(!button)return;
+
+    const key=button.dataset.key;
+
+    if(key==="C"){
+      calcText="";
+    }else if(key==="⌫"){
+      calcText=calcText.slice(0,-1);
+    }else if(key==="="){
+      try{
+        calcText=String(
+          calculate(calcText)
+        );
+      }catch(error){
+        calcText="Қате";
+      }
+    }else{
+      if(calcText==="Қате"){
+        calcText="";
+      }
+      calcText+=key;
+    }
+
+    $("calcDisplay").value=calcText;
+  }
+);
+
+/* 16. КАЛЬКУЛЯТОРДЫ ЖЫЛЖЫТУ */
+
+function clamp(value,min,max){
+  return Math.max(
+    min,
+    Math.min(max,value)
+  );
+}
+
+function fitCalculator(){
+  if(calculator.hidden)return;
+
+  const r=calculator.getBoundingClientRect();
+
+  calculator.style.left=clamp(
+    r.left,
+    0,
+    Math.max(0,innerWidth-r.width)
+  )+"px";
+
+  calculator.style.top=clamp(
+    r.top,
+    0,
+    Math.max(0,innerHeight-r.height)
+  )+"px";
+}
+
+let drag=null;
+let suppressClick=false;
+
+calculator.querySelector(".calc-head")
+.addEventListener("pointerdown",event=>{
+  if(drag)return;
+  if(
+    event.pointerType==="mouse" &&
+    event.button!==0
+  )return;
+
+  const r=calculator.getBoundingClientRect();
+
+  drag={
+    id:event.pointerId,
+    x:event.clientX,
+    y:event.clientY,
+    left:r.left,
+    top:r.top,
+    moved:false
+  };
+
+  calculator.setPointerCapture(event.pointerId);
+});
+
+calculator.addEventListener(
+  "pointermove",event=>{
+    if(
+      !drag ||
+      drag.id!==event.pointerId
+    )return;
+
+    const dx=event.clientX-drag.x;
+    const dy=event.clientY-drag.y;
+
+    if(Math.hypot(dx,dy)>6){
+      drag.moved=true;
+    }
+
+    if(!drag.moved)return;
+
+    calculator.classList.add("dragging");
+
+    calculator.style.left=clamp(
+      drag.left+dx,
+      0,
+      Math.max(
+        0,
+        innerWidth-calculator.offsetWidth
+      )
+    )+"px";
+
+    calculator.style.top=clamp(
+      drag.top+dy,
+      0,
+      Math.max(
+        0,
+        innerHeight-calculator.offsetHeight
+      )
+    )+"px";
+  }
+);
+
+calculator.addEventListener(
+  "pointerup",event=>{
+    if(
+      !drag ||
+      drag.id!==event.pointerId
+    )return;
+
+    suppressClick=drag.moved;
+    drag=null;
+
+    calculator.classList.remove("dragging");
+
+    if(
+      calculator.hasPointerCapture(
+        event.pointerId
+      )
+    ){
+      calculator.releasePointerCapture(
+        event.pointerId
+      );
+    }
+  }
+);
+
+calculator.addEventListener(
+  "pointercancel",()=>{
+    drag=null;
+    calculator.classList.remove("dragging");
+  }
+);
+
+calculator.addEventListener(
+  "click",event=>{
+    if(!suppressClick)return;
+
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    suppressClick=false;
+  },
+  true
+);
+
+window.addEventListener(
+  "resize",
+  fitCalculator
+);
+
+/* 17. МЕНДЕЛЕЕВ КЕСТЕСІ */
+
+const elementData=`
+H|Сутек He|Гелий Li|Литий Be|Бериллий B|Бор C|Көміртек N|Азот O|Оттек F|Фтор Ne|Неон
+Na|Натрий Mg|Магний Al|Алюминий Si|Кремний P|Фосфор S|Күкірт Cl|Хлор Ar|Аргон
+K|Калий Ca|Кальций Sc|Скандий Ti|Титан V|Ванадий Cr|Хром Mn|Марганец Fe|Темір Co|Кобальт Ni|Никель Cu|Мыс Zn|Мырыш
+Ga|Галлий Ge|Германий As|Мышьяк Se|Селен Br|Бром Kr|Криптон
+Rb|Рубидий Sr|Стронций Y|Иттрий Zr|Цирконий Nb|Ниобий Mo|Молибден Tc|Технеций Ru|Рутений Rh|Родий Pd|Палладий Ag|Күміс Cd|Кадмий
+In|Индий Sn|Қалайы Sb|Сурьма Te|Теллур I|Йод Xe|Ксенон
+Cs|Цезий Ba|Барий La|Лантан Ce|Церий Pr|Празеодим Nd|Неодим Pm|Прометий Sm|Самарий Eu|Еуропий Gd|Гадолиний Tb|Тербий Dy|Диспрозий Ho|Гольмий Er|Эрбий Tm|Тулий Yb|Иттербий Lu|Лютеций
+Hf|Гафний Ta|Тантал W|Вольфрам Re|Рений Os|Осмий Ir|Иридий Pt|Платина Au|Алтын Hg|Сынап Tl|Таллий Pb|Қорғасын Bi|Висмут Po|Полоний At|Астат Rn|Радон
+Fr|Франций Ra|Радий Ac|Актиний Th|Торий Pa|Протактиний U|Уран Np|Нептуний Pu|Плутоний Am|Америций Cm|Кюрий Bk|Берклий Cf|Калифорний Es|Эйнштейний Fm|Фермий Md|Менделевий No|Нобелий Lr|Лоуренсий
+Rf|Резерфордий Db|Дубний Sg|Сиборгий Bh|Борий Hs|Хассий Mt|Мейтнерий Ds|Дармштадтий Rg|Рентгений Cn|Коперниций Nh|Нихоний Fl|Флеровий Mc|Московий Lv|Ливерморий Ts|Теннессин Og|Оганесон
+`;
+
+const elements=elementData.trim()
+  .split(/\s+/)
+  .map((entry,i)=>{
+    const [symbol,name]=entry.split("|");
+    return{
+      z:i+1,
+      symbol,
+      name
+    };
+  });
+
+const groupRows=[
+  [1,18],
+  [1,2,13,14,15,16,17,18],
+  [1,2,13,14,15,16,17,18],
+  Array.from({length:18},(_,i)=>i+1),
+  Array.from({length:18},(_,i)=>i+1)
+];
+
+function position(z){
+  if(z<=54){
+    let k=z-1;
+
+    for(let p=0;p<5;p++){
+      if(k<groupRows[p].length){
+        return{
+          row:p+1,
+          col:groupRows[p][k]
+        };
+      }
+      k-=groupRows[p].length;
+    }
+  }
+
+  if(z<=56)return{row:6,col:z-54};
+  if(z<=71)return{row:9,col:z-53};
+  if(z<=86)return{row:6,col:z-68};
+  if(z<=88)return{row:7,col:z-86};
+  if(z<=103)return{row:10,col:z-85};
+
+  return{row:7,col:z-100};
+}
+
+function buildTable(){
+  let html="";
+
+  for(let group=1;group<=18;group++){
+    html+=`
+      <span class="period-label"
+        style="
+          grid-row:1;
+          grid-column:${group+1}
+        ">
+        ${group}
+      </span>
+    `;
+  }
+
+  for(let p=1;p<=7;p++){
+    html+=`
+      <span class="period-label"
+        style="
+          grid-row:${p+1};
+          grid-column:1
+        ">
+        ${p}
+      </span>
+    `;
+  }
+
+  html+=`
+    <span class="period-label"
+      style="grid-row:10;grid-column:1">
+      La–Lu
+    </span>
+
+    <span class="period-label"
+      style="grid-row:11;grid-column:1">
+      Ac–Lr
+    </span>
+
+    <span class="period-label"
+      style="grid-row:7;grid-column:4">
+      57–71
+    </span>
+
+    <span class="period-label"
+      style="grid-row:8;grid-column:4">
+      89–103
+    </span>
+  `;
+
+  for(const el of elements){
+    const p=position(el.z);
+
+    const f=
+      (el.z>=57&&el.z<=71) ||
+      (el.z>=89&&el.z<=103);
+
+    const featured=
+      ["H","C","O","N"].includes(el.symbol);
+
+    html+=`
+      <button
+        class="element
+          ${f?"fblock":
+            featured?"featured":""}"
+        data-z="${el.z}"
+        style="
+          grid-row:${p.row+1};
+          grid-column:${p.col+1}
+        ">
+        <i>${el.z}</i>
+        <b>${el.symbol}</b>
+        <small>${el.name}</small>
+      </button>
+    `;
+  }
+
+  $("period").innerHTML=html;
+}
+
+$("period").addEventListener("click",event=>{
+  const button=event.target.closest(
+    "[data-z]"
+  );
+
+  if(!button)return;
+
+  const z=Number(button.dataset.z);
+  const item=elements[z-1];
+  const p=position(z);
+
+  const period=p.row===9
+    ?6
+    :p.row===10?7:p.row;
+
+  const group=p.row>7
+    ?"f-блок"
+    :p.col+"-топ";
+
+  $("elementInfo").textContent=
+    `${z}. ${item.name} (${item.symbol}) · `+
+    `${period}-период · ${group}`;
+});
+
+$("showTable").onclick=()=>{
+  $("tableOverlay").hidden=false;
+};
+
+$("closeTable").onclick=()=>{
+  $("tableOverlay").hidden=true;
+};
+
+$("tableOverlay").onclick=event=>{
+  if(event.target===$("tableOverlay")){
+    $("tableOverlay").hidden=true;
+  }
+};
+
+/* 18. ПЕРНЕТАҚТА БАСҚАРУЫ */
+
+document.addEventListener("keydown",event=>{
+  if(event.key==="Escape"){
+    $("tableOverlay").hidden=true;
+    calculator.hidden=true;
+    return;
+  }
+
+  if(!$("tableOverlay").hidden)return;
+
+  if(event.target.closest("input,textarea")){
+    return;
+  }
+
+  if(
+    event.key==="ArrowRight" &&
+    page<slides.length-1
+  ){
+    page++;
+    draw();
+  }else if(
+    event.key==="ArrowLeft" &&
+    page>0
+  ){
+    page--;
+    draw();
+  }
+});
+
+/* 19. БАСТАПҚЫ ТЕКСЕРУ */
+
+try{
+  const checks=[
+    [theory.length===15,"15 түсіндірме"],
+    [notes.length===3,"3 конспект"],
+    [levels.length===4,"4 деңгей"],
+    [oral.length===25,"25 жеке тапсырма"],
+    [quiz.length===15,"15 командалық сұрақ"],
+    [slides.length===29,"29 бет"],
+    [elements.length===118,"118 элемент"],
+    [calculate("7*3")===21,"Көбейту"],
+    [calculate("(2+3)*4")===20,"Жақша"],
+    [calculate("155/62")===2.5,"Есеп"]
+  ];
+
+  for(const [ok,name] of checks){
+    if(!ok){
+      throw Error(name+" тексеру қатесі");
+    }
+  }
+
+  buildTable();
+  tick();
+  draw();
+
+  console.log(
+    "§88: бастапқы тексерулер өтті"
+  );
+}catch(error){
+  console.error(error);
+
+  $("slide").innerHTML=`
+    <h2>Сайт қатесі</h2>
+    <p>${error.message}</p>
+  `;
+}
+</script>
+</body>
+</html>

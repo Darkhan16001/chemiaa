@@ -1,0 +1,2654 @@
+
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>§69 — Молекулалық формуланы анықтау</title>
+
+<style>
+:root{
+ --bg:#071827;
+ --panel:#153e56;
+ --blue:#8bddff;
+ --green:#90efc0;
+ --gold:#ffda91;
+ --white:#f7fcff;
+ --muted:#c9dfea
+}
+*{box-sizing:border-box}
+html,body{
+ width:100%;
+ height:100%;
+ margin:0;
+ font-family:Arial,"Segoe UI",sans-serif;
+ background:var(--bg);
+ color:var(--white)
+}
+button,input{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.45;cursor:not-allowed}
+[hidden]{display:none!important}
+
+.app{
+ height:100vh;
+ height:100dvh;
+ display:flex;
+ flex-direction:column;
+ background:
+ radial-gradient(circle at 90% 9%,#176a9475,transparent 42%),
+ radial-gradient(circle at 6% 92%,#19725b68,transparent 45%),
+ linear-gradient(120deg,#071827,#11374d,#071827)
+}
+
+header,footer{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:12px;
+ padding:11px 20px;
+ flex-shrink:0;
+ background:#071c2e
+}
+header{border-bottom:1px solid #6294af}
+footer{border-top:1px solid #6294af}
+
+.brand{
+ color:var(--blue);
+ font-size:26px;
+ font-weight:900
+}
+.brand small{
+ display:block;
+ margin-top:5px;
+ color:var(--gold);
+ font-size:13px
+}
+.status{
+ display:flex;
+ align-items:center;
+ gap:14px;
+ font-size:19px;
+ font-weight:900
+}
+#timer{
+ color:var(--gold);
+ font-size:29px;
+ font-variant-numeric:tabular-nums
+}
+#counter{color:var(--blue)}
+#clock{
+ color:var(--blue);
+ font-size:23px;
+ font-weight:900;
+ font-variant-numeric:tabular-nums
+}
+.signature{
+ color:var(--gold);
+ font-size:25px;
+ font-weight:900
+}
+
+main{
+ flex:1;
+ min-height:0;
+ overflow-y:auto;
+ padding:23px 35px 36px
+}
+.slide{
+ width:100%;
+ max-width:1500px;
+ min-height:100%;
+ margin:auto;
+ display:flex;
+ flex-direction:column;
+ justify-content:center
+}
+h1{
+ font-size:clamp(43px,4.5vw,75px);
+ line-height:1.12;
+ margin:10px 0 19px
+}
+h2{
+ font-size:clamp(32px,3vw,50px);
+ line-height:1.2;
+ margin:0 0 18px
+}
+h3{
+ font-size:clamp(25px,2vw,35px);
+ color:var(--blue);
+ margin:0 0 12px
+}
+p,li{
+ font-size:clamp(21px,1.7vw,29px);
+ line-height:1.48
+}
+li{margin:8px 0}
+.eyebrow{
+ color:var(--blue);
+ font-weight:900;
+ font-size:20px;
+ margin-bottom:13px
+}
+.grid2,.grid3{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:18px;
+ align-items:center
+}
+.grid3{
+ grid-template-columns:repeat(3,minmax(0,1fr))
+}
+.card{
+ min-width:0;
+ padding:24px;
+ background:linear-gradient(145deg,#1a4760,#102d44);
+ border:1px solid #75adca;
+ border-radius:18px
+}
+.card p{margin:9px 0}
+
+.formula{
+ padding:17px;
+ margin:15px 0;
+ color:var(--green);
+ background:#0e4353;
+ border:1px solid #7dc9d5;
+ border-radius:14px;
+ text-align:center;
+ font-size:clamp(27px,2.6vw,44px);
+ font-weight:900;
+ overflow-wrap:anywhere
+}
+.note{
+ margin-top:15px;
+ padding:16px 20px;
+ background:#1d455e;
+ border-left:6px solid var(--gold);
+ border-radius:12px
+}
+.note p{margin:5px 0}
+.step{
+ padding:12px 15px;
+ margin:8px 0;
+ background:#23536c;
+ border-radius:10px;
+ font-size:clamp(20px,1.6vw,27px);
+ line-height:1.5
+}
+.math-example{
+ padding:18px;
+ background:#103b50;
+ border:1px solid #72b4cd;
+ border-radius:13px;
+ margin:12px 0
+}
+.math-example p{margin:7px 0}
+.gold{color:var(--gold)}
+.green{color:var(--green)}
+.blue{color:var(--blue)}
+
+.visual{
+ background:#103c50;
+ border:1px solid #77bacf;
+ border-radius:18px;
+ padding:17px
+}
+.visual svg{
+ width:100%;
+ height:230px
+}
+.visual .visual-title{
+ color:var(--green);
+ font-size:25px;
+ font-weight:900;
+ text-align:center
+}
+
+.btn{
+ border:1px solid #8abbd0;
+ border-radius:11px;
+ background:#285e7a;
+ color:white;
+ font-size:18px;
+ font-weight:900;
+ padding:12px 19px
+}
+.btn.primary{background:#0d8cae}
+.btn.good{background:#157c5b}
+.btn.gold-btn{background:#906b31}
+.actions{
+ display:flex;
+ flex-wrap:wrap;
+ gap:10px;
+ margin-top:17px
+}
+.task{
+ padding:14px 18px;
+ margin:11px 0;
+ background:#1b435b;
+ border:1px solid #6fa7c1;
+ border-radius:11px
+}
+.task p{margin:5px 0}
+.answer{
+ padding:19px;
+ margin-top:16px;
+ background:#13513d;
+ border:1px solid #82eabb;
+ border-radius:13px
+}
+.answer p{margin:7px 0}
+.big-question{
+ font-size:clamp(30px,2.85vw,47px);
+ font-weight:900;
+ line-height:1.44
+}
+.number-tag{
+ display:inline-block;
+ padding:11px 20px;
+ background:#67502f;
+ color:var(--gold);
+ border:2px solid var(--gold);
+ border-radius:13px;
+ font-weight:900;
+ font-size:30px
+}
+.progress{
+ height:13px;
+ background:#294b60;
+ border-radius:20px;
+ margin:16px 0;
+ overflow:hidden
+}
+.progress span{
+ display:block;
+ height:100%;
+ background:linear-gradient(90deg,#12a6d6,#8cf1bc)
+}
+.team{
+ background:#173d56;
+ border:1px solid #7ba9c4;
+ border-radius:15px;
+ padding:17px;
+ text-align:center
+}
+.team.active{outline:4px solid var(--gold)}
+.score{
+ font-size:55px;
+ font-weight:900;
+ color:var(--gold)
+}
+.options{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:12px;
+ margin-top:16px
+}
+.option{
+ color:white;
+ background:#255d79;
+ border:2px solid #7cb6d1;
+ border-radius:12px;
+ text-align:left;
+ padding:18px;
+ font-size:clamp(20px,1.7vw,29px);
+ font-weight:900
+}
+.option.correct{background:#147a58}
+.option.wrong{background:#944153}
+
+.tools{
+ position:fixed;
+ left:10px;
+ bottom:101px;
+ z-index:30;
+ display:flex;
+ flex-direction:column;
+ align-items:flex-start;
+ gap:7px
+}
+.tool{
+ background:#0b7e9c;
+ color:white;
+ border:1px solid #86dcf0;
+ border-radius:8px;
+ padding:10px 12px;
+ font-size:13px;
+ font-weight:900
+}
+
+/* ЖЫЛЖЫМАЛЫ КАЛЬКУЛЯТОР */
+
+.calculator{
+ position:fixed;
+ top:110px;
+ left:15px;
+ z-index:110;
+ width:230px;
+ max-width:calc(100vw - 10px);
+ padding:9px;
+ background:#102f47;
+ border:2px solid #8cddff;
+ border-radius:14px;
+ box-shadow:0 17px 40px #000a;
+ cursor:grab;
+ touch-action:none;
+ user-select:none;
+ -webkit-user-select:none
+}
+.calculator.dragging{cursor:grabbing}
+.calculator *{touch-action:none}
+.calc-head{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:5px;
+ background:#27546d;
+ border-radius:7px;
+ padding:8px;
+ font-size:12px
+}
+.calc-head button{
+ border:0;
+ border-radius:5px;
+ background:#ae4455;
+ color:white;
+ padding:4px 8px
+}
+#calcDisplay{
+ width:100%;
+ height:45px;
+ margin:8px 0;
+ background:#061c2e;
+ color:white;
+ border:1px solid #78abc5;
+ border-radius:7px;
+ font-size:22px;
+ padding:6px;
+ text-align:right;
+ pointer-events:none
+}
+.calc-keys{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:5px
+}
+.calc-keys button{
+ min-width:0;
+ height:42px;
+ background:#2c627f;
+ color:white;
+ border:1px solid #7baec8;
+ border-radius:7px;
+ font-size:17px;
+ padding:0
+}
+.calc-keys button:active{background:#0c94b7}
+.calc-hint{
+ padding-top:7px;
+ font-size:11px;
+ text-align:center;
+ color:var(--muted)
+}
+
+/* ПЕРИОДТЫҚ КЕСТЕ */
+
+.overlay{
+ position:fixed;
+ inset:0;
+ z-index:200;
+ background:#000d;
+ display:grid;
+ place-items:center;
+ padding:10px
+}
+.modal{
+ width:min(1560px,99vw);
+ max-height:97vh;
+ overflow:auto;
+ padding:17px;
+ background:#0e2d43;
+ border:1px solid #7fadc6;
+ border-radius:15px
+}
+.modal-head{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:12px
+}
+.scroll-table{
+ overflow:auto;
+ padding:12px;
+ background:#071d2f;
+ border-radius:11px
+}
+.periodic-grid{
+ display:grid;
+ grid-template-columns:65px repeat(18,91px);
+ grid-template-rows:38px repeat(10,91px);
+ gap:4px;
+ width:max-content
+}
+.period-label{
+ display:grid;
+ place-items:center;
+ text-align:center;
+ color:var(--gold);
+ background:#1b485f;
+ border:1px solid #6798b4;
+ border-radius:6px;
+ font-size:12px;
+ font-weight:900
+}
+.element{
+ position:relative;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ justify-content:center;
+ background:#255f7b;
+ color:white;
+ border:1px solid #8ebcd3;
+ border-radius:6px;
+ padding:11px 2px 2px;
+ gap:3px
+}
+.element b{font-size:26px}
+.element small{font-size:11px}
+.element i{
+ position:absolute;
+ top:3px;
+ left:5px;
+ font-size:11px;
+ font-style:normal
+}
+.element.special{background:#95516f}
+.element.fblock{background:#337d83}
+#elementInfo{
+ background:#194861;
+ margin-top:12px;
+ padding:15px;
+ border-radius:10px;
+ font-size:21px
+}
+@media(max-width:850px){
+ .grid2,.grid3{grid-template-columns:1fr}
+ .options{grid-template-columns:1fr}
+ header,footer{padding:8px}
+ main{padding:13px}
+ .brand{font-size:18px}
+ .brand small,#sectionName{display:none}
+ .status{gap:7px;font-size:13px}
+ #timer{font-size:20px}
+ #clock{font-size:17px}
+ .signature{font-size:15px}
+ .btn{font-size:14px;padding:9px}
+ .tools{bottom:78px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+<header>
+ <div class="brand">
+  ⚗ CHEMISTRY PRO
+  <small>
+   §69 · МОЛЕКУЛАЛЫҚ ФОРМУЛАНЫ АНЫҚТАУ
+  </small>
+ </div>
+
+ <div class="status">
+  <span id="sectionName">Кіріспе</span>
+  <span id="timer">80:00</span>
+  <span id="counter">1 / 1</span>
+ </div>
+</header>
+
+<main id="main">
+ <section id="slide" class="slide">
+
+  <div class="eyebrow">
+   §69 · ОРГАНИКАЛЫҚ ХИМИЯ
+  </div>
+
+  <h1>
+   Жану өнімдері бойынша
+   молекулалық формуланы анықтау
+  </h1>
+
+  <div class="formula">
+   CO₂ → C · H₂O → H
+  </div>
+
+  <p>
+   Жану өнімдерінің массасы немесе
+   көлемі арқылы органикалық заттың
+   құрамын анықтауды үйренеміз.
+  </p>
+
+ </section>
+</main>
+
+<footer>
+ <div class="actions" style="margin:0">
+  <button class="btn" id="prev">
+   ← Артқа
+  </button>
+
+  <button class="btn primary" id="next">
+   Келесі →
+  </button>
+ </div>
+
+ <strong class="signature">
+  BY DARKHAN
+ </strong>
+
+ <span id="clock">
+  00:00:00
+ </span>
+</footer>
+</div>
+
+<div class="tools">
+ <button class="tool" id="showCalc">
+  🧮 Калькулятор
+ </button>
+
+ <button class="tool" id="showTable">
+  ⚛ Менделеев кестесі
+ </button>
+</div>
+
+<div id="calculator" class="calculator" hidden>
+ <div class="calc-head">
+  <strong>🧮 Калькулятор</strong>
+  <button id="closeCalc" type="button">✕</button>
+ </div>
+
+ <input id="calcDisplay" readonly
+  aria-label="Нәтиже">
+
+ <div class="calc-keys" id="calcKeys">
+ </div>
+
+ <div class="calc-hint">
+  Кез келген жерінен ұстап жылжыт
+ </div>
+</div>
+
+<div class="overlay" id="tableOverlay" hidden>
+ <div class="modal">
+
+  <div class="modal-head">
+   <h2>Менделеевтің периодтық кестесі</h2>
+   <button class="btn" id="closeTable">
+    Жабу ✕
+   </button>
+  </div>
+
+  <p style="font-size:17px">
+   118 элемент · 18 топ · 7 период
+  </p>
+
+  <div class="scroll-table">
+   <div class="periodic-grid" id="ptable"></div>
+  </div>
+
+  <div id="elementInfo">
+   Элементті таңда.
+  </div>
+
+ </div>
+</div>
+
+<script>
+"use strict";
+
+/* =====================================
+   §69 — НЕГІЗГІ ЖҮЙЕ
+===================================== */
+
+const $=id=>document.getElementById(id);
+
+const slides=[];
+let page=0;
+
+function add(title,section,content){
+ slides.push({title,section,content});
+}
+
+function dynamic(title,section,renderer){
+ slides.push({title,section,renderer});
+}
+
+function draw(){
+ const current=slides[page];
+
+ if(!current)return;
+
+ $("slide").innerHTML=current.renderer
+  ?current.renderer()
+  :current.content;
+
+ $("sectionName").textContent=current.section;
+
+ $("counter").textContent=
+  `${page+1} / ${slides.length}`;
+
+ $("prev").disabled=page===0;
+ $("next").disabled=page===slides.length-1;
+
+ $("main").scrollTop=0;
+}
+
+function go(title){
+ const index=slides.findIndex(
+  slide=>slide.title===title
+ );
+
+ if(index>=0){
+  page=index;
+  draw();
+ }
+}
+
+$("prev").onclick=()=>{
+ if(page>0){
+  page--;
+  draw();
+ }
+};
+
+$("next").onclick=()=>{
+ if(page<slides.length-1){
+  page++;
+  draw();
+ }
+};
+
+/* ЖАДЫ */
+
+const STORE="darkhan_chem69_complete_v1";
+
+function freshState(){
+ return{
+  levels:{},
+  oral:0,
+  oralAnswer:false,
+  game:0,
+  chosen:null,
+  scores:[0,0,0],
+  homework:false
+ };
+}
+
+let state=freshState();
+
+try{
+ const saved=JSON.parse(
+  localStorage.getItem(STORE)
+ );
+
+ if(
+  saved &&
+  Array.isArray(saved.scores) &&
+  saved.scores.length===3
+ ){
+  state={...freshState(),...saved};
+ }
+}catch(error){
+ console.warn(error);
+}
+
+function save(){
+ try{
+  localStorage.setItem(
+   STORE,
+   JSON.stringify(state)
+  );
+ }catch(error){
+  console.warn(error);
+ }
+}
+
+/* =====================================
+   КӨРНЕКІ МОДЕЛЬ
+===================================== */
+
+function combustionDiagram(){
+ return `
+  <div class="visual">
+
+   <svg viewBox="0 0 500 230">
+
+    <rect
+     x="12" y="58"
+     width="145" height="105"
+     rx="18"
+     fill="#24576f"
+     stroke="#8bddff"
+     stroke-width="3"
+    />
+
+    <text
+     x="84" y="103"
+     fill="white"
+     text-anchor="middle"
+     font-size="29"
+     font-weight="900"
+    >Органикалық</text>
+
+    <text
+     x="84" y="135"
+     fill="white"
+     text-anchor="middle"
+     font-size="29"
+     font-weight="900"
+    >зат</text>
+
+    <path
+     d="M168 111 H253"
+     stroke="#ffda91"
+     stroke-width="7"
+     stroke-linecap="round"
+    />
+
+    <path
+     d="M233 95 L256 111 L233 127"
+     fill="none"
+     stroke="#ffda91"
+     stroke-width="7"
+     stroke-linejoin="round"
+    />
+
+    <rect
+     x="270" y="17"
+     width="208" height="79"
+     rx="14"
+     fill="#145b56"
+     stroke="#90efc0"
+     stroke-width="3"
+    />
+
+    <rect
+     x="270" y="123"
+     width="208" height="79"
+     rx="14"
+     fill="#19546f"
+     stroke="#8bddff"
+     stroke-width="3"
+    />
+
+    <text
+     x="374" y="68"
+     text-anchor="middle"
+     fill="#90efc0"
+     font-size="37"
+     font-weight="900"
+    >CO₂</text>
+
+    <text
+     x="374" y="174"
+     text-anchor="middle"
+     fill="#8bddff"
+     font-size="37"
+     font-weight="900"
+    >H₂O</text>
+
+   </svg>
+
+   <div class="visual-title">
+    Жану өнімдері → бастапқы заттың құрамы
+   </div>
+
+  </div>
+ `;
+}
+
+/* =====================================
+   КІРІСПЕ
+===================================== */
+
+dynamic(
+ "Кіріспе",
+ "Кіріспе · 5 минут",
+ ()=>`
+  <div class="grid2">
+
+   <div>
+    <div class="eyebrow">
+     §69 · ОРГАНИКАЛЫҚ ХИМИЯ
+    </div>
+
+    <h1>
+     Жану өнімдері бойынша
+     молекулалық формуланы анықтау
+    </h1>
+
+    <p>
+     CO₂ массасы арқылы көміртек санын,
+     H₂O массасы арқылы сутек санын
+     есептеп үйренеміз.
+    </p>
+
+    <div class="formula">
+     CO₂ → C · H₂O → H
+    </div>
+
+    <div class="actions">
+
+     <button
+      class="btn good"
+      data-action="start-timer"
+     >
+      ▶ Сабақты бастау
+     </button>
+
+     <button
+      class="btn gold-btn"
+      data-action="reset-timer"
+     >
+      ↺ Таймерді жаңарту
+     </button>
+
+    </div>
+   </div>
+
+   ${combustionDiagram()}
+
+  </div>
+ `
+);
+
+add(
+ "Мақсаты",
+ "Кіріспе",
+ `
+  <h2>Сабақтың мақсаты</h2>
+
+  <div class="grid2">
+
+   <div class="card">
+    <h3>Теориялық мақсат</h3>
+    <p>
+     Жану өнімдерінің құрамын,
+     қарапайым формуланы,
+     молекулалық формуланы
+     және молярлық массаның рөлін түсіну.
+    </p>
+   </div>
+
+   <div class="card">
+    <h3>Практикалық мақсат</h3>
+    <p>
+     CO₂ және H₂O арқылы
+     көміртек пен сутек мөлшерін
+     есептеу, атомдық қатынасты
+     табу және молекулалық
+     формуланы анықтау.
+    </p>
+   </div>
+
+  </div>
+
+  <div class="note">
+   <p>
+    Сабақ — 80 минут.
+    Кіріспе — 5;
+    теория — 20;
+    конспект — 8;
+    4 деңгей — 10;
+    жеке жұмыс — 20;
+    команда ойыны — 12;
+    қорытынды — 5 минут.
+   </p>
+  </div>
+ `
+);
+
+/* =====================================
+   15 ТҮСІНДІРМЕ
+===================================== */
+
+const theory=[
+ {
+  title:"Жану өнімдері нені көрсетеді?",
+  text:"Құрамында көміртек пен сутек бар органикалық зат толық жанғанда көмірқышқыл газы және су түзіледі. Көмірқышқыл газындағы көміртек бастапқы заттан келгендіктен, оның мөлшері арқылы көміртек атомдарының мөлшерін есептейміз. Ал су құрамындағы сутек арқылы бастапқы заттағы сутек мөлшерін анықтаймыз.",
+  formula:"n(C)=n(CO₂)",
+  example:"1 моль CO₂ құрамында 1 моль көміртек атомы бар.",
+  notes:[
+   "CO₂ бастапқы заттағы көміртекті анықтауға көмектеседі.",
+   "H₂O бастапқы заттағы сутекті анықтауға көмектеседі."
+  ]
+ },
+ {
+  title:"Көмірқышқыл газының молярлық массасы",
+  text:"Көмірқышқыл газы CO₂ бір көміртек және екі оттек атомынан тұрады. Көміртектің салыстырмалы атомдық массасы 12, оттектікі 16. Сондықтан CO₂ молярлық массасы 12+2×16=44 г/моль. Есепте газдың массасы берілсе, оны 44-ке бөлеміз.",
+  formula:"M(CO₂)=44 г/моль",
+  example:"m(CO₂)=8,8 г болса, n(CO₂)=8,8/44=0,2 моль.",
+  notes:[
+   "M(CO₂)=44 г/моль.",
+   "n(CO₂)=m(CO₂)/44."
+  ]
+ },
+ {
+  title:"Судың молярлық массасы",
+  text:"Судың молекуласы екі сутек пен бір оттек атомынан тұрады. Оның молярлық массасы 2×1+16=18 г/моль. Жанудан түзілген судың массасы белгілі болса, алдымен судың зат мөлшерін анықтаймыз. Содан кейін екіге көбейтіп, сутек атомдарының зат мөлшерін табамыз.",
+  formula:"M(H₂O)=18 г/моль",
+  example:"5,4 г су — 0,3 моль H₂O.",
+  notes:[
+   "M(H₂O)=18 г/моль.",
+   "Судың әр молекуласында екі H атомы бар."
+  ]
+ },
+ {
+  title:"Көміртектің зат мөлшерін анықтау",
+  text:"Толық жанған заттағы көміртек атомдарының зат мөлшері түзілген CO₂ мөлшеріне тең. Сондықтан n(C)=m(CO₂)/44 формуласын қолданамыз. Егер көмірқышқыл газының көлемі қалыпты жағдайда берілсе, көлемді 22,4 л/моль мәніне бөлеміз.",
+  formula:"n(C)=m(CO₂)/44",
+  example:"8,8/44=0,2 моль көміртек атомы.",
+  notes:[
+   "n(C)=n(CO₂).",
+   "CO₂ массасын 44-ке бөлу керек."
+  ]
+ },
+ {
+  title:"Сутектің зат мөлшерін анықтау",
+  text:"Судың бір молекуласында екі сутек атомы орналасады. Сондықтан бастапқы заттағы сутек атомдарының мөлшері түзілген су молекулаларының мөлшерінен екі есе көп. Бұл есептегі маңызды қадам: судың мөлшерін екіге көбейтуді ұмытпау қажет.",
+  formula:"n(H)=2m(H₂O)/18",
+  example:"m(H₂O)=5,4 г: n(H)=2×5,4/18=0,6 моль.",
+  notes:[
+   "n(H)=2n(H₂O).",
+   "Сутек атомдарының мөлшері су мөлшерінен екі есе көп."
+  ]
+ },
+ {
+  title:"Көміртек пен сутектің қатынасы",
+  text:"Көміртек пен сутек атомдарының зат мөлшерлері табылғаннан кейін олардың ең қарапайым бүтін сандық қатынасын анықтаймыз. Екі мәнді де ең кіші мәнге бөлуге болады. Егер бөлшек қатынас шықса, сәйкес бүтін коэффициентке көбейтеміз. Нәтижесінде заттың қарапайым формуласы табылады.",
+  formula:"n(C) : n(H)",
+  example:"0,2 : 0,6 = 1 : 3 → CH₃.",
+  notes:[
+   "Атомдық қатынасты ықшамдау керек.",
+   "Қарапайым формула ең кіші бүтін қатынасты көрсетеді."
+  ]
+ },
+ {
+  title:"Қарапайым және молекулалық формула",
+  text:"Қарапайым формула атомдардың ең кіші бүтін сандық қатынасын көрсетеді. Молекулалық формула нақты молекуладағы атомдардың санын білдіреді. Бұл екі формула бірдей болуы да, әртүрлі болуы да мүмкін. Қарапайым формуладан молекулалық формулаға өту үшін қосымша ақпарат, мысалы молярлық масса қажет.",
+  formula:"Молекулалық = (қарапайым) × k",
+  example:"CH₃ қарапайым формуласы үшін M=30 г/моль болса, C₂H₆ алынады.",
+  notes:[
+   "Қарапайым формула — атомдық қатынас.",
+   "Молекулалық формула — нақты атом саны."
+  ]
+ },
+ {
+  title:"Молярлық масса арқылы көбейткіш табу",
+  text:"Алдымен қарапайым формуланың молярлық массасын есептейміз. Содан кейін заттың белгілі молярлық массасын осы мәнге бөлеміз. Алынған бүтін k коэффициентіне қарапайым формуладағы барлық индекстерді көбейтеміз. Сонда молекулалық формула шығады.",
+  formula:"k=M(зат)/M(қарапайым)",
+  example:"CH₃: M=15; заттың M=30 → k=2 → C₂H₆.",
+  notes:[
+   "Алдымен қарапайым формуланың массасын тап.",
+   "k бүтін сан болуы тиіс."
+  ]
+ },
+ {
+  title:"Этанның формуласын анықтау",
+  text:"Белгісіз көмірсутектің толық жануынан 8,8 г CO₂ және 5,4 г H₂O алынды. Онда n(C)=8,8/44=0,2 моль, ал n(H)=2×5,4/18=0,6 моль. Қатынасы 1:3, демек қарапайым формуласы CH₃. Егер молярлық масса 30 г/моль болса, формула C₂H₆ болады.",
+  formula:"8,8 г CO₂ + 5,4 г H₂O → C₂H₆",
+  example:"Қарапайым формула CH₃, молекулалық формула C₂H₆.",
+  notes:[
+   "Көміртек пен сутек мөлшері: 0,2 және 0,6 моль.",
+   "Молярлық масса: 30 г/моль."
+  ]
+ },
+ {
+  title:"Пропанның формуласын анықтау",
+  text:"Толық жану нәтижесінде 13,2 г CO₂ және 7,2 г H₂O түзілсін. Көміртек атомдарының мөлшері 13,2/44=0,3 моль. Сутек мөлшері 2×7,2/18=0,8 моль. 0,3:0,8 қатынасын онға көбейтсек 3:8 болады. Демек қарапайым формула — C₃H₈. Бұл мысалда ол молекулалық формуламен де бірдей.",
+  formula:"0,3 : 0,8 = 3 : 8",
+  example:"C₃H₈ — пропан.",
+  notes:[
+   "CO₂ массасы — 13,2 г.",
+   "H₂O массасы — 7,2 г.",
+   "Қарапайым қатынас — C₃H₈."
+  ]
+ },
+ {
+  title:"Газ көлемі арқылы есептеу",
+  text:"Кейбір есептерде көмірқышқыл газының массасы емес, көлемі беріледі. Қалыпты жағдайда идеал газдың молярлық көлемін шамамен 22,4 л/моль деп аламыз. Онда n(CO₂)=V(CO₂)/22,4 формуласы қолданылады. Көмірқышқыл газының зат мөлшері көміртек мөлшеріне тең.",
+  formula:"n(C)=V(CO₂)/22,4",
+  example:"4,48 л CO₂ → 4,48/22,4=0,2 моль C.",
+  notes:[
+   "Көлем міндетті түрде қандай жағдайда берілгенін тексер.",
+   "Қалыпты жағдайда Vₘ≈22,4 л/моль."
+  ]
+ },
+ {
+  title:"Молекулалық массаны газ тығыздығынан табу",
+  text:"Газдың сутекке қатысты салыстырмалы тығыздығы белгілі болса, оның молярлық массасын M=2D(H₂) арқылы анықтауға болады. Ал ауаға қатысты салыстырмалы тығыздық берілгенде шамамен M=29D(ауа) қолданылады. Бұл қосымша мәлімет молекулалық формуланы нақтылауға көмектеседі.",
+  formula:"M=2D(H₂)",
+  example:"D(H₂)=15 болса, M=30 г/моль.",
+  notes:[
+   "Сутекке қатысты тығыздық: M=2D(H₂).",
+   "Ауаға қатысты тығыздық: M≈29D(ауа)."
+  ]
+ },
+ {
+  title:"Құрамында оттек болатын органикалық зат",
+  text:"Егер жанатын белгісіз қосылыс тек көміртек, сутек және оттектен тұратыны белгілі болса, алдымен көміртек пен сутек массаларын табамыз. Бастапқы үлгінің массасынан осы массаларды азайтсақ, зат құрамындағы оттектің массасы шығады. Содан кейін оттектің зат мөлшерін оның массасын 16-ға бөлу арқылы анықтаймыз.",
+  formula:"m(O)=m(зат)−m(C)−m(H)",
+  example:"4,6 г заттан 8,8 г CO₂, 5,4 г H₂O түзілсе: m(C)=2,4 г; m(H)=0,6 г; m(O)=1,6 г.",
+  notes:[
+   "Бұл тәсіл тек C, H, O бар екені белгілі заттарға қолданылады.",
+   "n(O)=m(O)/16."
+  ]
+ },
+ {
+  title:"Есеп шығарудың алгоритмі",
+  text:"Бірінші қадамда берілген жану өнімдерін жазамыз. Екінші қадамда CO₂ мен H₂O зат мөлшерлерін анықтаймыз. Үшінші қадамда көміртек пен сутек атомдарының мөлшерін табамыз. Төртінші қадамда ең кіші бүтін қатынас арқылы қарапайым формуланы шығарамыз. Бесінші қадамда молярлық масса көмегімен молекулалық формуланы анықтаймыз.",
+  formula:"Берілгені → n(C),n(H) → қатынас → M → формула",
+  example:"CO₂ және H₂O → CH₃ → M=30 → C₂H₆.",
+  notes:[
+   "Есепті қадам бойынша шығар.",
+   "Қосымша дерексіз молекулалық формула әрдайым бірмәнді анықталмайды."
+  ]
+ },
+ {
+  title:"Жиі кездесетін қателер",
+  text:"Оқушылар жиі судың зат мөлшерін сутек атомдарының мөлшерімен шатастырады. Суда екі сутек атомы бар екенін есте сақтау қажет. Тағы бір қате — қарапайым формуланы бірден молекулалық формула деп қабылдау. Сонымен қатар газ көлемін қолданғанда оның жағдайын тексеру және коэффициенттерді дұрыс салыстыру маңызды.",
+  formula:"n(H)=2n(H₂O)",
+  example:"5,4 г H₂O → 0,3 моль су, бірақ 0,6 моль H атомы.",
+  notes:[
+   "Сутекті есептегенде 2 коэффициентін ұмытпа.",
+   "Қарапайым және молекулалық формуланы ажырат."
+  ]
+ }
+];
+
+theory.forEach((topic,i)=>{
+ add(
+  topic.title,
+  `Түсіндірме ${i+1}/15`,
+  `
+   <div class="eyebrow">
+    ТҮСІНДІРМЕ ${i+1}/15
+   </div>
+
+   <h2>${topic.title}</h2>
+
+   <div class="grid2">
+
+    <div class="card">
+     <h3>Толық түсіндірме</h3>
+     <p>${topic.text}</p>
+    </div>
+
+    <div class="card">
+     <h3>Нақты мысал</h3>
+
+     <div class="math-example">
+      <p>${topic.example}</p>
+     </div>
+
+     <h3>Негізгі формула</h3>
+
+     <div class="formula">
+      ${topic.formula}
+     </div>
+    </div>
+
+   </div>
+
+   <div class="note">
+
+    <h3 style="color:var(--gold)">
+     Дәптерге жаз:
+    </h3>
+
+    ${topic.notes.map((note,j)=>`
+     <div class="step">
+      ${j+1}. ${note}
+     </div>
+    `).join("")}
+
+   </div>
+  `
+ );
+});
+
+/* =====================================
+   ТОЛЫҚ ШЫҒАРЫЛҒАН МЫСАЛ
+===================================== */
+
+add(
+ "Толық шығарылған есеп",
+ "Практикалық мысал",
+ `
+  <div class="eyebrow">
+   ЕСЕПТІ ҚАДАММЕН ШЫҒАР
+  </div>
+
+  <h2>Этанның формуласын анықтау</h2>
+
+  <div class="card">
+
+   <p>
+    Белгісіз көмірсутек жанғанда
+    8,8 г CO₂ және 5,4 г H₂O түзіледі.
+    Белгісіз заттың молярлық массасы
+    30 г/моль. Формуласын анықта.
+   </p>
+
+   <div class="step">
+    <b class="gold">1-қадам.</b>
+    n(CO₂)=8,8/44=0,2 моль.
+   </div>
+
+   <div class="step">
+    <b class="gold">2-қадам.</b>
+    n(H₂O)=5,4/18=0,3 моль.
+   </div>
+
+   <div class="step">
+    <b class="gold">3-қадам.</b>
+    n(H)=2×0,3=0,6 моль.
+   </div>
+
+   <div class="step">
+    <b class="gold">4-қадам.</b>
+    C:H=0,2:0,6=1:3.
+    Қарапайым формула — CH₃.
+   </div>
+
+   <div class="step">
+    <b class="gold">5-қадам.</b>
+    M(CH₃)=15 г/моль;
+    k=30/15=2.
+   </div>
+
+   <div class="formula">
+    Жауап: C₂H₆
+   </div>
+
+  </div>
+ `
+);
+
+/* =====================================
+   3 КОНСПЕКТ
+===================================== */
+
+const conspects=[
+ [
+  "Жану өнімдерінің массалары",
+  [
+   "Органикалық заттың толық жану өнімдері CO₂ және H₂O болуы мүмкін.",
+   "M(CO₂)=44 г/моль.",
+   "M(H₂O)=18 г/моль.",
+   "n(C)=n(CO₂).",
+   "n(H)=2n(H₂O).",
+   "n(C)=m(CO₂)/44.",
+   "n(H)=2m(H₂O)/18."
+  ]
+ ],
+ [
+  "Қарапайым формула және молекулалық формула",
+  [
+   "Көміртек пен сутек атомдарының мөлшерін есепте.",
+   "Олардың ең кіші бүтін сандық қатынасын тап.",
+   "Қарапайым формуланы жаз.",
+   "Қарапайым формуланың молярлық массасын есепте.",
+   "k=M(зат)/M(қарапайым) формуласын қолдан.",
+   "Қарапайым формуланың индекстерін k санына көбейт.",
+   "Молекулалық формуланы жаз."
+  ]
+ ],
+ [
+  "Қосымша формулалар",
+  [
+   "Қалыпты жағдайда Vₘ≈22,4 л/моль.",
+   "n(CO₂)=V(CO₂)/22,4 (қалыпты жағдайда).",
+   "M=2D(H₂).",
+   "M≈29D(ауа).",
+   "m(C)=12m(CO₂)/44.",
+   "m(H)=2m(H₂O)/18.",
+   "Тек C, H, O бар зат үшін m(O)=m(зат)−m(C)−m(H).",
+   "n(O)=m(O)/16."
+  ]
+ ]
+];
+
+conspects.forEach((c,i)=>{
+ add(
+  "Конспект "+(i+1),
+  "Конспект · 8 минут",
+  `
+   <div class="eyebrow">
+    ДӘПТЕРГЕ ЖАЗЫП АЛ
+   </div>
+
+   <h2>Конспект №${i+1}</h2>
+   <h3>${c[0]}</h3>
+
+   <div class="card">
+    <ol>
+     ${c[1].map(line=>`
+      <li>${line}</li>
+     `).join("")}
+    </ol>
+   </div>
+  `
+ );
+});
+
+/* =====================================
+   4 ДЕҢГЕЙЛІК ЖҰМЫС
+===================================== */
+
+const levels=[
+ [
+  "1-деңгей. Негізгі формулалар",
+  [
+   [
+    "CO₂ молярлық массасын анықта.",
+    "44 г/моль."
+   ],
+   [
+    "H₂O молярлық массасын анықта.",
+    "18 г/моль."
+   ],
+   [
+    "0,2 моль CO₂ құрамындағы көміртек мөлшері?",
+    "0,2 моль C."
+   ],
+   [
+    "0,3 моль H₂O құрамындағы сутек атомдарының мөлшері?",
+    "0,6 моль H."
+   ]
+  ]
+ ],
+ [
+  "2-деңгей. Зат мөлшерін есептеу",
+  [
+   [
+    "4,4 г CO₂ зат мөлшерін анықта.",
+    "4,4/44=0,1 моль."
+   ],
+   [
+    "9 г H₂O зат мөлшерін тап.",
+    "9/18=0,5 моль."
+   ],
+   [
+    "8,8 г CO₂ құрамындағы C атомдарының мөлшері?",
+    "0,2 моль."
+   ],
+   [
+    "7,2 г H₂O құрамындағы H атомдарының мөлшері?",
+    "2×7,2/18=0,8 моль."
+   ]
+  ]
+ ],
+ [
+  "3-деңгей. Қарапайым формула",
+  [
+   [
+    "n(C)=0,2; n(H)=0,4. Қарапайым формула?",
+    "CH₂."
+   ],
+   [
+    "n(C)=0,3; n(H)=0,8. Қарапайым формула?",
+    "C₃H₈."
+   ],
+   [
+    "n(C)=0,2; n(H)=0,6. Қарапайым формула?",
+    "CH₃."
+   ],
+   [
+    "n(C)=0,4; n(H)=1,0. Қарапайым формула?",
+    "C₂H₅."
+   ]
+  ]
+ ],
+ [
+  "4-деңгей. Молекулалық формула",
+  [
+   [
+    "Қарапайым формула CH₂, M=42 г/моль. Молекулалық формула?",
+    "M(CH₂)=14; k=3; C₃H₆."
+   ],
+   [
+    "Қарапайым формула CH₃, M=30 г/моль. Формула?",
+    "M(CH₃)=15; k=2; C₂H₆."
+   ],
+   [
+    "Қарапайым формула CH₂, M=56 г/моль. Формула?",
+    "k=4; C₄H₈."
+   ],
+   [
+    "Қарапайым формула C₂H₅, M=58 г/моль. Формула?",
+    "M(C₂H₅)=29; k=2; C₄H₁₀."
+   ]
+  ]
+ ]
+];
+
+levels.forEach((level,i)=>{
+ dynamic(
+  "Деңгей "+(i+1),
+  "Деңгейлік жұмыс · 10 минут",
+  ()=>`
+   <div class="eyebrow">
+    ДЕҢГЕЙЛІК ЖҰМЫС ${i+1}/4
+   </div>
+
+   <h2>${level[0]}</h2>
+
+   ${level[1].map((q,j)=>`
+    <div class="task">
+     <p>
+      <b class="gold">${j+1}.</b>
+      ${q[0]}
+     </p>
+    </div>
+   `).join("")}
+
+   <button
+    class="btn gold-btn"
+    data-action="level"
+    data-index="${i}"
+   >
+    ${state.levels[i]
+     ?"Жауаптарды жасыру"
+     :"Жауаптарды көру"}
+   </button>
+
+   ${state.levels[i]?`
+    <div class="answer">
+     ${level[1].map((q,j)=>`
+      <p>
+       <b>${j+1}.</b> ${q[1]}
+      </p>
+     `).join("")}
+    </div>
+   `:""}
+  `
+ );
+});
+
+/* =====================================
+   25 ЖЕКЕ ТАПСЫРМА
+===================================== */
+
+const oral=[
+ ["M(CO₂) қанша?","44 г/моль."],
+ ["M(H₂O) қанша?","18 г/моль."],
+ ["CO₂ арқылы қандай элемент анықталады?","Көміртек."],
+ ["H₂O арқылы қандай элемент анықталады?","Сутек."],
+ ["0,1 моль CO₂ құрамындағы C мөлшері?","0,1 моль."],
+ ["0,2 моль H₂O құрамындағы H мөлшері?","0,4 моль."],
+ ["4,4 г CO₂ зат мөлшері?","0,1 моль."],
+ ["8,8 г CO₂ зат мөлшері?","0,2 моль."],
+ ["13,2 г CO₂ зат мөлшері?","0,3 моль."],
+ ["22 г CO₂ зат мөлшері?","0,5 моль."],
+ ["1,8 г H₂O зат мөлшері?","0,1 моль."],
+ ["3,6 г H₂O зат мөлшері?","0,2 моль."],
+ ["5,4 г H₂O зат мөлшері?","0,3 моль."],
+ ["7,2 г H₂O зат мөлшері?","0,4 моль."],
+ ["9 г H₂O зат мөлшері?","0,5 моль."],
+ ["0,3 моль H₂O құрамындағы H мөлшері?","0,6 моль."],
+ ["0,4 моль H₂O құрамындағы H мөлшері?","0,8 моль."],
+ ["n(C)=0,1; n(H)=0,2. Қарапайым формула?","CH₂."],
+ ["n(C)=0,2; n(H)=0,6. Қарапайым формула?","CH₃."],
+ ["n(C)=0,3; n(H)=0,8. Қарапайым формула?","C₃H₈."],
+ ["CH₂ қарапайым формуласының молярлық массасы?","14 г/моль."],
+ ["CH₃ қарапайым формуласының молярлық массасы?","15 г/моль."],
+ ["CH₂, M=28. Молекулалық формула?","C₂H₄."],
+ ["CH₂, M=42. Молекулалық формула?","C₃H₆."],
+ ["CH₃, M=30. Молекулалық формула?","C₂H₆."]
+];
+
+dynamic(
+ "Жеке тапсырма",
+ "25 оқушы · 20 минут",
+ ()=>{
+  const i=state.oral;
+
+  if(i>=oral.length){
+   return `
+    <h1>25 жеке тапсырма аяқталды!</h1>
+
+    <div class="actions">
+     <button
+      class="btn gold-btn"
+      data-action="oral-reset"
+     >
+      ↺ Қайта бастау
+     </button>
+
+     <button
+      class="btn primary"
+      data-action="go-game"
+     >
+      Командалық ойын →
+     </button>
+    </div>
+   `;
+  }
+
+  return `
+   <div class="eyebrow">
+    ЖЕКЕ ТАҚТА ТАПСЫРМАСЫ
+   </div>
+
+   <h2>Тақтаға шығып орында</h2>
+
+   <span class="number-tag">
+    ${i+1}-оқушы · ${i+1}/25
+   </span>
+
+   <div class="progress">
+    <span style="width:${100*i/25}%"></span>
+   </div>
+
+   <div class="card">
+
+    <h3>Тапсырма</h3>
+
+    <p class="big-question">
+     ${oral[i][0]}
+    </p>
+
+    <div class="note">
+     <p>
+      Жауапты есептеу жолымен бірге
+      тақтаға жаз.
+     </p>
+    </div>
+
+   </div>
+
+   ${state.oralAnswer?`
+    <div class="answer">
+
+     <h3>Дұрыс жауап</h3>
+
+     <p>${oral[i][1]}</p>
+
+    </div>
+   `:""}
+
+   <div class="actions">
+
+    <button
+     class="btn gold-btn"
+     data-action="oral-answer"
+    >
+     ${state.oralAnswer
+      ?"Жауапты жасыру"
+      :"Жауапты көру"}
+    </button>
+
+    <button
+     class="btn primary"
+     data-action="oral-next"
+    >
+     Келесі оқушы →
+    </button>
+
+   </div>
+  `;
+ }
+);
+
+/* =====================================
+   3 КОМАНДА — 15 СҰРАҚ
+===================================== */
+
+const quiz=[
+ [
+  "CO₂ молярлық массасы?",
+  ["18","44","32","16"],
+  1
+ ],
+ [
+  "H₂O молярлық массасы?",
+  ["16","20","18","44"],
+  2
+ ],
+ [
+  "0,2 моль CO₂ құрамында қанша моль C бар?",
+  ["0,2","0,4","0,1","0,6"],
+  0
+ ],
+ [
+  "0,3 моль H₂O құрамында қанша моль H бар?",
+  ["0,3","0,9","0,1","0,6"],
+  3
+ ],
+ [
+  "8,8 г CO₂ зат мөлшері?",
+  ["0,1","0,2","0,3","0,4"],
+  1
+ ],
+ [
+  "5,4 г H₂O зат мөлшері?",
+  ["0,3","0,5","0,2","0,6"],
+  0
+ ],
+ [
+  "Қай формула көміртек атомдарының мөлшерін береді?",
+  [
+   "n(C)=2n(H₂O)",
+   "n(C)=n(H₂O)",
+   "n(C)=n(CO₂)",
+   "n(C)=n(O₂)"
+  ],
+  2
+ ],
+ [
+  "Сутек атомдарының мөлшерін қалай табамыз?",
+  [
+   "n(H)=n(CO₂)",
+   "n(H)=n(H₂O)/2",
+   "n(H)=n(H₂O)",
+   "n(H)=2n(H₂O)"
+  ],
+  3
+ ],
+ [
+  "n(C)=0,2; n(H)=0,4. Қарапайым формула?",
+  ["CH₄","CH₂","C₂H₆","C₃H₈"],
+  1
+ ],
+ [
+  "n(C)=0,2; n(H)=0,6. Қарапайым формула?",
+  ["CH₃","CH₂","CH₄","C₂H₅"],
+  0
+ ],
+ [
+  "CH₂ қарапайым формуласының массасы?",
+  ["12","16","14","15"],
+  2
+ ],
+ [
+  "CH₃, M=30. Молекулалық формула?",
+  ["CH₃","C₃H₉","CH₄","C₂H₆"],
+  3
+ ],
+ [
+  "CH₂, M=42. Молекулалық формула?",
+  ["C₂H₄","C₃H₆","C₄H₈","C₂H₆"],
+  1
+ ],
+ [
+  "Қалыпты жағдайда 4,48 л CO₂ мөлшері?",
+  ["0,2 моль","0,5 моль","1 моль","0,1 моль"],
+  0
+ ],
+ [
+  "CH₂, M=56. Молекулалық формула?",
+  ["C₃H₆","C₂H₄","C₄H₈","C₅H₁₀"],
+  2
+ ]
+];
+
+dynamic(
+ "Командалық ойын",
+ "3 команда · 12 минут",
+ ()=>{
+  const i=state.game;
+
+  if(i>=quiz.length){
+   const maximum=Math.max(...state.scores);
+
+   const winners=state.scores
+    .map((score,j)=>
+     score===maximum
+      ?`${j+1}-команда`
+      :null
+    )
+    .filter(Boolean);
+
+   return `
+    <h1>Командалық ойын аяқталды!</h1>
+
+    <div class="grid3">
+
+     ${state.scores.map((score,j)=>`
+      <div class="team">
+       <h3>${j+1}-команда</h3>
+       <div class="score">${score}</div>
+       <p>ұпай</p>
+      </div>
+     `).join("")}
+
+    </div>
+
+    <div class="note">
+     <p>
+      Жеңімпаз: ${winners.join(", ")}
+     </p>
+    </div>
+
+    <div class="actions">
+     <button
+      class="btn gold-btn"
+      data-action="game-reset"
+     >
+      ↺ Ойынды қайта бастау
+     </button>
+    </div>
+   `;
+  }
+
+  const [question,options,right]=quiz[i];
+
+  const team=i%3;
+  const chosen=state.chosen;
+
+  return `
+   <div class="eyebrow">
+    КОМАНДАЛЫҚ ОЙЫН ${i+1}/15
+   </div>
+
+   <h2>${team+1}-команданың кезегі</h2>
+
+   <div class="grid3">
+
+    ${state.scores.map((score,j)=>`
+     <div class="team ${j===team?"active":""}">
+      <h3>${j+1}-команда</h3>
+      <div class="score">${score}</div>
+      <p>ұпай</p>
+     </div>
+    `).join("")}
+
+   </div>
+
+   <div class="card" style="margin-top:16px">
+    <p class="big-question">
+     ${question}
+    </p>
+   </div>
+
+   <div class="options">
+
+    ${options.map((option,j)=>`
+     <button
+      class="option ${
+       chosen===null
+        ?""
+        :j===right
+         ?"correct"
+         :j===chosen
+          ?"wrong"
+          :""
+      }"
+      data-action="game-answer"
+      data-index="${j}"
+      ${chosen!==null?"disabled":""}
+     >
+      ${"ABCD"[j]}. ${option}
+     </button>
+    `).join("")}
+
+   </div>
+
+   ${chosen!==null?`
+    <div class="answer">
+
+     <h3>
+      ${chosen===right
+       ?"Дұрыс! +10 ұпай"
+       :"Қате. 0 ұпай"}
+     </h3>
+
+     <p>
+      Дұрыс жауап: ${options[right]}
+     </p>
+
+    </div>
+
+    <div class="actions">
+
+     <button
+      class="btn primary"
+      data-action="game-next"
+     >
+      Келесі команда →
+     </button>
+
+    </div>
+   `:""}
+  `;
+ }
+);
+
+/* =====================================
+   ҮЙ ТАПСЫРМАСЫ
+===================================== */
+
+const homeQuestions=[
+ [
+  "Жану өнімдері бойынша формула анықтау алгоритмін жаз.",
+  "CO₂ және H₂O мөлшері → C және H мөлшері → атомдық қатынас → қарапайым формула → молярлық масса → молекулалық формула."
+ ],
+ [
+  "Қарапайым және молекулалық формуланың айырмасын түсіндір.",
+  "Қарапайым формула ең кіші бүтін қатынасты, молекулалық формула нақты атом санын көрсетеді."
+ ]
+];
+
+const homeMath=[
+ [
+  "8,8 г CO₂ және 3,6 г H₂O түзілді. Қарапайым формуланы анықта. Заттың M=56 г/моль болса, молекулалық формуласы қандай?",
+  "n(C)=0,2; n(H)=0,4; CH₂. k=56/14=4; C₄H₈."
+ ],
+ [
+  "17,6 г CO₂ және 9 г H₂O түзілді. Қарапайым формуланы анықта. Заттың M=58 г/моль болса, молекулалық формуласы қандай?",
+  "n(C)=0,4; n(H)=1,0; C₂H₅. k=58/29=2; C₄H₁₀."
+ ]
+];
+
+dynamic(
+ "Үй тапсырмасы",
+ "Үй жұмысы",
+ ()=>`
+  <div class="eyebrow">
+   §69 · ҮЙ ТАПСЫРМАСЫ
+  </div>
+
+  <h2>«Белгісіз заттың формуласы»</h2>
+
+  <div class="grid2">
+
+   <div class="card">
+    <h3>1. Теориялық тапсырма</h3>
+
+    ${homeQuestions.map((q,i)=>`
+     <div class="task">
+      <p>${i+1}. ${q[0]}</p>
+     </div>
+    `).join("")}
+
+   </div>
+
+   <div class="card">
+    <h3>2. Екі химиялық есеп</h3>
+
+    ${homeMath.map((q,i)=>`
+     <div class="task">
+      <p>${i+1}. ${q[0]}</p>
+     </div>
+    `).join("")}
+
+   </div>
+
+  </div>
+
+  <div class="note">
+   <p>
+    Әр есепте:
+    берілгені, формуласы,
+    шығару жолы және қорытынды жауабы
+    толық көрсетілсін.
+   </p>
+  </div>
+
+  <div class="actions">
+
+   <button
+    class="btn gold-btn"
+    data-action="home"
+   >
+    ${state.homework
+     ?"Жауаптарды жасыру"
+     :"Жауаптарды көру"}
+   </button>
+
+  </div>
+
+  ${state.homework?`
+   <div class="answer">
+
+    <h3>Теориялық жауаптар</h3>
+
+    ${homeQuestions.map((q,i)=>`
+     <p>
+      ${i+1}. ${q[1]}
+     </p>
+    `).join("")}
+
+    <h3>Есептердің шешуі</h3>
+
+    ${homeMath.map((q,i)=>`
+     <p>
+      ${i+1}. ${q[1]}
+     </p>
+    `).join("")}
+
+   </div>
+  `:""}
+ `
+);
+
+/* ҚОРЫТЫНДЫ */
+
+add(
+ "Қорытынды",
+ "Сабақ аяқталды",
+ `
+  <div style="text-align:center">
+
+   <div class="eyebrow">
+    §69 · ХИМИЯ
+   </div>
+
+   <h1>Сабақ аяқталды!</h1>
+
+   <h2>
+    Жану өнімдері бойынша
+    молекулалық формуланы анықтау
+   </h2>
+
+   <div class="grid3">
+
+    <div class="card">
+     <h3>Түсіндік</h3>
+     <p>15 теориялық түсіндірме</p>
+    </div>
+
+    <div class="card">
+     <h3>Орындадық</h3>
+     <p>25 жеке тапсырма</p>
+    </div>
+
+    <div class="card">
+     <h3>Жарыстық</h3>
+     <p>3 команда · 15 сұрақ</p>
+    </div>
+
+   </div>
+
+   <div class="formula">
+    BY DARKHAN
+   </div>
+
+  </div>
+ `
+);
+
+/* =====================================
+   БАРЛЫҚ БАТЫРМАЛАР
+===================================== */
+
+$("slide").addEventListener("click",event=>{
+ const button=event.target.closest("[data-action]");
+
+ if(!button)return;
+
+ const action=button.dataset.action;
+ const index=Number(button.dataset.index);
+
+ switch(action){
+
+  case "start-timer":
+   startTimer();
+   break;
+
+  case "reset-timer":
+   resetTimer();
+   break;
+
+  case "level":
+   state.levels[index]=!state.levels[index];
+   break;
+
+  case "oral-answer":
+   state.oralAnswer=!state.oralAnswer;
+   break;
+
+  case "oral-next":
+   state.oral=Math.min(
+    oral.length,
+    state.oral+1
+   );
+   state.oralAnswer=false;
+   break;
+
+  case "oral-reset":
+   state.oral=0;
+   state.oralAnswer=false;
+   break;
+
+  case "go-game":
+   go("Командалық ойын");
+   break;
+
+  case "game-answer":
+   if(state.chosen!==null)return;
+
+   state.chosen=index;
+
+   if(index===quiz[state.game][2]){
+    state.scores[state.game%3]+=10;
+   }
+   break;
+
+  case "game-next":
+   if(state.chosen===null)return;
+
+   state.game++;
+   state.chosen=null;
+   break;
+
+  case "game-reset":
+   state.game=0;
+   state.chosen=null;
+   state.scores=[0,0,0];
+   break;
+
+  case "home":
+   state.homework=!state.homework;
+   break;
+ }
+
+ save();
+ draw();
+});
+
+/* =====================================
+   80 МИНУТ ЖӘНЕ АЛМАТЫ САҒАТЫ
+===================================== */
+
+const TIMER_KEY=STORE+"_timer";
+
+let deadline=null;
+
+try{
+ const saved=localStorage.getItem(TIMER_KEY);
+
+ if(
+  saved!==null &&
+  Number.isFinite(Number(saved))
+ ){
+  deadline=Number(saved);
+ }
+}catch(error){}
+
+function tick(){
+ const seconds=deadline===null
+  ?4800
+  :Math.max(
+   0,
+   Math.ceil((deadline-Date.now())/1000)
+  );
+
+ $("timer").textContent=
+  String(Math.floor(seconds/60)).padStart(2,"0")+
+  ":"+
+  String(seconds%60).padStart(2,"0");
+
+ $("clock").textContent=
+  new Intl.DateTimeFormat("en-GB",{
+   timeZone:"Asia/Almaty",
+   hour:"2-digit",
+   minute:"2-digit",
+   second:"2-digit",
+   hourCycle:"h23"
+  }).format(new Date());
+}
+
+function startTimer(){
+ if(deadline!==null){
+  alert("Таймер бұрын іске қосылған.");
+  return;
+ }
+
+ deadline=Date.now()+4800000;
+
+ try{
+  localStorage.setItem(
+   TIMER_KEY,
+   String(deadline)
+  );
+ }catch(error){}
+
+ tick();
+}
+
+function resetTimer(){
+ if(!confirm(
+  "80 минуттық таймерді жаңартамыз ба?"
+ )){
+  return;
+ }
+
+ deadline=null;
+
+ try{
+  localStorage.removeItem(TIMER_KEY);
+ }catch(error){}
+
+ tick();
+}
+
+setInterval(tick,1000);
+
+/* =====================================
+   КАЛЬКУЛЯТОР
+===================================== */
+
+const calculator=$("calculator");
+
+$("showCalc").onclick=()=>{
+ calculator.hidden=!calculator.hidden;
+ fitCalculator();
+};
+
+$("closeCalc").onclick=()=>{
+ calculator.hidden=true;
+};
+
+const calcButtons=[
+ "7","8","9","/",
+ "4","5","6","*",
+ "1","2","3","-",
+ "C","0",".","+",
+ "(",")","⌫","="
+];
+
+$("calcKeys").innerHTML=calcButtons.map(k=>`
+ <button
+  type="button"
+  data-key="${k}"
+ >
+  ${k==="/"
+   ?"÷"
+   :k==="*"
+    ?"×"
+    :k}
+ </button>
+`).join("");
+
+let calcText="";
+
+/* АРИФМЕТИКАЛЫҚ ЕСЕПТЕУ */
+
+function calculate(input){
+ let index=0;
+
+ function factor(){
+
+  if(input[index]==="+"){
+   index++;
+   return factor();
+  }
+
+  if(input[index]==="-"){
+   index++;
+   return -factor();
+  }
+
+  if(input[index]==="("){
+   index++;
+
+   const value=sum();
+
+   if(input[index]!==")"){
+    throw Error("Жақша қате");
+   }
+
+   index++;
+   return value;
+  }
+
+  const match=/^(?:\d+\.?\d*|\.\d+)/
+   .exec(input.slice(index));
+
+  if(!match){
+   throw Error("Сан қате");
+  }
+
+  index+=match[0].length;
+
+  return Number(match[0]);
+ }
+
+ function product(){
+  let value=factor();
+
+  while(
+   input[index]==="*" ||
+   input[index]==="/"
+  ){
+   const op=input[index++];
+   const next=factor();
+
+   value=op==="*"
+    ?value*next
+    :value/next;
+  }
+
+  return value;
+ }
+
+ function sum(){
+  let value=product();
+
+  while(
+   input[index]==="+" ||
+   input[index]==="-"
+  ){
+   const op=input[index++];
+   const next=product();
+
+   value=op==="+"
+    ?value+next
+    :value-next;
+  }
+
+  return value;
+ }
+
+ if(!/^[0-9+*/().-]+$/.test(input)){
+  throw Error("Таңба қате");
+ }
+
+ const result=sum();
+
+ if(
+  index!==input.length ||
+  !Number.isFinite(result)
+ ){
+  throw Error("Өрнек қате");
+ }
+
+ return Number(result.toPrecision(12));
+}
+
+/* БАТЫРМАЛАР */
+
+$("calcKeys").addEventListener("click",event=>{
+ const button=event.target.closest("[data-key]");
+
+ if(!button)return;
+
+ const k=button.dataset.key;
+
+ if(k==="C"){
+  calcText="";
+ }else if(k==="⌫"){
+  calcText=calcText.slice(0,-1);
+ }else if(k==="="){
+  try{
+   calcText=String(calculate(calcText));
+  }catch(error){
+   calcText="Қате";
+  }
+ }else{
+  if(calcText==="Қате"){
+   calcText="";
+  }
+
+  calcText+=k;
+ }
+
+ $("calcDisplay").value=calcText;
+});
+
+/* =====================================
+   КЕЗ КЕЛГЕН ЖЕРІНЕН ЖЫЛЖЫТУ
+===================================== */
+
+function clamp(value,min,max){
+ return Math.max(
+  min,
+  Math.min(max,value)
+ );
+}
+
+function fitCalculator(){
+ if(calculator.hidden)return;
+
+ const r=calculator.getBoundingClientRect();
+
+ calculator.style.left=clamp(
+  r.left,
+  0,
+  Math.max(0,innerWidth-r.width)
+ )+"px";
+
+ calculator.style.top=clamp(
+  r.top,
+  0,
+  Math.max(0,innerHeight-r.height)
+ )+"px";
+}
+
+let drag=null;
+let suppressClick=false;
+
+calculator.addEventListener("pointerdown",event=>{
+ if(
+  drag ||
+  (
+   event.pointerType==="mouse" &&
+   event.button!==0
+  )
+ ){
+  return;
+ }
+
+ const r=calculator.getBoundingClientRect();
+
+ drag={
+  id:event.pointerId,
+  startX:event.clientX,
+  startY:event.clientY,
+  left:r.left,
+  top:r.top,
+  moved:false
+ };
+});
+
+/* ЖЫЛЖЫТУ */
+
+window.addEventListener("pointermove",event=>{
+ if(
+  !drag ||
+  event.pointerId!==drag.id
+ ){
+  return;
+ }
+
+ const dx=event.clientX-drag.startX;
+ const dy=event.clientY-drag.startY;
+
+ if(
+  !drag.moved &&
+  Math.hypot(dx,dy)>7
+ ){
+  drag.moved=true;
+  calculator.classList.add("dragging");
+ }
+
+ if(!drag.moved)return;
+
+ if(event.cancelable){
+  event.preventDefault();
+ }
+
+ const maxX=Math.max(
+  0,
+  innerWidth-calculator.offsetWidth
+ );
+
+ const maxY=Math.max(
+  0,
+  innerHeight-calculator.offsetHeight
+ );
+
+ calculator.style.left=clamp(
+  drag.left+dx,
+  0,
+  maxX
+ )+"px";
+
+ calculator.style.top=clamp(
+  drag.top+dy,
+  0,
+  maxY
+ )+"px";
+
+},{passive:false});
+
+/* ҰСТАУ АЯҚТАЛҒАНДА */
+
+window.addEventListener("pointerup",event=>{
+ if(
+  !drag ||
+  event.pointerId!==drag.id
+ ){
+  return;
+ }
+
+ if(drag.moved){
+  suppressClick=true;
+
+  setTimeout(()=>{
+   suppressClick=false;
+  },250);
+ }
+
+ drag=null;
+
+ calculator.classList.remove(
+  "dragging"
+ );
+});
+
+window.addEventListener("pointercancel",event=>{
+ if(drag && event.pointerId===drag.id){
+  drag=null;
+
+  calculator.classList.remove(
+   "dragging"
+  );
+ }
+});
+
+/* ЖЫЛЖЫТҚАНДА БАТЫРМА БАСЫЛМАЙДЫ */
+
+calculator.addEventListener("click",event=>{
+ if(!suppressClick)return;
+
+ event.preventDefault();
+ event.stopImmediatePropagation();
+
+ suppressClick=false;
+},true);
+
+window.addEventListener(
+ "resize",
+ fitCalculator
+);
+
+/* =====================================
+   МЕНДЕЛЕЕВ КЕСТЕСІ
+===================================== */
+
+const elementData=`
+H|Сутек He|Гелий Li|Литий Be|Бериллий B|Бор C|Көміртек N|Азот O|Оттек F|Фтор Ne|Неон
+Na|Натрий Mg|Магний Al|Алюминий Si|Кремний P|Фосфор S|Күкірт Cl|Хлор Ar|Аргон
+K|Калий Ca|Кальций Sc|Скандий Ti|Титан V|Ванадий Cr|Хром Mn|Марганец Fe|Темір Co|Кобальт Ni|Никель Cu|Мыс Zn|Мырыш
+Ga|Галлий Ge|Германий As|Мышьяк Se|Селен Br|Бром Kr|Криптон
+Rb|Рубидий Sr|Стронций Y|Иттрий Zr|Цирконий Nb|Ниобий Mo|Молибден Tc|Технеций Ru|Рутений Rh|Родий Pd|Палладий Ag|Күміс Cd|Кадмий
+In|Индий Sn|Қалайы Sb|Сурьма Te|Теллур I|Йод Xe|Ксенон
+Cs|Цезий Ba|Барий La|Лантан Ce|Церий Pr|Празеодим Nd|Неодим Pm|Прометий Sm|Самарий Eu|Еуропий Gd|Гадолиний Tb|Тербий Dy|Диспрозий Ho|Гольмий Er|Эрбий Tm|Тулий Yb|Иттербий Lu|Лютеций
+Hf|Гафний Ta|Тантал W|Вольфрам Re|Рений Os|Осмий Ir|Иридий Pt|Платина Au|Алтын Hg|Сынап Tl|Таллий Pb|Қорғасын Bi|Висмут Po|Полоний At|Астат Rn|Радон
+Fr|Франций Ra|Радий Ac|Актиний Th|Торий Pa|Протактиний U|Уран Np|Нептуний Pu|Плутоний Am|Америций Cm|Кюрий Bk|Берклий Cf|Калифорний Es|Эйнштейний Fm|Фермий Md|Менделевий No|Нобелий Lr|Лоуренсий
+Rf|Резерфордий Db|Дубний Sg|Сиборгий Bh|Борий Hs|Хассий Mt|Мейтнерий Ds|Дармштадтий Rg|Рентгений Cn|Коперниций Nh|Нихоний Fl|Флеровий Mc|Московий Lv|Ливерморий Ts|Теннессин Og|Оганесон
+`;
+
+const elements=elementData
+ .trim()
+ .split(/\s+/)
+ .map((text,i)=>{
+  const [symbol,name]=text.split("|");
+
+  return{
+   z:i+1,
+   symbol,
+   name
+  };
+ });
+
+const groupRows=[
+ [1,18],
+ [1,2,13,14,15,16,17,18],
+ [1,2,13,14,15,16,17,18],
+ Array.from({length:18},(_,i)=>i+1),
+ Array.from({length:18},(_,i)=>i+1)
+];
+
+function position(z){
+ if(z<=54){
+  let index=z-1;
+
+  for(let p=0;p<5;p++){
+   if(index<groupRows[p].length){
+    return{
+     row:p+1,
+     col:groupRows[p][index]
+    };
+   }
+
+   index-=groupRows[p].length;
+  }
+ }
+
+ if(z<=56)return{row:6,col:z-54};
+ if(z<=71)return{row:9,col:z-53};
+ if(z<=86)return{row:6,col:z-68};
+ if(z<=88)return{row:7,col:z-86};
+ if(z<=103)return{row:10,col:z-85};
+
+ return{row:7,col:z-100};
+}
+
+function buildTable(){
+ let html="";
+
+ for(let g=1;g<=18;g++){
+  html+=`
+   <span
+    class="period-label"
+    style="
+     grid-row:1;
+     grid-column:${g+1}
+    "
+   >
+    ${g}
+   </span>
+  `;
+ }
+
+ for(let p=1;p<=7;p++){
+  html+=`
+   <span
+    class="period-label"
+    style="
+     grid-row:${p+1};
+     grid-column:1
+    "
+   >
+    ${p}
+   </span>
+  `;
+ }
+
+ html+=`
+  <span class="period-label"
+   style="grid-row:10;grid-column:1">
+   La–Lu
+  </span>
+
+  <span class="period-label"
+   style="grid-row:11;grid-column:1">
+   Ac–Lr
+  </span>
+
+  <span class="period-label"
+   style="grid-row:7;grid-column:4">
+   57–71
+  </span>
+
+  <span class="period-label"
+   style="grid-row:8;grid-column:4">
+   89–103
+  </span>
+ `;
+
+ for(const element of elements){
+  const p=position(element.z);
+
+  const cls=
+   (
+    element.z>=57 &&
+    element.z<=71
+   ) ||
+   (
+    element.z>=89 &&
+    element.z<=103
+   )
+    ?"fblock"
+    :["H","C","O","N"].includes(element.symbol)
+     ?"special"
+     :"";
+
+  html+=`
+   <button
+    class="element ${cls}"
+    data-z="${element.z}"
+    style="
+     grid-row:${p.row+1};
+     grid-column:${p.col+1}
+    "
+   >
+    <i>${element.z}</i>
+    <b>${element.symbol}</b>
+    <small>${element.name}</small>
+   </button>
+  `;
+ }
+
+ $("ptable").innerHTML=html;
+}
+
+$("ptable").addEventListener("click",event=>{
+ const button=event.target.closest("[data-z]");
+
+ if(!button)return;
+
+ const z=Number(button.dataset.z);
+ const element=elements[z-1];
+ const p=position(z);
+
+ const period=p.row===9
+  ?6
+  :p.row===10
+   ?7
+   :p.row;
+
+ const group=p.row>7
+  ?"f-блок"
+  :p.col+"-топ";
+
+ $("elementInfo").textContent=
+  `${z}. ${element.name} `+
+  `(${element.symbol}) · `+
+  `${period}-период · ${group}`;
+});
+
+$("showTable").onclick=()=>{
+ $("tableOverlay").hidden=false;
+};
+
+$("closeTable").onclick=()=>{
+ $("tableOverlay").hidden=true;
+};
+
+$("tableOverlay").onclick=event=>{
+ if(event.target===$("tableOverlay")){
+  $("tableOverlay").hidden=true;
+ }
+};
+
+/* =====================================
+   ПЕРНЕТАҚТА
+===================================== */
+
+document.addEventListener("keydown",event=>{
+ if(event.key==="Escape"){
+  $("tableOverlay").hidden=true;
+  calculator.hidden=true;
+  return;
+ }
+
+ if(
+  !$("tableOverlay").hidden ||
+  event.target.closest("input,textarea")
+ ){
+  return;
+ }
+
+ if(
+  event.key==="ArrowRight" &&
+  page<slides.length-1
+ ){
+  page++;
+  draw();
+ }
+
+ if(
+  event.key==="ArrowLeft" &&
+  page>0
+ ){
+  page--;
+  draw();
+ }
+});
+
+/* =====================================
+   ТЕКСЕРУЛЕР
+===================================== */
+
+console.assert(
+ theory.length===15,
+ "15 түсіндірме болуы керек"
+);
+
+console.assert(
+ conspects.length===3,
+ "3 конспект болуы керек"
+);
+
+console.assert(
+ levels.length===4,
+ "4 деңгей болуы керек"
+);
+
+console.assert(
+ oral.length===25,
+ "25 жеке тапсырма болуы керек"
+);
+
+console.assert(
+ quiz.length===15,
+ "15 командалық сұрақ болуы керек"
+);
+
+console.assert(
+ elements.length===118,
+ "118 элемент болуы керек"
+);
+
+console.assert(
+ calculate("2+3*4")===14,
+ "Калькулятор тексеруі 1"
+);
+
+console.assert(
+ calculate("(2+3)*4")===20,
+ "Калькулятор тексеруі 2"
+);
+
+/* =====================================
+   БАСТАУ
+===================================== */
+
+try{
+ buildTable();
+ tick();
+ draw();
+}catch(error){
+ console.error(error);
+
+ const message=document.createElement("div");
+
+ message.className="note";
+
+ message.textContent=
+  "Сайт қатесі: "+error.message;
+
+ $("slide").appendChild(message);
+}
+
+</script>
+</body>
+</html>

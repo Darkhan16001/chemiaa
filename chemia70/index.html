@@ -1,0 +1,1948 @@
+
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>§70 — Алкендер | BY DARKHAN</title>
+
+<style>
+:root{
+ --bg:#071725;
+ --panel:#173e56;
+ --blue:#8de1ff;
+ --green:#93f2c4;
+ --gold:#ffdc93;
+ --white:#f6fbff;
+ --muted:#c9dce8;
+}
+*{box-sizing:border-box}
+html,body{
+ margin:0;
+ width:100%;
+ height:100%;
+ font-family:Arial,"Segoe UI",sans-serif;
+ background:var(--bg);
+ color:var(--white);
+}
+button,input{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.45;cursor:not-allowed}
+[hidden]{display:none!important}
+
+.app{
+ height:100vh;
+ height:100dvh;
+ display:flex;
+ flex-direction:column;
+ background:
+ radial-gradient(circle at 88% 9%,#18799b77,transparent 44%),
+ radial-gradient(circle at 8% 95%,#14775c66,transparent 45%),
+ linear-gradient(125deg,#071725,#10384e,#081b2b);
+}
+header,footer{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:12px;
+ padding:12px 21px;
+ background:#071c2d;
+ flex-shrink:0;
+}
+header{border-bottom:1px solid #6398b7}
+footer{border-top:1px solid #6398b7}
+.brand{
+ color:var(--blue);
+ font-size:27px;
+ font-weight:900;
+}
+.brand small{
+ display:block;
+ color:var(--gold);
+ font-size:13px;
+ margin-top:4px;
+}
+.status{
+ display:flex;
+ align-items:center;
+ gap:14px;
+ font-size:19px;
+ font-weight:900;
+}
+#timer{
+ color:var(--gold);
+ font-size:29px;
+ font-variant-numeric:tabular-nums;
+}
+#counter{color:var(--blue)}
+#clock{
+ color:var(--blue);
+ font-size:24px;
+ font-weight:900;
+ font-variant-numeric:tabular-nums;
+}
+.signature{
+ color:var(--gold);
+ font-size:25px;
+ font-weight:900;
+}
+main{
+ flex:1;
+ min-height:0;
+ overflow-y:auto;
+ padding:24px 35px 45px;
+}
+.slide{
+ max-width:1480px;
+ min-height:100%;
+ margin:auto;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+}
+h1{
+ font-size:clamp(42px,4.5vw,74px);
+ margin:10px 0 19px;
+ line-height:1.14;
+}
+h2{
+ font-size:clamp(31px,3vw,49px);
+ margin:0 0 18px;
+ line-height:1.2;
+}
+h3{
+ color:var(--blue);
+ font-size:clamp(24px,2vw,34px);
+ margin:0 0 12px;
+}
+p,li{
+ font-size:clamp(21px,1.7vw,29px);
+ line-height:1.49;
+}
+li{margin:8px 0}
+.eyebrow{
+ color:var(--blue);
+ font-size:20px;
+ font-weight:900;
+ margin-bottom:13px;
+}
+.grid2,.grid3{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:18px;
+ align-items:center;
+}
+.grid3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.card{
+ min-width:0;
+ padding:23px;
+ background:linear-gradient(145deg,#1b4961,#102e45);
+ border:1px solid #78b3cf;
+ border-radius:18px;
+}
+.card p{margin:8px 0}
+.formula{
+ padding:18px;
+ margin:15px 0;
+ color:var(--green);
+ background:#104754;
+ border:1px solid #79cad2;
+ border-radius:14px;
+ text-align:center;
+ font-size:clamp(27px,2.7vw,44px);
+ font-weight:900;
+ overflow-wrap:anywhere;
+}
+.note{
+ margin-top:16px;
+ padding:17px 20px;
+ background:#1c445c;
+ border-left:6px solid var(--gold);
+ border-radius:12px;
+}
+.note p{margin:6px 0}
+.step{
+ padding:11px 14px;
+ margin:8px 0;
+ background:#265169;
+ border-radius:9px;
+ font-size:clamp(20px,1.55vw,26px);
+}
+.gold{color:var(--gold)}
+.green{color:var(--green)}
+.blue{color:var(--blue)}
+
+.molecule{
+ padding:18px;
+ background:#10394e;
+ border:1px solid #7ab7d3;
+ border-radius:18px;
+ text-align:center;
+}
+.molecule svg{
+ display:block;
+ width:100%;
+ max-width:500px;
+ height:200px;
+ margin:auto;
+}
+.molecule strong{
+ display:block;
+ font-size:31px;
+ color:var(--green);
+}
+.molecule small{
+ font-size:19px;
+ color:var(--muted);
+}
+.btn{
+ padding:12px 18px;
+ background:#2a607c;
+ border:1px solid #83b8d0;
+ border-radius:10px;
+ color:white;
+ font-size:18px;
+ font-weight:900;
+}
+.btn.primary{background:#098eae}
+.btn.good{background:#147c5b}
+.btn.gold-btn{background:#906d32}
+.actions{
+ display:flex;
+ flex-wrap:wrap;
+ gap:10px;
+ margin-top:18px;
+}
+.task{
+ padding:14px 18px;
+ margin:11px 0;
+ background:#1b435b;
+ border:1px solid #6ba1bc;
+ border-radius:11px;
+}
+.task p{margin:5px 0}
+.answer{
+ padding:18px;
+ margin-top:16px;
+ background:#14533e;
+ border:1px solid #86edbc;
+ border-radius:13px;
+}
+.answer p{margin:8px 0}
+.big-question{
+ font-size:clamp(30px,2.75vw,46px);
+ font-weight:900;
+ line-height:1.45;
+}
+.number-tag{
+ display:inline-block;
+ padding:12px 19px;
+ background:#6b542e;
+ color:var(--gold);
+ border:2px solid var(--gold);
+ border-radius:12px;
+ font-size:30px;
+ font-weight:900;
+}
+.progress{
+ height:13px;
+ margin:16px 0;
+ background:#2c5067;
+ border-radius:20px;
+ overflow:hidden;
+}
+.progress span{
+ display:block;
+ height:100%;
+ background:linear-gradient(90deg,#149dc8,#95efbd);
+}
+.team{
+ padding:17px;
+ background:#173e56;
+ border:1px solid #80abc8;
+ border-radius:15px;
+ text-align:center;
+}
+.team.active{outline:4px solid var(--gold)}
+.score{
+ color:var(--gold);
+ font-size:55px;
+ font-weight:900;
+}
+.options{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:12px;
+ margin-top:16px;
+}
+.option{
+ padding:18px;
+ color:white;
+ background:#285c78;
+ border:2px solid #84b6d0;
+ border-radius:11px;
+ text-align:left;
+ font-size:clamp(20px,1.7vw,28px);
+ font-weight:900;
+}
+.option.correct{background:#177b5a}
+.option.wrong{background:#954455}
+.tools{
+ position:fixed;
+ left:10px;
+ bottom:103px;
+ z-index:30;
+ display:flex;
+ flex-direction:column;
+ align-items:flex-start;
+ gap:7px;
+}
+.tool{
+ padding:10px 12px;
+ background:#0b809f;
+ border:1px solid #89dcf2;
+ border-radius:8px;
+ color:white;
+ font-size:13px;
+ font-weight:900;
+}
+
+/* КАЛЬКУЛЯТОР */
+
+.calculator{
+ position:fixed;
+ z-index:110;
+ left:15px;
+ top:105px;
+ width:226px;
+ max-width:calc(100vw - 12px);
+ padding:9px;
+ background:#10334b;
+ border:2px solid #8cddf5;
+ border-radius:14px;
+ box-shadow:0 18px 40px #000a;
+ touch-action:none;
+ user-select:none;
+ -webkit-user-select:none;
+ cursor:grab;
+}
+.calculator.dragging{cursor:grabbing}
+.calculator *{touch-action:none}
+.calc-head{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ background:#28566c;
+ padding:7px;
+ border-radius:7px;
+ font-size:13px;
+}
+.calc-head button{
+ background:#ad4859;
+ color:white;
+ border:0;
+ padding:5px 8px;
+ border-radius:5px;
+}
+#calcDisplay{
+ display:block;
+ width:100%;
+ height:45px;
+ margin:8px 0;
+ background:#061b2c;
+ color:white;
+ border:1px solid #7fb1cb;
+ border-radius:7px;
+ font-size:21px;
+ text-align:right;
+ pointer-events:none;
+}
+.calc-keys{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:5px;
+}
+.calc-keys button{
+ height:40px;
+ min-width:0;
+ background:#2d627f;
+ color:white;
+ border:1px solid #80afca;
+ border-radius:7px;
+ font-size:16px;
+}
+.calc-hint{
+ padding-top:7px;
+ text-align:center;
+ color:var(--muted);
+ font-size:11px;
+}
+
+/* ПЕРИОДТЫҚ КЕСТЕ */
+
+.overlay{
+ position:fixed;
+ inset:0;
+ z-index:200;
+ display:grid;
+ place-items:center;
+ background:#000d;
+ padding:10px;
+}
+.modal{
+ width:min(1550px,99vw);
+ max-height:97vh;
+ overflow:auto;
+ background:#0e2b40;
+ border:1px solid #79b0c8;
+ border-radius:15px;
+ padding:16px;
+}
+.modal-head{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:12px;
+}
+.scroll-table{
+ overflow:auto;
+ padding:12px;
+ background:#071d30;
+ border-radius:10px;
+}
+.periodic-grid{
+ display:grid;
+ grid-template-columns:65px repeat(18,90px);
+ grid-template-rows:38px repeat(10,90px);
+ gap:4px;
+ width:max-content;
+}
+.period-label{
+ display:grid;
+ place-items:center;
+ text-align:center;
+ background:#1c465e;
+ color:var(--gold);
+ border:1px solid #6799b7;
+ border-radius:6px;
+ font-size:12px;
+ font-weight:900;
+}
+.element{
+ position:relative;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+ padding:13px 3px 3px;
+ gap:3px;
+ background:#255f7a;
+ color:white;
+ border:1px solid #88bad2;
+ border-radius:7px;
+}
+.element i{
+ position:absolute;
+ top:3px;
+ left:5px;
+ font-size:11px;
+ font-style:normal;
+}
+.element b{font-size:27px}
+.element small{font-size:11px}
+.element.special{background:#945271}
+.element.fblock{background:#347c83}
+#elementInfo{
+ background:#1a475e;
+ padding:15px;
+ margin-top:12px;
+ border-radius:10px;
+ font-size:20px;
+}
+
+@media(max-width:850px){
+ .grid2,.grid3{grid-template-columns:1fr}
+ .options{grid-template-columns:1fr}
+ main{padding:14px}
+ header,footer{padding:8px}
+ .brand{font-size:18px}
+ .brand small,#sectionName{display:none}
+ .status{gap:7px;font-size:13px}
+ #timer{font-size:20px}
+ .signature{font-size:15px}
+ #clock{font-size:17px}
+ .btn{font-size:14px;padding:9px}
+ .tools{bottom:79px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+<header>
+ <div class="brand">
+  ⚗ CHEMISTRY PRO
+  <small>§70 · АЛКЕНДЕР</small>
+ </div>
+ <div class="status">
+  <span id="sectionName">Кіріспе</span>
+  <span id="timer">80:00</span>
+  <span id="counter">1 / 1</span>
+ </div>
+</header>
+
+<main id="main">
+ <section id="slide" class="slide">
+  <div class="eyebrow">
+   §70 · ОРГАНИКАЛЫҚ ХИМИЯ
+  </div>
+  <h1>Алкендер</h1>
+  <h2>Құрылысы және номенклатурасы</h2>
+  <p>
+   Алкендер — құрамында көміртек
+   атомдарының арасында C=C қос
+   байланысы бар қанықпаған көмірсутектер.
+  </p>
+  <div class="formula">
+   CₙH₂ₙ · C=C
+  </div>
+ </section>
+</main>
+
+<footer>
+ <div class="actions" style="margin:0">
+  <button id="prev" class="btn">← Артқа</button>
+  <button id="next" class="btn primary">Келесі →</button>
+ </div>
+ <strong class="signature">BY DARKHAN</strong>
+ <span id="clock">00:00:00</span>
+</footer>
+</div>
+
+<div class="tools">
+ <button class="tool" id="showCalc">
+  🧮 Калькулятор
+ </button>
+ <button class="tool" id="showTable">
+  ⚛ Менделеев кестесі
+ </button>
+</div>
+
+<div id="calculator" class="calculator" hidden>
+ <div class="calc-head">
+  <strong>🧮 Калькулятор</strong>
+  <button id="closeCalc" type="button">✕</button>
+ </div>
+ <input id="calcDisplay" readonly>
+ <div id="calcKeys" class="calc-keys"></div>
+ <div class="calc-hint">
+  Кез келген жерінен ұстап жылжыт
+ </div>
+</div>
+
+<div id="tableOverlay" class="overlay" hidden>
+ <div class="modal">
+  <div class="modal-head">
+   <h2>Менделеев кестесі</h2>
+   <button id="closeTable" class="btn">
+    Жабу ✕
+   </button>
+  </div>
+  <p style="font-size:17px">
+   118 элемент · 18 топ · 7 период
+  </p>
+  <div class="scroll-table">
+   <div id="ptable" class="periodic-grid"></div>
+  </div>
+  <div id="elementInfo">
+   Элементті таңда.
+  </div>
+ </div>
+</div>
+
+<script>
+"use strict";
+
+/* НЕГІЗГІ ФУНКЦИЯЛАР */
+
+const $=id=>document.getElementById(id);
+const slides=[];
+let page=0;
+
+function add(title,section,content){
+ slides.push({title,section,content});
+}
+
+function dynamic(title,section,renderer){
+ slides.push({title,section,renderer});
+}
+
+function draw(){
+ const s=slides[page];
+ if(!s)return;
+
+ $("slide").innerHTML=s.renderer
+  ?s.renderer()
+  :s.content;
+
+ $("sectionName").textContent=s.section;
+ $("counter").textContent=
+  `${page+1} / ${slides.length}`;
+
+ $("prev").disabled=page===0;
+ $("next").disabled=page===slides.length-1;
+ $("main").scrollTop=0;
+}
+
+function go(title){
+ const index=slides.findIndex(s=>s.title===title);
+
+ if(index>=0){
+  page=index;
+  draw();
+ }
+}
+
+$("prev").onclick=()=>{
+ if(page>0){
+  page--;
+  draw();
+ }
+};
+
+$("next").onclick=()=>{
+ if(page<slides.length-1){
+  page++;
+  draw();
+ }
+};
+
+/* ЖАДЫ */
+
+const STORE="darkhan_chem70_complete_v1";
+
+function fresh(){
+ return{
+  levels:{},
+  oral:0,
+  oralShow:false,
+  game:0,
+  choice:null,
+  scores:[0,0,0],
+  home:false
+ };
+}
+
+let state=fresh();
+
+try{
+ const old=JSON.parse(localStorage.getItem(STORE));
+
+ if(old&&Array.isArray(old.scores)&&old.scores.length===3){
+  state={...fresh(),...old};
+ }
+}catch(error){
+ console.warn(error);
+}
+
+function save(){
+ try{
+  localStorage.setItem(STORE,JSON.stringify(state));
+ }catch(error){
+  console.warn(error);
+ }
+}
+
+/* МОЛЕКУЛАЛЫҚ СЫЗБА */
+
+function molecule(formula,name,kind="double"){
+ const bond=kind==="single"
+  ?`<line x1="186" y1="108" x2="314" y2="108"
+       stroke="#93f2c4" stroke-width="6"/>`
+  :`<line x1="186" y1="99" x2="314" y2="99"
+       stroke="#93f2c4" stroke-width="6"/>
+     <line x1="186" y1="117" x2="314" y2="117"
+       stroke="#93f2c4" stroke-width="6"/>`;
+
+ return `
+  <div class="molecule">
+   <svg viewBox="0 0 500 210">
+    <rect x="68" y="57" width="118" height="105"
+     rx="18" fill="#225772"
+     stroke="#8de1ff" stroke-width="3"/>
+
+    <rect x="314" y="57" width="118" height="105"
+     rx="18" fill="#225772"
+     stroke="#8de1ff" stroke-width="3"/>
+
+    ${bond}
+
+    <text x="127" y="118"
+     font-size="36" fill="white"
+     font-weight="900" text-anchor="middle">C</text>
+
+    <text x="373" y="118"
+     font-size="36" fill="white"
+     font-weight="900" text-anchor="middle">C</text>
+
+    <text x="250" y="35"
+     font-size="22" fill="#ffdc93"
+     text-anchor="middle">
+     ${kind==="single"?"Дара байланыс":"Қос байланыс"}
+    </text>
+   </svg>
+
+   <strong>${formula}</strong>
+   <small>${name} · байланыстың сызбасы</small>
+  </div>
+ `;
+}
+
+/* КІРІСПЕ */
+
+dynamic("Кіріспе","Кіріспе · 5 минут",()=>`
+ <div class="grid2">
+  <div>
+   <div class="eyebrow">
+    §70 · ОРГАНИКАЛЫҚ ХИМИЯ
+   </div>
+
+   <h1>Алкендер</h1>
+
+   <h2 class="green">
+    Құрылысы және номенклатурасы
+   </h2>
+
+   <p>
+    Алкендердің қос байланысын,
+    жалпы формуласын, гомологтық
+    қатарын, жүйелік атауларын
+    және изомериясын зерттейміз.
+   </p>
+
+   <div class="formula">
+    CₙH₂ₙ · C=C
+   </div>
+
+   <div class="actions">
+    <button class="btn good"
+     data-action="start">
+     ▶ Сабақты бастау
+    </button>
+    <button class="btn gold-btn"
+     data-action="reset-time">
+     ↺ Таймерді жаңарту
+    </button>
+   </div>
+  </div>
+
+  ${molecule("CH₂=CH₂","Этен")}
+ </div>
+`);
+
+add("Мақсаты","Кіріспе",`
+ <h2>Сабақтың мақсаты</h2>
+
+ <div class="grid2">
+  <div class="card">
+   <h3>Білімдік мақсат</h3>
+   <p>
+    Алкендердің құрылысын,
+    C=C қос байланысын,
+    гомологтық қатарын және
+    номенклатурасын меңгеру.
+   </p>
+  </div>
+
+  <div class="card">
+   <h3>Практикалық мақсат</h3>
+   <p>
+    Молекулалық және құрылымдық
+    формулалар жазу, қос байланыс
+    орнын анықтау, алкендерді
+    жүйелік атаумен атау.
+   </p>
+  </div>
+ </div>
+
+ <div class="note">
+  <p>
+   80 минут: кіріспе — 5;
+   теория — 20; конспект — 8;
+   деңгейлік жұмыс — 10;
+   жеке жұмыс — 20;
+   командалық ойын — 12;
+   қорытынды — 5 минут.
+  </p>
+ </div>
+`);
+
+/* 15 ТЕОРИЯЛЫҚ ТҮСІНДІРМЕ */
+
+const theory=[
+ {
+  title:"Алкендер дегеніміз не?",
+  text:"Алкендер — ашық көміртек тізбегінде бір C=C қос байланысы болатын қанықпаған көмірсутектер. Қос байланыс көміртек атомдарының арасындағы химиялық байланыстың ерекше түрі болып саналады. Ең қарапайым алкен — этен.",
+  formula:"C=C",
+  example:"CH₂=CH₂ — этен.",
+  note:"Алкендердің негізгі белгісі — C=C қос байланысы."
+ },
+ {
+  title:"Алкендердің жалпы формуласы",
+  text:"Бір ғана қос байланысы бар ашық тізбекті алкендердің жалпы формуласы CₙH₂ₙ. Мұнда n кемінде 2 болады. Мысалы, n=3 болса C₃H₆, n=4 болса C₄H₈ формуласы шығады. Бұл формула көп сақиналы немесе бірнеше қос байланысы бар қосылыстарға қолданылмайды.",
+  formula:"CₙH₂ₙ · n ≥ 2",
+  example:"Этен C₂H₄, пропен C₃H₆.",
+  note:"Алкендердің жалпы формуласы тек бір қос байланысы бар ашық тізбекті қатарға қатысты."
+ },
+ {
+  title:"Қос байланыстың құрылысы",
+  text:"C=C қос байланысы бір σ-байланыстан және бір π-байланыстан тұрады. σ-байланыс көміртек атомдарын тікелей жалғайды, ал π-байланыс қос байланыстың ерекшелігін қамтамасыз етеді. Қос байланыс айналасында еркін айналу шектеледі.",
+  formula:"C=C → 1σ + 1π",
+  example:"Этендегі екі көміртек арасында бір σ және бір π байланыс бар.",
+  note:"Қос байланыс екі бірдей дара байланыс емес."
+ },
+ {
+  title:"Этеннің құрылысы",
+  text:"Этеннің молекулалық формуласы C₂H₄. Әр көміртек атомы екі сутекпен байланысып, екінші көміртекпен қос байланыс түзеді. Қос байланыс маңындағы көміртек атомдары шамамен жазық тригональ құрылым түзеді.",
+  formula:"CH₂=CH₂",
+  example:"Этеннің молярлық массасы 28 г/моль.",
+  note:"Этен — алкендердің ең қарапайым өкілі."
+ },
+ {
+  title:"Пропен",
+  text:"Пропен молекуласында үш көміртек атомы бар. Оның формуласы C₃H₆, ықшам құрылымдық формуласы CH₂=CH–CH₃. Қос байланыс бірінші және екінші көміртек атомдарының арасында орналасады.",
+  formula:"CH₂=CH–CH₃",
+  example:"Пропеннің молярлық массасы 42 г/моль.",
+  note:"Пропенде үш көміртек және бір қос байланыс бар."
+ },
+ {
+  title:"Бутендер",
+  text:"Бутендердің молекулалық формуласы C₄H₈. Ашық тізбекте қос байланыс бірінші көміртектен немесе екінші көміртектен басталуы мүмкін. Сондықтан бут-1-ен және бут-2-ен деген атаулар қолданылады.",
+  formula:"CH₂=CH–CH₂–CH₃",
+  example:"Бут-1-ен және бут-2-ен — қос байланыс орнының изомерлері.",
+  note:"Алкен атауында қос байланыстың орны маңызды."
+ },
+ {
+  title:"Алкендердің гомологтық қатары",
+  text:"Алкендер гомологтық қатар түзеді. Көршілес гомологтар бір CH₂ тобына ерекшеленеді. Этен C₂H₄, пропен C₃H₆, бутен C₄H₈ және пентен C₅H₁₀ — осы қатардың өкілдері.",
+  formula:"CH₂ · ΔM=14 г/моль",
+  example:"Этеннен пропенге өткенде бір CH₂ тобы қосылады.",
+  note:"Көршілес гомологтардың молярлық массасы 14 г/мольге ерекшеленеді."
+ },
+ {
+  title:"Алкендерді атаудың бірінші ережесі",
+  text:"Алкенді атау үшін алдымен C=C қос байланысы бар ең ұзын көміртек тізбегін табамыз. Негізгі тізбектің көміртек саны сәйкес атауды анықтайды. Алкендер атауы көбіне -ен жұрнағымен аяқталады.",
+  formula:"Эт-ен · Проп-ен · Бут-ен",
+  example:"Үш көміртек пен бір қос байланыс болса — пропен.",
+  note:"Негізгі тізбек міндетті түрде қос байланысты қамтуы керек."
+ },
+ {
+  title:"Алкендерді нөмірлеу",
+  text:"Негізгі тізбекті C=C қос байланысына жақын шеттен бастап нөмірлейміз. Қос байланыстың орны оған қатысатын көміртек атомдарының кіші нөмірімен белгіленеді. Бұл ереже бутен сияқты бірнеше орналасу изомері болуы мүмкін қосылыстарда өте маңызды.",
+  formula:"Бут-1-ен · Бут-2-ен",
+  example:"CH₃–CH=CH–CH₃ — бут-2-ен.",
+  note:"Нөмірлеуде қос байланыс орны ең кіші болуы тиіс."
+ },
+ {
+  title:"Тармақталған алкендер",
+  text:"Кейбір алкендерде негізгі тізбекте бүйір тармақтар болады. Мұндай қосылыстардың атауы негізгі тізбектегі көміртектерді нөмірлеу, тармақты көрсету және қос байланыстың орнын белгілеу арқылы құрастырылады.",
+  formula:"2-метилпропен",
+  example:"CH₂=C(CH₃)–CH₃ — 2-метилпропен.",
+  note:"Тармақтың орны да нөмірмен көрсетіледі."
+ },
+ {
+  title:"Қос байланыс орнының изомериясы",
+  text:"Алкендердің көміртек қаңқасы бірдей болғанымен, C=C қос байланысының орны әртүрлі болуы мүмкін. Мұндай заттар қос байланыс орнының изомерлері деп аталады. Мысалы, бут-1-ен мен бут-2-еннің молекулалық формуласы бірдей.",
+  formula:"C₄H₈ → бут-1-ен, бут-2-ен",
+  example:"CH₂=CH–CH₂–CH₃ және CH₃–CH=CH–CH₃.",
+  note:"Изомерлердің формуласы бірдей, құрылысы әртүрлі."
+ },
+ {
+  title:"Көміртек қаңқасының изомериясы",
+  text:"Алкендерде көміртек тізбегінің тармақталуы да әртүрлі болуы мүмкін. Мысалы, бут-1-ен мен 2-метилпропеннің молекулалық формуласы C₄H₈ болғанымен, олардың көміртек қаңқалары өзгеше.",
+  formula:"CH₂=CH–CH₂–CH₃",
+  example:"2-метилпропен: CH₂=C(CH₃)₂.",
+  note:"Тармақталған және тармақталмаған тізбек құрылымдық изомерлер түзе алады."
+ },
+ {
+  title:"Цис-транс изомерия",
+  text:"Қос байланыстың айналасында еркін айналу шектелгендіктен, кейбір алкендерде кеңістіктік изомерия байқалады. Бут-2-еннің цис және транс түрлерін мысалға алуға болады. Бірақ барлық алкендер цис-транс изомерия түзбейді: қос байланыстың әр көміртегінде екі түрлі орынбасар болуы қажет.",
+  formula:"Цис-бут-2-ен · Транс-бут-2-ен",
+  example:"Бут-1-енде цис-транс изомерия болмайды.",
+  note:"Цис-транс изомерия үшін қос байланыстың әр жағындағы орынбасарлар маңызды."
+ },
+ {
+  title:"Алкендердің химиялық ерекшелігі",
+  text:"Алкендердегі π-байланыс көптеген қосылу реакцияларына қатысады. Мысалы, этен сутек қосқанда этан түзіледі. Алкендерге тән маңызды өзгерістердің бірі — қосылу реакциялары. Бұл тақырыпта олардың құрылысын және реакциялармен байланысын түсіну жеткілікті.",
+  formula:"C₂H₄ + H₂ → C₂H₆",
+  example:"Этеннен этан түзілуі — қосылу реакциясының мысалы (катализдік жағдайда).",
+  note:"Алкендерге қосылу реакциялары тән."
+ },
+ {
+  title:"Алкендер бойынша есептер",
+  text:"Бір қос байланысы бар ашық тізбекті алкендердің молярлық массасын M=14n формуласы бойынша есептеуге болады. Мысалы, C₄H₈ үшін M=4×14=56 г/моль. Заттың массасы мен мөлшері m=νM және ν=m/M формулаларымен байланысады.",
+  formula:"M(CₙH₂ₙ)=14n г/моль",
+  example:"0,5 моль бутеннің массасы 28 г.",
+  note:"Жалпы формуланы тек қажетті алкендер класына қолдан."
+ }
+];
+
+theory.forEach((t,i)=>{
+ add(
+  t.title,
+  `Түсіндірме ${i+1}/15`,
+  `
+   <div class="eyebrow">
+    ТҮСІНДІРМЕ ${i+1}/15
+   </div>
+
+   <h2>${t.title}</h2>
+
+   <div class="grid2">
+    <div class="card">
+     <h3>Толық түсіндірме</h3>
+     <p>${t.text}</p>
+    </div>
+
+    <div class="card">
+     <h3>Нақты мысал</h3>
+     <p>${t.example}</p>
+
+     <h3 style="margin-top:18px">
+      Негізгі формула
+     </h3>
+
+     <div class="formula">
+      ${t.formula}
+     </div>
+    </div>
+   </div>
+
+   <div class="note">
+    <h3 class="gold">Дәптерге жаз:</h3>
+    <p>${t.note}</p>
+   </div>
+  `
+ );
+});
+
+/* КӨРНЕКІЛІК */
+
+add(
+ "Дара және қос байланыс",
+ "Көрнекілік",
+ `
+  <h2>Дара және қос байланыс</h2>
+
+  <div class="grid2">
+   ${molecule("C–C","Дара байланыс","single")}
+   ${molecule("C=C","Қос байланыс")}
+  </div>
+
+  <div class="note">
+   <p>
+    Қос байланыс бір σ және бір π
+    байланыстан тұрады.
+    Қос байланыста еркін айналу шектеледі.
+   </p>
+  </div>
+ `
+);
+
+/* АТАУ КЕСТЕСІ */
+
+add(
+ "Алкендер қатары",
+ "Номенклатура",
+ `
+  <h2>Алкендердің гомологтық қатары</h2>
+
+  <div class="card">
+   <div class="step">Этен — C₂H₄ — CH₂=CH₂</div>
+   <div class="step">Пропен — C₃H₆ — CH₂=CH–CH₃</div>
+   <div class="step">Бут-1-ен — C₄H₈</div>
+   <div class="step">Пент-1-ен — C₅H₁₀</div>
+   <div class="step">Гекс-1-ен — C₆H₁₂</div>
+  </div>
+
+  <div class="note">
+   <p>
+    Қос байланыстың орны өзгерсе,
+    атаудағы сан да өзгеруі мүмкін.
+   </p>
+  </div>
+ `
+);
+
+/* 3 КОНСПЕКТ */
+
+const conspects=[
+ [
+  "Алкендердің құрылысы",
+  [
+   "Алкендер — бір C=C қос байланысы бар қанықпаған көмірсутектер.",
+   "Ашық тізбекті бір қос байланысы бар алкендердің формуласы CₙH₂ₙ.",
+   "n кемінде 2.",
+   "C=C қос байланысы бір σ және бір π байланыстан тұрады.",
+   "Этен — C₂H₄.",
+   "Пропен — C₃H₆.",
+   "Бутен — C₄H₈."
+  ]
+ ],
+ [
+  "Номенклатура",
+  [
+   "Алдымен қос байланысы бар ең ұзын тізбекті тап.",
+   "Тізбекті қос байланысқа жақын шеттен нөмірле.",
+   "Алкен атауында -ен жұрнағы қолданылады.",
+   "Қос байланыс орнын санмен көрсет.",
+   "CH₂=CH–CH₂–CH₃ — бут-1-ен.",
+   "CH₃–CH=CH–CH₃ — бут-2-ен.",
+   "Тармақтардың орнын негізгі тізбектің нөмірімен белгіле."
+  ]
+ ],
+ [
+  "Изомерия және есептер",
+  [
+   "Алкендерде көміртек қаңқасының изомериясы кездеседі.",
+   "Қос байланыс орнының изомериясы болады.",
+   "Кейбір алкендерде цис-транс изомериясы бар.",
+   "Бут-2-ен цис-транс изомерия түзе алады.",
+   "Алкендерге қосылу реакциялары тән.",
+   "M(CₙH₂ₙ)=14n г/моль.",
+   "m=νM; ν=m/M."
+  ]
+ ]
+];
+
+conspects.forEach((c,i)=>{
+ add(
+  "Конспект "+(i+1),
+  "Конспект · 8 минут",
+  `
+   <div class="eyebrow">ДӘПТЕРГЕ ЖАЗ</div>
+
+   <h2>Конспект №${i+1}</h2>
+   <h3>${c[0]}</h3>
+
+   <div class="card">
+    <ol>
+     ${c[1].map(x=>`<li>${x}</li>`).join("")}
+    </ol>
+   </div>
+  `
+ );
+});
+
+/* 4 ДЕҢГЕЙ */
+
+const levels=[
+ [
+  "1-деңгей: алкендер формуласы",
+  [
+   ["Алкендердегі ерекше байланыс?","C=C."],
+   ["Этеннің молекулалық формуласы?","C₂H₄."],
+   ["Пропеннің молекулалық формуласы?","C₃H₆."],
+   ["Алкендердің жалпы формуласы?","CₙH₂ₙ, n≥2."]
+  ]
+ ],
+ [
+  "2-деңгей: атаулар",
+  [
+   ["CH₂=CH₂ қосылысының атауы?","Этен."],
+   ["CH₂=CH–CH₃ атауы?","Пропен."],
+   ["CH₃–CH=CH–CH₃ атауы?","Бут-2-ен."],
+   ["CH₂=CH–CH₂–CH₃ атауы?","Бут-1-ен."]
+  ]
+ ],
+ [
+  "3-деңгей: изомерия",
+  [
+   ["Бут-1-ен мен бут-2-ен қандай изомерлер?","Қос байланыс орнының изомерлері."],
+   ["Бут-2-ен цис-транс изомерия түзе ме?","Иә."],
+   ["Бут-1-ен цис-транс изомерия түзе ме?","Жоқ."],
+   ["2-метилпропеннің формуласы?","CH₂=C(CH₃)₂."]
+  ]
+ ],
+ [
+  "4-деңгей: есептер",
+  [
+   ["M(C₃H₆) анықта.","42 г/моль."],
+   ["M(C₄H₈) анықта.","56 г/моль."],
+   ["0,5 моль C₄H₈ массасы?","28 г."],
+   ["21 г C₃H₆ зат мөлшері?","0,5 моль."]
+  ]
+ ]
+];
+
+levels.forEach((level,i)=>{
+ dynamic(
+  "Деңгей "+(i+1),
+  "Деңгейлік жұмыс · 10 минут",
+  ()=>`
+   <div class="eyebrow">
+    ДЕҢГЕЙЛІК ЖҰМЫС ${i+1}/4
+   </div>
+
+   <h2>${level[0]}</h2>
+
+   ${level[1].map((q,j)=>`
+    <div class="task">
+     <p><b class="gold">${j+1}.</b> ${q[0]}</p>
+    </div>
+   `).join("")}
+
+   <button class="btn gold-btn"
+    data-action="level" data-index="${i}">
+    ${state.levels[i]
+     ?"Жауаптарды жасыру"
+     :"Жауаптарды көру"}
+   </button>
+
+   ${state.levels[i]?`
+    <div class="answer">
+     ${level[1].map((q,j)=>`
+      <p>${j+1}. ${q[1]}</p>
+     `).join("")}
+    </div>
+   `:""}
+  `
+ );
+});
+
+/* 25 ЖЕКЕ ТАПСЫРМА */
+
+const oral=[
+ ["Алкендер дегеніміз не?","C=C қос байланысы бар қанықпаған көмірсутектер."],
+ ["Жалпы формуласы?","CₙH₂ₙ, n≥2."],
+ ["Этен формуласы?","C₂H₄."],
+ ["Пропен формуласы?","C₃H₆."],
+ ["Бутен формуласы?","C₄H₈."],
+ ["Пентен формуласы?","C₅H₁₀."],
+ ["Гексен формуласы?","C₆H₁₂."],
+ ["Этеннің құрылымдық формуласы?","CH₂=CH₂."],
+ ["Пропеннің құрылымдық формуласы?","CH₂=CH–CH₃."],
+ ["C=C қандай байланыстардан тұрады?","Бір σ және бір π байланыстан."],
+ ["Алкендердің атау жұрнағы?","-ен."],
+ ["CH₂=CH–CH₂–CH₃ атауы?","Бут-1-ен."],
+ ["CH₃–CH=CH–CH₃ атауы?","Бут-2-ен."],
+ ["Бут-1-ен мен бут-2-ен қандай изомерлер?","Қос байланыс орнының изомерлері."],
+ ["Алкендердің басты химиялық ерекшелігі?","Қосылу реакцияларына түсе алады."],
+ ["Этен сутек қосқанда не түзіледі?","Этан."],
+ ["Этеннің молярлық массасы?","28 г/моль."],
+ ["Пропеннің молярлық массасы?","42 г/моль."],
+ ["Бутеннің молярлық массасы?","56 г/моль."],
+ ["Пентеннің молярлық массасы?","70 г/моль."],
+ ["Цис-транс изомерияның себебі?","Қос байланыс айналасында еркін айналудың шектелуі."],
+ ["Бут-1-енде цис-транс изомерия бар ма?","Жоқ."],
+ ["Бут-2-енде цис-транс изомерия бар ма?","Иә."],
+ ["0,5 моль бутен массасы?","28 г."],
+ ["21 г пропеннің зат мөлшері?","0,5 моль."]
+];
+
+dynamic("Жеке тапсырмалар","25 оқушы · 20 минут",()=>{
+ const i=state.oral;
+
+ if(i>=oral.length){
+  return `
+   <h1>25 тапсырма аяқталды!</h1>
+
+   <div class="actions">
+    <button class="btn gold-btn"
+     data-action="oral-reset">
+     ↺ Қайта бастау
+    </button>
+
+    <button class="btn primary"
+     data-action="go-game">
+     Командалық ойын →
+    </button>
+   </div>
+  `;
+ }
+
+ return `
+  <div class="eyebrow">ЖЕКЕ ТАПСЫРМА</div>
+  <h2>Тақтаға шығып орында</h2>
+
+  <span class="number-tag">
+   ${i+1}-оқушы · ${i+1}/25
+  </span>
+
+  <div class="progress">
+   <span style="width:${i/25*100}%"></span>
+  </div>
+
+  <div class="card">
+   <h3>Тапсырма</h3>
+   <p class="big-question">${oral[i][0]}</p>
+  </div>
+
+  ${state.oralShow?`
+   <div class="answer">
+    <h3>Дұрыс жауап</h3>
+    <p>${oral[i][1]}</p>
+   </div>
+  `:""}
+
+  <div class="actions">
+   <button class="btn gold-btn"
+    data-action="oral-show">
+    ${state.oralShow
+     ?"Жауапты жасыру"
+     :"Жауапты көру"}
+   </button>
+
+   <button class="btn primary"
+    data-action="oral-next">
+    Келесі оқушы →
+   </button>
+  </div>
+ `;
+});
+
+/* КОМАНДАЛЫҚ ОЙЫН */
+
+const quiz=[
+ ["Алкендердің ерекше байланысы?",["C–C","C=C","C≡C","Иондық"],1],
+ ["Этеннің формуласы?",["C₂H₆","C₂H₂","C₂H₄","CH₄"],2],
+ ["Пропеннің формуласы?",["C₃H₆","C₃H₈","C₃H₄","C₂H₄"],0],
+ ["Алкендердің жұрнағы?",["-ан","-ин","-ол","-ен"],3],
+ ["Қос байланыс құрамында не бар?",["2σ","1σ және 1π","2π","1 иондық"],1],
+ ["Бут-1-еннің формуласы?",["C₄H₈","C₄H₁₀","C₄H₆","C₃H₆"],0],
+ ["CH₃–CH=CH–CH₃ атауы?",["Бутан","Бут-1-ен","Бут-2-ен","Бутин"],2],
+ ["Этен сутек қосқанда не түзіледі?",["Этин","Пропан","Метан","Этан"],3],
+ ["Алкенге тән реакция түрі?",["Орынбасу ғана","Қосылу","Бейтараптану","Тұнба түзу"],1],
+ ["M(C₂H₄)?",["28","30","26","32"],0],
+ ["M(C₃H₆)?",["40","44","42","46"],2],
+ ["M(C₄H₈)?",["58","54","42","56"],3],
+ ["Бут-2-енде цис-транс изомерия бола ма?",["Жоқ","Иә","Әрқашан үш изомер","Белгісіз"],1],
+ ["0,5 моль бутен массасы?",["28 г","56 г","14 г","42 г"],0],
+ ["21 г пропен мөлшері?",["1 моль","2 моль","0,5 моль","0,25 моль"],2]
+];
+
+dynamic("Командалық ойын","3 команда · 12 минут",()=>{
+ const i=state.game;
+
+ if(i>=quiz.length){
+  const max=Math.max(...state.scores);
+  const winners=state.scores
+   .map((score,j)=>score===max?`${j+1}-команда`:null)
+   .filter(Boolean);
+
+  return `
+   <h1>Ойын аяқталды!</h1>
+
+   <div class="grid3">
+    ${state.scores.map((score,j)=>`
+     <div class="team">
+      <h3>${j+1}-команда</h3>
+      <div class="score">${score}</div>
+      <p>ұпай</p>
+     </div>
+    `).join("")}
+   </div>
+
+   <div class="note">
+    <p>Жеңімпаз: ${winners.join(", ")}</p>
+   </div>
+
+   <button class="btn gold-btn"
+    data-action="game-reset">
+    ↺ Қайта бастау
+   </button>
+  `;
+ }
+
+ const [q,options,right]=quiz[i];
+ const team=i%3;
+
+ return `
+  <div class="eyebrow">КОМАНДАЛЫҚ ОЙЫН ${i+1}/15</div>
+  <h2>${team+1}-команданың кезегі</h2>
+
+  <div class="grid3">
+   ${state.scores.map((score,j)=>`
+    <div class="team ${team===j?"active":""}">
+     <h3>${j+1}-команда</h3>
+     <div class="score">${score}</div>
+    </div>
+   `).join("")}
+  </div>
+
+  <div class="card" style="margin-top:16px">
+   <p class="big-question">${q}</p>
+  </div>
+
+  <div class="options">
+   ${options.map((option,j)=>`
+    <button
+     class="option ${
+      state.choice===null?""
+      :j===right?"correct"
+      :j===state.choice?"wrong":""
+     }"
+     data-action="game-answer"
+     data-index="${j}"
+     ${state.choice!==null?"disabled":""}
+    >
+     ${"ABCD"[j]}. ${option}
+    </button>
+   `).join("")}
+  </div>
+
+  ${state.choice!==null?`
+   <div class="answer">
+    <h3>
+     ${state.choice===right
+      ?"Дұрыс! +10 ұпай"
+      :"Қате. 0 ұпай"}
+    </h3>
+    <p>Дұрыс жауап: ${options[right]}</p>
+   </div>
+
+   <div class="actions">
+    <button class="btn primary"
+     data-action="game-next">
+     Келесі команда →
+    </button>
+   </div>
+  `:""}
+ `;
+});
+
+/* ҮЙ ЖҰМЫСЫ */
+
+const homeQuestions=[
+ ["Алкендерді атаудың негізгі ережелерін жаз.","Ең ұзын C=C бар тізбекті таңда; жақын шеттен нөмірле; қос байланыс орнын көрсет; -ен жұрнағын қолдан."],
+ ["Бут-1-ен мен бут-2-еннің айырмашылығын түсіндір.","Қос байланыстың орны әртүрлі."]
+];
+
+const homeMath=[
+ ["0,75 моль пропеннің массасын анықта.","M(C₃H₆)=42; m=0,75×42=31,5 г."],
+ ["28 г этеннің зат мөлшерін анықта.","M(C₂H₄)=28; ν=28/28=1 моль."]
+];
+
+dynamic("Үй тапсырмасы","Үй жұмысы",()=>`
+ <div class="eyebrow">§70 · ҮЙ ТАПСЫРМАСЫ</div>
+ <h2>«Алкендерді атау зертханасы»</h2>
+
+ <div class="grid2">
+  <div class="card">
+   <h3>1. Теориялық тапсырма</h3>
+
+   ${homeQuestions.map((q,i)=>`
+    <div class="task">
+     <p>${i+1}. ${q[0]}</p>
+    </div>
+   `).join("")}
+  </div>
+
+  <div class="card">
+   <h3>2. Екі химиялық есеп</h3>
+
+   ${homeMath.map((q,i)=>`
+    <div class="task">
+     <p>${i+1}. ${q[0]}</p>
+    </div>
+   `).join("")}
+  </div>
+ </div>
+
+ <div class="note">
+  <p>
+   Үй жұмысына екі құрылымдық
+   формула да сыз:
+   бут-1-ен және бут-2-ен.
+  </p>
+ </div>
+
+ <button class="btn gold-btn"
+  data-action="home">
+  ${state.home?"Жауаптарды жасыру":"Жауаптарды көру"}
+ </button>
+
+ ${state.home?`
+  <div class="answer">
+   <h3>Теориялық жауаптар</h3>
+   ${homeQuestions.map((q,i)=>`
+    <p>${i+1}. ${q[1]}</p>
+   `).join("")}
+
+   <h3>Есептердің шешуі</h3>
+   ${homeMath.map((q,i)=>`
+    <p>${i+1}. ${q[1]}</p>
+   `).join("")}
+  </div>
+ `:""}
+`);
+
+/* ҚОРЫТЫНДЫ */
+
+add("Қорытынды","Сабақ аяқталды",`
+ <div style="text-align:center">
+  <div class="eyebrow">§70 · ХИМИЯ</div>
+  <h1>Сабақ аяқталды!</h1>
+  <h2>Алкендер. Құрылысы және номенклатурасы</h2>
+
+  <div class="grid3">
+   <div class="card">
+    <h3>15 түсіндірме</h3>
+    <p>Құрылыс және атау ережелері</p>
+   </div>
+   <div class="card">
+    <h3>25 тапсырма</h3>
+    <p>Жеке жұмыс</p>
+   </div>
+   <div class="card">
+    <h3>15 сұрақ</h3>
+    <p>3 командалық ойын</p>
+   </div>
+  </div>
+
+  <div class="formula">BY DARKHAN</div>
+ </div>
+`);
+
+/* БАТЫРМАЛАР */
+
+$("slide").addEventListener("click",event=>{
+ const button=event.target.closest("[data-action]");
+ if(!button)return;
+
+ const action=button.dataset.action;
+ const index=Number(button.dataset.index);
+
+ switch(action){
+  case "start":
+   startTimer();
+   break;
+
+  case "reset-time":
+   resetTimer();
+   break;
+
+  case "level":
+   state.levels[index]=!state.levels[index];
+   break;
+
+  case "oral-show":
+   state.oralShow=!state.oralShow;
+   break;
+
+  case "oral-next":
+   state.oral=Math.min(oral.length,state.oral+1);
+   state.oralShow=false;
+   break;
+
+  case "oral-reset":
+   state.oral=0;
+   state.oralShow=false;
+   break;
+
+  case "go-game":
+   go("Командалық ойын");
+   break;
+
+  case "game-answer":
+   if(state.choice!==null)return;
+   state.choice=index;
+   if(index===quiz[state.game][2]){
+    state.scores[state.game%3]+=10;
+   }
+   break;
+
+  case "game-next":
+   if(state.choice===null)return;
+   state.game++;
+   state.choice=null;
+   break;
+
+  case "game-reset":
+   state.game=0;
+   state.choice=null;
+   state.scores=[0,0,0];
+   break;
+
+  case "home":
+   state.home=!state.home;
+   break;
+ }
+
+ save();
+ draw();
+});
+
+/* 80 МИНУТ ЖӘНЕ АЛМАТЫ САҒАТЫ */
+
+const TIMER_KEY=STORE+"_timer";
+let deadline=null;
+
+try{
+ const saved=localStorage.getItem(TIMER_KEY);
+ if(saved!==null&&Number.isFinite(Number(saved))){
+  deadline=Number(saved);
+ }
+}catch(error){}
+
+function tick(){
+ const seconds=deadline===null
+  ?4800
+  :Math.max(0,Math.ceil((deadline-Date.now())/1000));
+
+ $("timer").textContent=
+  String(Math.floor(seconds/60)).padStart(2,"0")+
+  ":"+
+  String(seconds%60).padStart(2,"0");
+
+ $("clock").textContent=
+  new Intl.DateTimeFormat("en-GB",{
+   timeZone:"Asia/Almaty",
+   hour:"2-digit",
+   minute:"2-digit",
+   second:"2-digit",
+   hourCycle:"h23"
+  }).format(new Date());
+}
+
+function startTimer(){
+ if(deadline!==null){
+  alert("Таймер бұрын іске қосылған.");
+  return;
+ }
+
+ deadline=Date.now()+4800000;
+ try{
+  localStorage.setItem(TIMER_KEY,String(deadline));
+ }catch(error){}
+
+ tick();
+}
+
+function resetTimer(){
+ if(!confirm("80 минуттық таймерді жаңартамыз ба?"))return;
+ deadline=null;
+
+ try{
+  localStorage.removeItem(TIMER_KEY);
+ }catch(error){}
+
+ tick();
+}
+
+setInterval(tick,1000);
+
+/* КАЛЬКУЛЯТОР */
+
+const calculator=$("calculator");
+
+$("showCalc").onclick=()=>{
+ calculator.hidden=!calculator.hidden;
+ fitCalculator();
+};
+
+$("closeCalc").onclick=()=>{
+ calculator.hidden=true;
+};
+
+const calcButtons=[
+ "7","8","9","/",
+ "4","5","6","*",
+ "1","2","3","-",
+ "C","0",".","+",
+ "(",")","⌫","="
+];
+
+$("calcKeys").innerHTML=calcButtons.map(k=>`
+ <button type="button" data-key="${k}">
+  ${k==="/"?"÷":k==="*"?"×":k}
+ </button>
+`).join("");
+
+let calcText="";
+
+function calculate(input){
+ let i=0;
+
+ function factor(){
+  if(input[i]==="+"){i++;return factor();}
+  if(input[i]==="-"){i++;return -factor();}
+
+  if(input[i]==="("){
+   i++;
+   const value=sum();
+
+   if(input[i]!==")"){
+    throw Error("Жақша қатесі");
+   }
+
+   i++;
+   return value;
+  }
+
+  const match=/^(?:\d+\.?\d*|\.\d+)/
+   .exec(input.slice(i));
+
+  if(!match)throw Error("Сан қатесі");
+
+  i+=match[0].length;
+  return Number(match[0]);
+ }
+
+ function product(){
+  let value=factor();
+
+  while(input[i]==="*"||input[i]==="/"){
+   const op=input[i++];
+   const next=factor();
+   value=op==="*"?value*next:value/next;
+  }
+
+  return value;
+ }
+
+ function sum(){
+  let value=product();
+
+  while(input[i]==="+"||input[i]==="-"){
+   const op=input[i++];
+   const next=product();
+   value=op==="+"?value+next:value-next;
+  }
+
+  return value;
+ }
+
+ if(!/^[0-9+*/().-]+$/.test(input)){
+  throw Error("Қате таңба");
+ }
+
+ const result=sum();
+
+ if(i!==input.length||!Number.isFinite(result)){
+  throw Error("Есептеу қатесі");
+ }
+
+ return Number(result.toPrecision(12));
+}
+
+/* ҚЫСҚА БАСУ — ЕСЕПТЕУ */
+
+$("calcKeys").addEventListener("click",event=>{
+ const b=event.target.closest("[data-key]");
+ if(!b)return;
+
+ const k=b.dataset.key;
+
+ if(k==="C"){
+  calcText="";
+ }else if(k==="⌫"){
+  calcText=calcText.slice(0,-1);
+ }else if(k==="="){
+  try{
+   calcText=String(calculate(calcText));
+  }catch(error){
+   calcText="Қате";
+  }
+ }else{
+  if(calcText==="Қате")calcText="";
+  calcText+=k;
+ }
+
+ $("calcDisplay").value=calcText;
+});
+
+/* КЕЗ КЕЛГЕН ЖЕРІНЕН ЖЫЛЖЫТУ */
+
+function clamp(value,min,max){
+ return Math.max(min,Math.min(max,value));
+}
+
+function fitCalculator(){
+ if(calculator.hidden)return;
+
+ const r=calculator.getBoundingClientRect();
+
+ calculator.style.left=clamp(
+  r.left,0,Math.max(0,innerWidth-r.width)
+ )+"px";
+
+ calculator.style.top=clamp(
+  r.top,0,Math.max(0,innerHeight-r.height)
+ )+"px";
+}
+
+let drag=null;
+let suppressClick=false;
+
+calculator.addEventListener("pointerdown",event=>{
+ if(
+  drag ||
+  (event.pointerType==="mouse"&&event.button!==0)
+ ){
+  return;
+ }
+
+ const r=calculator.getBoundingClientRect();
+
+ drag={
+  id:event.pointerId,
+  x:event.clientX,
+  y:event.clientY,
+  left:r.left,
+  top:r.top,
+  moved:false
+ };
+});
+
+window.addEventListener("pointermove",event=>{
+ if(!drag||drag.id!==event.pointerId)return;
+
+ const dx=event.clientX-drag.x;
+ const dy=event.clientY-drag.y;
+
+ if(!drag.moved&&Math.hypot(dx,dy)>7){
+  drag.moved=true;
+  calculator.classList.add("dragging");
+ }
+
+ if(!drag.moved)return;
+ if(event.cancelable)event.preventDefault();
+
+ calculator.style.left=clamp(
+  drag.left+dx,
+  0,
+  Math.max(0,innerWidth-calculator.offsetWidth)
+ )+"px";
+
+ calculator.style.top=clamp(
+  drag.top+dy,
+  0,
+  Math.max(0,innerHeight-calculator.offsetHeight)
+ )+"px";
+},{passive:false});
+
+window.addEventListener("pointerup",event=>{
+ if(!drag||drag.id!==event.pointerId)return;
+
+ if(drag.moved){
+  suppressClick=true;
+  setTimeout(()=>suppressClick=false,250);
+ }
+
+ drag=null;
+ calculator.classList.remove("dragging");
+});
+
+window.addEventListener("pointercancel",event=>{
+ if(drag&&drag.id===event.pointerId){
+  drag=null;
+  calculator.classList.remove("dragging");
+ }
+});
+
+calculator.addEventListener("click",event=>{
+ if(!suppressClick)return;
+
+ event.preventDefault();
+ event.stopImmediatePropagation();
+ suppressClick=false;
+},true);
+
+window.addEventListener("resize",fitCalculator);
+
+/* МЕНДЕЛЕЕВ КЕСТЕСІ */
+
+const elementData=`
+H|Сутек He|Гелий Li|Литий Be|Бериллий B|Бор C|Көміртек N|Азот O|Оттек F|Фтор Ne|Неон
+Na|Натрий Mg|Магний Al|Алюминий Si|Кремний P|Фосфор S|Күкірт Cl|Хлор Ar|Аргон
+K|Калий Ca|Кальций Sc|Скандий Ti|Титан V|Ванадий Cr|Хром Mn|Марганец Fe|Темір Co|Кобальт Ni|Никель Cu|Мыс Zn|Мырыш
+Ga|Галлий Ge|Германий As|Мышьяк Se|Селен Br|Бром Kr|Криптон
+Rb|Рубидий Sr|Стронций Y|Иттрий Zr|Цирконий Nb|Ниобий Mo|Молибден Tc|Технеций Ru|Рутений Rh|Родий Pd|Палладий Ag|Күміс Cd|Кадмий
+In|Индий Sn|Қалайы Sb|Сурьма Te|Теллур I|Йод Xe|Ксенон
+Cs|Цезий Ba|Барий La|Лантан Ce|Церий Pr|Празеодим Nd|Неодим Pm|Прометий Sm|Самарий Eu|Еуропий Gd|Гадолиний Tb|Тербий Dy|Диспрозий Ho|Гольмий Er|Эрбий Tm|Тулий Yb|Иттербий Lu|Лютеций
+Hf|Гафний Ta|Тантал W|Вольфрам Re|Рений Os|Осмий Ir|Иридий Pt|Платина Au|Алтын Hg|Сынап Tl|Таллий Pb|Қорғасын Bi|Висмут Po|Полоний At|Астат Rn|Радон
+Fr|Франций Ra|Радий Ac|Актиний Th|Торий Pa|Протактиний U|Уран Np|Нептуний Pu|Плутоний Am|Америций Cm|Кюрий Bk|Берклий Cf|Калифорний Es|Эйнштейний Fm|Фермий Md|Менделевий No|Нобелий Lr|Лоуренсий
+Rf|Резерфордий Db|Дубний Sg|Сиборгий Bh|Борий Hs|Хассий Mt|Мейтнерий Ds|Дармштадтий Rg|Рентгений Cn|Коперниций Nh|Нихоний Fl|Флеровий Mc|Московий Lv|Ливерморий Ts|Теннессин Og|Оганесон
+`;
+
+const elements=elementData.trim()
+ .split(/\s+/)
+ .map((text,i)=>{
+  const [symbol,name]=text.split("|");
+  return{z:i+1,symbol,name};
+ });
+
+const groupRows=[
+ [1,18],
+ [1,2,13,14,15,16,17,18],
+ [1,2,13,14,15,16,17,18],
+ Array.from({length:18},(_,i)=>i+1),
+ Array.from({length:18},(_,i)=>i+1)
+];
+
+function position(z){
+ if(z<=54){
+  let k=z-1;
+
+  for(let i=0;i<5;i++){
+   if(k<groupRows[i].length){
+    return{row:i+1,col:groupRows[i][k]};
+   }
+
+   k-=groupRows[i].length;
+  }
+ }
+
+ if(z<=56)return{row:6,col:z-54};
+ if(z<=71)return{row:9,col:z-53};
+ if(z<=86)return{row:6,col:z-68};
+ if(z<=88)return{row:7,col:z-86};
+ if(z<=103)return{row:10,col:z-85};
+
+ return{row:7,col:z-100};
+}
+
+function buildTable(){
+ let html="";
+
+ for(let g=1;g<=18;g++){
+  html+=`
+   <span class="period-label"
+    style="grid-row:1;grid-column:${g+1}">
+    ${g}
+   </span>
+  `;
+ }
+
+ for(let p=1;p<=7;p++){
+  html+=`
+   <span class="period-label"
+    style="grid-row:${p+1};grid-column:1">
+    ${p}
+   </span>
+  `;
+ }
+
+ html+=`
+  <span class="period-label"
+   style="grid-row:10;grid-column:1">La–Lu</span>
+  <span class="period-label"
+   style="grid-row:11;grid-column:1">Ac–Lr</span>
+  <span class="period-label"
+   style="grid-row:7;grid-column:4">57–71</span>
+  <span class="period-label"
+   style="grid-row:8;grid-column:4">89–103</span>
+ `;
+
+ elements.forEach(e=>{
+  const p=position(e.z);
+
+  const cls=
+   (e.z>=57&&e.z<=71)||(e.z>=89&&e.z<=103)
+    ?"fblock"
+    :["H","C","N","O"].includes(e.symbol)
+     ?"special"
+     :"";
+
+  html+=`
+   <button class="element ${cls}"
+    data-z="${e.z}"
+    style="
+     grid-row:${p.row+1};
+     grid-column:${p.col+1}
+    ">
+    <i>${e.z}</i>
+    <b>${e.symbol}</b>
+    <small>${e.name}</small>
+   </button>
+  `;
+ });
+
+ $("ptable").innerHTML=html;
+}
+
+$("ptable").onclick=event=>{
+ const b=event.target.closest("[data-z]");
+ if(!b)return;
+
+ const z=Number(b.dataset.z);
+ const e=elements[z-1];
+ const p=position(z);
+
+ const period=p.row===9?6:p.row===10?7:p.row;
+ const group=p.row>7?"f-блок":p.col+"-топ";
+
+ $("elementInfo").textContent=
+  `${e.z}. ${e.name} (${e.symbol}) · `+
+  `${period}-период · ${group}`;
+};
+
+$("showTable").onclick=()=>{
+ $("tableOverlay").hidden=false;
+};
+
+$("closeTable").onclick=()=>{
+ $("tableOverlay").hidden=true;
+};
+
+$("tableOverlay").onclick=event=>{
+ if(event.target===$("tableOverlay")){
+  $("tableOverlay").hidden=true;
+ }
+};
+
+/* ПЕРНЕТАҚТА */
+
+document.addEventListener("keydown",event=>{
+ if(event.key==="Escape"){
+  $("tableOverlay").hidden=true;
+  calculator.hidden=true;
+  return;
+ }
+
+ if(
+  !$("tableOverlay").hidden ||
+  event.target.closest("input,textarea")
+ )return;
+
+ if(event.key==="ArrowRight"&&page<slides.length-1){
+  page++;
+  draw();
+ }else if(event.key==="ArrowLeft"&&page>0){
+  page--;
+  draw();
+ }
+});
+
+/* ТЕКСЕРУЛЕР */
+
+console.assert(theory.length===15,"15 түсіндірме керек");
+console.assert(conspects.length===3,"3 конспект керек");
+console.assert(levels.length===4,"4 деңгей керек");
+console.assert(oral.length===25,"25 тапсырма керек");
+console.assert(quiz.length===15,"15 ойын сұрағы керек");
+console.assert(elements.length===118,"118 элемент керек");
+console.assert(calculate("2+3*4")===14,"Есептеу қатесі");
+console.assert(calculate("(2+3)*4")===20,"Жақша қатесі");
+
+/* САЙТТЫ БАСТАУ */
+
+try{
+ buildTable();
+ tick();
+ draw();
+}catch(error){
+ console.error(error);
+
+ const box=document.createElement("div");
+ box.className="note";
+ box.textContent="Сайт қатесі: "+error.message;
+
+ $("slide").appendChild(box);
+}
+
+</script>
+</body>
+</html>

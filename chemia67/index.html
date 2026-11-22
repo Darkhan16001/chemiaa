@@ -1,0 +1,3660 @@
+
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>§67 — Алкандардың химиялық қасиеттері</title>
+
+<style>
+:root{
+  --bg:#081827;
+  --panel:#153950;
+  --blue:#8bddff;
+  --green:#88ecc0;
+  --gold:#ffdc91;
+  --red:#ffb2bb;
+  --text:#f8fcff;
+  --muted:#c2d8e7;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  font-family:"Segoe UI",Arial,sans-serif;
+  color:var(--text);
+  background:var(--bg);
+}
+
+button,input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+button:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.blue{color:var(--blue)}
+.green{color:var(--green)}
+.gold{color:var(--gold)}
+.red{color:var(--red)}
+.center{text-align:center}
+
+/* НЕГІЗГІ ЭКРАН */
+
+.app{
+  height:100vh;
+  height:100dvh;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+
+  background:
+    radial-gradient(
+      circle at 90% 7%,
+      #19759c70,
+      transparent 43%
+    ),
+    radial-gradient(
+      circle at 5% 93%,
+      #16805b60,
+      transparent 45%
+    ),
+    linear-gradient(
+      125deg,
+      #071625,
+      #10374e,
+      #081827
+    );
+}
+
+.topbar{
+  min-height:75px;
+  flex-shrink:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+
+  padding:10px 22px;
+  background:#071d30;
+  border-bottom:1px solid #73a8c5;
+}
+
+.brand{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.brand strong{
+  color:var(--blue);
+  font-size:29px;
+  font-weight:900;
+}
+
+.brand small{
+  color:var(--gold);
+  font-size:13px;
+  font-weight:900;
+}
+
+.topinfo{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  font-weight:900;
+}
+
+#timer{
+  color:var(--gold);
+  font-size:31px;
+  font-variant-numeric:tabular-nums;
+}
+
+#pageCount{
+  color:var(--blue);
+}
+
+.main{
+  flex:1;
+  min-height:0;
+  overflow-y:auto;
+
+  padding:24px 35px 38px;
+
+  scrollbar-color:#6a9fbb #132d42;
+}
+
+.slide{
+  width:100%;
+  max-width:1490px;
+  min-height:100%;
+
+  margin:auto;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+/* МӘТІНДЕР */
+
+h1{
+  font-size:clamp(43px,4.5vw,76px);
+  line-height:1.12;
+  margin:9px 0 20px;
+}
+
+h2{
+  font-size:clamp(32px,2.9vw,50px);
+  line-height:1.2;
+  margin:0 0 18px;
+}
+
+h3{
+  font-size:clamp(25px,2vw,35px);
+  color:var(--blue);
+  margin:0 0 12px;
+}
+
+p,li{
+  font-size:clamp(21px,1.7vw,29px);
+  line-height:1.48;
+}
+
+li{
+  margin-bottom:8px;
+}
+
+.subtitle{
+  color:var(--blue);
+  font-size:20px;
+  font-weight:900;
+  letter-spacing:1px;
+  margin-bottom:13px;
+}
+
+.big{
+  font-size:clamp(45px,5vw,77px);
+  font-weight:900;
+}
+
+/* КАРТОЧКАЛАР */
+
+.hero,
+.grid2{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  align-items:center;
+  gap:18px;
+}
+
+.grid3{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:15px;
+}
+
+.card{
+  min-width:0;
+  padding:23px 25px;
+
+  background:linear-gradient(
+    145deg,
+    #1c465f,
+    #102c43
+  );
+
+  border:1px solid #7caeca;
+  border-radius:19px;
+  box-shadow:0 12px 30px #0004;
+}
+
+.card.green-card{
+  background:linear-gradient(
+    145deg,
+    #175b48,
+    #103b34
+  );
+
+  border-color:#88ebbc;
+}
+
+.card p{
+  margin:9px 0;
+}
+
+/* ФОРМУЛАЛАР */
+
+.formula{
+  margin:15px 0;
+  padding:19px;
+
+  color:var(--green);
+  background:#104153;
+
+  border:1px solid #75c3d5;
+  border-radius:15px;
+
+  text-align:center;
+  font-size:clamp(28px,2.7vw,46px);
+  font-weight:900;
+  overflow-wrap:anywhere;
+}
+
+.equation{
+  margin:12px 0;
+  padding:19px;
+
+  color:var(--gold);
+  background:#0a3145;
+
+  border:1px solid #7cb9d4;
+  border-radius:14px;
+
+  font-size:clamp(25px,2.35vw,40px);
+  font-weight:900;
+  text-align:center;
+  overflow-wrap:anywhere;
+}
+
+.note{
+  margin-top:15px;
+  padding:17px 20px;
+
+  background:#1c435c;
+  border-left:7px solid var(--gold);
+  border-radius:12px;
+
+  font-size:clamp(20px,1.55vw,26px);
+  line-height:1.5;
+}
+
+.step{
+  margin-top:8px;
+  padding:10px 13px;
+
+  background:#275168;
+  border-radius:9px;
+
+  font-size:clamp(19px,1.5vw,25px);
+}
+
+/* КӨРНЕКІ МОДЕЛЬ */
+
+.illustration{
+  min-height:265px;
+  padding:20px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:15px;
+
+  background:#123b51;
+  border:1px solid #81b9d4;
+  border-radius:19px;
+}
+
+.illustration svg{
+  display:block;
+  width:100%;
+  max-width:480px;
+  height:170px;
+}
+
+.illustration strong{
+  color:var(--green);
+  font-size:27px;
+  text-align:center;
+}
+
+.illustration small{
+  color:var(--muted);
+  font-size:19px;
+  text-align:center;
+}
+
+.chem-table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+.chem-table th,
+.chem-table td{
+  padding:13px;
+  border-bottom:1px solid #689dbb;
+
+  font-size:clamp(19px,1.48vw,26px);
+  text-align:left;
+}
+
+.chem-table th{
+  color:var(--blue);
+}
+
+/* ТАПСЫРМАЛАР */
+
+.task{
+  padding:15px 19px;
+  margin-bottom:12px;
+
+  background:#174057;
+  border:1px solid #70a5c1;
+  border-radius:12px;
+}
+
+.task p{
+  margin:5px 0;
+}
+
+.question{
+  font-size:clamp(30px,2.85vw,47px);
+  font-weight:900;
+  line-height:1.43;
+}
+
+.answer{
+  margin-top:15px;
+  padding:19px;
+
+  background:#10533f;
+  border:1px solid #82eabd;
+  border-radius:15px;
+
+  font-size:clamp(22px,1.85vw,30px);
+  line-height:1.5;
+}
+
+.answer p{
+  margin:8px 0;
+}
+
+.number-tag{
+  display:inline-block;
+  padding:12px 21px;
+
+  background:#69522d;
+  border:2px solid var(--gold);
+  border-radius:14px;
+
+  color:var(--gold);
+  font-size:clamp(26px,2.55vw,42px);
+  font-weight:900;
+}
+
+.progress{
+  height:13px;
+  margin-top:14px;
+
+  background:#284b60;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progress div{
+  height:100%;
+  background:linear-gradient(
+    90deg,
+    #22a6d6,
+    #88eabd
+  );
+}
+
+.problem{
+  padding:27px;
+  margin-top:18px;
+
+  background:linear-gradient(
+    145deg,
+    #16536c,
+    #10364c
+  );
+
+  border:2px solid #83cce8;
+  border-radius:19px;
+}
+
+.actions{
+  margin-top:18px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+/* БАТЫРМАЛАР */
+
+.btn{
+  padding:12px 19px;
+
+  background:#2a5f7b;
+  color:white;
+
+  border:1px solid #86b6d0;
+  border-radius:11px;
+
+  font-size:19px;
+  font-weight:900;
+}
+
+.btn.primary{
+  background:#0a91b0;
+  border-color:#8ceaff;
+}
+
+.btn.success{
+  background:#157d5e;
+  border-color:#88ebbf;
+}
+
+.btn.warning{
+  background:#946d33;
+  border-color:#ffdc91;
+}
+
+/* КОМАНДАЛЫҚ ОЙЫН */
+
+.team{
+  padding:18px;
+
+  background:#173e56;
+  border:1px solid #79aac7;
+  border-radius:17px;
+
+  text-align:center;
+}
+
+.team.active{
+  outline:4px solid var(--gold);
+  box-shadow:0 0 25px #ffda9160;
+}
+
+.team .score{
+  color:var(--gold);
+  font-size:56px;
+  font-weight:900;
+}
+
+.options{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+
+.option{
+  padding:19px 15px;
+
+  background:#255873;
+  color:white;
+
+  border:2px solid #7eb6d0;
+  border-radius:13px;
+
+  font-size:clamp(21px,1.7vw,29px);
+  font-weight:900;
+  text-align:left;
+}
+
+.option.correct{
+  background:#177a59;
+  border-color:#9cf3cb;
+}
+
+.option.wrong{
+  background:#8f4354;
+  border-color:#ffb3bd;
+}
+
+.home-row{
+  margin-bottom:12px;
+  padding:15px 19px;
+
+  background:#163e56;
+  border-left:6px solid var(--blue);
+  border-radius:12px;
+}
+
+.home-row p{
+  margin:5px 0;
+}
+
+/* АСТЫҢҒЫ ПАНЕЛЬ */
+
+.footer{
+  min-height:89px;
+  flex-shrink:0;
+
+  padding:10px 22px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+
+  background:#081d30;
+  border-top:1px solid #6d9cba;
+}
+
+.navigation{
+  display:flex;
+  gap:10px;
+}
+
+.signature{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+}
+
+.signature strong{
+  color:var(--gold);
+  font-size:31px;
+  font-weight:900;
+  letter-spacing:3px;
+}
+
+.signature small{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.clock{
+  padding:8px 15px;
+
+  background:#12394e;
+  border:1px solid #6fa5c0;
+  border-radius:12px;
+
+  text-align:center;
+}
+
+#clock{
+  display:block;
+  color:var(--blue);
+  font-size:27px;
+  font-variant-numeric:tabular-nums;
+}
+
+.clock small{
+  font-size:12px;
+  color:var(--muted);
+}
+
+/* СОЛ ЖАҚТАҒЫ ҚҰРАЛДАР */
+
+.tools{
+  position:fixed;
+  left:10px;
+  bottom:109px;
+  z-index:50;
+
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:7px;
+}
+
+.tool-btn{
+  padding:10px 12px;
+
+  background:#127f9f;
+  color:white;
+
+  border:1px solid #8bdfff;
+  border-radius:9px;
+
+  font-size:13px;
+  font-weight:900;
+}
+
+.tool-btn.green-btn{
+  background:#177958;
+  border-color:#88eabd;
+}
+
+/* ЖЫЛЖЫМАЛЫ КАЛЬКУЛЯТОР */
+
+.calculator{
+  position:fixed;
+  top:105px;
+  left:15px;
+  z-index:1200;
+
+  width:210px;
+  max-width:calc(100vw - 12px);
+
+  padding:8px;
+
+  background:#103249;
+  color:white;
+
+  border:1px solid #85dfff;
+  border-radius:13px;
+
+  box-shadow:0 20px 45px #000b;
+
+  user-select:none;
+  -webkit-user-select:none;
+  touch-action:none;
+  cursor:grab;
+}
+
+.calculator.dragging{
+  cursor:grabbing;
+}
+
+.calc-head{
+  padding:7px;
+  margin-bottom:7px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:5px;
+
+  background:#28566e;
+  border-radius:8px;
+
+  font-size:12px;
+}
+
+.close{
+  padding:5px 9px;
+
+  background:#b64959;
+  color:white;
+
+  border:0;
+  border-radius:6px;
+}
+
+#calcDisplay{
+  width:100%;
+  height:43px;
+  padding:7px;
+
+  background:#061c2e;
+  color:white;
+
+  border:1px solid #7aadc8;
+  border-radius:8px;
+
+  font-size:19px;
+  text-align:right;
+  pointer-events:none;
+}
+
+.calc-grid{
+  margin-top:7px;
+
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:4px;
+}
+
+.calc-grid button{
+  min-width:0;
+  height:38px;
+  padding:1px;
+
+  background:#2b5f7b;
+  color:white;
+
+  border:1px solid #79adc6;
+  border-radius:7px;
+
+  font-size:16px;
+  font-weight:900;
+  touch-action:none;
+}
+
+.calc-grid button:active{
+  background:#158eb0;
+}
+
+.calc-hint{
+  margin-top:7px;
+
+  color:var(--muted);
+  font-size:11px;
+  text-align:center;
+}
+
+/* МЕНДЕЛЕЕВ КЕСТЕСІ */
+
+.overlay{
+  position:fixed;
+  inset:0;
+  z-index:2000;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:12px;
+  background:#000d;
+}
+
+.periodic-panel{
+  width:min(1600px,99vw);
+  max-height:97vh;
+  overflow:auto;
+
+  padding:17px;
+
+  background:#0e2a40;
+  border:1px solid #81afca;
+  border-radius:18px;
+}
+
+.modal-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.modal-head p{
+  font-size:17px;
+}
+
+.periodic-scroll{
+  overflow:auto;
+
+  padding:12px;
+  background:#061d2e;
+  border-radius:12px;
+}
+
+.periodic-grid{
+  min-width:1840px;
+
+  display:grid;
+
+  grid-template-columns:
+    60px repeat(18,minmax(95px,1fr));
+
+  grid-template-rows:
+    45px repeat(10,100px);
+
+  gap:5px;
+}
+
+.period-label,
+.group-label{
+  padding:4px;
+
+  display:grid;
+  place-items:center;
+
+  background:#1b4d65;
+  color:var(--gold);
+
+  border:1px solid #75b6d2;
+  border-radius:8px;
+
+  text-align:center;
+  font-weight:900;
+}
+
+.period-label.small{
+  font-size:11px;
+}
+
+.element{
+  position:relative;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:3px;
+
+  padding:12px 3px 4px;
+
+  background:#246581;
+  color:white;
+
+  border:1px solid #91bfd6;
+  border-radius:8px;
+}
+
+.element .number{
+  position:absolute;
+  top:4px;
+  left:5px;
+  font-size:12px;
+}
+
+.element .symbol{
+  font-size:28px;
+  font-weight:900;
+}
+
+.element .ename{
+  font-size:12px;
+  text-align:center;
+}
+
+.element .mass{
+  font-size:12px;
+  color:#dfedff;
+}
+
+.element.important{
+  background:#975273;
+}
+
+.element.noble{
+  background:#6953a2;
+}
+
+.element.lanth{
+  background:#347d8d;
+}
+
+.element.act{
+  background:#86576d;
+}
+
+.element-info{
+  padding:15px;
+  margin-top:12px;
+
+  background:#194860;
+  border-radius:11px;
+
+  font-size:21px;
+  line-height:1.5;
+}
+
+/* ҰЯЛЫ ТЕЛЕФОН */
+
+@media(max-width:950px){
+  .hero,
+  .grid2,
+  .grid3{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:700px){
+  .topbar{padding:9px}
+  .brand strong{font-size:18px}
+  .brand small,#sectionName{display:none}
+  .topinfo{gap:8px;font-size:13px}
+  #timer{font-size:21px}
+
+  .main{padding:13px}
+
+  h1{font-size:35px}
+  h2{font-size:29px}
+  h3{font-size:24px}
+  p,li{font-size:19px}
+
+  .card{padding:16px}
+  .problem{padding:16px}
+
+  .footer{
+    min-height:79px;
+    padding:7px;
+  }
+
+  .navigation{gap:4px}
+  .signature strong{
+    font-size:16px;
+    letter-spacing:0;
+  }
+  .signature small{display:none}
+
+  .clock{padding:5px 6px}
+  #clock{font-size:16px}
+  .clock small{font-size:10px}
+
+  .btn{
+    padding:8px;
+    font-size:13px;
+  }
+
+  .tools{
+    left:8px;
+    bottom:94px;
+  }
+
+  .tool-btn{
+    padding:8px;
+    font-size:12px;
+  }
+
+  .options{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <header class="topbar">
+
+    <div class="brand">
+      <strong>⚗ CHEMISTRY PRO</strong>
+
+      <small>
+        §67 · АЛКАНДАРДЫҢ ХИМИЯЛЫҚ ҚАСИЕТТЕРІ
+      </small>
+    </div>
+
+    <div class="topinfo">
+
+      <span id="sectionName">
+        Кіріспе
+      </span>
+
+      <strong id="timer">
+        80:00
+      </strong>
+
+      <span id="pageCount">
+        1 / 1
+      </span>
+
+    </div>
+
+  </header>
+
+  <main id="main" class="main">
+    <section id="slide" class="slide"></section>
+  </main>
+
+  <footer class="footer">
+
+    <div class="navigation">
+      <button id="prev" class="btn">
+        ← Артқа
+      </button>
+
+      <button id="next" class="btn primary">
+        Келесі →
+      </button>
+    </div>
+
+    <div class="signature">
+      <strong>BY DARKHAN</strong>
+      <small id="slideTitle">§67</small>
+    </div>
+
+    <div class="clock">
+      <strong id="clock">00:00:00</strong>
+      <small>Алматы уақыты</small>
+    </div>
+
+  </footer>
+
+</div>
+
+<div class="tools">
+
+  <button id="calcOpen" class="tool-btn">
+    🧮 Калькулятор
+  </button>
+
+  <button id="tableOpen" class="tool-btn green-btn">
+    ⚛ Менделеев кестесі
+  </button>
+
+</div>
+
+<!-- КАЛЬКУЛЯТОР -->
+
+<div id="calculator" class="calculator hidden">
+
+  <div class="calc-head">
+    <strong>🧮 Калькулятор</strong>
+
+    <button
+      id="calcClose"
+      class="close"
+      type="button"
+    >
+      ✕
+    </button>
+  </div>
+
+  <input
+    id="calcDisplay"
+    readonly
+    aria-label="Есептеу нәтижесі"
+  >
+
+  <div id="calcKeys" class="calc-grid"></div>
+
+  <div class="calc-hint">
+    Батырманы бас — есепте.
+    Ұстап жылжыт — қозға.
+  </div>
+
+</div>
+
+<!-- ПЕРИОДТЫҚ КЕСТЕ -->
+
+<div id="periodicModal" class="overlay hidden">
+
+  <div class="periodic-panel">
+
+    <div class="modal-head">
+
+      <div>
+        <h2>Менделеевтің периодтық кестесі</h2>
+        <p>118 элемент · 7 период · 18 топ</p>
+      </div>
+
+      <button
+        id="tableClose"
+        class="close"
+        type="button"
+      >
+        ✕
+      </button>
+
+    </div>
+
+    <div class="periodic-scroll">
+      <div
+        id="periodicGrid"
+        class="periodic-grid"
+      ></div>
+    </div>
+
+    <div
+      id="elementInfo"
+      class="element-info"
+    >
+      Элементті таңдап, мәліметін қара.
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+"use strict";
+
+/* =========================================
+   §67
+   АЛКАНДАРДЫҢ ХИМИЯЛЫҚ ҚАСИЕТТЕРІ
+========================================= */
+
+/* КӨМЕКШІ ФУНКЦИЯЛАР */
+
+const $ = id => document.getElementById(id);
+
+function safe(value){
+  return String(value).replace(
+    /[&<>"']/g,
+    char=>({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#39;"
+    }[char])
+  );
+}
+
+/* =========================================
+   ДЕРЕКТЕРДІ САҚТАУ
+========================================= */
+
+const STORAGE_KEY="darkhan_chem67_rebuilt_v2";
+const TIMER_KEY=STORAGE_KEY+"_timer";
+
+function initialState(){
+  return{
+    levels:{},
+    individualIndex:0,
+    individualAnswer:false,
+    gameIndex:0,
+    chosenAnswer:null,
+    scores:[0,0,0],
+    homeworkAnswer:false
+  };
+}
+
+let state=initialState();
+
+try{
+  const saved=JSON.parse(
+    localStorage.getItem(STORAGE_KEY)
+  );
+
+  if(
+    saved &&
+    Array.isArray(saved.scores) &&
+    saved.scores.length===3
+  ){
+    state={
+      ...initialState(),
+      ...saved
+    };
+  }
+}catch(error){
+  console.warn(error);
+}
+
+function saveState(){
+  try{
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(state)
+    );
+  }catch(error){
+    console.warn(error);
+  }
+}
+
+/* =========================================
+   80 МИНУТТЫҚ ТАЙМЕР
+========================================= */
+
+const savedTime=localStorage.getItem(TIMER_KEY);
+
+let deadline=savedTime===null
+  ?null
+  :Number(savedTime);
+
+if(
+  deadline!==null &&
+  !Number.isFinite(deadline)
+){
+  deadline=null;
+}
+
+function remainingSeconds(){
+  if(deadline===null){
+    return 4800;
+  }
+
+  return Math.max(
+    0,
+    Math.ceil((deadline-Date.now())/1000)
+  );
+}
+
+function updateTime(){
+  const seconds=remainingSeconds();
+
+  const minutes=String(
+    Math.floor(seconds/60)
+  ).padStart(2,"0");
+
+  const rest=String(
+    seconds%60
+  ).padStart(2,"0");
+
+  $("timer").textContent=
+    minutes+":"+rest;
+
+  $("timer").style.color=
+    seconds===0
+      ?"#ffb2bb"
+      :"#ffdc91";
+
+  $("clock").textContent=
+    new Intl.DateTimeFormat(
+      "en-GB",
+      {
+        timeZone:"Asia/Almaty",
+        hour:"2-digit",
+        minute:"2-digit",
+        second:"2-digit",
+        hourCycle:"h23"
+      }
+    ).format(new Date());
+}
+
+function startTimer(){
+  if(deadline!==null){
+    if(remainingSeconds()>0){
+      return;
+    }
+
+    alert(
+      "80 минут аяқталды. " +
+      "Таймерді қайта бастау үшін жаңарт."
+    );
+
+    return;
+  }
+
+  deadline=Date.now()+4800000;
+
+  localStorage.setItem(
+    TIMER_KEY,
+    String(deadline)
+  );
+
+  updateTime();
+  render();
+}
+
+function resetTimer(){
+  if(!confirm(
+    "80 минуттық таймерді қайта бастаймыз ба?"
+  )){
+    return;
+  }
+
+  deadline=null;
+
+  localStorage.removeItem(TIMER_KEY);
+
+  updateTime();
+  render();
+}
+
+setInterval(updateTime,1000);
+
+/* =========================================
+   СЛАЙД ЖҮЙЕСІ
+========================================= */
+
+const slides=[];
+let page=0;
+
+function addSlide(title,section,html){
+  slides.push({
+    title,
+    section,
+    html
+  });
+}
+
+function addDynamicSlide(title,section,renderer){
+  slides.push({
+    title,
+    section,
+    renderer
+  });
+}
+
+function render(){
+  const current=slides[page];
+
+  if(!current)return;
+
+  $("slide").innerHTML=current.renderer
+    ?current.renderer()
+    :current.html;
+
+  $("sectionName").textContent=current.section;
+  $("slideTitle").textContent=current.title;
+
+  $("pageCount").textContent=
+    `${page+1} / ${slides.length}`;
+
+  $("prev").disabled=page===0;
+
+  $("next").disabled=
+    page===slides.length-1;
+
+  $("main").scrollTop=0;
+}
+
+function goTo(title){
+  const index=slides.findIndex(
+    slide=>slide.title===title
+  );
+
+  if(index>=0){
+    page=index;
+    render();
+  }
+}
+
+$("prev").addEventListener("click",()=>{
+  if(page>0){
+    page--;
+    render();
+  }
+});
+
+$("next").addEventListener("click",()=>{
+  if(page<slides.length-1){
+    page++;
+    render();
+  }
+});
+
+/* =========================================
+   ХИМИЯЛЫҚ РЕАКЦИЯ МОДЕЛІ
+========================================= */
+
+function reactionModel(equation,label,type){
+  const color=type==="combustion"
+    ?"#ffdc91"
+    :type==="substitution"
+      ?"#8bddff"
+      :"#88ecc0";
+
+  return `
+    <div class="illustration">
+
+      <svg
+        viewBox="0 0 460 170"
+        role="img"
+        aria-label="${safe(label)}"
+      >
+
+        <rect
+          x="15" y="42"
+          width="155" height="85"
+          rx="18"
+          fill="#24546b"
+          stroke="#8bddff"
+          stroke-width="3"
+        />
+
+        <rect
+          x="290" y="42"
+          width="155" height="85"
+          rx="18"
+          fill="#185847"
+          stroke="#88ecc0"
+          stroke-width="3"
+        />
+
+        <path
+          d="M185 84 H273"
+          stroke="${color}"
+          stroke-width="7"
+          stroke-linecap="round"
+        />
+
+        <path
+          d="M253 69 L274 84 L253 99"
+          fill="none"
+          stroke="${color}"
+          stroke-width="7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+
+        <text
+          x="92"
+          y="91"
+          font-size="24"
+          text-anchor="middle"
+          font-weight="900"
+          fill="#ffffff"
+        >Реагенттер</text>
+
+        <text
+          x="367"
+          y="91"
+          font-size="24"
+          text-anchor="middle"
+          font-weight="900"
+          fill="#ffffff"
+        >Өнімдер</text>
+
+      </svg>
+
+      <strong>${safe(equation)}</strong>
+
+      <small>${safe(label)}</small>
+
+    </div>
+  `;
+}
+
+/* =========================================
+   КІРІСПЕ
+========================================= */
+
+addDynamicSlide(
+  "Алкандардың химиялық қасиеттері",
+  "Кіріспе · 5 минут",
+  ()=>`
+    <div class="hero">
+
+      <div>
+        <div class="subtitle">
+          §67 · ОРГАНИКАЛЫҚ ХИМИЯ
+        </div>
+
+        <h1>
+          <span class="blue">Алкандардың</span>
+          химиялық қасиеттері
+        </h1>
+
+        <h2 class="green">
+          Жану · Орынбасу · Дегидрлену · Крекинг
+        </h2>
+
+        <p>
+          Алкандардың қандай реакцияларға
+          түсетінін, реакция теңдеулерін
+          теңестіруді және химиялық
+          есептерді шығаруды үйренеміз.
+        </p>
+
+        <div class="actions">
+          <button
+            class="btn success"
+            onclick="startTimer()"
+          >
+            ▶ Сабақты бастау
+          </button>
+
+          <button
+            class="btn"
+            onclick="resetTimer()"
+          >
+            ↺ Таймерді жаңарту
+          </button>
+        </div>
+      </div>
+
+      ${reactionModel(
+        "CH₄ + 2O₂ → CO₂ + 2H₂O",
+        "Метанның толық жану реакциясы",
+        "combustion"
+      )}
+
+    </div>
+  `
+);
+
+addSlide(
+  "Сабақтың мақсаты",
+  "Кіріспе",
+  `
+    <h2>Сабақтың мақсаты</h2>
+
+    <div class="grid2">
+
+      <div class="card">
+        <h3>Теориялық мақсат</h3>
+
+        <p>
+          Алкандардың химиялық
+          тұрақтылығын, жану,
+          орынбасу, дегидрлену
+          және крекинг реакцияларын
+          түсіну.
+        </p>
+      </div>
+
+      <div class="card green-card">
+        <h3>Практикалық мақсат</h3>
+
+        <p>
+          Реакция түрлерін анықтау,
+          теңдеулерді теңестіру,
+          зат мөлшерін,
+          массасын және жану
+          өнімдерінің көлемін есептеу.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="note">
+      Сабақ — 80 минут.
+
+      Кіріспе — 5 минут;
+      түсіндірме — 20 минут;
+      конспект — 8 минут;
+      деңгейлік жұмыс — 10 минут;
+      жеке жұмыс — 20 минут;
+      командалық ойын — 12 минут;
+      қорытынды және үй жұмысы — 5 минут.
+    </div>
+  `
+);
+
+/* =========================================
+   15 ТОЛЫҚ ТҮСІНДІРМЕ
+========================================= */
+
+const theory=[
+  {
+    title:"Алкандар неге қаныққан көмірсутектер?",
+    text:"Алкандардың құрамында көміртек пен сутек атомдары болады. Олардың көміртек атомдары арасында тек дара ковалентті байланыстар кездеседі. Әрбір көміртек атомы төрт ковалентті байланыс түзе алады. Қос және үштік байланыстардың болмауына байланысты алкандар қаныққан көмірсутектер деп аталады. Ашық тізбекті алкандардың жалпы формуласы CₙH₂ₙ₊₂.",
+    example:"Метан — CH₄, этан — C₂H₆, пропан — C₃H₈.",
+    formula:"CₙH₂ₙ₊₂",
+    notes:[
+      "Алкандар — қаныққан көмірсутектер.",
+      "Алкандардағы C–C байланыстары дара болады."
+    ],
+    type:"other"
+  },
+  {
+    title:"Алкандардың химиялық тұрақтылығы",
+    text:"Алкандардың молекулаларында салыстырмалы берік C–C және C–H σ-байланыстары бар. Сондықтан қалыпты жағдайда алкандар көптеген химиялық реагенттермен баяу әрекеттеседі немесе мүлде әрекеттеспейді. Бірақ қажетті реакция жағдайлары жасалғанда олар жану, орынбасу және басқа да химиялық өзгерістерге түсе алады.",
+    example:"Метан кәдімгі жағдайда хлормен қараңғыда оңай әрекеттеспейді, ал жарық әсерінде хлорлану реакциясы басталуы мүмкін.",
+    formula:"C–C және C–H → σ-байланыстар",
+    notes:[
+      "Алкандар салыстырмалы химиялық тұрақты.",
+      "Кейбір реакциялар үшін жарық, қыздыру немесе катализатор қажет."
+    ],
+    type:"other"
+  },
+  {
+    title:"Алкандардың толық жануы",
+    text:"Алкандар жеткілікті оттек қатысында жанғанда көмірқышқыл газы мен су түзіледі. Жану — экзотермиялық реакция, яғни жылу бөлінеді. Бұл қасиет алкандардың отын ретінде қолданылуына негіз болады. Теңдеуді теңестіру кезінде алдымен көміртек, кейін сутек, ең соңында оттек атомдарының санын салыстыру ыңғайлы.",
+    example:"Метанның толық жануы: CH₄ + 2O₂ → CO₂ + 2H₂O.",
+    formula:"Алкан + O₂ → CO₂ + H₂O",
+    notes:[
+      "Толық жану өнімдері — CO₂ және H₂O.",
+      "Жану реакциясында жылу бөлінеді."
+    ],
+    type:"combustion"
+  },
+  {
+    title:"Метанның жануын теңестіру",
+    text:"Метанның формуласында бір көміртек және төрт сутек атомы бар. Өнім жағына бір CO₂ және екі H₂O жазамыз. Оң жақта барлығы төрт оттек атомы орналасады. Сол жақтағы оттек атомдарын теңестіру үшін O₂ алдына 2 коэффициентін қоямыз. Осылайша теңдеудің екі жағындағы атом саны бірдей болады.",
+    example:"CH₄ + 2O₂ → CO₂ + 2H₂O.",
+    formula:"CH₄ + 2O₂ → CO₂ + 2H₂O",
+    notes:[
+      "Метан жанғанда 1 моль CO₂ түзіледі.",
+      "1 моль CH₄ жануына 2 моль O₂ қажет."
+    ],
+    type:"combustion"
+  },
+  {
+    title:"Этанның жану реакциясы",
+    text:"Этанның молекулалық формуласы C₂H₆. Бір молекула этан жанғанда екі көмірқышқыл газы мен үш су молекуласы түзіледі. Оттек коэффициенті бөлшек болып шықпау үшін барлық коэффициенттерді екіге көбейтеміз. Нәтижесінде екі этан молекуласына жеті оттек молекуласы қажет болады.",
+    example:"2C₂H₆ + 7O₂ → 4CO₂ + 6H₂O.",
+    formula:"2C₂H₆ + 7O₂ → 4CO₂ + 6H₂O",
+    notes:[
+      "Этанның жану өнімдері — CO₂ және H₂O.",
+      "Коэффициенттер қатынасы: 2 : 7 : 4 : 6."
+    ],
+    type:"combustion"
+  },
+  {
+    title:"Пропанның жануы",
+    text:"Пропан C₃H₈ молекуласында үш көміртек және сегіз сутек атомы бар. Толық жану кезінде үш CO₂ және төрт H₂O түзіледі. Өнімдердегі оттек атомдарының жалпы саны он болғандықтан, реакция үшін бес O₂ қажет. Жану теңдеуіндегі коэффициенттер зат мөлшерін есептеуге де көмектеседі.",
+    example:"C₃H₈ + 5O₂ → 3CO₂ + 4H₂O.",
+    formula:"C₃H₈ + 5O₂ → 3CO₂ + 4H₂O",
+    notes:[
+      "1 моль пропаннан 3 моль CO₂ түзіледі.",
+      "1 моль пропаннан 4 моль H₂O түзіледі."
+    ],
+    type:"combustion"
+  },
+  {
+    title:"Бутанның жануы",
+    text:"Бутанның молекулалық формуласы C₄H₁₀. Оның толық жану реакциясын бүтін коэффициенттермен жазу үшін екі бутан молекуласын аламыз. Сонда сегіз CO₂ және он H₂O түзіледі. Реакцияның оң жағында жиырма алты оттек атомы болатындықтан, сол жақта он үш O₂ қажет.",
+    example:"2C₄H₁₀ + 13O₂ → 8CO₂ + 10H₂O.",
+    formula:"2C₄H₁₀ + 13O₂ → 8CO₂ + 10H₂O",
+    notes:[
+      "Бутанның толық жануы — тотығу реакциясы.",
+      "Коэффициенттер қатынасы: 2 : 13 : 8 : 10."
+    ],
+    type:"combustion"
+  },
+  {
+    title:"Толық емес жану",
+    text:"Оттек жеткіліксіз болса, көмірсутектердің толық емес жануы мүмкін. Мұндай жағдайда көміртек(II) оксиді CO немесе күйе түріндегі көміртек түзілуі мүмкін. Көміртек(II) оксиді — өте улы газ. Сондықтан жану процестерін тек қауіпсіз жабдықта және тиісті бақылаумен жүргізу маңызды.",
+    example:"2CH₄ + 3O₂ → 2CO + 4H₂O — толық емес жанудың бір мысалы.",
+    formula:"2CH₄ + 3O₂ → 2CO + 4H₂O",
+    notes:[
+      "Оттек жетіспегенде толық емес жану болуы мүмкін.",
+      "CO — улы газ."
+    ],
+    type:"combustion"
+  },
+  {
+    title:"Орынбасу реакциясы",
+    text:"Алкандар үшін маңызды химиялық өзгерістердің бірі — орынбасу реакциясы. Бұл реакцияда молекуладағы сутек атомының орнын басқа атом немесе атомдар тобы басады. Мысалы, метанның хлорлануы жарық әсерінен басталуы мүмкін. Бірінші орынбасу сатысында хлорметан мен хлорсутек түзіледі.",
+    example:"CH₄ + Cl₂ → CH₃Cl + HCl (жарық әсерінен).",
+    formula:"CH₄ + Cl₂ → CH₃Cl + HCl",
+    notes:[
+      "Алкандар орынбасу реакциясына түсе алады.",
+      "Метанның хлорлануында алғашқы өнім — CH₃Cl."
+    ],
+    type:"substitution"
+  },
+  {
+    title:"Метанның хлорлану өнімдері",
+    text:"Метанның хлорлануы бірнеше сатыда жүруі мүмкін. Әр сатыда сутек атомының орнына хлор атомы келеді. Соның нәтижесінде әртүрлі хлорланған қосылыстар түзілуі мүмкін. Мектеп бағдарламасында көбіне алғашқы орынбасу сатысы арқылы реакция түрін және өнімдердің формуласын анықтауға көңіл бөлінеді.",
+    example:"Бірінші саты: CH₄ + Cl₂ → CH₃Cl + HCl.",
+    formula:"CH₄ → CH₃Cl",
+    notes:[
+      "CH₃Cl — хлорметан.",
+      "Хлорлану — орынбасу реакциясының мысалы."
+    ],
+    type:"substitution"
+  },
+  {
+    title:"Дегидрлену реакциясы",
+    text:"Дегидрлену — органикалық молекуладан сутектің бөлініп шығу реакциясы. Белгілі өнеркәсіптік жағдайларда қаныққан көмірсутектен қанықпаған көмірсутек алынуы мүмкін. Мысалы, этанды дегидрлегенде этен және сутек түзіледі. Бұл реакция теңдеуінде көміртек пен сутек атомдарының саны сақталады.",
+    example:"C₂H₆ → C₂H₄ + H₂ (тиісті катализатор және қыздыру жағдайында).",
+    formula:"C₂H₆ → C₂H₄ + H₂",
+    notes:[
+      "Дегидрлену кезінде сутек бөлінеді.",
+      "Этаннан этен түзілуі мүмкін."
+    ],
+    type:"other"
+  },
+  {
+    title:"Крекинг дегеніміз не?",
+    text:"Крекинг — ұзын көмірсутек молекулаларының кіші молекулаларға ыдырау процесі. Бұл процесс мұнай өңдеу өнеркәсібінде маңызды. Крекингтің қарапайым үлгісінде алкан молекуласы кіші алкан мен алкенге ыдырауы мүмкін. Реакция өнімдерінің нақты құрамы процестің жағдайына байланысты болады.",
+    example:"C₆H₁₄ → C₃H₈ + C₃H₆ — мүмкін болатын ыдырау теңдеуінің үлгісі.",
+    formula:"C₆H₁₄ → C₃H₈ + C₃H₆",
+    notes:[
+      "Крекинг — ірі көмірсутек молекулаларының ыдырауы.",
+      "Бұл процесс мұнай өңдеуде қолданылады."
+    ],
+    type:"other"
+  },
+  {
+    title:"Реакция түрлерін салыстыру",
+    text:"Алкандар әртүрлі жағдайда бірнеше реакция түріне түсе алады. Толық жануда көмірсутек оттекпен әрекеттесіп, CO₂ және H₂O түзеді. Орынбасуда сутек атомының орнына басқа атом келеді. Дегидрленуде сутек бөлінеді. Крекинг кезінде ірі көмірсутек молекуласы кіші молекулаларға бөлінеді.",
+    example:"Жану: CH₄+2O₂→CO₂+2H₂O. Орынбасу: CH₄+Cl₂→CH₃Cl+HCl.",
+    formula:"Жану · Орынбасу · Дегидрлену · Крекинг",
+    notes:[
+      "Реакция түрін бастапқы заттар мен өнімдер арқылы анықта.",
+      "Теңдеудегі атом санын міндетті түрде тексер."
+    ],
+    type:"other"
+  },
+  {
+    title:"Химиялық теңдеу бойынша есептер",
+    text:"Реакция теңдеуіндегі коэффициенттер заттардың мольдік қатынасын көрсетеді. Мысалы, метанның толық жану теңдеуінде бір моль CH₄ жанғанда бір моль CO₂ және екі моль H₂O түзіледі. Заттың массасын табу үшін молярлық массасы қолданылады. Газдардың бірдей жағдайдағы көлемдері моль санына пропорционал.",
+    example:"2 моль CH₄ толық жанғанда 2 моль CO₂ түзіледі. Оның массасы 2×44=88 г.",
+    formula:"m = n × M",
+    notes:[
+      "Коэффициенттер мольдік қатынасты көрсетеді.",
+      "Масса: m=n×M.",
+      "Зат мөлшері: n=m/M."
+    ],
+    type:"combustion"
+  },
+  {
+    title:"Сабақты қорытындылау",
+    text:"Алкандар салыстырмалы түрде тұрақты қаныққан көмірсутектер болғанымен, қажетті жағдайларда химиялық реакцияларға түседі. Толық жану кезінде көмірқышқыл газы мен су түзіледі. Орынбасу реакциясында сутек атомдары алмасады. Өнеркәсіпте дегидрлену мен крекинг процестері де маңызды. Реакцияларды дұрыс түсіну үшін олардың теңдеулерін теңестіру және заттардың мольдік қатынасын анықтау керек.",
+    example:"CH₄+2O₂→CO₂+2H₂O; CH₄+Cl₂→CH₃Cl+HCl.",
+    formula:"Реакция түрі → теңдеу → есеп",
+    notes:[
+      "Алкандарға жану және орынбасу реакциялары тән.",
+      "Дегидрлену мен крекинг белгілі жағдайларда жүреді.",
+      "Есеп шығаруда реакция коэффициенттері пайдаланылады."
+    ],
+    type:"other"
+  }
+];
+
+/* 15 СЛАЙДТЫ ҚҰРУ */
+
+theory.forEach((topic,index)=>{
+  addSlide(
+    topic.title,
+    `Түсіндірме ${index+1}/15`,
+    `
+      <div class="subtitle">
+        ТҮСІНДІРМЕ · ${index+1}/15
+      </div>
+
+      <h2>${safe(topic.title)}</h2>
+
+      <div class="grid2">
+
+        <div class="card">
+          <h3>Толық түсіндірме</h3>
+          <p>${safe(topic.text)}</p>
+        </div>
+
+        ${reactionModel(
+          topic.formula,
+          topic.title,
+          topic.type
+        )}
+
+      </div>
+
+      <div
+        class="card green-card"
+        style="margin-top:16px"
+      >
+        <h3>Нақты мысал</h3>
+        <p>${safe(topic.example)}</p>
+      </div>
+
+      <div class="formula">
+        ${safe(topic.formula)}
+      </div>
+
+      <div class="note">
+        <b class="gold">
+          Дәптерге жаз:
+        </b>
+
+        ${topic.notes.map((note,i)=>`
+          <div class="step">
+            ${i+1}. ${safe(note)}
+          </div>
+        `).join("")}
+      </div>
+    `
+  );
+});
+
+/* =========================================
+   РЕАКЦИЯЛАРДЫҢ САЛЫСТЫРУ КЕСТЕСІ
+========================================= */
+
+addSlide(
+  "Химиялық реакциялардың кестесі",
+  "Көрнекі салыстыру",
+  `
+    <div class="subtitle">
+      РЕАКЦИЯ ТҮРЛЕРІ
+    </div>
+
+    <h2>Алкандардың химиялық реакциялары</h2>
+
+    <div class="card">
+
+      <h3>1. Толық жану</h3>
+      <div class="equation">
+        CH₄ + 2O₂ → CO₂ + 2H₂O
+      </div>
+
+      <h3>2. Орынбасу</h3>
+      <div class="equation">
+        CH₄ + Cl₂ → CH₃Cl + HCl
+      </div>
+
+      <h3>3. Дегидрлену</h3>
+      <div class="equation">
+        C₂H₆ → C₂H₄ + H₂
+      </div>
+
+      <h3>4. Крекинг</h3>
+      <div class="equation">
+        C₆H₁₄ → C₃H₈ + C₃H₆
+      </div>
+
+    </div>
+
+    <div class="note">
+      Дегидрлену және крекинг
+      тиісті өндірістік жағдайларда жүреді.
+      Орынбасу реакциясының көрсетілген
+      мысалы жарық әсерінен жүреді.
+    </div>
+  `
+);
+
+/* =========================================
+   3 КОНСПЕКТ
+========================================= */
+
+const notes=[
+  {
+    title:"Алкандардың негізгі қасиеттері",
+    lines:[
+      "Алкандар — ашық тізбекті қаныққан көмірсутектер.",
+      "Алкандардың жалпы формуласы CₙH₂ₙ₊₂.",
+      "Молекулаларында C–C және C–H дара байланыстар болады.",
+      "Алкандар салыстырмалы химиялық тұрақты.",
+      "Алкандар толық жанғанда CO₂ және H₂O түзіледі.",
+      "Метанның хлорлануы — орынбасу реакциясы.",
+      "Кейбір реакциялар үшін жарық, қыздыру немесе катализатор қажет."
+    ]
+  },
+  {
+    title:"Алкандардың реакция теңдеулері",
+    lines:[
+      "Метан: CH₄+2O₂→CO₂+2H₂O.",
+      "Этан: 2C₂H₆+7O₂→4CO₂+6H₂O.",
+      "Пропан: C₃H₈+5O₂→3CO₂+4H₂O.",
+      "Бутан: 2C₄H₁₀+13O₂→8CO₂+10H₂O.",
+      "Орынбасу: CH₄+Cl₂→CH₃Cl+HCl.",
+      "Толық емес жанудың мысалы: 2CH₄+3O₂→2CO+4H₂O.",
+      "Жану кезінде жылу бөлінеді."
+    ]
+  },
+  {
+    title:"Дегидрлену, крекинг және есептер",
+    lines:[
+      "Дегидрлену — молекуладан сутектің бөлінуі.",
+      "Этанның дегидрленуі: C₂H₆→C₂H₄+H₂.",
+      "Крекинг — ірі көмірсутек молекулаларының ыдырауы.",
+      "Крекинг үлгісі: C₆H₁₄→C₃H₈+C₃H₆.",
+      "Ar(C)=12; Ar(H)=1; Ar(O)=16.",
+      "M(CH₄)=16 г/моль; M(CO₂)=44 г/моль.",
+      "Масса формуласы: m=n×M.",
+      "Зат мөлшері: n=m/M.",
+      "Қалыпты жағдайда 1 моль идеал газ көлемі шамамен 22,4 л."
+    ]
+  }
+];
+
+notes.forEach((note,index)=>{
+  addSlide(
+    `Конспект №${index+1}`,
+    "Конспект · 8 минут",
+    `
+      <div class="subtitle">
+        ДӘПТЕРГЕ ЖАЗЫП АЛ
+      </div>
+
+      <h2>Конспект №${index+1}</h2>
+
+      <h3>${safe(note.title)}</h3>
+
+      <div class="card">
+        <ol>
+          ${note.lines.map(line=>`
+            <li>${safe(line)}</li>
+          `).join("")}
+        </ol>
+      </div>
+    `
+  );
+});
+
+/* =========================================
+   4 ДЕҢГЕЙЛІК ЖҰМЫС
+========================================= */
+
+const levels=[
+  {
+    title:"1-деңгей. Реакция түрін анықтау",
+    questions:[
+      [
+        "Алкандар толық жанғанда қандай өнімдер түзіледі?",
+        "CO₂ және H₂O."
+      ],
+      [
+        "CH₄+Cl₂→CH₃Cl+HCl қандай реакция?",
+        "Орынбасу реакциясы."
+      ],
+      [
+        "C₂H₆→C₂H₄+H₂ реакциясының түрі?",
+        "Дегидрлену."
+      ],
+      [
+        "Ірі көмірсутек молекуласының ыдырауы қалай аталады?",
+        "Крекинг."
+      ]
+    ]
+  },
+  {
+    title:"2-деңгей. Теңдеулерді толықтыр",
+    questions:[
+      [
+        "CH₄+O₂→CO₂+H₂O теңестір.",
+        "CH₄+2O₂→CO₂+2H₂O."
+      ],
+      [
+        "C₃H₈+O₂→CO₂+H₂O теңестір.",
+        "C₃H₈+5O₂→3CO₂+4H₂O."
+      ],
+      [
+        "C₂H₆→C₂H₄+... теңдеуін толықтыр.",
+        "C₂H₆→C₂H₄+H₂."
+      ],
+      [
+        "CH₄+Cl₂→CH₃Cl+... теңдеуін толықтыр.",
+        "CH₄+Cl₂→CH₃Cl+HCl."
+      ]
+    ]
+  },
+  {
+    title:"3-деңгей. Реакцияларды талдау",
+    questions:[
+      [
+        "Этанның толық жану коэффициенттерін жаз.",
+        "2 : 7 : 4 : 6."
+      ],
+      [
+        "Бутанның толық жану коэффициенттерін жаз.",
+        "2 : 13 : 8 : 10."
+      ],
+      [
+        "1 моль CH₄ жанғанда неше моль су түзіледі?",
+        "2 моль H₂O."
+      ],
+      [
+        "Метанның хлорлануының бірінші органикалық өнімі?",
+        "Хлорметан — CH₃Cl."
+      ]
+    ]
+  },
+  {
+    title:"4-деңгей. Сандық есептер",
+    questions:[
+      [
+        "2 моль CH₄ жанғанда неше моль CO₂ түзіледі?",
+        "2 моль CO₂."
+      ],
+      [
+        "1 моль C₃H₈ жанғанда неше моль H₂O түзіледі?",
+        "4 моль H₂O."
+      ],
+      [
+        "0,5 моль CH₄ жанғанда түзілген CO₂ массасын тап.",
+        "0,5×44=22 г."
+      ],
+      [
+        "2 моль C₃H₈ жанғанда неше моль CO₂ түзіледі?",
+        "6 моль CO₂."
+      ]
+    ]
+  }
+];
+
+levels.forEach((level,index)=>{
+  addDynamicSlide(
+    `Деңгейлік жұмыс №${index+1}`,
+    "Деңгейлік жұмыс · 10 минут",
+    ()=>renderLevel(index)
+  );
+});
+
+function renderLevel(index){
+  const level=levels[index];
+  const opened=Boolean(state.levels[index]);
+
+  return `
+    <div class="subtitle">
+      ДЕҢГЕЙЛІК ЖҰМЫС · ${index+1}/4
+    </div>
+
+    <h2>${safe(level.title)}</h2>
+
+    ${level.questions.map((question,i)=>`
+      <div class="task">
+        <p>
+          <b class="gold">${i+1}.</b>
+          ${safe(question[0])}
+        </p>
+      </div>
+    `).join("")}
+
+    <button
+      class="btn warning"
+      onclick="toggleLevel(${index})"
+    >
+      ${opened
+        ?"Жауаптарды жасыру"
+        :"Жауаптарды көру"}
+    </button>
+
+    ${opened?`
+      <div class="answer">
+
+        ${level.questions.map((question,i)=>`
+          <p>
+            <b>${i+1}.</b>
+            ${safe(question[1])}
+          </p>
+        `).join("")}
+
+      </div>
+    `:""}
+  `;
+}
+
+function toggleLevel(index){
+  state.levels[index]=!state.levels[index];
+
+  saveState();
+  render();
+}
+
+/* =========================================
+   25 ЖЕКЕ ТАПСЫРМА
+========================================= */
+
+const individual=[
+  ["Алкандардың жалпы формуласы қандай?","CₙH₂ₙ₊₂."],
+  ["Метанның толық жануын теңестір.","CH₄+2O₂→CO₂+2H₂O."],
+  ["Толық жанудың өнімдерін ата.","CO₂ және H₂O."],
+  ["Метан жанғанда қандай газ түзіледі?","Көмірқышқыл газы — CO₂."],
+  ["Этанның молекулалық формуласы?","C₂H₆."],
+  ["Этанның толық жану теңдеуін жаз.","2C₂H₆+7O₂→4CO₂+6H₂O."],
+  ["Пропанның молекулалық формуласы?","C₃H₈."],
+  ["Пропанның жану теңдеуін жаз.","C₃H₈+5O₂→3CO₂+4H₂O."],
+  ["Бутанның молекулалық формуласы?","C₄H₁₀."],
+  ["Бутанның толық жануын теңестір.","2C₄H₁₀+13O₂→8CO₂+10H₂O."],
+  ["Метанның хлорлану теңдеуін жаз.","CH₄+Cl₂→CH₃Cl+HCl."],
+  ["Метанның хлорлануы қандай реакция?","Орынбасу реакциясы."],
+  ["CH₃Cl затының атауы?","Хлорметан."],
+  ["Дегидрлену дегеніміз не?","Молекуладан сутектің бөлінуі."],
+  ["Этанның дегидрлену теңдеуін жаз.","C₂H₆→C₂H₄+H₂."],
+  ["Этан дегидрленгенде қандай алкен түзіледі?","Этен — C₂H₄."],
+  ["Крекинг дегеніміз не?","Ірі көмірсутек молекуласының кіші молекулаларға ыдырауы."],
+  ["C₆H₁₄→C₃H₈+C₃H₆ реакциясының түрі?","Крекинг."],
+  ["Толық емес жануда қандай улы газ түзілуі мүмкін?","CO — көміртек(II) оксиді."],
+  ["Mr(CH₄) қанша?","16."],
+  ["Mr(CO₂) қанша?","44."],
+  ["1 моль CH₄ жанғанда неше моль су түзіледі?","2 моль."],
+  ["2 моль C₃H₈ жанғанда неше моль CO₂ түзіледі?","6 моль."],
+  ["0,5 моль CH₄ жанғанда CO₂ массасы қанша?","22 г."],
+  ["1 моль C₃H₈ жанғанда қалыпты жағдайда түзілетін CO₂ көлемі?","3×22,4=67,2 л."]
+];
+
+addDynamicSlide(
+  "25 жеке тапсырма",
+  "Жеке жұмыс · 20 минут",
+  renderIndividual
+);
+
+function renderIndividual(){
+  const index=state.individualIndex;
+
+  if(index>=individual.length){
+    return `
+      <div class="center">
+        <h1>25 тапсырма аяқталды!</h1>
+
+        <div class="formula">
+          25 / 25
+        </div>
+
+        <div class="actions">
+          <button
+            class="btn warning"
+            onclick="restartIndividual()"
+          >
+            ↺ Қайта бастау
+          </button>
+
+          <button
+            class="btn primary"
+            onclick="goTo('Командалық ойын')"
+          >
+            Командалық ойын →
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  const question=individual[index];
+
+  return `
+    <div class="subtitle">
+      ЖЕКЕ ТАҚТА ТАПСЫРМАСЫ
+    </div>
+
+    <h2>Тақтаға шығып орында</h2>
+
+    <span class="number-tag">
+      ${index+1}-оқушы · ${index+1}/25
+    </span>
+
+    <div class="progress">
+      <div
+        style="width:${index/25*100}%"
+      ></div>
+    </div>
+
+    <div class="problem">
+
+      <h3>Тапсырма</h3>
+
+      <p class="question">
+        ${safe(question[0])}
+      </p>
+
+      <div class="note">
+        Есеп болса, берілгенін,
+        формуласын және шешу жолын
+        толық жаз.
+      </div>
+
+    </div>
+
+    ${state.individualAnswer?`
+      <div class="answer">
+
+        <b>Дұрыс жауап:</b>
+
+        <p>${safe(question[1])}</p>
+
+      </div>
+    `:""}
+
+    <div class="actions">
+
+      <button
+        class="btn warning"
+        onclick="toggleIndividualAnswer()"
+      >
+        ${state.individualAnswer
+          ?"Жауапты жасыру"
+          :"Жауапты көру"}
+      </button>
+
+      <button
+        class="btn primary"
+        onclick="nextIndividual()"
+      >
+        Келесі оқушы →
+      </button>
+
+    </div>
+  `;
+}
+
+function toggleIndividualAnswer(){
+  state.individualAnswer=!state.individualAnswer;
+
+  saveState();
+  render();
+}
+
+function nextIndividual(){
+  state.individualIndex=Math.min(
+    individual.length,
+    state.individualIndex+1
+  );
+
+  state.individualAnswer=false;
+
+  saveState();
+  render();
+}
+
+function restartIndividual(){
+  if(!confirm(
+    "25 тапсырманы қайта бастаймыз ба?"
+  )){
+    return;
+  }
+
+  state.individualIndex=0;
+  state.individualAnswer=false;
+
+  saveState();
+  render();
+}
+
+/* =========================================
+   3 КОМАНДА — 15 СҰРАҚ
+========================================= */
+
+const game=[
+  {
+    q:"Метанның толық жану өнімдері?",
+    options:[
+      "CO₂ және H₂O",
+      "CO және H₂",
+      "CH₃Cl және HCl",
+      "C₂H₄ және H₂"
+    ],
+    answer:0
+  },
+  {
+    q:"Метанның толық жануының дұрыс теңдеуі?",
+    options:[
+      "CH₄+O₂→CO₂+H₂O",
+      "CH₄+2O₂→CO₂+2H₂O",
+      "CH₄+O₂→CO+H₂O",
+      "CH₄+Cl₂→CH₃Cl+HCl"
+    ],
+    answer:1
+  },
+  {
+    q:"Метанның хлорлануы қандай реакция?",
+    options:[
+      "Қосылу",
+      "Полимерлену",
+      "Орынбасу",
+      "Бейтараптану"
+    ],
+    answer:2
+  },
+  {
+    q:"Метан хлорлануының алғашқы органикалық өнімі?",
+    options:[
+      "Этен",
+      "Этан",
+      "Метанол",
+      "Хлорметан"
+    ],
+    answer:3
+  },
+  {
+    q:"Этан толық жанғанда O₂ коэффициенті қанша?",
+    options:["7","5","3","2"],
+    answer:0
+  },
+  {
+    q:"Пропан толық жанғанда CO₂ коэффициенті қанша?",
+    options:["2","3","4","5"],
+    answer:1
+  },
+  {
+    q:"Дегидрлену деген не?",
+    options:[
+      "Оттектің қосылуы",
+      "Судың қосылуы",
+      "Сутектің бөлінуі",
+      "Тұнбаның түзілуі"
+    ],
+    answer:2
+  },
+  {
+    q:"C₂H₆→C₂H₄+H₂ қандай реакция?",
+    options:[
+      "Гидратация",
+      "Жану",
+      "Орынбасу",
+      "Дегидрлену"
+    ],
+    answer:3
+  },
+  {
+    q:"Крекингтің мағынасы қандай?",
+    options:[
+      "Ірі көмірсутек молекуласының ыдырауы",
+      "Тұз түзілуі",
+      "Судың қосылуы",
+      "Металды балқыту"
+    ],
+    answer:0
+  },
+  {
+    q:"Бутанның толық жануында O₂ коэффициенті қанша?",
+    options:["5","13","7","2"],
+    answer:1
+  },
+  {
+    q:"Толық емес жануда қандай улы газ түзілуі мүмкін?",
+    options:["O₂","N₂","CO","H₂"],
+    answer:2
+  },
+  {
+    q:"1 моль CH₄ жанғанда неше моль H₂O түзіледі?",
+    options:["1","3","4","2"],
+    answer:3
+  },
+  {
+    q:"Mr(CH₄) мәні?",
+    options:["16","30","44","58"],
+    answer:0
+  },
+  {
+    q:"Mr(CO₂) мәні?",
+    options:["16","44","28","18"],
+    answer:1
+  },
+  {
+    q:"2 моль C₃H₈ жанғанда қанша моль CO₂ түзіледі?",
+    options:["2","3","6","8"],
+    answer:2
+  }
+];
+
+addDynamicSlide(
+  "Командалық ойын",
+  "3 команда · 12 минут",
+  renderGame
+);
+
+function renderGame(){
+  const index=state.gameIndex;
+
+  if(index>=game.length){
+    const max=Math.max(...state.scores);
+
+    const winners=state.scores
+      .map((score,i)=>
+        score===max
+          ?`${i+1}-команда`
+          :null
+      )
+      .filter(Boolean);
+
+    return `
+      <div class="center">
+
+        <h1>Командалық ойын аяқталды!</h1>
+
+        <div class="grid3">
+          ${state.scores.map((score,i)=>`
+            <div class="team">
+              <h3>${i+1}-команда</h3>
+              <div class="score">${score}</div>
+              <p>ұпай</p>
+            </div>
+          `).join("")}
+        </div>
+
+        <div class="note">
+          Жеңімпаз:
+          <b class="green">
+            ${winners.join(", ")}
+          </b>
+        </div>
+
+        <div class="actions">
+          <button
+            class="btn warning"
+            onclick="restartGame()"
+          >
+            ↺ Қайта бастау
+          </button>
+        </div>
+
+      </div>
+    `;
+  }
+
+  const question=game[index];
+  const team=index%3;
+  const chosen=state.chosenAnswer;
+
+  return `
+    <div class="subtitle">
+      КОМАНДАЛЫҚ ОЙЫН · ${index+1}/15
+    </div>
+
+    <h2>${team+1}-команданың кезегі</h2>
+
+    <div class="grid3">
+
+      ${state.scores.map((score,i)=>`
+        <div class="team ${i===team?"active":""}">
+          <h3>${i+1}-команда</h3>
+          <div class="score">${score}</div>
+          <p>ұпай</p>
+        </div>
+      `).join("")}
+
+    </div>
+
+    <div class="card" style="margin-top:18px">
+      <h3>Сұрақ</h3>
+
+      <p class="question">
+        ${safe(question.q)}
+      </p>
+    </div>
+
+    <div class="options" style="margin-top:16px">
+
+      ${question.options.map((option,i)=>{
+        let css="";
+
+        if(chosen!==null){
+          if(i===question.answer){
+            css="correct";
+          }else if(i===chosen){
+            css="wrong";
+          }
+        }
+
+        return `
+          <button
+            class="option ${css}"
+            ${chosen!==null?"disabled":""}
+            onclick="chooseAnswer(${i})"
+          >
+            ${"ABCD"[i]}. ${safe(option)}
+          </button>
+        `;
+      }).join("")}
+
+    </div>
+
+    ${chosen!==null?`
+      <div class="answer">
+
+        <b>
+          ${chosen===question.answer
+            ?"Дұрыс жауап! +10 ұпай"
+            :"Қате жауап. 0 ұпай"}
+        </b>
+
+        <p>
+          Дұрыс нұсқа:
+          <b>${safe(question.options[question.answer])}</b>
+        </p>
+
+      </div>
+
+      <div class="actions">
+        <button
+          class="btn primary"
+          onclick="nextGame()"
+        >
+          Келесі команда →
+        </button>
+      </div>
+    `:`
+      <div class="note">
+        Төрт нұсқаның бірін таңда.
+        Жауап берілгеннен кейін
+        келесі командаға кезек беріледі.
+      </div>
+    `}
+  `;
+}
+
+function chooseAnswer(index){
+  if(state.chosenAnswer!==null){
+    return;
+  }
+
+  state.chosenAnswer=index;
+
+  const current=game[state.gameIndex];
+
+  if(index===current.answer){
+    const team=state.gameIndex%3;
+
+    state.scores[team]+=10;
+  }
+
+  saveState();
+  render();
+}
+
+function nextGame(){
+  if(state.chosenAnswer===null){
+    return;
+  }
+
+  state.gameIndex++;
+  state.chosenAnswer=null;
+
+  saveState();
+  render();
+}
+
+function restartGame(){
+  if(!confirm(
+    "Командалық ойынды қайта бастаймыз ба?"
+  )){
+    return;
+  }
+
+  state.gameIndex=0;
+  state.chosenAnswer=null;
+  state.scores=[0,0,0];
+
+  saveState();
+  render();
+}
+
+/* =========================================
+   ҮЙ ТАПСЫРМАСЫ
+========================================= */
+
+const homework=[
+  [
+    "CH₄+Cl₂→CH₃Cl+HCl реакциясының түрін ата.",
+    "Орынбасу реакциясы."
+  ],
+  [
+    "Метан мен пропанның толық жану теңдеулерін жаз.",
+    "CH₄+2O₂→CO₂+2H₂O; C₃H₈+5O₂→3CO₂+4H₂O."
+  ],
+  [
+    "C₂H₆→C₂H₄+H₂ реакциясының атауын және өнімдерін жаз.",
+    "Дегидрлену; өнімдер — этен және сутек."
+  ],
+  [
+    "C₆H₁₄→C₃H₈+C₃H₆ өзгерісін түсіндір.",
+    "Крекингтің үлгісі. Гексаннан пропан мен пропен түзіледі."
+  ]
+];
+
+const homeworkMath=[
+  [
+    "1,5 моль метан толық жанғанда түзілетін CO₂ массасын анықта.",
+    "n(CO₂)=1,5 моль; m=1,5×44=66 г."
+  ],
+  [
+    "0,5 моль пропан толық жанғанда түзілетін судың массасын есепте.",
+    "n(H₂O)=0,5×4=2 моль; m=2×18=36 г."
+  ]
+];
+
+addDynamicSlide(
+  "Үй тапсырмасы",
+  "Реакциялар зертханасы",
+  renderHomework
+);
+
+function renderHomework(){
+  return `
+    <div class="subtitle">
+      §67 · ҮЙ ТАПСЫРМАСЫ
+    </div>
+
+    <h2>«Реакциялар зертханасы»</h2>
+
+    <div class="grid2">
+
+      <div class="card">
+        <h3>1. Реакцияларды зертте</h3>
+
+        ${homework.map((item,i)=>`
+          <div class="home-row">
+            <p>
+              <b class="gold">${i+1}.</b>
+              ${safe(item[0])}
+            </p>
+          </div>
+        `).join("")}
+
+      </div>
+
+      <div class="card green-card">
+        <h3>2. Реакцияларды салыстыр</h3>
+
+        <p>
+          Мына төрт реакция түрін
+          дәптерге кесте ретінде жаз:
+        </p>
+
+        <div class="home-row">
+          <p>1. Толық жану</p>
+        </div>
+
+        <div class="home-row">
+          <p>2. Орынбасу</p>
+        </div>
+
+        <div class="home-row">
+          <p>3. Дегидрлену</p>
+        </div>
+
+        <div class="home-row">
+          <p>4. Крекинг</p>
+        </div>
+
+        <div class="note">
+          Әрқайсысына бір реакция теңдеуін
+          және қысқаша түсіндірме жаз.
+        </div>
+
+      </div>
+
+    </div>
+
+    <div
+      class="card"
+      style="margin-top:17px"
+    >
+
+      <h3>3. Екі химиялық есеп</h3>
+
+      ${homeworkMath.map((item,i)=>`
+        <div class="home-row">
+          <p>
+            <b class="gold">${i+1}-есеп.</b>
+            ${safe(item[0])}
+          </p>
+        </div>
+      `).join("")}
+
+      <div class="note">
+        Берілгені, реакция теңдеуі,
+        формуласы, шешу жолы және
+        жауабы толық көрсетілсін.
+      </div>
+
+    </div>
+
+    <div class="actions">
+      <button
+        class="btn warning"
+        onclick="toggleHomework()"
+      >
+        ${state.homeworkAnswer
+          ?"Жауаптарды жасыру"
+          :"Жауаптарды көру"}
+      </button>
+    </div>
+
+    ${state.homeworkAnswer?`
+      <div class="answer">
+
+        <h3>1-тапсырма жауаптары</h3>
+
+        ${homework.map((item,i)=>`
+          <p>
+            <b>${i+1}.</b>
+            ${safe(item[1])}
+          </p>
+        `).join("")}
+
+        <h3>2-тапсырма үлгісі</h3>
+
+        <p>
+          Жану:
+          CH₄+2O₂→CO₂+2H₂O.
+        </p>
+
+        <p>
+          Орынбасу:
+          CH₄+Cl₂→CH₃Cl+HCl.
+        </p>
+
+        <p>
+          Дегидрлену:
+          C₂H₆→C₂H₄+H₂.
+        </p>
+
+        <p>
+          Крекинг:
+          C₆H₁₄→C₃H₈+C₃H₆.
+        </p>
+
+        <h3>3-тапсырма шешуі</h3>
+
+        ${homeworkMath.map((item,i)=>`
+          <p>
+            <b>${i+1}.</b>
+            ${safe(item[1])}
+          </p>
+        `).join("")}
+
+      </div>
+    `:""}
+  `;
+}
+
+function toggleHomework(){
+  state.homeworkAnswer=!state.homeworkAnswer;
+
+  saveState();
+  render();
+}
+
+/* =========================================
+   ҚОРЫТЫНДЫ
+========================================= */
+
+addSlide(
+  "Сабақ қорытындысы",
+  "Аяқталуы",
+  `
+    <div class="center">
+
+      <div class="subtitle">
+        §67 · ОРГАНИКАЛЫҚ ХИМИЯ
+      </div>
+
+      <h1>Сабақ аяқталды!</h1>
+
+      <h2 class="green">
+        Алкандардың химиялық қасиеттері
+      </h2>
+
+      <div class="grid3">
+
+        <div class="card">
+          <h3>Білдік</h3>
+          <p>
+            Алкандардың маңызды
+            химиялық реакцияларын.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Үйрендік</h3>
+          <p>
+            Реакцияларды теңестіруді
+            және есептеуді.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Орындадық</h3>
+          <p>
+            25 жеке тапсырма және
+            15 командалық сұрақ.
+          </p>
+        </div>
+
+      </div>
+
+      <h2 style="margin-top:25px">
+        Назарларыңызға рақмет!
+      </h2>
+
+      <div class="big gold">
+        BY DARKHAN
+      </div>
+
+    </div>
+  `
+);
+
+/* =========================================
+   КАЛЬКУЛЯТОР
+========================================= */
+
+const calculator=$("calculator");
+const calcDisplay=$("calcDisplay");
+
+let calcText="";
+
+const calculatorButtons=[
+  "7","8","9","÷",
+  "4","5","6","×",
+  "1","2","3","−",
+  "C","0",".","+",
+  "(",")","⌫","="
+];
+
+$("calcKeys").innerHTML=
+  calculatorButtons.map(key=>`
+    <button
+      type="button"
+      data-key="${key}"
+    >
+      ${key}
+    </button>
+  `).join("");
+
+$("calcOpen").addEventListener("click",()=>{
+  calculator.classList.toggle("hidden");
+  keepCalculatorInside();
+});
+
+$("calcClose").addEventListener("click",()=>{
+  calculator.classList.add("hidden");
+});
+
+/* КАЛЬКУЛЯТОР ЕСЕПТЕУ ЖҮЙЕСІ */
+
+function calculate(source){
+  if(!/^[0-9+\-*/(). ]+$/.test(source)){
+    throw Error("Қате өрнек");
+  }
+
+  let position=0;
+
+  function skipSpaces(){
+    while(source[position]===" "){
+      position++;
+    }
+  }
+
+  function factor(){
+    skipSpaces();
+
+    if(source[position]==="+"){
+      position++;
+      return factor();
+    }
+
+    if(source[position]==="-"){
+      position++;
+      return -factor();
+    }
+
+    if(source[position]==="("){
+      position++;
+
+      const value=expression();
+
+      skipSpaces();
+
+      if(source[position]!==")"){
+        throw Error("Жақша қатесі");
+      }
+
+      position++;
+      return value;
+    }
+
+    const match=/^(?:\d+\.?\d*|\.\d+)/
+      .exec(source.slice(position));
+
+    if(!match){
+      throw Error("Сан қатесі");
+    }
+
+    position+=match[0].length;
+
+    return Number(match[0]);
+  }
+
+  function term(){
+    let value=factor();
+
+    while(true){
+      skipSpaces();
+
+      const operator=source[position];
+
+      if(
+        operator!=="*" &&
+        operator!=="/"
+      ){
+        break;
+      }
+
+      position++;
+
+      const next=factor();
+
+      if(operator==="*"){
+        value*=next;
+      }else{
+        value/=next;
+      }
+    }
+
+    return value;
+  }
+
+  function expression(){
+    let value=term();
+
+    while(true){
+      skipSpaces();
+
+      const operator=source[position];
+
+      if(
+        operator!=="+" &&
+        operator!=="-"
+      ){
+        break;
+      }
+
+      position++;
+
+      const next=term();
+
+      if(operator==="+"){
+        value+=next;
+      }else{
+        value-=next;
+      }
+    }
+
+    return value;
+  }
+
+  const result=expression();
+
+  skipSpaces();
+
+  if(
+    position!==source.length ||
+    !Number.isFinite(result)
+  ){
+    throw Error("Есептеу қатесі");
+  }
+
+  return Number(result.toPrecision(12));
+}
+
+function pressCalculatorKey(key){
+  if(key==="C"){
+    calcText="";
+  }else if(key==="⌫"){
+    calcText=calcText.slice(0,-1);
+  }else if(key==="="){
+    try{
+      const normalized=calcText
+        .replaceAll("×","*")
+        .replaceAll("÷","/")
+        .replaceAll("−","-");
+
+      calcText=String(
+        calculate(normalized)
+      );
+    }catch(error){
+      calcText="Қате";
+    }
+  }else{
+    if(calcText==="Қате"){
+      calcText="";
+    }
+
+    calcText+=key;
+  }
+
+  calcDisplay.value=calcText;
+}
+
+/* =========================================
+   ЖЫЛЖЫМАЛЫ КАЛЬКУЛЯТОР
+========================================= */
+
+function clamp(value,min,max){
+  return Math.max(
+    min,
+    Math.min(value,max)
+  );
+}
+
+function keepCalculatorInside(){
+  if(calculator.classList.contains("hidden")){
+    return;
+  }
+
+  const rect=calculator.getBoundingClientRect();
+
+  calculator.style.left=clamp(
+    rect.left,
+    0,
+    Math.max(
+      0,
+      window.innerWidth-rect.width
+    )
+  )+"px";
+
+  calculator.style.top=clamp(
+    rect.top,
+    0,
+    Math.max(
+      0,
+      window.innerHeight-rect.height
+    )
+  )+"px";
+}
+
+let dragState=null;
+
+/*
+  Батырманы қысқа басу:
+  бір рет есептейді.
+
+  Калькуляторды жылжыту:
+  ешбір батырманы іске қоспайды.
+*/
+
+calculator.addEventListener(
+  "pointerdown",
+  event=>{
+    if(
+      event.pointerType==="mouse" &&
+      event.button!==0
+    ){
+      return;
+    }
+
+    if(dragState!==null){
+      return;
+    }
+
+    const rect=calculator.getBoundingClientRect();
+
+    const keyButton=event.target.closest(
+      "[data-key]"
+    );
+
+    dragState={
+      id:event.pointerId,
+
+      startX:event.clientX,
+      startY:event.clientY,
+
+      left:rect.left,
+      top:rect.top,
+
+      moved:false,
+
+      key:keyButton
+        ?keyButton.dataset.key
+        :null
+    };
+  }
+);
+
+window.addEventListener(
+  "pointermove",
+  event=>{
+    if(
+      !dragState ||
+      event.pointerId!==dragState.id
+    ){
+      return;
+    }
+
+    const dx=event.clientX-dragState.startX;
+    const dy=event.clientY-dragState.startY;
+
+    if(
+      !dragState.moved &&
+      Math.hypot(dx,dy)>8
+    ){
+      dragState.moved=true;
+
+      calculator.classList.add(
+        "dragging"
+      );
+    }
+
+    if(!dragState.moved){
+      return;
+    }
+
+    if(event.cancelable){
+      event.preventDefault();
+    }
+
+    calculator.style.left=clamp(
+      dragState.left+dx,
+      0,
+      Math.max(
+        0,
+        window.innerWidth-calculator.offsetWidth
+      )
+    )+"px";
+
+    calculator.style.top=clamp(
+      dragState.top+dy,
+      0,
+      Math.max(
+        0,
+        window.innerHeight-calculator.offsetHeight
+      )
+    )+"px";
+  },
+  {passive:false}
+);
+
+window.addEventListener(
+  "pointerup",
+  event=>{
+    if(
+      !dragState ||
+      event.pointerId!==dragState.id
+    ){
+      return;
+    }
+
+    const previous=dragState;
+
+    dragState=null;
+
+    calculator.classList.remove(
+      "dragging"
+    );
+
+    if(
+      !previous.moved &&
+      previous.key!==null
+    ){
+      pressCalculatorKey(
+        previous.key
+      );
+    }
+  }
+);
+
+window.addEventListener(
+  "pointercancel",
+  event=>{
+    if(
+      dragState &&
+      event.pointerId===dragState.id
+    ){
+      dragState=null;
+
+      calculator.classList.remove(
+        "dragging"
+      );
+    }
+  }
+);
+
+/*
+  Калькулятор батырмалары pointerup
+  арқылы өңделеді. Одан кейінгі
+  click екінші рет есеп жүргізбейді.
+*/
+
+$("calcKeys").addEventListener(
+  "click",
+  event=>{
+    event.preventDefault();
+    event.stopPropagation();
+  },
+  true
+);
+
+window.addEventListener(
+  "resize",
+  keepCalculatorInside
+);
+
+/* =========================================
+   МЕНДЕЛЕЕВ КЕСТЕСІ — 118 ЭЛЕМЕНТ
+========================================= */
+
+const elementData=`
+H|Сутек|1.008
+He|Гелий|4.003
+Li|Литий|6.94
+Be|Бериллий|9.012
+B|Бор|10.81
+C|Көміртек|12.011
+N|Азот|14.007
+O|Оттек|15.999
+F|Фтор|18.998
+Ne|Неон|20.180
+Na|Натрий|22.990
+Mg|Магний|24.305
+Al|Алюминий|26.982
+Si|Кремний|28.085
+P|Фосфор|30.974
+S|Күкірт|32.06
+Cl|Хлор|35.45
+Ar|Аргон|39.948
+K|Калий|39.098
+Ca|Кальций|40.078
+Sc|Скандий|44.956
+Ti|Титан|47.867
+V|Ванадий|50.942
+Cr|Хром|51.996
+Mn|Марганец|54.938
+Fe|Темір|55.845
+Co|Кобальт|58.933
+Ni|Никель|58.693
+Cu|Мыс|63.546
+Zn|Мырыш|65.38
+Ga|Галлий|69.723
+Ge|Германий|72.630
+As|Мышьяк|74.922
+Se|Селен|78.971
+Br|Бром|79.904
+Kr|Криптон|83.798
+Rb|Рубидий|85.468
+Sr|Стронций|87.62
+Y|Иттрий|88.906
+Zr|Цирконий|91.224
+Nb|Ниобий|92.906
+Mo|Молибден|95.95
+Tc|Технеций|[98]
+Ru|Рутений|101.07
+Rh|Родий|102.906
+Pd|Палладий|106.42
+Ag|Күміс|107.868
+Cd|Кадмий|112.414
+In|Индий|114.818
+Sn|Қалайы|118.710
+Sb|Сурьма|121.760
+Te|Теллур|127.60
+I|Йод|126.904
+Xe|Ксенон|131.293
+Cs|Цезий|132.905
+Ba|Барий|137.327
+La|Лантан|138.905
+Ce|Церий|140.116
+Pr|Празеодим|140.908
+Nd|Неодим|144.242
+Pm|Прометий|[145]
+Sm|Самарий|150.36
+Eu|Еуропий|151.964
+Gd|Гадолиний|157.25
+Tb|Тербий|158.925
+Dy|Диспрозий|162.500
+Ho|Гольмий|164.930
+Er|Эрбий|167.259
+Tm|Тулий|168.934
+Yb|Иттербий|173.045
+Lu|Лютеций|174.967
+Hf|Гафний|178.49
+Ta|Тантал|180.948
+W|Вольфрам|183.84
+Re|Рений|186.207
+Os|Осмий|190.23
+Ir|Иридий|192.217
+Pt|Платина|195.084
+Au|Алтын|196.967
+Hg|Сынап|200.592
+Tl|Таллий|204.38
+Pb|Қорғасын|207.2
+Bi|Висмут|208.980
+Po|Полоний|[209]
+At|Астат|[210]
+Rn|Радон|[222]
+Fr|Франций|[223]
+Ra|Радий|[226]
+Ac|Актиний|[227]
+Th|Торий|232.038
+Pa|Протактиний|231.036
+U|Уран|238.029
+Np|Нептуний|[237]
+Pu|Плутоний|[244]
+Am|Америций|[243]
+Cm|Кюрий|[247]
+Bk|Берклий|[247]
+Cf|Калифорний|[251]
+Es|Эйнштейний|[252]
+Fm|Фермий|[257]
+Md|Менделевий|[258]
+No|Нобелий|[259]
+Lr|Лоуренсий|[266]
+Rf|Резерфордий|[267]
+Db|Дубний|[268]
+Sg|Сиборгий|[269]
+Bh|Борий|[270]
+Hs|Хассий|[277]
+Mt|Мейтнерий|[278]
+Ds|Дармштадтий|[281]
+Rg|Рентгений|[282]
+Cn|Коперниций|[285]
+Nh|Нихоний|[286]
+Fl|Флеровий|[289]
+Mc|Московий|[290]
+Lv|Ливерморий|[293]
+Ts|Теннессин|[294]
+Og|Оганесон|[294]
+`;
+
+const elements=elementData
+  .trim()
+  .split("\n")
+  .map((line,index)=>{
+    const [symbol,name,mass]=line.trim().split("|");
+
+    return{
+      z:index+1,
+      symbol,
+      name,
+      mass
+    };
+  });
+
+const periodColumns=[
+  [1,18],
+  [1,2,13,14,15,16,17,18],
+  [1,2,13,14,15,16,17,18],
+  Array.from(
+    {length:18},
+    (_,i)=>i+1
+  ),
+  Array.from(
+    {length:18},
+    (_,i)=>i+1
+  )
+];
+
+function elementPosition(z){
+  if(z<=54){
+    let remaining=z-1;
+
+    for(let p=0;p<5;p++){
+      const cols=periodColumns[p];
+
+      if(remaining<cols.length){
+        return{
+          row:p+1,
+          col:cols[remaining]
+        };
+      }
+
+      remaining-=cols.length;
+    }
+  }
+
+  if(z<=56){
+    return{
+      row:6,
+      col:z-54
+    };
+  }
+
+  if(z<=71){
+    return{
+      row:9,
+      col:z-53
+    };
+  }
+
+  if(z<=86){
+    return{
+      row:6,
+      col:z-68
+    };
+  }
+
+  if(z<=88){
+    return{
+      row:7,
+      col:z-86
+    };
+  }
+
+  if(z<=103){
+    return{
+      row:10,
+      col:z-85
+    };
+  }
+
+  return{
+    row:7,
+    col:z-100
+  };
+}
+
+const importantElements=new Set([
+  "H","C","N","O"
+]);
+
+const nobleGases=new Set([
+  "He","Ne","Ar","Kr","Xe","Rn","Og"
+]);
+
+function elementClass(element){
+  if(importantElements.has(element.symbol)){
+    return"important";
+  }
+
+  if(nobleGases.has(element.symbol)){
+    return"noble";
+  }
+
+  if(element.z>=57 && element.z<=71){
+    return"lanth";
+  }
+
+  if(element.z>=89 && element.z<=103){
+    return"act";
+  }
+
+  return"";
+}
+
+function buildPeriodicTable(){
+  let html="";
+
+  /* Топ нөмірлері */
+
+  for(let group=1;group<=18;group++){
+    html+=`
+      <div
+        class="group-label"
+        style="
+          grid-row:1;
+          grid-column:${group+1}
+        "
+      >
+        ${group}
+      </div>
+    `;
+  }
+
+  /* Период нөмірлері */
+
+  for(let period=1;period<=7;period++){
+    html+=`
+      <div
+        class="period-label"
+        style="
+          grid-row:${period+1};
+          grid-column:1
+        "
+      >
+        ${period}
+      </div>
+    `;
+  }
+
+  /* f-блок */
+
+  html+=`
+    <div
+      class="period-label small"
+      style="grid-row:10;grid-column:1"
+    >
+      Лантаноидтар
+    </div>
+
+    <div
+      class="period-label small"
+      style="grid-row:11;grid-column:1"
+    >
+      Актиноидтар
+    </div>
+
+    <div
+      class="group-label"
+      style="grid-row:7;grid-column:4"
+    >
+      57–71
+    </div>
+
+    <div
+      class="group-label"
+      style="grid-row:8;grid-column:4"
+    >
+      89–103
+    </div>
+  `;
+
+  elements.forEach((element,index)=>{
+    const position=elementPosition(element.z);
+
+    html+=`
+      <button
+        class="element ${elementClass(element)}"
+        data-element="${index}"
+        style="
+          grid-row:${position.row+1};
+          grid-column:${position.col+1}
+        "
+      >
+        <span class="number">
+          ${element.z}
+        </span>
+
+        <span class="symbol">
+          ${safe(element.symbol)}
+        </span>
+
+        <span class="ename">
+          ${safe(element.name)}
+        </span>
+
+        <span class="mass">
+          ${safe(element.mass)}
+        </span>
+      </button>
+    `;
+  });
+
+  $("periodicGrid").innerHTML=html;
+}
+
+/* ЭЛЕМЕНТТІ ТАҢДАУ */
+
+$("periodicGrid").addEventListener(
+  "click",
+  event=>{
+    const button=event.target.closest(
+      "[data-element]"
+    );
+
+    if(!button)return;
+
+    const index=Number(
+      button.dataset.element
+    );
+
+    const element=elements[index];
+
+    if(!element)return;
+
+    const position=elementPosition(element.z);
+
+    const period=position.row===9
+      ?6
+      :position.row===10
+        ?7
+        :position.row;
+
+    const group=position.row>7
+      ?"f-блок"
+      :position.col+"-топ";
+
+    $("elementInfo").innerHTML=`
+      <b class="blue">
+        ${element.z}.
+        ${safe(element.name)}
+        (${safe(element.symbol)})
+      </b>
+
+      <div>
+        ${period}-период · ${group}
+      </div>
+
+      <div>
+        Атомдық масса немесе
+        изотоптың массалық саны:
+
+        <b class="gold">
+          ${safe(element.mass)}
+        </b>
+      </div>
+    `;
+  }
+);
+
+/* КЕСТЕНІ АШУ / ЖАБУ */
+
+$("tableOpen").addEventListener("click",()=>{
+  $("periodicModal").classList.remove(
+    "hidden"
+  );
+});
+
+$("tableClose").addEventListener("click",()=>{
+  $("periodicModal").classList.add(
+    "hidden"
+  );
+});
+
+$("periodicModal").addEventListener(
+  "click",
+  event=>{
+    if(event.target===$("periodicModal")){
+      $("periodicModal").classList.add(
+        "hidden"
+      );
+    }
+  }
+);
+
+/* =========================================
+   ПЕРНЕТАҚТА БАСҚАРУЫ
+========================================= */
+
+document.addEventListener(
+  "keydown",
+  event=>{
+    if(event.key==="Escape"){
+      $("periodicModal").classList.add(
+        "hidden"
+      );
+
+      calculator.classList.add(
+        "hidden"
+      );
+
+      return;
+    }
+
+    if(
+      event.target.closest(
+        "input,textarea"
+      )
+    ){
+      return;
+    }
+
+    if(
+      !$("periodicModal").classList.contains(
+        "hidden"
+      )
+    ){
+      return;
+    }
+
+    if(
+      event.key==="ArrowRight" &&
+      page<slides.length-1
+    ){
+      page++;
+      render();
+    }
+
+    if(
+      event.key==="ArrowLeft" &&
+      page>0
+    ){
+      page--;
+      render();
+    }
+  }
+);
+
+/* =========================================
+   БАСТАПҚЫ ТЕКСЕРУ ЖӘНЕ ІСКЕ ҚОСУ
+========================================= */
+
+console.assert(
+  theory.length===15,
+  "Түсіндірме саны 15 болуы керек"
+);
+
+console.assert(
+  individual.length===25,
+  "Жеке тапсырма саны 25 болуы керек"
+);
+
+console.assert(
+  game.length===15,
+  "Ойын сұрақтарының саны 15 болуы керек"
+);
+
+console.assert(
+  elements.length===118,
+  "Менделеев кестесінде 118 элемент болуы керек"
+);
+
+console.assert(
+  calculatorButtons.length===20,
+  "Калькуляторда 20 батырма болуы керек"
+);
+
+buildPeriodicTable();
+updateTime();
+render();
+
+</script>
+</body>
+</html>

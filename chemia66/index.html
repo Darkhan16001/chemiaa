@@ -1,0 +1,2894 @@
+
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#081a2b">
+<title>§66 — Алкандардың номенклатурасы мен изомерленуі</title>
+
+<style>
+:root{
+  --bg:#081a2b;
+  --panel:#143b56;
+  --blue:#87ddff;
+  --green:#86f0bd;
+  --gold:#ffda8f;
+  --red:#ffabb8;
+  --white:#f7fcff;
+  --muted:#bed9e9;
+}
+*{box-sizing:border-box}
+html,body{
+  width:100%;
+  height:100%;
+  margin:0;
+  background:var(--bg);
+  color:var(--white);
+  font-family:"Segoe UI",Arial,sans-serif;
+}
+button,input{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.45;cursor:not-allowed}
+.hidden{display:none!important}
+.blue{color:var(--blue)}
+.green{color:var(--green)}
+.gold{color:var(--gold)}
+.red{color:var(--red)}
+.center{text-align:center}
+.app{
+  height:100vh;
+  height:100dvh;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 92% 5%,#14789680,transparent 43%),
+    radial-gradient(circle at 5% 95%,#197d5b70,transparent 42%),
+    linear-gradient(130deg,#071725,#11364e,#081a2b);
+}
+header{
+  flex-shrink:0;
+  min-height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding:10px 22px;
+  background:#071c2e;
+  border-bottom:1px solid #6ea5c2;
+}
+.brand{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+.brand strong{
+  font-size:29px;
+  font-weight:900;
+  color:var(--blue);
+}
+.brand small{
+  color:var(--gold);
+  font-size:13px;
+  font-weight:800;
+}
+.top-right{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  font-weight:900;
+}
+#timer{
+  color:var(--gold);
+  font-size:30px;
+  font-variant-numeric:tabular-nums;
+}
+#counter{color:var(--blue)}
+main{
+  flex:1;
+  min-height:0;
+  overflow-y:auto;
+  padding:23px 35px 32px;
+  scrollbar-color:#6196b4 #102c42;
+}
+.slide{
+  width:100%;
+  max-width:1500px;
+  min-height:100%;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+h1{
+  font-size:clamp(41px,4.5vw,74px);
+  line-height:1.12;
+  margin:9px 0 20px;
+}
+h2{
+  font-size:clamp(32px,2.9vw,48px);
+  line-height:1.2;
+  margin:0 0 18px;
+}
+h3{
+  color:var(--blue);
+  font-size:clamp(25px,2vw,34px);
+  margin:0 0 12px;
+}
+p,li{
+  font-size:clamp(21px,1.7vw,28px);
+  line-height:1.48;
+}
+li{margin-bottom:9px}
+.subtitle{
+  color:var(--blue);
+  font-size:20px;
+  font-weight:900;
+  letter-spacing:1px;
+  margin-bottom:12px;
+}
+.grid2,.hero{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:17px;
+  align-items:center;
+}
+.grid3{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+.card{
+  min-width:0;
+  padding:23px 25px;
+  background:linear-gradient(145deg,#1b4560,#102c43);
+  border:1px solid #7eb2d0;
+  border-radius:18px;
+  box-shadow:0 11px 29px #0004;
+}
+.card.green-card{
+  background:linear-gradient(145deg,#175b49,#103d34);
+  border-color:#82ebbd;
+}
+.card p{margin:8px 0}
+.formula{
+  margin:15px 0;
+  padding:18px;
+  color:var(--green);
+  background:#104353;
+  border:1px solid #80c7db;
+  border-radius:14px;
+  font-size:clamp(27px,2.6vw,44px);
+  font-weight:900;
+  text-align:center;
+  overflow-wrap:anywhere;
+}
+.note{
+  margin-top:15px;
+  padding:16px 20px;
+  background:#1a435d;
+  border-left:7px solid var(--gold);
+  border-radius:12px;
+  font-size:clamp(20px,1.55vw,26px);
+  line-height:1.5;
+}
+.step{
+  margin-top:8px;
+  padding:10px 13px;
+  background:#285269;
+  border-radius:8px;
+  font-size:clamp(19px,1.5vw,25px);
+}
+.structure{
+  padding:17px;
+  margin:12px 0;
+  color:var(--gold);
+  background:#0c3146;
+  border:1px solid #80b9d5;
+  border-radius:12px;
+  text-align:center;
+  font:700 clamp(20px,2vw,32px)/1.5
+    Consolas,"Courier New",monospace;
+  white-space:pre;
+  overflow-x:auto;
+}
+.diagram{
+  min-height:255px;
+  padding:17px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  background:#143c52;
+  border:1px solid #80bbd7;
+  border-radius:18px;
+}
+.diagram svg{
+  width:100%;
+  max-width:510px;
+  height:210px;
+}
+.diagram strong{
+  color:var(--green);
+  font-size:29px;
+}
+.diagram small{
+  color:var(--muted);
+  font-size:19px;
+  text-align:center;
+}
+.chem-table{
+  width:100%;
+  border-collapse:collapse;
+}
+.chem-table th,.chem-table td{
+  padding:13px;
+  border-bottom:1px solid #6197b6;
+  text-align:left;
+  font-size:clamp(19px,1.5vw,26px);
+}
+.chem-table th{color:var(--blue)}
+.task{
+  margin-bottom:12px;
+  padding:14px 19px;
+  background:#174058;
+  border:1px solid #73a9c5;
+  border-radius:12px;
+}
+.task p{margin:5px 0}
+.question{
+  font-size:clamp(29px,2.85vw,47px);
+  font-weight:900;
+  line-height:1.43;
+}
+.answer{
+  margin-top:15px;
+  padding:18px;
+  background:#105441;
+  border:1px solid #80e9b9;
+  border-radius:13px;
+  font-size:clamp(22px,1.85vw,29px);
+  line-height:1.5;
+}
+.tag{
+  display:inline-block;
+  padding:12px 20px;
+  color:var(--gold);
+  background:#614f30;
+  border:2px solid var(--gold);
+  border-radius:13px;
+  font-size:clamp(24px,2.4vw,40px);
+  font-weight:900;
+}
+.progress{
+  height:13px;
+  margin-top:13px;
+  background:#294c61;
+  border-radius:20px;
+  overflow:hidden;
+}
+.progress div{
+  height:100%;
+  background:linear-gradient(90deg,#28a6d6,#85eebe);
+}
+.problem{
+  margin-top:18px;
+  padding:27px;
+  background:linear-gradient(140deg,#16516a,#10354b);
+  border:2px solid #81cbe6;
+  border-radius:19px;
+}
+.actions{
+  margin-top:18px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:11px;
+}
+.btn{
+  padding:12px 18px;
+  background:#285d7c;
+  color:white;
+  border:1px solid #82b5d0;
+  border-radius:11px;
+  font-size:19px;
+  font-weight:900;
+}
+.btn.primary{background:#078fac;border-color:#8deaff}
+.btn.success{background:#147c5d;border-color:#8cf1bf}
+.btn.warning{background:#916b34;border-color:#ffdc91}
+.team{
+  padding:18px;
+  background:#163e56;
+  border:1px solid #7caac7;
+  border-radius:16px;
+  text-align:center;
+}
+.team.active{
+  outline:4px solid var(--gold);
+  box-shadow:0 0 24px #ffda9170;
+}
+.team .score{
+  color:var(--gold);
+  font-size:54px;
+  font-weight:900;
+}
+.options{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+.option{
+  padding:18px 15px;
+  color:white;
+  background:#245871;
+  border:2px solid #7bb5d0;
+  border-radius:12px;
+  font-size:clamp(21px,1.7vw,28px);
+  font-weight:900;
+  text-align:left;
+}
+.option.correct{background:#137957;border-color:#99f0c5}
+.option.wrong{background:#8b3e4e;border-color:#ffb1ba}
+.home-row{
+  margin-bottom:11px;
+  padding:14px 19px;
+  background:#173e56;
+  border-left:6px solid var(--blue);
+  border-radius:11px;
+}
+.home-row p{margin:5px 0}
+footer{
+  flex-shrink:0;
+  min-height:88px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:10px 22px;
+  background:#081d30;
+  border-top:1px solid #719db9;
+}
+.navigation{display:flex;gap:9px}
+.signature{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+}
+.signature strong{
+  color:var(--gold);
+  font-size:31px;
+  font-weight:900;
+  letter-spacing:3px;
+}
+.signature small{
+  color:var(--muted);
+  font-size:13px;
+}
+.clock{
+  padding:8px 14px;
+  background:#12394e;
+  border:1px solid #70a4c0;
+  border-radius:11px;
+  text-align:center;
+}
+#clock{
+  display:block;
+  color:var(--blue);
+  font-size:27px;
+  font-variant-numeric:tabular-nums;
+}
+.clock small{color:var(--muted);font-size:12px}
+.tools{
+  position:fixed;
+  z-index:50;
+  bottom:107px;
+  left:10px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:7px;
+}
+.tool-btn{
+  padding:10px 12px;
+  background:#127fa0;
+  color:white;
+  border:1px solid #8ce2ff;
+  border-radius:9px;
+  font-size:13px;
+  font-weight:900;
+}
+.tool-btn.green-btn{
+  background:#167b58;
+  border-color:#87eabb;
+}
+
+/* КАЛЬКУЛЯТОР */
+
+.calculator{
+  position:fixed;
+  z-index:1200;
+  top:100px;
+  left:15px;
+  width:207px;
+  max-width:calc(100vw - 12px);
+  padding:8px;
+  color:white;
+  background:#103249;
+  border:1px solid #86dfff;
+  border-radius:13px;
+  box-shadow:0 20px 45px #000b;
+  user-select:none;
+  -webkit-user-select:none;
+  touch-action:none;
+  cursor:grab;
+}
+.calculator.dragging{cursor:grabbing}
+.calc-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:6px;
+  margin-bottom:7px;
+  background:#28576e;
+  border-radius:8px;
+  font-size:13px;
+}
+.close{
+  padding:5px 9px;
+  background:#b74c5d;
+  color:white;
+  border:0;
+  border-radius:6px;
+}
+#calcDisplay{
+  width:100%;
+  height:43px;
+  padding:7px;
+  color:white;
+  background:#061d2d;
+  border:1px solid #83afc9;
+  border-radius:8px;
+  font-size:19px;
+  text-align:right;
+  pointer-events:none;
+}
+.calc-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:4px;
+  margin-top:7px;
+}
+.calc-grid button{
+  min-width:0;
+  height:38px;
+  padding:1px;
+  background:#2c6080;
+  color:white;
+  border:1px solid #76a8c5;
+  border-radius:7px;
+  font-size:16px;
+  font-weight:900;
+  touch-action:none;
+}
+.calc-grid button:active{background:#1696b7}
+.calc-hint{
+  padding-top:7px;
+  color:var(--muted);
+  font-size:11px;
+  text-align:center;
+}
+
+/* МЕНДЕЛЕЕВ КЕСТЕСІ */
+
+.overlay{
+  position:fixed;
+  inset:0;
+  z-index:2000;
+  padding:12px;
+  background:#000d;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.periodic-panel{
+  width:min(1600px,99vw);
+  max-height:97vh;
+  padding:17px;
+  overflow:auto;
+  background:#0e2a40;
+  border:1px solid #80aec9;
+  border-radius:17px;
+}
+.modal-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+.modal-head p{font-size:17px}
+.periodic-scroll{
+  padding:12px;
+  overflow:auto;
+  background:#061e30;
+  border-radius:12px;
+}
+.periodic-grid{
+  display:grid;
+  min-width:1840px;
+  grid-template-columns:60px repeat(18,minmax(95px,1fr));
+  grid-template-rows:45px repeat(10,98px);
+  gap:5px;
+}
+.period-label,.group-label{
+  display:grid;
+  place-items:center;
+  padding:4px;
+  background:#1b4c65;
+  color:var(--gold);
+  border:1px solid #7bb8d4;
+  border-radius:7px;
+  font-weight:900;
+  text-align:center;
+}
+.element{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:3px;
+  padding:12px 3px 4px;
+  background:#246481;
+  border:1px solid #92c0d6;
+  border-radius:7px;
+  color:white;
+}
+.element .number{
+  position:absolute;
+  top:4px;left:5px;
+  font-size:12px;
+}
+.element .symbol{
+  font-size:28px;
+  font-weight:900;
+}
+.element .ename{
+  font-size:12px;
+  text-align:center;
+}
+.element .mass{
+  font-size:12px;
+  color:#e2efff;
+}
+.element.important{background:#965273}
+.element.noble{background:#6652a2}
+.element.lanth{background:#347e8a}
+.element.act{background:#82566b}
+.element-info{
+  margin-top:12px;
+  padding:15px;
+  background:#194760;
+  border-radius:10px;
+  font-size:22px;
+  line-height:1.5;
+}
+@media(max-width:950px){
+  .hero,.grid2,.grid3{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  header{padding:8px}
+  .brand strong{font-size:18px}
+  .brand small,#sectionName{display:none}
+  .top-right{gap:7px;font-size:13px}
+  #timer{font-size:21px}
+  main{padding:13px}
+  h1{font-size:36px}
+  h2{font-size:29px}
+  h3{font-size:24px}
+  p,li{font-size:19px}
+  .card{padding:16px}
+  .problem{padding:16px}
+  footer{min-height:78px;padding:7px}
+  .navigation{gap:4px}
+  .signature strong{font-size:15px;letter-spacing:0}
+  .signature small{display:none}
+  .clock{padding:5px}
+  #clock{font-size:16px}
+  .clock small{font-size:10px}
+  .btn{font-size:13px;padding:8px}
+  .tools{bottom:93px;left:8px}
+  .option{font-size:20px}
+  .options{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+  <header>
+    <div class="brand">
+      <strong>⚗ CHEMISTRY PRO</strong>
+      <small>§66 · АЛКАНДАРДЫҢ НОМЕНКЛАТУРАСЫ МЕН ИЗОМЕРЛЕНУІ</small>
+    </div>
+
+    <div class="top-right">
+      <span id="sectionName">Кіріспе</span>
+      <strong id="timer">80:00</strong>
+      <span id="counter">1 / 1</span>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="slide" class="slide"></section>
+  </main>
+
+  <footer>
+    <div class="navigation">
+      <button id="prev" class="btn">← Артқа</button>
+      <button id="next" class="btn primary">Келесі →</button>
+    </div>
+
+    <div class="signature">
+      <strong>BY DARKHAN</strong>
+      <small id="slideTitle">§66</small>
+    </div>
+
+    <div class="clock">
+      <strong id="clock">00:00:00</strong>
+      <small>Алматы уақыты</small>
+    </div>
+  </footer>
+</div>
+
+<div class="tools">
+  <button class="tool-btn" id="calcOpen">
+    🧮 Калькулятор
+  </button>
+
+  <button class="tool-btn green-btn" id="tableOpen">
+    ⚛ Менделеев кестесі
+  </button>
+</div>
+
+<div id="calculator" class="calculator hidden">
+  <div class="calc-head">
+    <strong>🧮 Калькулятор</strong>
+    <button id="calcClose" class="close" type="button">✕</button>
+  </div>
+
+  <input id="calcDisplay" readonly aria-label="Калькулятор экраны">
+
+  <div id="calcKeys" class="calc-grid"></div>
+
+  <div class="calc-hint">
+    Бас — есепте · Ұстап жылжыт — қозға
+  </div>
+</div>
+
+<div id="periodicModal" class="overlay hidden">
+  <div class="periodic-panel">
+    <div class="modal-head">
+      <div>
+        <h2>Менделеевтің периодтық кестесі</h2>
+        <p>118 элемент · 7 период · 18 топ</p>
+      </div>
+
+      <button id="tableClose" class="close">
+        ✕
+      </button>
+    </div>
+
+    <div class="periodic-scroll">
+      <div id="periodicGrid" class="periodic-grid"></div>
+    </div>
+
+    <div id="elementInfo" class="element-info">
+      Элементті басып, мәліметін қара.
+    </div>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+/* ========================================
+  §66 АЛКАНДАРДЫҢ НОМЕНКЛАТУРАСЫ
+  МЕН ИЗОМЕРЛЕНУІ
+  ТОЛЫҚ БІР INDEX.HTML
+======================================== */
+
+const $=id=>document.getElementById(id);
+
+const escapeHTML=value=>String(value).replace(
+  /[&<>"']/g,
+  ch=>({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  }[ch])
+);
+
+/* ЖАД */
+
+const STORAGE_KEY="darkhan_chem66_rebuilt_v3";
+const TIMER_KEY=STORAGE_KEY+"_timer";
+
+function freshState(){
+  return{
+    levels:{},
+    boardIndex:0,
+    boardAnswer:false,
+    gameIndex:0,
+    selectedOption:null,
+    scores:[0,0,0],
+    homeworkAnswer:false
+  };
+}
+
+let state=freshState();
+
+try{
+  const data=JSON.parse(localStorage.getItem(STORAGE_KEY));
+
+  if(data && Array.isArray(data.scores) && data.scores.length===3){
+    state={...freshState(),...data};
+  }
+}catch(error){
+  console.warn("Сақталған деректер оқылмады:",error);
+}
+
+function saveState(){
+  try{
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+  }catch(error){
+    console.warn(error);
+  }
+}
+
+/* УАҚЫТ */
+
+const storedDeadline=localStorage.getItem(TIMER_KEY);
+
+let deadline=storedDeadline===null
+  ?null
+  :Number(storedDeadline);
+
+if(deadline!==null&&!Number.isFinite(deadline)){
+  deadline=null;
+}
+
+function remainingSeconds(){
+  if(deadline===null)return 80*60;
+
+  return Math.max(
+    0,
+    Math.ceil((deadline-Date.now())/1000)
+  );
+}
+
+function updateTime(){
+  const seconds=remainingSeconds();
+
+  const m=String(Math.floor(seconds/60)).padStart(2,"0");
+  const s=String(seconds%60).padStart(2,"0");
+
+  $("timer").textContent=m+":"+s;
+  $("timer").style.color=seconds===0?"#ffabb8":"#ffda8f";
+
+  $("clock").textContent=
+    new Intl.DateTimeFormat("en-GB",{
+      timeZone:"Asia/Almaty",
+      hour:"2-digit",
+      minute:"2-digit",
+      second:"2-digit",
+      hourCycle:"h23"
+    }).format(new Date());
+}
+
+function startTimer(){
+  if(deadline!==null && remainingSeconds()>0)return;
+
+  if(deadline!==null){
+    alert("80 минут аяқталды. Таймерді жаңарту батырмасын бас.");
+    return;
+  }
+
+  deadline=Date.now()+80*60*1000;
+  localStorage.setItem(TIMER_KEY,String(deadline));
+
+  updateTime();
+  render();
+}
+
+function resetTimer(){
+  if(!confirm("Таймерді қайта бастаймыз ба?"))return;
+
+  deadline=null;
+  localStorage.removeItem(TIMER_KEY);
+
+  updateTime();
+  render();
+}
+
+setInterval(updateTime,1000);
+
+/* СЛАЙД ЖҮЙЕСІ */
+
+const slides=[];
+let page=0;
+
+function addSlide(title,section,html){
+  slides.push({title,section,html});
+}
+
+function addDynamicSlide(title,section,renderer){
+  slides.push({title,section,renderer});
+}
+
+function render(){
+  const current=slides[page];
+  if(!current)return;
+
+  $("slide").innerHTML=current.renderer
+    ?current.renderer()
+    :current.html;
+
+  $("sectionName").textContent=current.section;
+  $("slideTitle").textContent=current.title;
+  $("counter").textContent=(page+1)+" / "+slides.length;
+
+  $("prev").disabled=page===0;
+  $("next").disabled=page===slides.length-1;
+
+  $("main").scrollTop=0;
+}
+
+function goTo(title){
+  const index=slides.findIndex(s=>s.title===title);
+
+  if(index>=0){
+    page=index;
+    render();
+  }
+}
+
+$("prev").addEventListener("click",()=>{
+  if(page>0){
+    page--;
+    render();
+  }
+});
+
+$("next").addEventListener("click",()=>{
+  if(page<slides.length-1){
+    page++;
+    render();
+  }
+});
+
+/* ========================================
+   КӨМІРТЕК ҚАҢҚАЛАРЫ
+   SVG — БАЙЛАНЫСТАР МЕН АТОМ ТОПТАРЫ
+======================================== */
+
+const models={
+  butane:{
+    name:"Бутан",
+    formula:"C₄H₁₀",
+    atoms:[
+      ["CH₃",45,120],
+      ["CH₂",165,120],
+      ["CH₂",285,120],
+      ["CH₃",405,120]
+    ],
+    bonds:[[0,1],[1,2],[2,3]]
+  },
+
+  methylpropane:{
+    name:"2-метилпропан",
+    formula:"C₄H₁₀",
+    atoms:[
+      ["CH₃",65,135],
+      ["CH",225,135],
+      ["CH₃",385,135],
+      ["CH₃",225,35]
+    ],
+    bonds:[[0,1],[1,2],[1,3]]
+  },
+
+  pentane:{
+    name:"Пентан",
+    formula:"C₅H₁₂",
+    atoms:[
+      ["CH₃",30,120],
+      ["CH₂",125,120],
+      ["CH₂",225,120],
+      ["CH₂",325,120],
+      ["CH₃",420,120]
+    ],
+    bonds:[[0,1],[1,2],[2,3],[3,4]]
+  },
+
+  methylbutane:{
+    name:"2-метилбутан",
+    formula:"C₅H₁₂",
+    atoms:[
+      ["CH₃",48,135],
+      ["CH",165,135],
+      ["CH₂",285,135],
+      ["CH₃",410,135],
+      ["CH₃",165,35]
+    ],
+    bonds:[[0,1],[1,2],[2,3],[1,4]]
+  },
+
+  dimethylpropane:{
+    name:"2,2-диметилпропан",
+    formula:"C₅H₁₂",
+    atoms:[
+      ["CH₃",50,125],
+      ["C",225,125],
+      ["CH₃",400,125],
+      ["CH₃",225,35],
+      ["CH₃",225,220]
+    ],
+    bonds:[[0,1],[1,2],[1,3],[1,4]]
+  },
+
+  methylpentane:{
+    name:"2-метилпентан",
+    formula:"C₆H₁₄",
+    atoms:[
+      ["CH₃",35,135],
+      ["CH",130,135],
+      ["CH₂",225,135],
+      ["CH₂",325,135],
+      ["CH₃",420,135],
+      ["CH₃",130,35]
+    ],
+    bonds:[[0,1],[1,2],[2,3],[3,4],[1,5]]
+  },
+
+  dimethylbutane:{
+    name:"2,2-диметилбутан",
+    formula:"C₆H₁₄",
+    atoms:[
+      ["CH₃",50,125],
+      ["C",165,125],
+      ["CH₂",285,125],
+      ["CH₃",410,125],
+      ["CH₃",165,35],
+      ["CH₃",165,220]
+    ],
+    bonds:[[0,1],[1,2],[2,3],[1,4],[1,5]]
+  },
+
+  dimethylbutane23:{
+    name:"2,3-диметилбутан",
+    formula:"C₆H₁₄",
+    atoms:[
+      ["CH₃",50,140],
+      ["CH",165,140],
+      ["CH",285,140],
+      ["CH₃",410,140],
+      ["CH₃",165,35],
+      ["CH₃",285,230]
+    ],
+    bonds:[[0,1],[1,2],[2,3],[1,4],[2,5]]
+  }
+};
+
+function drawMolecule(key){
+  const molecule=models[key]||models.butane;
+
+  function atomGap(label){
+    if(label==="C")return 20;
+    if(label==="CH")return 27;
+    return 43;
+  }
+
+  const lines=molecule.bonds.map(([i,j])=>{
+    const a=molecule.atoms[i];
+    const b=molecule.atoms[j];
+
+    const dx=b[1]-a[1];
+    const dy=b[2]-a[2];
+
+    const distance=Math.hypot(dx,dy)||1;
+    const ux=dx/distance;
+    const uy=dy/distance;
+
+    const start=atomGap(a[0]);
+    const end=atomGap(b[0]);
+
+    const x1=a[1]+ux*start;
+    const y1=a[2]+uy*start;
+    const x2=b[1]-ux*end;
+    const y2=b[2]-uy*end;
+
+    return `
+      <line
+        x1="${x1}" y1="${y1}"
+        x2="${x2}" y2="${y2}"
+        stroke="#86f0bd"
+        stroke-width="5"
+        stroke-linecap="round"
+      />
+    `;
+  }).join("");
+
+  const atoms=molecule.atoms.map(atom=>`
+    <text
+      x="${atom[1]}"
+      y="${atom[2]+9}"
+      font-size="27"
+      font-weight="900"
+      text-anchor="middle"
+      fill="#f7fcff"
+    >${escapeHTML(atom[0])}</text>
+  `).join("");
+
+  return `
+    <div class="diagram">
+      <svg
+        viewBox="0 0 450 250"
+        role="img"
+        aria-label="${escapeHTML(molecule.name)} құрылысы"
+      >
+        ${lines}
+        ${atoms}
+      </svg>
+
+      <strong>${escapeHTML(molecule.formula)}</strong>
+      <small>${escapeHTML(molecule.name)}</small>
+    </div>
+  `;
+}
+
+/* ========================================
+   КІРІСПЕ
+======================================== */
+
+addDynamicSlide(
+  "Алкандардың номенклатурасы мен изомерленуі",
+  "Кіріспе · 5 минут",
+  ()=>`
+    <div class="hero">
+      <div>
+        <div class="subtitle">
+          §66 · ОРГАНИКАЛЫҚ ХИМИЯ
+        </div>
+
+        <h1>
+          <span class="blue">Алкандардың</span>
+          номенклатурасы мен изомерленуі
+        </h1>
+
+        <h2 class="green">
+          Бірдей формула — әртүрлі құрылым
+        </h2>
+
+        <p>
+          Алкандарды жүйелік атаумен атауды,
+          көміртек қаңқасын дұрыс таңдауды,
+          тармақтарды нөмірлеуді және
+          изомерлерді салыстыруды үйренеміз.
+        </p>
+
+        <div class="actions">
+          <button class="btn success"
+            onclick="startTimer()">
+            ▶ Сабақты бастау
+          </button>
+
+          <button class="btn"
+            onclick="resetTimer()">
+            ↺ Таймерді жаңарту
+          </button>
+        </div>
+      </div>
+
+      ${drawMolecule("methylpropane")}
+    </div>
+  `
+);
+
+addSlide("Сабақтың мақсаты","Кіріспе",`
+  <h2>Сабақтың мақсаты</h2>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Теориялық мақсат</h3>
+
+      <p>
+        Алкандардың номенклатурасы,
+        негізгі көміртек тізбегі,
+        орынбасарлар және
+        құрылымдық изомерия туралы
+        толық түсінік қалыптастыру.
+      </p>
+    </div>
+
+    <div class="card green-card">
+      <h3>Практикалық мақсат</h3>
+
+      <p>
+        Алкандардың құрылымын сызу,
+        изомерлерін табу,
+        жүйелік атауларын жазу,
+        салыстырмалы молекулалық
+        массасын есептеу.
+      </p>
+    </div>
+  </div>
+
+  <div class="note">
+    80 минуттық сабақ жоспары:
+    кіріспе — 5 минут,
+    теория — 20 минут,
+    конспект — 8 минут,
+    деңгейлік тапсырмалар — 10 минут,
+    жеке жұмыс — 20 минут,
+    командалық ойын — 12 минут,
+    қорытынды — 5 минут.
+  </div>
+`);
+
+/* ========================================
+   15 ТЕОРИЯЛЫҚ ТҮСІНДІРМЕ
+======================================== */
+
+const theory=[
+  {
+    title:"Номенклатура дегеніміз не?",
+    text:"Номенклатура — химиялық қосылыстарға белгілі ережелер бойынша атау беру жүйесі. Органикалық химияда халықаралық жүйелік атау молекуланың құрылысын сипаттауға көмектеседі. Алкандарға атау берген кезде көміртек тізбегінің ұзындығы, орынбасарлар және олардың орналасуы ескеріледі.",
+    example:"CH₃–CH₂–CH₂–CH₃ қосылысының атауы — бутан.",
+    formula:"Құрылым → жүйелік атау",
+    model:"butane",
+    notes:[
+      "Номенклатура — заттарға жүйелі атау беру ережелері.",
+      "Алкандардың атаулары -ан жалғауымен аяқталады."
+    ]
+  },
+  {
+    title:"Алкандардың жалпы формуласы",
+    text:"Алкандар — көміртек атомдары арасында тек дара байланыстары бар ашық тізбекті қаныққан көмірсутектер. Олардың жалпы формуласы CₙH₂ₙ₊₂. Бұл өрнек тармақталмаған және тармақталған алкандарға бірдей қолданылады. Бірдей көміртек саны бар изомерлердің молекулалық формуласы да бірдей болады.",
+    example:"n=5 болса, сутек саны 2×5+2=12. Молекулалық формуласы — C₅H₁₂.",
+    formula:"CₙH₂ₙ₊₂",
+    model:"pentane",
+    notes:[
+      "n — көміртек атомдарының саны.",
+      "Алкандардағы сутек саны — 2n+2."
+    ]
+  },
+  {
+    title:"Негізгі тізбек қалай таңдалады?",
+    text:"Тармақталған алканның атауын құрастырғанда ең ұзын үздіксіз көміртек тізбегі анықталады. Негізгі тізбек міндетті түрде қағазда түзу орналаспауы мүмкін. Ол бір-бірімен тікелей байланысқан көміртек атомдарының ең ұзын үздіксіз жолы ретінде саналады. Негізгі тізбектен тыс қалған көміртек топтары орынбасарлар деп аталады.",
+    example:"2-метилбутанда негізгі тізбек төрт көміртектен тұрады.",
+    formula:"Ең ұзын үздіксіз тізбек → негізгі атау",
+    model:"methylbutane",
+    notes:[
+      "Негізгі тізбекті ең ұзын үздіксіз жолдан таңда.",
+      "Тізбектен тыс топтар — орынбасарлар."
+    ]
+  },
+  {
+    title:"Көміртек атомдарын нөмірлеу",
+    text:"Негізгі көміртек тізбегі орынбасарларға мүмкіндігінше кіші нөмір берілетін бағытта нөмірленеді. Егер бірнеше тармақ болса, олардың орналасу нөмірлерінің жиыны салыстырылады. Бірінші айырмашылықта кіші нөмір беретін бағыт таңдалады. Бұл әдіс қосылыстың жүйелік атауын дұрыс жазуға мүмкіндік береді.",
+    example:"CH₃–CH(CH₃)–CH₂–CH₃: метил екінші орында, сондықтан 2-метилбутан.",
+    formula:"1 – 2 – 3 – 4",
+    model:"methylbutane",
+    notes:[
+      "Нөмірлеуді орынбасарға кіші нөмір беретін жақтан баста.",
+      "Орынбасардың орны санмен жазылады."
+    ]
+  },
+  {
+    title:"Метил тобы",
+    text:"Метил тобының формуласы –CH₃. Тармақталған молекулада метил тобы негізгі көміртек тізбегінің белгілі бір атомына жалғанады. Атауда бұл топ метил деп көрсетіліп, оның орналасу нөмірі алдына жазылады. Нөмір мен атаудың арасына дефис қойылады.",
+    example:"CH₃–CH(CH₃)–CH₃ — 2-метилпропан.",
+    formula:"–CH₃ → метил",
+    model:"methylpropane",
+    notes:[
+      "Метил тобының формуласы — CH₃.",
+      "2-метилпропанда метил екінші көміртекке жалғанған."
+    ]
+  },
+  {
+    title:"Этил тобы",
+    text:"Этил тобының формуласы –C₂H₅. Оның құрамында екі көміртек атомы бар. Этил тобы негізгі тізбекке орынбасар ретінде жалғануы мүмкін. Қосылысқа атау берерде ең ұзын негізгі тізбек дұрыс таңдалғанын міндетті түрде тексеру қажет, себебі кейде этил деп көрінген бөлік негізгі тізбек құрамына кіріп кетеді.",
+    example:"3-этилгексан атауында негізгі тізбек алты көміртекті, ал этил тобы үшінші көміртекте орналасқан.",
+    formula:"–CH₂–CH₃ → этил",
+    model:"methylpentane",
+    notes:[
+      "Этил тобының формуласы — C₂H₅.",
+      "Негізгі тізбек таңдалғаннан кейін орынбасарлар анықталады."
+    ]
+  },
+  {
+    title:"Изомерия дегеніміз не?",
+    text:"Изомерия — молекулалық формуласы бірдей қосылыстардың құрылысы немесе кеңістікте орналасуы әртүрлі болатын құбылыс. Изомерлердің құрамындағы элемент атомдарының саны бірдей болғанымен, байланысу реті немесе орналасуы өзгеше болады. Алкандарда көміртек қаңқасының құрылымдық изомериясы маңызды орын алады.",
+    example:"Бутан мен 2-метилпропан екеуінің де формуласы C₄H₁₀.",
+    formula:"Бір формула ≠ бір құрылым",
+    model:"methylpropane",
+    notes:[
+      "Изомерлердің молекулалық формуласы бірдей.",
+      "Құрылымдық изомерлерде атомдардың байланысу реті өзгеше."
+    ]
+  },
+  {
+    title:"Бутанның екі изомері",
+    text:"C₄H₁₀ формуласына көміртек қаңқасының екі құрылымдық изомері сәйкес келеді. Біріншісі — төрт көміртек бір тізбекке орналасқан бутан. Екіншісі — үш көміртекті негізгі тізбегі және бір метил тармағы бар 2-метилпропан. Екі заттың молярлық массасы бірдей — 58 г/моль.",
+    example:"Бутан: CH₃–CH₂–CH₂–CH₃. 2-метилпропан: CH₃–CH(CH₃)–CH₃.",
+    formula:"C₄H₁₀ → 2 изомер",
+    model:"butane",
+    notes:[
+      "C₄H₁₀ екі құрылымдық изомер түзеді.",
+      "Олар: бутан және 2-метилпропан."
+    ]
+  },
+  {
+    title:"2-метилпропанның құрылысы",
+    text:"2-метилпропанда негізгі көміртек тізбегі үш көміртек атомынан тұрады. Ортаңғы, яғни екінші көміртек атомына тағы бір метил тобы жалғанады. Барлығы төрт көміртек және он сутек атомы болады. Оның молекулалық формуласы бутанмен бірдей, бірақ құрылысы тармақталған.",
+    example:"CH₃–CH(CH₃)–CH₃.",
+    formula:"2-метилпропан · C₄H₁₀",
+    model:"methylpropane",
+    notes:[
+      "Негізгі тізбек — пропан.",
+      "Метил тобы екінші орында орналасады."
+    ]
+  },
+  {
+    title:"Пентанның үш изомері",
+    text:"Пентанның молекулалық формуласы C₅H₁₂. Оның көміртек қаңқасының үш құрылымдық изомері бар. Олар — пентан, 2-метилбутан және 2,2-диметилпропан. Үшеуінің де молярлық массасы 72 г/моль, бірақ негізгі тізбектің ұзындығы мен тармақтар саны әртүрлі.",
+    example:"C₅H₁₂ → пентан; 2-метилбутан; 2,2-диметилпропан.",
+    formula:"C₅H₁₂ → 3 изомер",
+    model:"pentane",
+    notes:[
+      "Пентанның үш құрылымдық изомері бар.",
+      "Барлық изомерлердің молярлық массасы — 72 г/моль."
+    ]
+  },
+  {
+    title:"2-метилбутанның құрылысы",
+    text:"2-метилбутан — пентанның тармақталған изомері. Оның ең ұзын негізгі көміртек тізбегінде төрт көміртек болады. Екінші көміртекке бір метил тобы жалғанады. Көміртек атомдарының жалпы саны бес, сондықтан молекулалық формуласы C₅H₁₂ болады.",
+    example:"CH₃–CH(CH₃)–CH₂–CH₃.",
+    formula:"2-метилбутан · C₅H₁₂",
+    model:"methylbutane",
+    notes:[
+      "2-метилбутанда негізгі тізбек — бутан.",
+      "Бір метил тобы екінші көміртекке жалғанған."
+    ]
+  },
+  {
+    title:"2,2-диметилпропан",
+    text:"2,2-диметилпропан — C₅H₁₂ молекулалық формуласына сәйкес келетін үшінші құрылымдық изомер. Оның негізгі тізбегінде үш көміртек атомы бар. Екінші көміртек атомына екі метил тобы жалғанады. Бұл көміртек атомы төрт басқа көміртек атомымен байланысып, өзіне сутек атомын байланыстырмайды.",
+    example:"CH₃–C(CH₃)₂–CH₃ немесе C(CH₃)₄.",
+    formula:"2,2-диметилпропан · C₅H₁₂",
+    model:"dimethylpropane",
+    notes:[
+      "Ди- қосымшасы екі бірдей орынбасар барын көрсетеді.",
+      "Екі метил тобы екінші көміртекте орналасқан."
+    ]
+  },
+  {
+    title:"Бірнеше метил тобы",
+    text:"Егер негізгі тізбекке екі бірдей метил тобы жалғанса, атауда диметил сөзі қолданылады. Әр метил тобының орны жеке көрсетіледі. Мысалы, 2,2-диметилбутан мен 2,3-диметилбутан молекулалық формуласы бірдей, бірақ көміртек қаңқаларының құрылысы әртүрлі.",
+    example:"2,2-диметилбутан: CH₃–C(CH₃)₂–CH₂–CH₃.",
+    formula:"2,2-диметилбутан · C₆H₁₄",
+    model:"dimethylbutane",
+    notes:[
+      "Екі метил тобы болса, ди- қолданылады.",
+      "Орын нөмірлері үтір арқылы бөлінеді."
+    ]
+  },
+  {
+    title:"Изомерлердің қасиеттері",
+    text:"Құрылымдық изомерлердің молекулалық формуласы мен молярлық массасы бірдей. Бірақ олардың молекулалық пішіні мен тармақталу дәрежесі әртүрлі болғандықтан, физикалық қасиеттерінде айырмашылық болуы мүмкін. Мысалы, қайнау температуралары әртүрлі болады. Сондықтан бір формула әрқашан бір ғана затты білдірмейді.",
+    example:"Бутан мен 2-метилпропанның молярлық массасы 58 г/моль, бірақ қайнау температуралары бірдей емес.",
+    formula:"Бірдей M · әртүрлі қасиеттер",
+    model:"methylpropane",
+    notes:[
+      "Изомерлердің молярлық массасы бірдей.",
+      "Физикалық қасиеттері әртүрлі болуы мүмкін."
+    ]
+  },
+  {
+    title:"Номенклатура мен изомерияны қорытындылау",
+    text:"Алкандарға атау беру үшін алдымен ең ұзын үздіксіз көміртек тізбегі таңдалады. Орынбасарларға кіші нөмір берілетіндей тізбек нөмірленеді. Метил, этил сияқты топтардың орны мен саны анықталып, жүйелік атауы жазылады. Изомерлерді салыстырғанда олардың молекулалық формулалары мен көміртек қаңқалары тексеріледі.",
+    example:"Бутан: C₄H₁₀ — 2 изомер. Пентан: C₅H₁₂ — 3 изомер.",
+    formula:"Тізбек → Нөмір → Тармақ → Атау",
+    model:"methylbutane",
+    notes:[
+      "Ең ұзын үздіксіз тізбекті анықта.",
+      "Тармақтарға дұрыс нөмір бер.",
+      "Формуланы және атауды тексер."
+    ]
+  }
+];
+
+theory.forEach((t,i)=>{
+  addSlide(
+    t.title,
+    `Түсіндірме ${i+1}/15`,
+    `
+      <div class="subtitle">
+        ТҮСІНДІРМЕ · ${i+1}/15
+      </div>
+
+      <h2>${escapeHTML(t.title)}</h2>
+
+      <div class="grid2">
+        <div class="card">
+          <h3>Толық түсіндірме</h3>
+          <p>${escapeHTML(t.text)}</p>
+        </div>
+
+        ${drawMolecule(t.model)}
+      </div>
+
+      <div class="card green-card" style="margin-top:16px">
+        <h3>Нақты мысал</h3>
+        <p>${escapeHTML(t.example)}</p>
+      </div>
+
+      <div class="formula">
+        ${escapeHTML(t.formula)}
+      </div>
+
+      <div class="note">
+        <b class="gold">Дәптерге жаз:</b>
+
+        ${t.notes.map((x,j)=>`
+          <div class="step">
+            ${j+1}. ${escapeHTML(x)}
+          </div>
+        `).join("")}
+      </div>
+    `
+  );
+});
+
+/* ЕКІ БУТАН ИЗОМЕРІ */
+
+addSlide(
+  "Бутанның екі изомері",
+  "Салыстыру",
+  `
+    <div class="subtitle">САЛЫСТЫРУ</div>
+
+    <h2>C₄H₁₀ — екі құрылымдық изомер</h2>
+
+    <div class="grid2">
+      <div>
+        ${drawMolecule("butane")}
+        <div class="structure">
+CH₃–CH₂–CH₂–CH₃
+        </div>
+      </div>
+
+      <div>
+        ${drawMolecule("methylpropane")}
+        <div class="structure">
+CH₃–CH(CH₃)–CH₃
+        </div>
+      </div>
+    </div>
+
+    <div class="note">
+      Екі заттың молекулалық формуласы
+      C₄H₁₀, ал молярлық массасы
+      58 г/моль.
+      Көміртек қаңқасының құрылысы өзгеше.
+    </div>
+  `
+);
+
+/* ПЕНТАН ИЗОМЕРЛЕРІ */
+
+addSlide(
+  "Пентанның үш изомері",
+  "Салыстыру",
+  `
+    <div class="subtitle">ҮШ ИЗОМЕР</div>
+
+    <h2>C₅H₁₂ — пентанның изомерлері</h2>
+
+    <div class="grid3">
+      ${drawMolecule("pentane")}
+      ${drawMolecule("methylbutane")}
+      ${drawMolecule("dimethylpropane")}
+    </div>
+
+    <div class="note">
+      Пентан, 2-метилбутан және
+      2,2-диметилпропанның молекулалық
+      формулалары бірдей:
+      <b class="green">C₅H₁₂</b>.
+    </div>
+  `
+);
+
+/* АТАУЛАР КЕСТЕСІ */
+
+const tableRows=[
+  ["CH₃–CH₂–CH₂–CH₃","Бутан","C₄H₁₀"],
+  ["CH₃–CH(CH₃)–CH₃","2-метилпропан","C₄H₁₀"],
+  ["CH₃–CH₂–CH₂–CH₂–CH₃","Пентан","C₅H₁₂"],
+  ["CH₃–CH(CH₃)–CH₂–CH₃","2-метилбутан","C₅H₁₂"],
+  ["C(CH₃)₄","2,2-диметилпропан","C₅H₁₂"],
+  ["CH₃–C(CH₃)₂–CH₂–CH₃","2,2-диметилбутан","C₆H₁₄"]
+];
+
+addSlide(
+  "Изомерлердің салыстыру кестесі",
+  "Көрнекі кесте",
+  `
+    <div class="subtitle">ҚҰРЫЛЫМДАРДЫ САЛЫСТЫР</div>
+
+    <h2>Алкандардың атаулары мен формулалары</h2>
+
+    <div class="card">
+      <table class="chem-table">
+        <thead>
+          <tr>
+            <th>Құрылымдық формула</th>
+            <th>Атауы</th>
+            <th>Молекулалық формула</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          ${tableRows.map(row=>`
+            <tr>
+              <td class="gold">${row[0]}</td>
+              <td>${row[1]}</td>
+              <td class="green">${row[2]}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+  `
+);
+
+/* ========================================
+   3 КОНСПЕКТ
+======================================== */
+
+const notes=[
+  {
+    title:"Алкандардың номенклатурасы",
+    lines:[
+      "Алкандар — ашық тізбекті қаныққан көмірсутектер.",
+      "Алкандардың жалпы формуласы CₙH₂ₙ₊₂.",
+      "Негізгі тізбек — ең ұзын үздіксіз көміртек тізбегі.",
+      "Орынбасарларға кіші мүмкін нөмірлер беріледі.",
+      "Метил тобы — CH₃.",
+      "Этил тобы — C₂H₅.",
+      "Нөмір мен атаудың арасына дефис қойылады."
+    ]
+  },
+  {
+    title:"Бутан және пентан изомерлері",
+    lines:[
+      "Изомерлердің молекулалық формуласы бірдей.",
+      "Құрылымдық изомерлердің байланысу реті әртүрлі.",
+      "C₄H₁₀ екі құрылымдық изомер түзеді.",
+      "Олар — бутан және 2-метилпропан.",
+      "C₅H₁₂ үш құрылымдық изомер түзеді.",
+      "Олар — пентан, 2-метилбутан және 2,2-диметилпропан.",
+      "Изомерлердің молярлық массасы бірдей."
+    ]
+  },
+  {
+    title:"Изомерлер және есептер",
+    lines:[
+      "Ar(C)=12; Ar(H)=1.",
+      "Mr(C₄H₁₀)=4×12+10=58.",
+      "Mr(C₅H₁₂)=5×12+12=72.",
+      "Mr(C₆H₁₄)=6×12+14=86.",
+      "Молярлық масса — M, г/моль.",
+      "Масса формуласы: m=n×M.",
+      "Зат мөлшері: n=m/M.",
+      "Изомерлердің құрылысы өзгергенмен молекулалық формуласы бірдей."
+    ]
+  }
+];
+
+notes.forEach((n,i)=>{
+  addSlide(
+    `Конспект №${i+1}`,
+    "Конспект · 8 минут",
+    `
+      <div class="subtitle">
+        ДӘПТЕРГЕ ЖАЗЫП АЛ
+      </div>
+
+      <h2>Конспект №${i+1}</h2>
+      <h3>${escapeHTML(n.title)}</h3>
+
+      <div class="card">
+        <ol>
+          ${n.lines.map(line=>`
+            <li>${escapeHTML(line)}</li>
+          `).join("")}
+        </ol>
+      </div>
+    `
+  );
+});
+
+/* ========================================
+   4 ДЕҢГЕЙЛІ ТАПСЫРМА
+======================================== */
+
+const levels=[
+  {
+    title:"1-деңгей. Негізгі ұғымдар",
+    tasks:[
+      ["Алкандардың жалпы формуласы қандай?","CₙH₂ₙ₊₂."],
+      ["Метил тобының формуласы қандай?","–CH₃."],
+      ["Этил тобының формуласы қандай?","–C₂H₅."],
+      ["C₄H₁₀ неше құрылымдық изомер түзеді?","2."]
+    ]
+  },
+  {
+    title:"2-деңгей. Қосылыстарды атау",
+    tasks:[
+      ["CH₃–CH₂–CH₂–CH₃ атауын жаз.","Бутан."],
+      ["CH₃–CH(CH₃)–CH₃ атауын жаз.","2-метилпропан."],
+      ["CH₃–CH(CH₃)–CH₂–CH₃ атауын жаз.","2-метилбутан."],
+      ["C(CH₃)₄ атауын жаз.","2,2-диметилпропан."]
+    ]
+  },
+  {
+    title:"3-деңгей. Изомерлерді салыстыр",
+    tasks:[
+      ["Бутан мен 2-метилпропан изомер ме?","Иә, екеуінің формуласы C₄H₁₀."],
+      ["Пентан мен 2-метилбутан изомер ме?","Иә, екеуінің формуласы C₅H₁₂."],
+      ["Бутан мен пентан изомер ме?","Жоқ, формулалары әртүрлі."],
+      ["C₅H₁₂ неше құрылымдық изомер түзеді?","3."]
+    ]
+  },
+  {
+    title:"4-деңгей. Күрделі есептер",
+    tasks:[
+      ["Mr(C₄H₁₀) есепте.","58."],
+      ["Mr(C₅H₁₂) есепте.","72."],
+      ["0,5 моль 2-метилбутанның массасын тап.","36 г."],
+      ["43 г C₆H₁₄ зат мөлшерін анықта.","0,5 моль."]
+    ]
+  }
+];
+
+levels.forEach((level,i)=>{
+  addDynamicSlide(
+    `Деңгейлік жұмыс №${i+1}`,
+    "Деңгейлік жұмыс · 10 минут",
+    ()=>renderLevel(i)
+  );
+});
+
+function renderLevel(i){
+  const level=levels[i];
+  const open=Boolean(state.levels[i]);
+
+  return `
+    <div class="subtitle">
+      ДЕҢГЕЙЛІК ЖҰМЫС · ${i+1}/4
+    </div>
+
+    <h2>${escapeHTML(level.title)}</h2>
+
+    ${level.tasks.map((t,j)=>`
+      <div class="task">
+        <p>
+          <b class="gold">${j+1}.</b>
+          ${escapeHTML(t[0])}
+        </p>
+      </div>
+    `).join("")}
+
+    <button class="btn warning"
+      onclick="toggleLevel(${i})">
+      ${open?"Жауаптарды жасыру":"Жауаптарды көру"}
+    </button>
+
+    ${open?`
+      <div class="answer">
+        ${level.tasks.map((t,j)=>`
+          <p>
+            <b>${j+1}.</b>
+            ${escapeHTML(t[1])}
+          </p>
+        `).join("")}
+      </div>
+    `:""}
+  `;
+}
+
+function toggleLevel(i){
+  state.levels[i]=!state.levels[i];
+  saveState();
+  render();
+}
+
+/* ========================================
+   25 ЖЕКЕ ТАҚТА ТАПСЫРМАСЫ
+======================================== */
+
+const board=[
+  ["Алкандардың жалпы формуласы?","CₙH₂ₙ₊₂.","Ашық тізбекті қаныққан көмірсутектер."],
+  ["Бутанның молекулалық формуласы?","C₄H₁₀.","Төрт көміртек және он сутек."],
+  ["Пентанның молекулалық формуласы?","C₅H₁₂.","Бес көміртек және он екі сутек."],
+  ["Гексанның молекулалық формуласы?","C₆H₁₄.","Алты көміртек және он төрт сутек."],
+  ["Метил тобының формуласы?","–CH₃.","Бір көміртек және үш сутек."],
+  ["Этил тобының формуласы?","–C₂H₅.","Екі көміртек және бес сутек."],
+  ["Бутанның құрылымдық формуласын жаз.","CH₃–CH₂–CH₂–CH₃.","Төрт көміртек бір тізбекте."],
+  ["2-метилпропанның формуласын жаз.","CH₃–CH(CH₃)–CH₃.","Екінші орында бір метил бар."],
+  ["Бутанның неше құрылымдық изомері бар?","2.","Бутан және 2-метилпропан."],
+  ["Пентанның неше құрылымдық изомері бар?","3.","Пентан, 2-метилбутан, 2,2-диметилпропан."],
+  ["CH₃–CH(CH₃)–CH₂–CH₃ атауы?","2-метилбутан.","Төрт көміртекті негізгі тізбек."],
+  ["CH₃–C(CH₃)₂–CH₃ атауы?","2,2-диметилпропан.","Үш көміртекті тізбекте екі метил."],
+  ["CH₃–CH₂–CH₂–CH₂–CH₃ атауы?","Пентан.","Бес көміртек бір тізбекте."],
+  ["CH₃–CH₂–CH(CH₃)–CH₂–CH₃ атауы?","3-метилпентан.","Метил тобы үшінші орында."],
+  ["CH₃–C(CH₃)₂–CH₂–CH₃ атауы?","2,2-диметилбутан.","Екі метил екінші орында."],
+  ["CH₃–CH(CH₃)–CH(CH₃)–CH₃ атауы?","2,3-диметилбутан.","Метил топтары 2 және 3 орындарда."],
+  ["2-метилпентанның молекулалық формуласы?","C₆H₁₄.","Барлығы алты көміртек."],
+  ["3-метилгексанның молекулалық формуласы?","C₇H₁₆.","Барлығы жеті көміртек."],
+  ["2,2-диметилбутанның молекулалық формуласы?","C₆H₁₄.","Төрт көміртекті тізбекке екі метил жалғанған."],
+  ["Бутан изомерлерінің Mr мәні?","58.","4×12+10=58."],
+  ["Пентан изомерлерінің Mr мәні?","72.","5×12+12=72."],
+  ["Гексан изомерлерінің Mr мәні?","86.","6×12+14=86."],
+  ["0,5 моль C₅H₁₂ массасын анықта.","36 г.","0,5×72=36 г."],
+  ["1,5 моль C₄H₁₀ массасын анықта.","87 г.","1,5×58=87 г."],
+  ["43 г C₆H₁₄ зат мөлшерін анықта.","0,5 моль.","43/86=0,5 моль."]
+];
+
+addDynamicSlide(
+  "Тақтадағы 25 тапсырма",
+  "Жеке жұмыс · 20 минут",
+  renderBoard
+);
+
+function renderBoard(){
+  const i=state.boardIndex;
+
+  if(i>=board.length){
+    return `
+      <div class="center">
+        <h1>25 тапсырма аяқталды!</h1>
+
+        <div class="formula">25 / 25</div>
+
+        <div class="actions">
+          <button class="btn warning"
+            onclick="restartBoard()">
+            ↺ Қайта бастау
+          </button>
+
+          <button class="btn primary"
+            onclick="goTo('Командалық ойын')">
+            Командалық ойын →
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  const [question,answer,explanation]=board[i];
+
+  return `
+    <div class="subtitle">
+      ЖЕКЕ ТАҚТА ТАПСЫРМАСЫ
+    </div>
+
+    <h2>Тақтаға шығып орында</h2>
+
+    <span class="tag">
+      ${i+1}-оқушы · ${i+1}/25
+    </span>
+
+    <div class="progress">
+      <div style="width:${100*i/25}%"></div>
+    </div>
+
+    <div class="problem">
+      <h3>Тапсырма</h3>
+
+      <p class="question">
+        ${escapeHTML(question)}
+      </p>
+
+      <div class="note">
+        Тапсырманы орындап,
+        қажет болса құрылымдық формула
+        мен есептеу жолын көрсет.
+      </div>
+    </div>
+
+    ${state.boardAnswer?`
+      <div class="answer">
+        <b>Дұрыс жауап:</b>
+        <p>${escapeHTML(answer)}</p>
+
+        <b>Түсіндіру:</b>
+        <p>${escapeHTML(explanation)}</p>
+      </div>
+    `:""}
+
+    <div class="actions">
+      <button class="btn warning"
+        onclick="toggleBoardAnswer()">
+        ${state.boardAnswer?
+          "Жауапты жасыру":
+          "Жауапты көру"}
+      </button>
+
+      <button class="btn primary"
+        onclick="nextBoard()">
+        Келесі оқушы →
+      </button>
+    </div>
+  `;
+}
+
+function toggleBoardAnswer(){
+  state.boardAnswer=!state.boardAnswer;
+  saveState();
+  render();
+}
+
+function nextBoard(){
+  state.boardIndex=Math.min(
+    state.boardIndex+1,
+    board.length
+  );
+
+  state.boardAnswer=false;
+  saveState();
+  render();
+}
+
+function restartBoard(){
+  if(!confirm("25 тапсырманы қайта бастаймыз ба?"))return;
+
+  state.boardIndex=0;
+  state.boardAnswer=false;
+
+  saveState();
+  render();
+}
+
+/* ========================================
+   3 КОМАНДАЛЫҚ ОЙЫН — 15 СҰРАҚ
+======================================== */
+
+const game=[
+  {
+    q:"Алкандардың жалпы формуласы?",
+    o:["CₙH₂ₙ","CₙH₂ₙ₊₂","CₙH₂ₙ₋₂","CₙHₙ"],
+    a:1
+  },
+  {
+    q:"Бутанның формуласы?",
+    o:["C₄H₈","C₃H₈","C₄H₁₀","C₅H₁₂"],
+    a:2
+  },
+  {
+    q:"Метил тобының формуласы?",
+    o:["–CH₃","–OH","–C₂H₅","–COOH"],
+    a:0
+  },
+  {
+    q:"C₄H₁₀ неше құрылымдық изомер түзеді?",
+    o:["1","3","4","2"],
+    a:3
+  },
+  {
+    q:"2-метилпропанның формуласы?",
+    o:["C₃H₈","C₄H₁₀","C₅H₁₂","C₆H₁₄"],
+    a:1
+  },
+  {
+    q:"C₅H₁₂ неше құрылымдық изомер түзеді?",
+    o:["3","2","4","5"],
+    a:0
+  },
+  {
+    q:"Этил тобының формуласы?",
+    o:["–CH₃","–OH","–C₂H₅","–NH₂"],
+    a:2
+  },
+  {
+    q:"CH₃–CH(CH₃)–CH₃ атауы?",
+    o:["Бутан","Пентан","2-метилбутан","2-метилпропан"],
+    a:3
+  },
+  {
+    q:"CH₃–CH(CH₃)–CH₂–CH₃ атауы?",
+    o:["2-метилбутан","Пентан","3-метилбутан","Бутан"],
+    a:0
+  },
+  {
+    q:"2,2-диметилпропанда неше көміртек бар?",
+    o:["4","5","6","7"],
+    a:1
+  },
+  {
+    q:"Құрылымдық изомерлерде не бірдей?",
+    o:["Барлық қасиеті","Байланысу реті","Молекулалық формуласы","Тармақ саны"],
+    a:2
+  },
+  {
+    q:"Пентан изомерлерінің Mr мәні?",
+    o:["58","44","86","72"],
+    a:3
+  },
+  {
+    q:"CH₃–C(CH₃)₂–CH₂–CH₃ атауы?",
+    o:["2,2-диметилбутан","2-метилбутан","2,3-диметилбутан","Гексан"],
+    a:0
+  },
+  {
+    q:"2-метилпентанның формуласы?",
+    o:["C₅H₁₂","C₆H₁₄","C₇H₁₆","C₄H₁₀"],
+    a:1
+  },
+  {
+    q:"0,5 моль пентанның массасы?",
+    o:["58 г","72 г","36 г","43 г"],
+    a:2
+  }
+];
+
+addDynamicSlide(
+  "Командалық ойын",
+  "3 команда · 12 минут",
+  renderGame
+);
+
+function renderGame(){
+  const i=state.gameIndex;
+
+  if(i>=game.length){
+    const highest=Math.max(...state.scores);
+
+    const winners=state.scores
+      .map((score,j)=>
+        score===highest?`${j+1}-команда`:null
+      )
+      .filter(Boolean);
+
+    return `
+      <div class="center">
+        <h1>Командалық ойын аяқталды!</h1>
+
+        <div class="grid3">
+          ${state.scores.map((score,j)=>`
+            <div class="team">
+              <h3>${j+1}-команда</h3>
+              <div class="score">${score}</div>
+              <p>ұпай</p>
+            </div>
+          `).join("")}
+        </div>
+
+        <div class="note">
+          Жеңімпаз:
+          <b class="green">
+            ${winners.join(", ")}
+          </b>
+        </div>
+
+        <button class="btn warning"
+          onclick="restartGame()">
+          ↺ Ойынды қайта бастау
+        </button>
+      </div>
+    `;
+  }
+
+  const question=game[i];
+  const team=i%3;
+  const selected=state.selectedOption;
+
+  return `
+    <div class="subtitle">
+      КОМАНДАЛЫҚ ОЙЫН · ${i+1}/15
+    </div>
+
+    <h2>${team+1}-команданың кезегі</h2>
+
+    <div class="grid3">
+      ${state.scores.map((score,j)=>`
+        <div class="team ${j===team?"active":""}">
+          <h3>${j+1}-команда</h3>
+          <div class="score">${score}</div>
+          <p>ұпай</p>
+        </div>
+      `).join("")}
+    </div>
+
+    <div class="card" style="margin-top:18px">
+      <h3>Сұрақ</h3>
+      <p class="question">
+        ${escapeHTML(question.q)}
+      </p>
+    </div>
+
+    <div class="options" style="margin-top:16px">
+      ${question.o.map((option,j)=>{
+        let cls="";
+
+        if(selected!==null){
+          if(j===question.a){
+            cls="correct";
+          }else if(j===selected){
+            cls="wrong";
+          }
+        }
+
+        return `
+          <button
+            class="option ${cls}"
+            ${selected!==null?"disabled":""}
+            onclick="chooseAnswer(${j})"
+          >
+            ${"ABCD"[j]}. ${escapeHTML(option)}
+          </button>
+        `;
+      }).join("")}
+    </div>
+
+    ${selected!==null?`
+      <div class="answer">
+        <b>
+          ${selected===question.a
+            ?"Дұрыс жауап! +10 ұпай"
+            :"Қате жауап. 0 ұпай"}
+        </b>
+
+        <p>
+          Дұрыс нұсқа:
+          ${escapeHTML(question.o[question.a])}
+        </p>
+      </div>
+
+      <div class="actions">
+        <button class="btn primary"
+          onclick="nextGameQuestion()">
+          Келесі команда →
+        </button>
+      </div>
+    `:`
+      <div class="note">
+        Төрт жауаптың бірін таңда.
+        Содан кейін келесі
+        командаға кезек беріледі.
+      </div>
+    `}
+  `;
+}
+
+function chooseAnswer(j){
+  if(state.selectedOption!==null)return;
+
+  state.selectedOption=j;
+
+  if(j===game[state.gameIndex].a){
+    state.scores[state.gameIndex%3]+=10;
+  }
+
+  saveState();
+  render();
+}
+
+function nextGameQuestion(){
+  if(state.selectedOption===null)return;
+
+  state.gameIndex++;
+  state.selectedOption=null;
+
+  saveState();
+  render();
+}
+
+function restartGame(){
+  if(!confirm("Командалық ойынды қайта бастаймыз ба?"))return;
+
+  state.gameIndex=0;
+  state.selectedOption=null;
+  state.scores=[0,0,0];
+
+  saveState();
+  render();
+}
+
+/* ========================================
+   ҮЙ ЖҰМЫСЫ — ИЗОМЕРЛЕР КОНСТРУКТОРЫ
+======================================== */
+
+const homeworkNames=[
+  ["CH₃–CH(CH₃)–CH₂–CH₃","2-метилбутан"],
+  ["CH₃–CH₂–CH(CH₃)–CH₂–CH₃","3-метилпентан"],
+  ["CH₃–C(CH₃)₂–CH₂–CH₃","2,2-диметилбутан"],
+  ["CH₃–CH(CH₃)–CH(CH₃)–CH₃","2,3-диметилбутан"]
+];
+
+const homeworkProblems=[
+  [
+    "1,25 моль C₅H₁₂ массасын есепте.",
+    "M=72 г/моль; m=1,25×72=90 г."
+  ],
+  [
+    "64,5 г C₆H₁₄ зат мөлшерін есепте.",
+    "M=86 г/моль; n=64,5/86=0,75 моль."
+  ]
+];
+
+addDynamicSlide(
+  "Үй тапсырмасы",
+  "Изомерлер конструкторы",
+  renderHomework
+);
+
+function renderHomework(){
+  return `
+    <div class="subtitle">
+      §66 · ҮЙ ТАПСЫРМАСЫ
+    </div>
+
+    <h2>«Изомерлер конструкторы»</h2>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>1. Изомерлерді құрастыр</h3>
+
+        <p>
+          Мына екі формулаға сәйкес
+          барлық көміртек қаңқасының
+          құрылымдық изомерлерін
+          дәптерге сыз және ата.
+        </p>
+
+        <div class="home-row">
+          <p><b class="gold">1.</b> C₄H₁₀</p>
+        </div>
+
+        <div class="home-row">
+          <p><b class="gold">2.</b> C₅H₁₂</p>
+        </div>
+
+        <div class="note">
+          Әр құрылымдағы көміртек
+          пен сутек атомдарының санын тексер.
+        </div>
+      </div>
+
+      <div class="card green-card">
+        <h3>2. Жүйелік атауын жаз</h3>
+
+        ${homeworkNames.map((item,i)=>`
+          <div class="home-row">
+            <p>
+              <b class="gold">${i+1}.</b>
+              ${escapeHTML(item[0])}
+            </p>
+          </div>
+        `).join("")}
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3>3. Екі химиялық есеп</h3>
+
+      ${homeworkProblems.map((item,i)=>`
+        <div class="home-row">
+          <p>
+            <b class="gold">${i+1}-есеп.</b>
+            ${escapeHTML(item[0])}
+          </p>
+        </div>
+      `).join("")}
+
+      <div class="note">
+        Берілгені, формуласы,
+        толық шешуі және жауабы жазылсын.
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn warning"
+        onclick="toggleHomework()">
+        ${state.homeworkAnswer
+          ?"Жауаптарды жасыру"
+          :"Жауаптарды көру"}
+      </button>
+    </div>
+
+    ${state.homeworkAnswer?`
+      <div class="answer">
+        <h3>1-тапсырма</h3>
+
+        <p>
+          C₄H₁₀: бутан,
+          2-метилпропан.
+        </p>
+
+        <p>
+          C₅H₁₂: пентан,
+          2-метилбутан,
+          2,2-диметилпропан.
+        </p>
+
+        <h3>2-тапсырма</h3>
+
+        ${homeworkNames.map((item,i)=>`
+          <p>
+            <b>${i+1}.</b>
+            ${escapeHTML(item[1])}
+          </p>
+        `).join("")}
+
+        <h3>3-тапсырма</h3>
+
+        ${homeworkProblems.map((item,i)=>`
+          <p>
+            <b>${i+1}.</b>
+            ${escapeHTML(item[1])}
+          </p>
+        `).join("")}
+      </div>
+    `:""}
+  `;
+}
+
+function toggleHomework(){
+  state.homeworkAnswer=!state.homeworkAnswer;
+
+  saveState();
+  render();
+}
+
+/* ҚОРЫТЫНДЫ */
+
+addSlide(
+  "Сабақ қорытындысы",
+  "Аяқталуы",
+  `
+    <div class="center">
+      <div class="subtitle">
+        §66 · ХИМИЯ
+      </div>
+
+      <h1>Сабақ аяқталды!</h1>
+
+      <h2 class="green">
+        Алкандардың номенклатурасы
+        мен изомерленуі
+      </h2>
+
+      <div class="grid3">
+        <div class="card">
+          <h3>Білдік</h3>
+          <p>
+            Алкандарға жүйелік
+            атау беру ережелерін.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Үйрендік</h3>
+          <p>
+            Бутан мен пентан
+            изомерлерін салыстыруды.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Орындадық</h3>
+          <p>
+            25 жеке тапсырма
+            және 15 командалық сұрақ.
+          </p>
+        </div>
+      </div>
+
+      <h2 style="margin-top:25px">
+        Назарларыңызға рақмет!
+      </h2>
+
+      <div class="formula">BY DARKHAN</div>
+    </div>
+  `
+);
+
+/* ========================================
+   КАЛЬКУЛЯТОР
+======================================== */
+
+const calculator=$("calculator");
+const display=$("calcDisplay");
+
+const clamp=(value,min,max)=>
+  Math.max(min,Math.min(max,value));
+
+let calcText="";
+
+const calcButtons=[
+  "7","8","9","÷",
+  "4","5","6","×",
+  "1","2","3","−",
+  "C","0",".","+",
+  "(",")","⌫","="
+];
+
+$("calcKeys").innerHTML=
+  calcButtons.map(key=>`
+    <button type="button" data-key="${key}">
+      ${key}
+    </button>
+  `).join("");
+
+$("calcOpen").addEventListener("click",()=>{
+  calculator.classList.toggle("hidden");
+  fitCalculator();
+});
+
+$("calcClose").addEventListener("click",()=>{
+  calculator.classList.add("hidden");
+});
+
+/* ҚАУІПСІЗ АРИФМЕТИКАЛЫҚ ЕСЕПТЕГІШ */
+
+function calculate(source){
+  if(!/^[0-9+\-*/(). ]+$/.test(source)){
+    throw Error("Өрнек қатесі");
+  }
+
+  let pos=0;
+
+  function skip(){
+    while(source[pos]===" ")pos++;
+  }
+
+  function factor(){
+    skip();
+
+    if(source[pos]==="+"){
+      pos++;
+      return factor();
+    }
+
+    if(source[pos]==="-"){
+      pos++;
+      return -factor();
+    }
+
+    if(source[pos]==="("){
+      pos++;
+      const result=expression();
+      skip();
+
+      if(source[pos]!==")"){
+        throw Error("Жақша қатесі");
+      }
+
+      pos++;
+      return result;
+    }
+
+    const match=/^(?:\d+\.?\d*|\.\d+)/
+      .exec(source.slice(pos));
+
+    if(!match){
+      throw Error("Сан қатесі");
+    }
+
+    pos+=match[0].length;
+    return Number(match[0]);
+  }
+
+  function term(){
+    let result=factor();
+
+    while(true){
+      skip();
+      const op=source[pos];
+
+      if(op!=="*"&&op!=="/")break;
+
+      pos++;
+      const next=factor();
+
+      result=op==="*"
+        ?result*next
+        :result/next;
+    }
+
+    return result;
+  }
+
+  function expression(){
+    let result=term();
+
+    while(true){
+      skip();
+      const op=source[pos];
+
+      if(op!=="+"&&op!=="-")break;
+
+      pos++;
+      const next=term();
+
+      result=op==="+"
+        ?result+next
+        :result-next;
+    }
+
+    return result;
+  }
+
+  const result=expression();
+  skip();
+
+  if(
+    pos!==source.length ||
+    !Number.isFinite(result)
+  ){
+    throw Error("Есептеу қатесі");
+  }
+
+  return Number(result.toPrecision(12));
+}
+
+function calcPress(key){
+  if(key==="C"){
+    calcText="";
+  }else if(key==="⌫"){
+    calcText=calcText.slice(0,-1);
+  }else if(key==="="){
+    try{
+      const normalized=calcText
+        .replaceAll("×","*")
+        .replaceAll("÷","/")
+        .replaceAll("−","-");
+
+      calcText=String(calculate(normalized));
+    }catch(error){
+      calcText="Қате";
+    }
+  }else{
+    if(calcText==="Қате"){
+      calcText="";
+    }
+
+    calcText+=key;
+  }
+
+  display.value=calcText;
+}
+
+/* КАЛЬКУЛЯТОРДЫ ЖЫЛЖЫТУ */
+
+function fitCalculator(){
+  if(calculator.classList.contains("hidden"))return;
+
+  const r=calculator.getBoundingClientRect();
+
+  calculator.style.left=clamp(
+    r.left,
+    0,
+    Math.max(0,innerWidth-r.width)
+  )+"px";
+
+  calculator.style.top=clamp(
+    r.top,
+    0,
+    Math.max(0,innerHeight-r.height)
+  )+"px";
+}
+
+let dragging=null;
+
+/*
+  Калькулятордағы кез келген жерден
+  жылжытуға болады.
+
+  Егер қозғалыс 7 пиксельден аспаса,
+  кәдімгі click оқиғасы жұмыс істейді.
+*/
+
+calculator.addEventListener("pointerdown",event=>{
+  if(
+    event.pointerType==="mouse" &&
+    event.button!==0
+  ){
+    return;
+  }
+
+  if(dragging)return;
+
+  const rect=calculator.getBoundingClientRect();
+
+  dragging={
+    id:event.pointerId,
+    x:event.clientX,
+    y:event.clientY,
+    left:rect.left,
+    top:rect.top,
+    moved:false
+  };
+});
+
+/* Тек жылжыту кезінде орнын өзгертеміз */
+
+window.addEventListener("pointermove",event=>{
+  if(
+    !dragging ||
+    dragging.id!==event.pointerId
+  ){
+    return;
+  }
+
+  const dx=event.clientX-dragging.x;
+  const dy=event.clientY-dragging.y;
+
+  if(!dragging.moved && Math.hypot(dx,dy)>7){
+    dragging.moved=true;
+    calculator.classList.add("dragging");
+  }
+
+  if(!dragging.moved)return;
+
+  if(event.cancelable){
+    event.preventDefault();
+  }
+
+  calculator.style.left=clamp(
+    dragging.left+dx,
+    0,
+    Math.max(0,innerWidth-calculator.offsetWidth)
+  )+"px";
+
+  calculator.style.top=clamp(
+    dragging.top+dy,
+    0,
+    Math.max(0,innerHeight-calculator.offsetHeight)
+  )+"px";
+},{passive:false});
+
+/*
+  Ұстап жылжытудан кейін туатын
+  click батырманы басып қоймауы керек.
+*/
+
+let suppressNextClick=false;
+
+function finishDragging(event){
+  if(
+    !dragging ||
+    event.pointerId!==dragging.id
+  ){
+    return;
+  }
+
+  if(dragging.moved){
+    suppressNextClick=true;
+
+    setTimeout(()=>{
+      suppressNextClick=false;
+    },120);
+  }
+
+  dragging=null;
+  calculator.classList.remove("dragging");
+}
+
+window.addEventListener("pointerup",finishDragging);
+window.addEventListener("pointercancel",finishDragging);
+
+calculator.addEventListener("click",event=>{
+  if(!suppressNextClick)return;
+
+  event.preventDefault();
+  event.stopImmediatePropagation();
+
+  suppressNextClick=false;
+},true);
+
+/*
+  Батырма есептеу әрекетін
+  ТЕК click кезінде орындайды.
+*/
+
+$("calcKeys").addEventListener("click",event=>{
+  const button=event.target.closest("[data-key]");
+  if(!button)return;
+
+  calcPress(button.dataset.key);
+});
+
+window.addEventListener("resize",fitCalculator);
+
+/* ========================================
+   МЕНДЕЛЕЕВТІҢ ПЕРИОДТЫҚ КЕСТЕСІ
+======================================== */
+
+const rawElements=`
+H|Сутек|1.008
+He|Гелий|4.003
+Li|Литий|6.94
+Be|Бериллий|9.012
+B|Бор|10.81
+C|Көміртек|12.011
+N|Азот|14.007
+O|Оттек|15.999
+F|Фтор|18.998
+Ne|Неон|20.180
+Na|Натрий|22.990
+Mg|Магний|24.305
+Al|Алюминий|26.982
+Si|Кремний|28.085
+P|Фосфор|30.974
+S|Күкірт|32.06
+Cl|Хлор|35.45
+Ar|Аргон|39.948
+K|Калий|39.098
+Ca|Кальций|40.078
+Sc|Скандий|44.956
+Ti|Титан|47.867
+V|Ванадий|50.942
+Cr|Хром|51.996
+Mn|Марганец|54.938
+Fe|Темір|55.845
+Co|Кобальт|58.933
+Ni|Никель|58.693
+Cu|Мыс|63.546
+Zn|Мырыш|65.38
+Ga|Галлий|69.723
+Ge|Германий|72.630
+As|Мышьяк|74.922
+Se|Селен|78.971
+Br|Бром|79.904
+Kr|Криптон|83.798
+Rb|Рубидий|85.468
+Sr|Стронций|87.62
+Y|Иттрий|88.906
+Zr|Цирконий|91.224
+Nb|Ниобий|92.906
+Mo|Молибден|95.95
+Tc|Технеций|[98]
+Ru|Рутений|101.07
+Rh|Родий|102.906
+Pd|Палладий|106.42
+Ag|Күміс|107.868
+Cd|Кадмий|112.414
+In|Индий|114.818
+Sn|Қалайы|118.710
+Sb|Сурьма|121.760
+Te|Теллур|127.60
+I|Йод|126.904
+Xe|Ксенон|131.293
+Cs|Цезий|132.905
+Ba|Барий|137.327
+La|Лантан|138.905
+Ce|Церий|140.116
+Pr|Празеодим|140.908
+Nd|Неодим|144.242
+Pm|Прометий|[145]
+Sm|Самарий|150.36
+Eu|Еуропий|151.964
+Gd|Гадолиний|157.25
+Tb|Тербий|158.925
+Dy|Диспрозий|162.500
+Ho|Гольмий|164.930
+Er|Эрбий|167.259
+Tm|Тулий|168.934
+Yb|Иттербий|173.045
+Lu|Лютеций|174.967
+Hf|Гафний|178.49
+Ta|Тантал|180.948
+W|Вольфрам|183.84
+Re|Рений|186.207
+Os|Осмий|190.23
+Ir|Иридий|192.217
+Pt|Платина|195.084
+Au|Алтын|196.967
+Hg|Сынап|200.592
+Tl|Таллий|204.38
+Pb|Қорғасын|207.2
+Bi|Висмут|208.980
+Po|Полоний|[209]
+At|Астат|[210]
+Rn|Радон|[222]
+Fr|Франций|[223]
+Ra|Радий|[226]
+Ac|Актиний|[227]
+Th|Торий|232.038
+Pa|Протактиний|231.036
+U|Уран|238.029
+Np|Нептуний|[237]
+Pu|Плутоний|[244]
+Am|Америций|[243]
+Cm|Кюрий|[247]
+Bk|Берклий|[247]
+Cf|Калифорний|[251]
+Es|Эйнштейний|[252]
+Fm|Фермий|[257]
+Md|Менделевий|[258]
+No|Нобелий|[259]
+Lr|Лоуренсий|[266]
+Rf|Резерфордий|[267]
+Db|Дубний|[268]
+Sg|Сиборгий|[269]
+Bh|Борий|[270]
+Hs|Хассий|[277]
+Mt|Мейтнерий|[278]
+Ds|Дармштадтий|[281]
+Rg|Рентгений|[282]
+Cn|Коперниций|[285]
+Nh|Нихоний|[286]
+Fl|Флеровий|[289]
+Mc|Московий|[290]
+Lv|Ливерморий|[293]
+Ts|Теннессин|[294]
+Og|Оганесон|[294]
+`;
+
+const elements=rawElements.trim()
+  .split("\n")
+  .map((line,i)=>{
+    const [symbol,name,mass]=line.split("|");
+
+    return{
+      z:i+1,
+      symbol,
+      name,
+      mass
+    };
+  });
+
+const periodColumns=[
+  [1,18],
+  [1,2,13,14,15,16,17,18],
+  [1,2,13,14,15,16,17,18],
+  Array.from({length:18},(_,i)=>i+1),
+  Array.from({length:18},(_,i)=>i+1)
+];
+
+function elementPosition(z){
+  if(z<=54){
+    let index=z-1;
+
+    for(let p=0;p<5;p++){
+      if(index<periodColumns[p].length){
+        return{
+          row:p+1,
+          col:periodColumns[p][index]
+        };
+      }
+
+      index-=periodColumns[p].length;
+    }
+  }
+
+  if(z<=56)return{row:6,col:z-54};
+
+  if(z<=71)return{
+    row:9,
+    col:z-53
+  };
+
+  if(z<=86)return{
+    row:6,
+    col:z-68
+  };
+
+  if(z<=88)return{
+    row:7,
+    col:z-86
+  };
+
+  if(z<=103)return{
+    row:10,
+    col:z-85
+  };
+
+  return{
+    row:7,
+    col:z-100
+  };
+}
+
+const importantElements=new Set(["H","C","N","O"]);
+
+const nobleGases=new Set([
+  "He","Ne","Ar","Kr","Xe","Rn","Og"
+]);
+
+function elementType(e){
+  if(importantElements.has(e.symbol)){
+    return"important";
+  }
+
+  if(nobleGases.has(e.symbol)){
+    return"noble";
+  }
+
+  if(e.z>=57&&e.z<=71){
+    return"lanth";
+  }
+
+  if(e.z>=89&&e.z<=103){
+    return"act";
+  }
+
+  return"";
+}
+
+function buildPeriodicTable(){
+  let html="";
+
+  for(let group=1;group<=18;group++){
+    html+=`
+      <div class="group-label"
+        style="grid-row:1;grid-column:${group+1}">
+        ${group}
+      </div>
+    `;
+  }
+
+  for(let period=1;period<=7;period++){
+    html+=`
+      <div class="period-label"
+        style="grid-row:${period+1};grid-column:1">
+        ${period}
+      </div>
+    `;
+  }
+
+  html+=`
+    <div class="period-label"
+      style="grid-row:10;grid-column:1;font-size:11px">
+      Лантаноидтар
+    </div>
+
+    <div class="period-label"
+      style="grid-row:11;grid-column:1;font-size:11px">
+      Актиноидтар
+    </div>
+
+    <div class="group-label"
+      style="grid-row:7;grid-column:4">
+      57–71
+    </div>
+
+    <div class="group-label"
+      style="grid-row:8;grid-column:4">
+      89–103
+    </div>
+  `;
+
+  elements.forEach((e,i)=>{
+    const pos=elementPosition(e.z);
+
+    html+=`
+      <button
+        class="element ${elementType(e)}"
+        data-index="${i}"
+        style="grid-row:${pos.row+1};grid-column:${pos.col+1}"
+      >
+        <span class="number">${e.z}</span>
+        <span class="symbol">${escapeHTML(e.symbol)}</span>
+        <span class="ename">${escapeHTML(e.name)}</span>
+        <span class="mass">${escapeHTML(e.mass)}</span>
+      </button>
+    `;
+  });
+
+  $("periodicGrid").innerHTML=html;
+}
+
+$("periodicGrid").addEventListener("click",event=>{
+  const button=event.target.closest("[data-index]");
+  if(!button)return;
+
+  const element=elements[Number(button.dataset.index)];
+  const position=elementPosition(element.z);
+
+  const period=position.row===9
+    ?6
+    :position.row===10
+      ?7
+      :position.row;
+
+  const group=position.row>7
+    ?"f-блок"
+    :position.col+"-топ";
+
+  $("elementInfo").innerHTML=`
+    <b class="blue">
+      ${element.z}.
+      ${escapeHTML(element.name)}
+      (${escapeHTML(element.symbol)})
+    </b>
+
+    <div>
+      ${period}-период · ${group}
+    </div>
+
+    <div>
+      Атомдық масса немесе
+      изотоптың массалық саны:
+      <b class="gold">
+        ${escapeHTML(element.mass)}
+      </b>
+    </div>
+  `;
+});
+
+$("tableOpen").addEventListener("click",()=>{
+  $("periodicModal").classList.remove("hidden");
+});
+
+$("tableClose").addEventListener("click",()=>{
+  $("periodicModal").classList.add("hidden");
+});
+
+$("periodicModal").addEventListener("click",event=>{
+  if(event.target===$("periodicModal")){
+    $("periodicModal").classList.add("hidden");
+  }
+});
+
+/* ПЕРНЕТАҚТА АРҚЫЛЫ СЛАЙД АУЫСТЫРУ */
+
+document.addEventListener("keydown",event=>{
+  if(event.key==="Escape"){
+    $("periodicModal").classList.add("hidden");
+    calculator.classList.add("hidden");
+    return;
+  }
+
+  const active=document.activeElement;
+
+  if(
+    active &&
+    ["INPUT","TEXTAREA"].includes(active.tagName)
+  ){
+    return;
+  }
+
+  if(!$("periodicModal").classList.contains("hidden")){
+    return;
+  }
+
+  if(event.key==="ArrowRight"&&page<slides.length-1){
+    page++;
+    render();
+  }
+
+  if(event.key==="ArrowLeft"&&page>0){
+    page--;
+    render();
+  }
+});
+
+/* ІСКЕ ҚОСУ */
+
+buildPeriodicTable();
+updateTime();
+render();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,2102 @@
+
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>§84 Нуклеофильді орынбасу | CHEMISTRY PRO</title>
+<style>
+:root{
+ --bg:#071827;--panel:#163b54;
+ --cyan:#96e4ff;--green:#9af1c8;
+ --gold:#ffdf96;--white:#f7fcff;
+ --line:#7bacc8;
+}
+*{box-sizing:border-box}
+html,body{
+ margin:0;width:100%;height:100%;
+ background:var(--bg);color:var(--white);
+ font-family:"Segoe UI",Arial,sans-serif
+}
+button,input{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.45;cursor:default}
+[hidden]{display:none!important}
+.app{
+ height:100vh;height:100dvh;
+ display:flex;flex-direction:column;
+ background:
+ radial-gradient(circle at 90% 8%,#157b9e77,transparent 44%),
+ radial-gradient(circle at 6% 93%,#17775a66,transparent 44%),
+ linear-gradient(125deg,#071827,#153b53,#081c2e)
+}
+header,footer{
+ flex-shrink:0;display:flex;align-items:center;
+ justify-content:space-between;gap:12px;
+ padding:11px 19px;background:#081e2e
+}
+header{border-bottom:1px solid var(--line)}
+footer{border-top:1px solid var(--line)}
+.brand{
+ color:var(--cyan);font-size:27px;font-weight:900
+}
+.brand small{
+ display:block;color:var(--gold);
+ font-size:13px;margin-top:4px
+}
+.status{
+ display:flex;align-items:center;gap:14px;
+ font-size:19px;font-weight:900
+}
+#timer{
+ color:var(--gold);font-size:29px;
+ font-variant-numeric:tabular-nums
+}
+#counter{color:var(--cyan)}
+#clock{
+ color:var(--cyan);font-size:23px;
+ font-weight:900;font-variant-numeric:tabular-nums
+}
+.signature{
+ color:var(--gold);font-size:24px;font-weight:900
+}
+main{
+ flex:1;min-height:0;overflow:auto;
+ padding:23px 35px 45px
+}
+.slide{
+ max-width:1500px;min-height:100%;margin:auto;
+ display:flex;flex-direction:column;
+ justify-content:center
+}
+h1{
+ font-size:clamp(43px,4.4vw,75px);
+ line-height:1.14;margin:10px 0 20px
+}
+h2{
+ font-size:clamp(32px,3vw,50px);
+ line-height:1.2;margin:0 0 19px
+}
+h3{
+ color:var(--cyan);
+ font-size:clamp(24px,2vw,35px);
+ margin:0 0 12px
+}
+p,li{
+ font-size:clamp(21px,1.7vw,30px);
+ line-height:1.49
+}
+li{margin:8px 0}
+.eyebrow{
+ color:var(--cyan);
+ font-size:21px;font-weight:900;
+ margin-bottom:12px
+}
+.grid2,.grid3{
+ display:grid;align-items:center;gap:18px;
+ grid-template-columns:repeat(2,minmax(0,1fr))
+}
+.grid3{
+ grid-template-columns:repeat(3,minmax(0,1fr))
+}
+.card{
+ min-width:0;padding:24px;
+ background:linear-gradient(145deg,#1d4961,#102f46);
+ border:1px solid var(--line);
+ border-radius:18px
+}
+.card p{margin:9px 0}
+.formula{
+ margin:15px 0;padding:19px;
+ color:var(--green);background:#104855;
+ border:1px solid #85d2c5;
+ border-radius:14px;text-align:center;
+ font-size:clamp(26px,2.5vw,43px);
+ font-weight:900;overflow-wrap:anywhere
+}
+.note{
+ padding:18px 22px;margin-top:17px;
+ background:#21465d;
+ border-left:6px solid var(--gold);
+ border-radius:12px
+}
+.note p{margin:6px 0}
+.btn{
+ padding:12px 18px;
+ background:#2b6280;color:white;
+ border:1px solid #8ebcd4;border-radius:10px;
+ font-size:18px;font-weight:900
+}
+.btn.primary{background:#088cad}
+.btn.good{background:#148260}
+.btn.gold{background:#936d32}
+.actions{
+ display:flex;flex-wrap:wrap;
+ gap:10px;margin-top:18px
+}
+.task{
+ padding:14px 19px;margin:10px 0;
+ background:#1c445c;
+ border:1px solid #79b1ce;
+ border-radius:12px
+}
+.task p{margin:6px 0}
+.answer{
+ padding:18px;margin-top:16px;
+ background:#15543e;
+ border:1px solid #8ceec0;
+ border-radius:12px
+}
+.answer p{margin:8px 0}
+.big{
+ font-size:clamp(31px,2.8vw,47px);
+ font-weight:900;line-height:1.42
+}
+.tag{
+ display:inline-block;
+ padding:12px 20px;
+ background:#69532f;color:var(--gold);
+ border:2px solid var(--gold);
+ border-radius:12px;
+ font-size:29px;font-weight:900
+}
+.progress{
+ height:13px;margin:16px 0;
+ background:#31546a;
+ border-radius:20px;overflow:hidden
+}
+.progress span{
+ display:block;height:100%;
+ background:linear-gradient(90deg,#16a5d3,#99f0c6)
+}
+.team{
+ background:#19465e;border:1px solid #87b6cd;
+ border-radius:14px;padding:17px;
+ text-align:center
+}
+.team.active{outline:4px solid var(--gold)}
+.score{
+ color:var(--gold);
+ font-size:56px;font-weight:900
+}
+.options{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:12px;margin-top:17px
+}
+.option{
+ padding:19px;text-align:left;
+ background:#295f7c;color:white;
+ border:2px solid #89bad0;
+ border-radius:12px;
+ font-size:clamp(20px,1.7vw,29px);
+ font-weight:900
+}
+.option.correct{background:#15815d}
+.option.wrong{background:#97475b}
+.visual{
+ padding:19px;text-align:center;
+ background:#103b51;
+ border:1px solid #82b9d0;
+ border-radius:18px
+}
+.visual svg{
+ display:block;width:100%;height:235px
+}
+.visual strong{
+ color:var(--green);font-size:30px
+}
+.stage{
+ width:100%;margin:7px 0;
+ padding:17px;text-align:left;
+ background:#285f7a;color:white;
+ border:2px solid #87b9d1;
+ border-radius:12px;
+ font-size:24px;font-weight:900
+}
+.stage.active{
+ background:#126f61;
+ border-color:var(--gold)
+}
+.stage small{
+ display:block;margin-top:5px;
+ color:#d6eaf4;font-size:16px
+}
+.muted{color:#d6e9f3}
+
+/* ҚҰРАЛДАР */
+.tools{
+ position:fixed;left:10px;bottom:100px;
+ z-index:40;display:flex;
+ align-items:flex-start;
+ flex-direction:column;gap:8px
+}
+.tool{
+ background:#0a809e;color:white;
+ border:1px solid #92e0f2;
+ border-radius:8px;
+ padding:10px 13px;
+ font-size:13px;font-weight:900
+}
+
+/* КАЛЬКУЛЯТОР */
+.calculator{
+ position:fixed;top:105px;left:16px;
+ z-index:150;width:235px;
+ max-width:calc(100vw - 12px);
+ padding:10px;background:#113148;
+ border:2px solid #92e0f6;
+ border-radius:15px;
+ box-shadow:0 18px 45px #000a;
+ touch-action:none;user-select:none;
+ -webkit-user-select:none;cursor:grab
+}
+.calculator.dragging{cursor:grabbing}
+.calculator *{touch-action:none}
+.calc-head{
+ display:flex;align-items:center;
+ justify-content:space-between;gap:7px;
+ background:#29576f;padding:8px;
+ border-radius:8px;font-size:13px
+}
+.calc-head button{
+ background:#a54759;color:white;
+ border:0;border-radius:6px;
+ padding:6px 10px
+}
+#calcDisplay{
+ display:block;width:100%;height:47px;
+ background:#061c2e;color:white;
+ border:1px solid #86b4ca;
+ border-radius:8px;
+ margin:9px 0;padding:7px;
+ text-align:right;font-size:23px;
+ pointer-events:none
+}
+.calc-keys{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:5px
+}
+.calc-keys button{
+ min-width:0;height:44px;padding:0;
+ background:#2d657e;color:white;
+ border:1px solid #85b3ca;
+ border-radius:7px;font-size:17px
+}
+.calc-hint{
+ text-align:center;
+ padding-top:8px;font-size:11px;
+ color:#d1e0eb
+}
+
+/* ПЕРИОДТЫҚ КЕСТЕ */
+.overlay{
+ position:fixed;inset:0;z-index:300;
+ background:#000e;
+ display:grid;place-items:center;
+ padding:10px
+}
+.modal{
+ width:min(1550px,99vw);
+ max-height:97vh;overflow:auto;
+ padding:17px;background:#0e2e45;
+ border:1px solid #83b4cc;
+ border-radius:15px
+}
+.modal-head{
+ display:flex;align-items:center;
+ justify-content:space-between;gap:12px
+}
+.period-scroll{
+ background:#071e30;overflow:auto;
+ padding:12px;border-radius:10px
+}
+.period{
+ display:grid;
+ grid-template-columns:65px repeat(18,89px);
+ grid-template-rows:38px repeat(10,89px);
+ gap:4px;width:max-content
+}
+.period-label{
+ display:grid;place-items:center;
+ background:#1c4960;color:var(--gold);
+ border:1px solid #76a8c2;
+ border-radius:6px;
+ text-align:center;font-size:12px;
+ font-weight:900
+}
+.element{
+ position:relative;display:flex;
+ flex-direction:column;
+ align-items:center;justify-content:center;
+ gap:3px;padding:13px 2px 3px;
+ background:#2a637e;color:white;
+ border:1px solid #85b7ce;
+ border-radius:6px
+}
+.element i{
+ position:absolute;top:3px;left:4px;
+ font-size:11px;font-style:normal
+}
+.element b{font-size:26px}
+.element small{font-size:10px}
+.element.fblock{background:#348184}
+.element.featured{background:#965474}
+#elementInfo{
+ margin-top:12px;padding:15px;
+ background:#1d4960;
+ border-radius:9px;font-size:20px
+}
+
+@media(max-width:850px){
+ .grid2,.grid3,.options{grid-template-columns:1fr}
+ main{padding:13px}
+ header,footer{padding:8px}
+ .brand{font-size:18px}
+ .brand small,#sectionName{display:none}
+ .status{gap:7px;font-size:13px}
+ #timer{font-size:20px}
+ #clock{font-size:16px}
+ .signature{font-size:15px}
+ .btn{font-size:14px;padding:9px}
+ .tools{bottom:78px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+ <div class="brand">
+  ⚗ CHEMISTRY PRO
+  <small>§84 · НУКЛЕОФИЛЬДІ ОРЫНБАСУ</small>
+ </div>
+
+ <div class="status">
+  <span id="sectionName">Кіріспе</span>
+  <span id="timer">80:00</span>
+  <span id="counter">1 / 29</span>
+ </div>
+</header>
+
+<main id="main">
+ <section class="slide" id="slide">
+  <h1>
+   §84. Галогеналкандардың
+   нуклеофильді орынбасу реакциялары
+  </h1>
+ </section>
+</main>
+
+<footer>
+ <div class="actions" style="margin:0">
+  <button id="prev" class="btn">
+   ← Артқа
+  </button>
+  <button id="next" class="btn primary">
+   Келесі →
+  </button>
+ </div>
+
+ <strong class="signature">
+  BY DARKHAN
+ </strong>
+ <span id="clock">00:00:00</span>
+</footer>
+
+</div>
+
+<div class="tools">
+ <button id="showCalc" class="tool">
+  🧮 Калькулятор
+ </button>
+ <button id="showTable" class="tool">
+  ⚛ Менделеев кестесі
+ </button>
+</div>
+
+<div id="calculator" class="calculator" hidden>
+ <div class="calc-head">
+  <strong>🧮 Калькулятор</strong>
+  <button id="closeCalc" type="button">✕</button>
+ </div>
+ <input id="calcDisplay" readonly>
+ <div id="calcKeys" class="calc-keys"></div>
+ <div class="calc-hint">
+  Кез келген жерінен жылжыт
+ </div>
+</div>
+
+<div id="tableOverlay" class="overlay" hidden>
+ <div class="modal">
+  <div class="modal-head">
+   <h2>Менделеев кестесі</h2>
+   <button class="btn" id="closeTable">
+    Жабу ✕
+   </button>
+  </div>
+
+  <p style="font-size:17px">
+   118 элемент · 18 топ · 7 период
+  </p>
+
+  <div class="period-scroll">
+   <div id="period" class="period"></div>
+  </div>
+
+  <div id="elementInfo">
+   Элементті таңда.
+  </div>
+ </div>
+</div>
+
+<script>
+"use strict";
+
+/* ============================
+   1. НЕГІЗГІ ЖҮЙЕ
+============================ */
+
+const $=id=>document.getElementById(id);
+
+const slides=[];
+let page=0;
+
+function add(title,section,html){
+ slides.push({title,section,html});
+}
+
+function dynamic(title,section,render){
+ slides.push({title,section,render});
+}
+
+function draw(){
+ const slide=slides[page];
+ if(!slide)return;
+
+ $("slide").innerHTML=slide.render
+  ?slide.render()
+  :slide.html;
+
+ $("sectionName").textContent=slide.section;
+
+ $("counter").textContent=
+  `${page+1} / ${slides.length}`;
+
+ $("prev").disabled=page===0;
+ $("next").disabled=page===slides.length-1;
+ $("main").scrollTop=0;
+}
+
+function go(title){
+ const index=slides.findIndex(s=>s.title===title);
+ if(index>=0){
+  page=index;
+  draw();
+ }
+}
+
+$("prev").onclick=()=>{
+ if(page>0){
+  page--;
+  draw();
+ }
+};
+
+$("next").onclick=()=>{
+ if(page<slides.length-1){
+  page++;
+  draw();
+ }
+};
+
+/* ============================
+   2. ПРОГРЕСТІ САҚТАУ
+============================ */
+
+const STORE="darkhan_chem84_nucleophilic_v2";
+
+function fresh(){
+ return{
+  levels:{},
+  oral:0,
+  oralShow:false,
+  game:0,
+  choice:null,
+  scores:[0,0,0],
+  home:false,
+  mechanism:0
+ };
+}
+
+let state=fresh();
+
+try{
+ const old=JSON.parse(
+  localStorage.getItem(STORE)
+ );
+
+ if(
+  old &&
+  Array.isArray(old.scores) &&
+  old.scores.length===3
+ ){
+  state={...fresh(),...old};
+ }
+}catch(error){
+ console.warn(error);
+}
+
+function save(){
+ try{
+  localStorage.setItem(
+   STORE,
+   JSON.stringify(state)
+  );
+ }catch(error){
+  console.warn(error);
+ }
+}
+
+/* ============================
+   3. КӨРНЕКІ СЫЗБА
+============================ */
+
+function diagram(){
+ return `
+  <div class="visual">
+
+   <svg viewBox="0 0 560 230">
+    <defs>
+     <marker id="arrow84"
+      markerWidth="10" markerHeight="10"
+      refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z"
+       fill="#ffdc92"/>
+     </marker>
+    </defs>
+
+    <g fill="#1f536f" stroke="#95e4ff"
+     stroke-width="3">
+     <circle cx="104" cy="114" r="33"/>
+     <circle cx="204" cy="114" r="31"/>
+     <circle cx="427" cy="114" r="33"/>
+    </g>
+
+    <circle cx="523" cy="114" r="29"
+     fill="#17684f" stroke="#9af1c8"
+     stroke-width="3"/>
+
+    <g stroke="#9af1c8"
+     stroke-width="5">
+     <line x1="137" y1="114"
+      x2="173" y2="114"/>
+     <line x1="460" y1="114"
+      x2="494" y2="114"/>
+    </g>
+
+    <path d="M245 114 H374"
+     stroke="#ffdc92"
+     stroke-width="5"
+     marker-end="url(#arrow84)"/>
+
+    <g fill="white" text-anchor="middle"
+     font-weight="bold" font-size="26">
+     <text x="104" y="123">C</text>
+     <text x="204" y="123">Br</text>
+     <text x="427" y="123">C</text>
+     <text x="523" y="123">OH</text>
+    </g>
+
+    <g fill="#ffdc92"
+     text-anchor="middle" font-size="19">
+     <text x="296" y="88">Орынбасу</text>
+    </g>
+
+   </svg>
+
+   <strong>
+    CH₃Br + OH⁻ → CH₃OH + Br⁻
+   </strong>
+
+   <p>Нуклеофильді орынбасудың теориялық моделі</p>
+  </div>
+ `;
+}
+
+/* ============================
+   4. КІРІСПЕ
+============================ */
+
+dynamic("Кіріспе","Кіріспе · 5 минут",()=>`
+ <div class="grid2">
+
+  <div>
+   <div class="eyebrow">
+    §84 · ОРГАНИКАЛЫҚ ХИМИЯ
+   </div>
+
+   <h1>
+    Галогеналкандардың
+    нуклеофильді орынбасу реакциялары
+   </h1>
+
+   <p>
+    Нуклеофилдер, кететін топ,
+    электрон жұбы, SN2 және SN1
+    механизмдерінің негізгі
+    айырмашылықтарын үйренеміз.
+   </p>
+
+   <div class="formula">
+    R–X + Nu⁻ → R–Nu + X⁻
+   </div>
+
+   <div class="actions">
+    <button class="btn good"
+     data-action="start">
+     ▶ Сабақты бастау
+    </button>
+
+    <button class="btn gold"
+     data-action="reset-time">
+     ↺ Таймерді жаңарту
+    </button>
+   </div>
+
+  </div>
+
+  ${diagram()}
+ </div>
+`);
+
+add("Сабақ мақсаты","Кіріспе",`
+ <h2>Сабақтың мақсаты</h2>
+
+ <div class="grid2">
+  <div class="card">
+   <h3>Білімдік мақсат</h3>
+   <p>
+    Нуклеофилді анықтау,
+    көміртек-галоген байланысының
+    полярлығын түсіндіру,
+    кететін топтың рөлін және
+    орынбасу механизмін сипаттау.
+   </p>
+  </div>
+
+  <div class="card">
+   <h3>Практикалық мақсат</h3>
+   <p>
+    Реакция теңдеулерін құрастыру,
+    өнімдерді атау,
+    SN1 мен SN2 механизмдерін салыстыру,
+    молярлық массаны есептеу және
+    стехиометриялық тапсырмалар орындау.
+   </p>
+  </div>
+ </div>
+
+ <div class="note">
+  <p>
+   80 минут: кіріспе — 5;
+   түсіндірме — 20;
+   конспект — 8;
+   төрт деңгей — 10;
+   жеке тапсырмалар — 20;
+   командалық ойын — 12;
+   қорытынды — 5 минут.
+  </p>
+ </div>
+`);
+
+/* ============================
+   5. 15 ТҮСІНДІРМЕ
+============================ */
+
+const theory=[
+ {
+  title:"Нуклеофильді орынбасу дегеніміз не?",
+  text:"Нуклеофильді орынбасу — органикалық молекуладағы белгілі бір топтың электрон жұбын бере алатын бөлшекпен алмастырылуы. Галогеналкандарда көміртекке байланысқан галоген атомының орнына нуклеофилден келген жаңа топ орналасуы мүмкін. Жалпы схема R–X және Nu арасындағы өзгерісті сипаттайды.",
+  formula:"R–X + Nu⁻ → R–Nu + X⁻",
+  note:"Нуклеофильді орынбасуда бір топтың орнына нуклеофилден келген топ орналасады."
+ },
+ {
+  title:"Нуклеофил дегеніміз не?",
+  text:"Нуклеофил — электрон жұбын беруге қабілетті бөлшек. Ол электрон тығыздығы төменірек атоммен жаңа коваленттік байланыс түзе алады. Нуклеофил міндетті түрде теріс зарядты болмауы мүмкін: кейбір бейтарап молекулалар да нуклеофил ретінде әрекеттеседі.",
+  formula:"Nu — электрон жұбын беруші",
+  note:"Нуклеофилдің негізгі белгісі — электрон жұбын беру қабілеті."
+ },
+ {
+  title:"Нуклеофилдерге мысалдар",
+  text:"Гидроксид ионы OH⁻ және су молекуласы H₂O нуклеофильді бөлшектердің мысалдары болып табылады. Олардың реакциялық қабілеті бірдей емес. Нақты реакцияның өнімі бастапқы органикалық қосылысқа және химиялық ортаға тәуелді болады.",
+  formula:"OH⁻ · H₂O",
+  note:"Нуклеофил ион да, бейтарап молекула да бола алады."
+ },
+ {
+  title:"Галогеналканның құрылысы",
+  text:"Галогеналкандарда көміртек атомы галоген атомымен коваленттік байланыс түзеді. Олардың жалпы белгіленуі R–X. Мұндағы R — органикалық қалдық, X — галоген. Қарапайым мысалдарға CH₃Cl және CH₃Br жатады.",
+  formula:"R–X",
+  note:"Нуклеофильді орынбасуда бастапқы органикалық зат — галогеналкан."
+ },
+ {
+  title:"C–X байланысының полярлығы",
+  text:"Галоген атомы көміртекке қарағанда электртерістілігі жоғары болғандықтан, C–X байланысындағы электрон тығыздығы біркелкі таралмайды. Көміртек атомында ішінара оң заряд, ал галогенде ішінара теріс заряд пайда болады. Бұл нуклеофилдің көміртекпен әрекеттесуін түсіндіруге көмектеседі.",
+  formula:"Cδ⁺—Xδ⁻",
+  note:"C–X байланысы полярлы коваленттік байланыс."
+ },
+ {
+  title:"Кететін топ дегеніміз не?",
+  text:"Кететін топ — орынбасу кезінде көміртекпен бұрынғы байланысын үзіп, молекуладан бөлінетін атом немесе топ. Галогеналкандарда галогенид ионы кететін топ болуы мүмкін. Кететін топтың қасиеті реакцияның жүруіне әсер етеді.",
+  formula:"R–Br → Br⁻ кетеді",
+  note:"Кететін топ бастапқы молекуладағы орнын босатады."
+ },
+ {
+  title:"Бромметанның орынбасуы",
+  text:"Бромметан мен гидроксид ионының арасындағы теориялық орынбасуда көміртекке OH тобы байланысып, бромид ионы бөлінеді. Нәтижесінде метанол түзіледі. Реакцияның жалпы теңдеуі атомдар саны мен электр зарядының сақталуын көрсетеді.",
+  formula:"CH₃Br + OH⁻ → CH₃OH + Br⁻",
+  note:"Бромметанның орынбасу өнімі — метанол."
+ },
+ {
+  title:"Хлорэтанның орынбасуы",
+  text:"Хлорэтанда C₂H₅Cl көміртек атомымен байланысқан хлор атомы бар. Гидроксид ионымен орынбасудың теориялық теңдеуінде хлордың орнына OH тобы орналасады. Органикалық өнім этанол C₂H₅OH болып жазылады.",
+  formula:"C₂H₅Cl + OH⁻ → C₂H₅OH + Cl⁻",
+  note:"Хлорэтанның нуклеофильді орынбасу өнімдерінің бірі — этанол."
+ },
+ {
+  title:"SN2 механизмі",
+  text:"SN2 — екі бөлшектің қатысуымен өтетін нуклеофильді орынбасудың механизмі. Бұл модельде нуклеофилдің жаңа байланыс түзуі мен кететін топ байланысының үзілуі бір өтпелі кезеңмен сипатталады. Реакция жылдамдығы бастапқы субстрат пен нуклеофилдің концентрацияларына тәуелді болады.",
+  formula:"SN2 — бір сатылы модель",
+  note:"SN2 механизмінде байланыс түзілуі мен үзілуі келісімді жүреді."
+ },
+ {
+  title:"SN2 механизміндегі электрон жұбы",
+  text:"SN2 механизмінде нуклеофилдің электрон жұбы көміртекпен жаңа байланыс түзуге қатысады. Сонымен қатар көміртек пен кететін топ арасындағы байланыс өзгереді. Бұл өзгерістерді қисық жебелермен электрон жұбының қозғалысын көрсету арқылы түсіндіреді.",
+  formula:"Nu: → C · C–X → X",
+  note:"Механизмдегі қисық жебе электрон жұбының қозғалысын көрсетеді."
+ },
+ {
+  title:"SN1 механизмі",
+  text:"SN1 — нуклеофильді орынбасудың басқа бір механизмі. Оның жылдамдықты анықтайтын кезеңі бастапқы органикалық бөлшектің өзгеруімен байланысты. Бұл механизмде карбкатион аралық бөлшек ретінде қарастырылуы мүмкін. SN1 барлық галогеналкандар үшін бірдей қолайлы емес.",
+  formula:"SN1 — аралық карбкатион",
+  note:"SN1 механизмінде карбкатиондық аралық бөлшек маңызды."
+ },
+ {
+  title:"SN1 және SN2 айырмашылығы",
+  text:"SN2 механизмінде нуклеофилдің қатысуы реакцияның жылдамдық теңдеуіне кіреді. SN1 механизмінде жылдамдық негізінен субстрат концентрациясына тәуелді. Қай механизмнің басым болатыны органикалық молекуланың құрылысына, кететін топқа және реакциялық ортаға байланысты.",
+  formula:"SN1 ≠ SN2",
+  note:"Екі механизмнің кезеңдері мен жылдамдық заңдылықтары әртүрлі."
+ },
+ {
+  title:"Біріншілік және үшіншілік галогеналкандар",
+  text:"Біріншілік галогеналкандарда галоген байланысқан көміртек әдетте бір басқа көміртек атомымен байланысады. Үшіншілік галогеналкандарда ол үш басқа көміртек атомымен байланысқан. Молекуланың тармақталуы мен аралық бөлшектердің тұрақтылығы механизмге әсер етеді.",
+  formula:"1° · 2° · 3°",
+  note:"Галогеналкандар біріншілік, екіншілік және үшіншілік болып жіктеледі."
+ },
+ {
+  title:"Орынбасу мен элиминация",
+  text:"Галогеналкандар кейбір жағдайларда орынбасудан бөлек элиминация реакцияларына да қатыса алады. Орынбасуда жаңа топ ескі топтың орнын алады. Элиминацияда молекуладан атомдар немесе топтар бөлініп, қанықпаған байланыс түзілуі мүмкін. Өнім реакция жағдайына байланысты өзгереді.",
+  formula:"Орынбасу ≠ Элиминация",
+  note:"Орынбасу мен элиминацияны өнімдердің құрылымына қарап ажыратуға болады."
+ },
+ {
+  title:"Нуклеофильді реакциялардың маңызы",
+  text:"Нуклеофильді орынбасу органикалық қосылыстардың функционалдық топтарын өзгерту жолдарын түсіндіруге көмектеседі. Ол спирттер мен басқа органикалық заттар арасындағы құрылымдық байланыстарды түсінуге маңызды. Химиялық реакциялардың теңдеуі мен механизмін ажырату күрделі органикалық химияны меңгерудің негізі болып саналады.",
+  formula:"Галогеналкан → Жаңа функционалдық топ",
+  note:"Нуклеофильді орынбасу органикалық заттардың өзара байланысын түсіндіреді."
+ }
+];
+
+theory.forEach((t,i)=>{
+ add(
+  t.title,
+  `Түсіндірме ${i+1}/15`,
+  `
+   <div class="eyebrow">
+    ТҮСІНДІРМЕ ${i+1}/15
+   </div>
+
+   <h2>${t.title}</h2>
+
+   <div class="grid2">
+    <div class="card">
+     <h3>Толық түсіндірме</h3>
+     <p>${t.text}</p>
+    </div>
+
+    <div class="card">
+     <h3>Негізгі ұғым</h3>
+     <div class="formula">${t.formula}</div>
+     <p>
+      Субстратты, нуклеофилді
+      және өнімді ажырат.
+     </p>
+    </div>
+   </div>
+
+   <div class="note">
+    <h3 style="color:var(--gold)">
+     Дәптерге жазып алыңдар
+    </h3>
+    <p>${t.note}</p>
+   </div>
+  `
+ );
+});
+
+/* ============================
+   6. ИНТЕРАКТИВТІ МЕХАНИЗМ
+============================ */
+
+const mechanisms=[
+ {
+  title:"1. Бастапқы молекула",
+  type:"Субстрат және нуклеофил",
+  formula:"CH₃Br + OH⁻",
+  text:"Бромметан — субстрат. OH⁻ — нуклеофил. Көміртек пен бром арасындағы байланыс полярлы болғандықтан, көміртек электрон жұбын қабылдай алатын орталық ретінде қарастырылады."
+ },
+ {
+  title:"2. Байланыстардың өзгеруі",
+  type:"SN2 теориялық моделі",
+  formula:"Nu: → C · C–Br → Br",
+  text:"Нуклеофил көміртекпен жаңа байланыс түзуге қатысады. Сол кезде көміртек пен бром арасындағы байланыс үзіледі. SN2 моделінде бұл өзгерістер келісімді бір өтпелі күймен сипатталады."
+ },
+ {
+  title:"3. Реакция өнімдері",
+  type:"Нуклеофильді орынбасу",
+  formula:"CH₃OH + Br⁻",
+  text:"Нәтижесінде көміртекке OH тобы байланысып, метанол пайда болады. Бром кететін топ ретінде бромид ионы түрінде көрсетіледі."
+ }
+];
+
+dynamic(
+ "Интерактивті механизм",
+ "Көрнекілік",
+ ()=>`
+  <div class="eyebrow">
+   ИНТЕРАКТИВТІ ТЕОРИЯЛЫҚ СЫЗБА
+  </div>
+
+  <h2>SN2 механизмін түсіну</h2>
+
+  <div class="grid2">
+   <div class="card">
+    ${mechanisms.map((m,i)=>`
+     <button
+      class="stage ${
+       state.mechanism===i?"active":""
+      }"
+      data-action="mechanism"
+      data-index="${i}"
+     >
+      ${m.title}
+      <small>${m.type}</small>
+     </button>
+    `).join("")}
+   </div>
+
+   <div class="card">
+    <h3>${mechanisms[state.mechanism].title}</h3>
+
+    <div class="formula">
+     ${mechanisms[state.mechanism].formula}
+    </div>
+
+    <p>
+     ${mechanisms[state.mechanism].text}
+    </p>
+
+    <div class="note">
+     <p>
+      Бұл — молекула өзгерісін
+      түсіндіретін оқу моделі.
+     </p>
+    </div>
+   </div>
+  </div>
+ `
+);
+
+/* ============================
+   7. ҮШ КОНСПЕКТ
+============================ */
+
+const notes=[
+ [
+  "Негізгі анықтамалар",
+  [
+   "Нуклеофильді орынбасу — бір топтың орнына нуклеофилден келген топтың орналасуы.",
+   "Нуклеофил — электрон жұбын беруге қабілетті бөлшек.",
+   "Галогеналканның жалпы белгіленуі: R–X.",
+   "C–X байланысы полярлы болады.",
+   "Көміртек атомында ішінара оң заряд болуы мүмкін.",
+   "Кететін топ көміртекпен байланысын үзеді.",
+   "OH⁻ — нуклеофилдің мысалы."
+  ]
+ ],
+ [
+  "SN1 және SN2 механизмдері",
+  [
+   "SN2 — бір сатылы, келісімді орынбасу механизмі.",
+   "SN2 жылдамдығы субстрат пен нуклеофилге тәуелді.",
+   "SN1 — карбкатион аралық бөлшегімен байланысты механизм.",
+   "SN1 жылдамдықты анықтайтын кезеңі субстратқа тәуелді.",
+   "Біріншілік және үшіншілік галогеналкандардың реакциялық ерекшеліктері өзгеше.",
+   "Молекуланың құрылысы механизмге әсер етеді.",
+   "Орынбасу мен элиминация — әртүрлі реакциялар."
+  ]
+ ],
+ [
+  "Теңдеулер және есептер",
+  [
+   "CH₃Br+OH⁻→CH₃OH+Br⁻.",
+   "C₂H₅Cl+OH⁻→C₂H₅OH+Cl⁻.",
+   "M(CH₃Br)=95 г/моль.",
+   "M(CH₃OH)=32 г/моль.",
+   "M(C₂H₅Cl)=64,5 г/моль.",
+   "M(C₂H₅OH)=46 г/моль.",
+   "Зат мөлшері: ν=m/M.",
+   "Масса: m=νM.",
+   "Теориялық теңдеуде заттардың мольдік қатынасы коэффициенттермен анықталады."
+  ]
+ ]
+];
+
+notes.forEach((n,i)=>{
+ add(
+  "Конспект "+(i+1),
+  "Конспект · 8 минут",
+  `
+   <div class="eyebrow">
+    ДӘПТЕРГЕ ЖАЗЫП АЛЫҢДАР
+   </div>
+
+   <h2>Конспект №${i+1}</h2>
+   <h3>${n[0]}</h3>
+
+   <div class="card">
+    <ol>
+     ${n[1].map(x=>`<li>${x}</li>`).join("")}
+    </ol>
+   </div>
+  `
+ );
+});
+
+/* ============================
+   8. ТӨРТ ДЕҢГЕЙ
+============================ */
+
+const levels=[
+ [
+  "1-деңгей. Негізгі ұғымдар",
+  [
+   ["Нуклеофил дегеніміз не?","Электрон жұбын беруге қабілетті бөлшек."],
+   ["Галогеналканның жалпы белгіленуі?","R–X."],
+   ["OH⁻ қандай бөлшек?","Нуклеофил."],
+   ["CH₃Br қалай аталады?","Бромметан."]
+  ]
+ ],
+ [
+  "2-деңгей. Орынбасуды түсіндір",
+  [
+   ["Кететін топ деген не?","Көміртекпен байланысын үзіп бөлінетін топ."],
+   ["CH₃Br құрамындағы кететін топ?","Br⁻ түріндегі бромид."],
+   ["CH₃Br+OH⁻ реакциясындағы органикалық өнім?","Метанол."],
+   ["C₂H₅Cl+OH⁻ реакциясындағы органикалық өнім?","Этанол."]
+  ]
+ ],
+ [
+  "3-деңгей. Механизмдерді салыстыр",
+  [
+   ["SN2 механизмі неше негізгі сатыдан тұрады?","Бір келісімді сатыдан."],
+   ["SN1 механизмі үшін қандай аралық бөлшек маңызды?","Карбкатион."],
+   ["SN2 жылдамдығы қандай бөлшектерге тәуелді?","Субстрат пен нуклеофилге."],
+   ["SN1 мен SN2 бірдей ме?","Жоқ, механизмі мен жылдамдық заңдылықтары әртүрлі."]
+  ]
+ ],
+ [
+  "4-деңгей. Есептер",
+  [
+   ["M(CH₃Br) анықта.","95 г/моль."],
+   ["M(CH₃OH) анықта.","32 г/моль."],
+   ["190 г CH₃Br зат мөлшері?","2 моль."],
+   ["0,5 моль этанол массасы?","23 г."]
+  ]
+ ]
+];
+
+levels.forEach((lev,i)=>{
+ dynamic(
+  "Деңгей "+(i+1),
+  "Деңгейлік жұмыс · 10 минут",
+  ()=>`
+   <div class="eyebrow">
+    ДЕҢГЕЙ ${i+1}/4
+   </div>
+
+   <h2>${lev[0]}</h2>
+
+   ${lev[1].map((q,j)=>`
+    <div class="task">
+     <p>${j+1}. ${q[0]}</p>
+    </div>
+   `).join("")}
+
+   <div class="actions">
+    <button
+     class="btn gold"
+     data-action="level"
+     data-index="${i}"
+    >
+     ${state.levels[i]
+      ?"Жауаптарды жасыру"
+      :"Жауаптарды көру"}
+    </button>
+   </div>
+
+   ${state.levels[i]?`
+    <div class="answer">
+     ${lev[1].map((q,j)=>`
+      <p>${j+1}. ${q[1]}</p>
+     `).join("")}
+    </div>
+   `:""}
+  `
+ );
+});
+
+/* ============================
+   9. 25 ЖЕКЕ ТАПСЫРМА
+============================ */
+
+const oral=[
+ ["Нуклеофильді орынбасу дегеніміз не?","Бір топтың орнына нуклеофилден келген топтың орналасуы."],
+ ["Нуклеофил дегеніміз не?","Электрон жұбын беретін бөлшек."],
+ ["Нуклеофилге мысал келтір.","OH⁻."],
+ ["Су молекуласы нуклеофил бола ала ма?","Иә."],
+ ["Галогеналканның белгіленуі?","R–X."],
+ ["C–X байланысы қандай?","Полярлы коваленттік."],
+ ["Көміртектегі ішінара заряд қандай?","Ішінара оң."],
+ ["Кететін топ деген не?","Байланысын үзіп бөлінетін топ."],
+ ["Бромметанның формуласы?","CH₃Br."],
+ ["Хлорэтанның формуласы?","C₂H₅Cl."],
+ ["CH₃Br+OH⁻ реакциясының өнімі?","CH₃OH және Br⁻."],
+ ["Метанолдың формуласы?","CH₃OH."],
+ ["Этанолдың формуласы?","C₂H₅OH."],
+ ["SN2 механизмінің ерекшелігі?","Бір келісімді саты."],
+ ["SN1 механизмі қандай аралық бөлшекпен байланысты?","Карбкатионмен."],
+ ["SN2 жылдамдығы неге тәуелді?","Субстрат пен нуклеофил концентрациясына."],
+ ["SN1 жылдамдығы негізінен неге тәуелді?","Субстрат концентрациясына."],
+ ["Галогеналкандардың жіктелуі?","Біріншілік, екіншілік, үшіншілік."],
+ ["Орынбасу мен элиминация бірдей ме?","Жоқ."],
+ ["Бромметанның молярлық массасы?","95 г/моль."],
+ ["Метанолдың молярлық массасы?","32 г/моль."],
+ ["Хлорэтанның молярлық массасы?","64,5 г/моль."],
+ ["190 г бромметан неше моль?","2 моль."],
+ ["1 моль CH₃Br теориялық орынбасудан неше моль CH₃OH береді?","1 моль."],
+ ["Нуклеофильді орынбасудың маңызы?","Органикалық заттардың функционалдық топтарын өзгертуін түсіндіреді."]
+];
+
+dynamic(
+ "Жеке тапсырмалар",
+ "25 оқушы · 20 минут",
+ ()=>{
+  const i=state.oral;
+
+  if(i>=oral.length){
+   return `
+    <h1>25 тапсырма аяқталды!</h1>
+
+    <div class="actions">
+     <button class="btn gold"
+      data-action="oral-reset">
+      ↺ Қайта бастау
+     </button>
+
+     <button class="btn primary"
+      data-action="go-game">
+      Командалық ойын →
+     </button>
+    </div>
+   `;
+  }
+
+  return `
+   <div class="eyebrow">ЖЕКЕ ТАПСЫРМА</div>
+
+   <h2>Тақтаға шығып орында</h2>
+
+   <span class="tag">
+    ${i+1}-оқушы · ${i+1}/25
+   </span>
+
+   <div class="progress">
+    <span style="width:${100*i/25}%"></span>
+   </div>
+
+   <div class="card">
+    <h3>Тапсырма</h3>
+    <p class="big">${oral[i][0]}</p>
+   </div>
+
+   ${state.oralShow?`
+    <div class="answer">
+     <h3>Дұрыс жауап</h3>
+     <p>${oral[i][1]}</p>
+    </div>
+   `:""}
+
+   <div class="actions">
+    <button
+     class="btn gold"
+     data-action="oral-show"
+    >
+     ${state.oralShow
+      ?"Жауапты жасыру"
+      :"Жауапты көру"}
+    </button>
+
+    <button
+     class="btn primary"
+     data-action="oral-next"
+    >
+     Келесі оқушы →
+    </button>
+   </div>
+  `;
+ }
+);
+
+/* ============================
+   10. 3 КОМАНДА — 15 СҰРАҚ
+============================ */
+
+const quiz=[
+ ["Нуклеофил не береді?",["Электрон жұбын","Протон санын","Нейтронды","Атом ядросын"],0],
+ ["OH⁻ қандай бөлшек?",["Элемент","Нуклеофил","Металл","Инертті газ"],1],
+ ["Галогеналканның жалпы белгісі?",["R–OH","R–COOH","R–X","R–NH₂"],2],
+ ["Бромметан формуласы?",["CH₄","CH₃Cl","C₂H₆","CH₃Br"],3],
+ ["C–X байланысы қандай?",["Полярлы","Металдық","Иондық кристалл","Сутектік"],0],
+ ["Кететін топ нені білдіреді?",["Жаңа ядроны","Бөлінетін топты","Қосылатын протонды","Оттекті"],1],
+ ["CH₃Br+OH⁻ органикалық өнімі?",["Этан","Пропан","Метанол","Бутан"],2],
+ ["Метанол формуласы?",["CH₄","C₂H₆","CO₂","CH₃OH"],3],
+ ["Хлорэтан орынбасуындағы органикалық өнім?",["Этанол","Метан","Бензол","Этин"],0],
+ ["SN2 қандай модель?",["Үш сатылы","Бір келісімді саты","Тек жану","Тек айдау"],1],
+ ["SN1 аралық бөлшегі?",["Анион ғана","Нейтрон","Карбкатион","Оксид"],2],
+ ["SN2 жылдамдығы неге тәуелді?",["Тек жарық түсіне","Тек температура атауына","Тек көлемге","Субстрат пен нуклеофилге"],3],
+ ["M(CH₃Br) қанша?",["95","80","32","50,5"],0],
+ ["M(CH₃OH) қанша?",["30","32","46","64,5"],1],
+ ["190 г CH₃Br зат мөлшері?",["1 моль","0,5 моль","2 моль","3 моль"],2]
+];
+
+dynamic(
+ "Командалық ойын",
+ "3 команда · 12 минут",
+ ()=>{
+  const i=state.game;
+
+  if(i>=quiz.length){
+   const best=Math.max(...state.scores);
+
+   const winners=state.scores
+    .map((score,j)=>
+     score===best?`${j+1}-команда`:null
+    )
+    .filter(Boolean);
+
+   return `
+    <h1>Командалық ойын аяқталды!</h1>
+
+    <div class="grid3">
+     ${state.scores.map((score,j)=>`
+      <div class="team">
+       <h3>${j+1}-команда</h3>
+       <div class="score">${score}</div>
+       <p>ұпай</p>
+      </div>
+     `).join("")}
+    </div>
+
+    <div class="note">
+     <p>Жеңімпаз: ${winners.join(", ")}</p>
+    </div>
+
+    <div class="actions">
+     <button class="btn gold"
+      data-action="game-reset">
+      ↺ Қайта бастау
+     </button>
+    </div>
+   `;
+  }
+
+  const [question,options,right]=quiz[i];
+
+  return `
+   <div class="eyebrow">
+    КОМАНДАЛЫҚ ОЙЫН ${i+1}/15
+   </div>
+
+   <h2>${i%3+1}-команданың кезегі</h2>
+
+   <div class="grid3">
+    ${state.scores.map((score,j)=>`
+     <div class="team ${
+      j===i%3?"active":""
+     }">
+      <h3>${j+1}-команда</h3>
+      <div class="score">${score}</div>
+     </div>
+    `).join("")}
+   </div>
+
+   <div class="card" style="margin-top:17px">
+    <p class="big">${question}</p>
+   </div>
+
+   <div class="options">
+    ${options.map((option,j)=>`
+     <button
+      class="option ${
+       state.choice===null?""
+       :j===right?"correct"
+       :j===state.choice?"wrong":""
+      }"
+      data-action="game-answer"
+      data-index="${j}"
+      ${state.choice!==null?"disabled":""}
+     >
+      ${"ABCD"[j]}. ${option}
+     </button>
+    `).join("")}
+   </div>
+
+   ${state.choice!==null?`
+    <div class="answer">
+     <h3>
+      ${state.choice===right
+       ?"Дұрыс! +10 ұпай"
+       :"Қате. 0 ұпай"}
+     </h3>
+
+     <p>
+      Дұрыс жауап:
+      ${options[right]}
+     </p>
+    </div>
+
+    <div class="actions">
+     <button
+      class="btn primary"
+      data-action="game-next"
+     >
+      Келесі команда →
+     </button>
+    </div>
+   `:""}
+  `;
+ }
+);
+
+/* ============================
+   11. ЖАҢА ҮЙ ТАПСЫРМАСЫ
+============================ */
+
+const creativeHome=[
+ [
+  "«SN1 және SN2: екі механизм» атты салыстыру постерін жаса.",
+  "SN1 үшін карбкатионның маңызын, SN2 үшін бір келісімді сатыны көрсет. Реакция жылдамдығының қандай бөлшектерге тәуелді екенін салыстыр."
+ ],
+ [
+  "«Химиялық реакция детективі» атты кесте дайында.",
+  "CH₃Br+OH⁻→CH₃OH+Br⁻ теңдеуіндегі субстратты, нуклеофилді, кететін топты және органикалық өнімді бөліп көрсет. Әрқайсысын бір сөйлеммен түсіндір."
+ ]
+];
+
+const homeMath=[
+ [
+  "Массасы 142,5 г бромметанның зат мөлшерін анықта.",
+  "M(CH₃Br)=12+3+80=95 г/моль. ν=142,5/95=1,5 моль."
+ ],
+ [
+  "CH₃Br+OH⁻→CH₃OH+Br⁻ теңдеуіне сәйкес 0,75 моль бромметан теориялық толық орынбасса, түзілетін метанол массасын анықта.",
+  "Мольдік қатынас 1:1. ν(CH₃OH)=0,75 моль. M(CH₃OH)=32 г/моль. m=0,75×32=24 г."
+ ]
+];
+
+dynamic(
+ "Үй тапсырмасы",
+ "Үй жұмысы",
+ ()=>`
+  <div class="eyebrow">
+   §84 · ҮЙ ТАПСЫРМАСЫ
+  </div>
+
+  <h2>
+   «SN1 және SN2: екі механизм»
+  </h2>
+
+  <div class="grid2">
+   <div class="card">
+    <h3>1. Зерттеу және салыстыру</h3>
+
+    ${creativeHome.map((q,i)=>`
+     <div class="task">
+      <p>${i+1}. ${q[0]}</p>
+     </div>
+    `).join("")}
+
+    <div class="note">
+     <p>
+      Нуклеофилді көк,
+      кететін топты қызыл,
+      органикалық өнімді жасыл
+      түспен белгіле.
+     </p>
+    </div>
+   </div>
+
+   <div class="card">
+    <h3>2. Екі химиялық есеп</h3>
+
+    ${homeMath.map((q,i)=>`
+     <div class="task">
+      <p>${i+1}. ${q[0]}</p>
+     </div>
+    `).join("")}
+
+    <div class="note">
+     <p>
+      Берілгені → формула →
+      шешуі → жауап.
+     </p>
+    </div>
+   </div>
+  </div>
+
+  <div class="actions">
+   <button
+    class="btn gold"
+    data-action="home"
+   >
+    ${state.home
+     ?"Жауаптарды жасыру"
+     :"Жауаптарды көру"}
+   </button>
+  </div>
+
+  ${state.home?`
+   <div class="answer">
+    <h3>Зерттеу жұмысының үлгісі</h3>
+
+    ${creativeHome.map((q,i)=>`
+     <p>${i+1}. ${q[1]}</p>
+    `).join("")}
+
+    <h3>Есептердің шешуі</h3>
+
+    ${homeMath.map((q,i)=>`
+     <p>${i+1}. ${q[1]}</p>
+    `).join("")}
+   </div>
+  `:""}
+ `
+);
+
+/* ============================
+   12. ҚОРЫТЫНДЫ
+============================ */
+
+add(
+ "Қорытынды",
+ "Сабақ аяқталды",
+ `
+  <div style="text-align:center">
+   <div class="eyebrow">
+    §84 · ХИМИЯ
+   </div>
+
+   <h1>Сабақ аяқталды!</h1>
+
+   <h2>
+    Нуклеофильді орынбасу реакциялары
+   </h2>
+
+   <div class="grid3">
+    <div class="card">
+     <h3>15 түсіндірме</h3>
+     <p>Нуклеофил · SN1 · SN2</p>
+    </div>
+
+    <div class="card">
+     <h3>25 тапсырма</h3>
+     <p>Жеке жұмыс</p>
+    </div>
+
+    <div class="card">
+     <h3>15 сұрақ</h3>
+     <p>3 команда</p>
+    </div>
+   </div>
+
+   <div class="formula">
+    BY DARKHAN
+   </div>
+  </div>
+ `
+);
+
+/* ============================
+   13. БАТЫРМАЛАР
+============================ */
+
+$("slide").addEventListener("click",event=>{
+ const b=event.target.closest("[data-action]");
+ if(!b)return;
+
+ const action=b.dataset.action;
+ const i=Number(b.dataset.index);
+
+ switch(action){
+  case "start":
+   startTimer();
+   break;
+
+  case "reset-time":
+   resetTimer();
+   break;
+
+  case "mechanism":
+   state.mechanism=i;
+   break;
+
+  case "level":
+   state.levels[i]=!state.levels[i];
+   break;
+
+  case "oral-show":
+   state.oralShow=!state.oralShow;
+   break;
+
+  case "oral-next":
+   state.oral=Math.min(
+    oral.length,state.oral+1
+   );
+   state.oralShow=false;
+   break;
+
+  case "oral-reset":
+   state.oral=0;
+   state.oralShow=false;
+   break;
+
+  case "go-game":
+   go("Командалық ойын");
+   break;
+
+  case "game-answer":
+   if(state.choice!==null)return;
+   if(i<0||i>3)return;
+
+   state.choice=i;
+
+   if(i===quiz[state.game][2]){
+    state.scores[state.game%3]+=10;
+   }
+   break;
+
+  case "game-next":
+   if(state.choice===null)return;
+   state.game++;
+   state.choice=null;
+   break;
+
+  case "game-reset":
+   state.game=0;
+   state.choice=null;
+   state.scores=[0,0,0];
+   break;
+
+  case "home":
+   state.home=!state.home;
+   break;
+ }
+
+ save();
+ draw();
+});
+
+/* ============================
+   14. 80 МИНУТТЫҚ ТАЙМЕР
+============================ */
+
+const TIMER_KEY=STORE+"_timer";
+let deadline=null;
+
+try{
+ const saved=localStorage.getItem(TIMER_KEY);
+
+ if(
+  saved!==null &&
+  Number.isFinite(Number(saved))
+ ){
+  deadline=Number(saved);
+ }
+}catch(error){
+ console.warn(error);
+}
+
+function tick(){
+ const seconds=deadline===null
+  ?4800
+  :Math.max(
+   0,
+   Math.ceil((deadline-Date.now())/1000)
+  );
+
+ $("timer").textContent=
+  String(Math.floor(seconds/60)).padStart(2,"0")+
+  ":"+
+  String(seconds%60).padStart(2,"0");
+
+ $("clock").textContent=
+  new Intl.DateTimeFormat("en-GB",{
+   timeZone:"Asia/Almaty",
+   hour:"2-digit",
+   minute:"2-digit",
+   second:"2-digit",
+   hourCycle:"h23"
+  }).format(new Date());
+}
+
+function startTimer(){
+ if(deadline!==null){
+  alert("Таймер іске қосылған.");
+  return;
+ }
+
+ deadline=Date.now()+4800000;
+
+ try{
+  localStorage.setItem(
+   TIMER_KEY,
+   String(deadline)
+  );
+ }catch(error){
+  console.warn(error);
+ }
+
+ tick();
+}
+
+function resetTimer(){
+ if(!confirm(
+  "80 минуттық таймерді жаңартамыз ба?"
+ ))return;
+
+ deadline=null;
+
+ try{
+  localStorage.removeItem(TIMER_KEY);
+ }catch(error){
+  console.warn(error);
+ }
+
+ tick();
+}
+
+setInterval(tick,1000);
+
+/* ============================
+   15. КАЛЬКУЛЯТОР
+============================ */
+
+const calculator=$("calculator");
+
+$("showCalc").onclick=()=>{
+ calculator.hidden=!calculator.hidden;
+ fitCalculator();
+};
+
+$("closeCalc").onclick=()=>{
+ calculator.hidden=true;
+};
+
+const calcButtons=[
+ "7","8","9","/",
+ "4","5","6","*",
+ "1","2","3","-",
+ "C","0",".","+",
+ "(",")","⌫","="
+];
+
+$("calcKeys").innerHTML=calcButtons.map(k=>`
+ <button type="button" data-key="${k}">
+  ${k==="/"?"÷":k==="*"?"×":k}
+ </button>
+`).join("");
+
+let calcText="";
+
+/* АРИФМЕТИКАЛЫҚ ПАРСЕР */
+
+function calculate(input){
+ let i=0;
+
+ function factor(){
+  if(input[i]==="+"){
+   i++;
+   return factor();
+  }
+
+  if(input[i]==="-"){
+   i++;
+   return -factor();
+  }
+
+  if(input[i]==="("){
+   i++;
+   const value=sum();
+
+   if(input[i]!==")"){
+    throw Error("Жақша қатесі");
+   }
+
+   i++;
+   return value;
+  }
+
+  const m=/^(?:\d+\.?\d*|\.\d+)/
+   .exec(input.slice(i));
+
+  if(!m){
+   throw Error("Сан қатесі");
+  }
+
+  i+=m[0].length;
+  return Number(m[0]);
+ }
+
+ function product(){
+  let value=factor();
+
+  while(
+   input[i]==="*" ||
+   input[i]==="/"
+  ){
+   const op=input[i++];
+   const next=factor();
+
+   value=op==="*"
+    ?value*next
+    :value/next;
+  }
+
+  return value;
+ }
+
+ function sum(){
+  let value=product();
+
+  while(
+   input[i]==="+" ||
+   input[i]==="-"
+  ){
+   const op=input[i++];
+   const next=product();
+
+   value=op==="+"
+    ?value+next
+    :value-next;
+  }
+
+  return value;
+ }
+
+ if(!/^[0-9+*/().-]+$/.test(input)){
+  throw Error("Таңба қатесі");
+ }
+
+ const result=sum();
+
+ if(
+  i!==input.length ||
+  !Number.isFinite(result)
+ ){
+  throw Error("Өрнек қатесі");
+ }
+
+ return Number(result.toPrecision(12));
+}
+
+$("calcKeys").addEventListener("click",event=>{
+ const b=event.target.closest("[data-key]");
+ if(!b)return;
+
+ const k=b.dataset.key;
+
+ if(k==="C"){
+  calcText="";
+ }else if(k==="⌫"){
+  calcText=calcText.slice(0,-1);
+ }else if(k==="="){
+  try{
+   calcText=String(calculate(calcText));
+  }catch(error){
+   calcText="Қате";
+  }
+ }else{
+  if(calcText==="Қате"){
+   calcText="";
+  }
+  calcText+=k;
+ }
+
+ $("calcDisplay").value=calcText;
+});
+
+/* ============================
+   16. КАЛЬКУЛЯТОРДЫ ЖЫЛЖЫТУ
+============================ */
+
+function clamp(v,min,max){
+ return Math.max(min,Math.min(max,v));
+}
+
+function fitCalculator(){
+ if(calculator.hidden)return;
+
+ const r=calculator.getBoundingClientRect();
+
+ calculator.style.left=clamp(
+  r.left,0,
+  Math.max(0,innerWidth-r.width)
+ )+"px";
+
+ calculator.style.top=clamp(
+  r.top,0,
+  Math.max(0,innerHeight-r.height)
+ )+"px";
+}
+
+let drag=null;
+let suppressClick=false;
+
+calculator.addEventListener("pointerdown",event=>{
+ if(
+  drag ||
+  (event.pointerType==="mouse"&&event.button!==0)
+ )return;
+
+ const r=calculator.getBoundingClientRect();
+
+ drag={
+  id:event.pointerId,
+  x:event.clientX,
+  y:event.clientY,
+  left:r.left,
+  top:r.top,
+  moved:false
+ };
+
+ calculator.setPointerCapture(event.pointerId);
+});
+
+calculator.addEventListener("pointermove",event=>{
+ if(!drag||drag.id!==event.pointerId)return;
+
+ const dx=event.clientX-drag.x;
+ const dy=event.clientY-drag.y;
+
+ if(!drag.moved&&Math.hypot(dx,dy)>7){
+  drag.moved=true;
+  calculator.classList.add("dragging");
+ }
+
+ if(!drag.moved)return;
+
+ calculator.style.left=clamp(
+  drag.left+dx,0,
+  Math.max(
+   0,
+   innerWidth-calculator.offsetWidth
+  )
+ )+"px";
+
+ calculator.style.top=clamp(
+  drag.top+dy,0,
+  Math.max(
+   0,
+   innerHeight-calculator.offsetHeight
+  )
+ )+"px";
+});
+
+calculator.addEventListener("pointerup",event=>{
+ if(!drag||drag.id!==event.pointerId)return;
+
+ suppressClick=drag.moved;
+ drag=null;
+ calculator.classList.remove("dragging");
+
+ if(calculator.hasPointerCapture(event.pointerId)){
+  calculator.releasePointerCapture(event.pointerId);
+ }
+});
+
+calculator.addEventListener("pointercancel",()=>{
+ drag=null;
+ calculator.classList.remove("dragging");
+});
+
+calculator.addEventListener("click",event=>{
+ if(!suppressClick)return;
+
+ event.preventDefault();
+ event.stopImmediatePropagation();
+ suppressClick=false;
+},true);
+
+window.addEventListener("resize",fitCalculator);
+
+/* ============================
+   17. МЕНДЕЛЕЕВ КЕСТЕСІ
+============================ */
+
+const elementData=`
+H|Сутек He|Гелий Li|Литий Be|Бериллий B|Бор C|Көміртек N|Азот O|Оттек F|Фтор Ne|Неон
+Na|Натрий Mg|Магний Al|Алюминий Si|Кремний P|Фосфор S|Күкірт Cl|Хлор Ar|Аргон
+K|Калий Ca|Кальций Sc|Скандий Ti|Титан V|Ванадий Cr|Хром Mn|Марганец Fe|Темір Co|Кобальт Ni|Никель Cu|Мыс Zn|Мырыш
+Ga|Галлий Ge|Германий As|Мышьяк Se|Селен Br|Бром Kr|Криптон
+Rb|Рубидий Sr|Стронций Y|Иттрий Zr|Цирконий Nb|Ниобий Mo|Молибден Tc|Технеций Ru|Рутений Rh|Родий Pd|Палладий Ag|Күміс Cd|Кадмий
+In|Индий Sn|Қалайы Sb|Сурьма Te|Теллур I|Йод Xe|Ксенон
+Cs|Цезий Ba|Барий La|Лантан Ce|Церий Pr|Празеодим Nd|Неодим Pm|Прометий Sm|Самарий Eu|Еуропий Gd|Гадолиний Tb|Тербий Dy|Диспрозий Ho|Гольмий Er|Эрбий Tm|Тулий Yb|Иттербий Lu|Лютеций
+Hf|Гафний Ta|Тантал W|Вольфрам Re|Рений Os|Осмий Ir|Иридий Pt|Платина Au|Алтын Hg|Сынап Tl|Таллий Pb|Қорғасын Bi|Висмут Po|Полоний At|Астат Rn|Радон
+Fr|Франций Ra|Радий Ac|Актиний Th|Торий Pa|Протактиний U|Уран Np|Нептуний Pu|Плутоний Am|Америций Cm|Кюрий Bk|Берклий Cf|Калифорний Es|Эйнштейний Fm|Фермий Md|Менделевий No|Нобелий Lr|Лоуренсий
+Rf|Резерфордий Db|Дубний Sg|Сиборгий Bh|Борий Hs|Хассий Mt|Мейтнерий Ds|Дармштадтий Rg|Рентгений Cn|Коперниций Nh|Нихоний Fl|Флеровий Mc|Московий Lv|Ливерморий Ts|Теннессин Og|Оганесон
+`;
+
+const elements=elementData.trim()
+ .split(/\s+/)
+ .map((entry,i)=>{
+  const [symbol,name]=entry.split("|");
+
+  return{
+   z:i+1,
+   symbol,
+   name
+  };
+ });
+
+const rowGroups=[
+ [1,18],
+ [1,2,13,14,15,16,17,18],
+ [1,2,13,14,15,16,17,18],
+ Array.from({length:18},(_,i)=>i+1),
+ Array.from({length:18},(_,i)=>i+1)
+];
+
+function position(z){
+ if(z<=54){
+  let k=z-1;
+
+  for(let p=0;p<5;p++){
+   if(k<rowGroups[p].length){
+    return{
+     row:p+1,
+     col:rowGroups[p][k]
+    };
+   }
+
+   k-=rowGroups[p].length;
+  }
+ }
+
+ if(z<=56)return{row:6,col:z-54};
+ if(z<=71)return{row:9,col:z-54};
+ if(z<=86)return{row:6,col:z-68};
+ if(z<=88)return{row:7,col:z-86};
+ if(z<=103)return{row:10,col:z-86};
+
+ return{row:7,col:z-100};
+}
+
+function buildTable(){
+ let html="";
+
+ for(let g=1;g<=18;g++){
+  html+=`
+   <span class="period-label"
+    style="grid-row:1;grid-column:${g+1}">
+    ${g}
+   </span>
+  `;
+ }
+
+ for(let p=1;p<=7;p++){
+  html+=`
+   <span class="period-label"
+    style="grid-row:${p+1};grid-column:1">
+    ${p}
+   </span>
+  `;
+ }
+
+ html+=`
+  <span class="period-label"
+   style="grid-row:10;grid-column:1">
+   La–Lu
+  </span>
+
+  <span class="period-label"
+   style="grid-row:11;grid-column:1">
+   Ac–Lr
+  </span>
+
+  <span class="period-label"
+   style="grid-row:7;grid-column:4">
+   57–71
+  </span>
+
+  <span class="period-label"
+   style="grid-row:8;grid-column:4">
+   89–103
+  </span>
+ `;
+
+ for(const e of elements){
+  const p=position(e.z);
+
+  const cls=
+   (e.z>=57&&e.z<=71) ||
+   (e.z>=89&&e.z<=103)
+    ?"fblock"
+    :["H","C","N","O","Cl","Br"].includes(e.symbol)
+     ?"featured"
+     :"";
+
+  html+=`
+   <button
+    class="element ${cls}"
+    data-z="${e.z}"
+    style="
+     grid-row:${p.row+1};
+     grid-column:${p.col+1}
+    "
+   >
+    <i>${e.z}</i>
+    <b>${e.symbol}</b>
+    <small>${e.name}</small>
+   </button>
+  `;
+ }
+
+ $("period").innerHTML=html;
+}
+
+$("period").addEventListener("click",event=>{
+ const b=event.target.closest("[data-z]");
+ if(!b)return;
+
+ const z=Number(b.dataset.z);
+ const e=elements[z-1];
+ const p=position(z);
+
+ const period=p.row===9?6:p.row===10?7:p.row;
+ const group=p.row>7?"f-блок":p.col+"-топ";
+
+ $("elementInfo").textContent=
+  `${z}. ${e.name} (${e.symbol}) · `+
+  `${period}-период · ${group}`;
+});
+
+$("showTable").onclick=()=>{
+ $("tableOverlay").hidden=false;
+};
+
+$("closeTable").onclick=()=>{
+ $("tableOverlay").hidden=true;
+};
+
+$("tableOverlay").onclick=event=>{
+ if(event.target===$("tableOverlay")){
+  $("tableOverlay").hidden=true;
+ }
+};
+
+/* ============================
+   18. ПЕРНЕТАҚТАМЕН БАСҚАРУ
+============================ */
+
+document.addEventListener("keydown",event=>{
+ if(event.key==="Escape"){
+  $("tableOverlay").hidden=true;
+  calculator.hidden=true;
+  return;
+ }
+
+ if(!$("tableOverlay").hidden)return;
+ if(event.target.closest("input,textarea"))return;
+
+ if(
+  event.key==="ArrowRight" &&
+  page<slides.length-1
+ ){
+  page++;
+  draw();
+ }else if(
+  event.key==="ArrowLeft" &&
+  page>0
+ ){
+  page--;
+  draw();
+ }
+});
+
+/* ============================
+   19. САЙТТЫ ТЕКСЕРУ
+============================ */
+
+try{
+ const checks=[
+  [theory.length===15,"15 түсіндірме"],
+  [notes.length===3,"3 конспект"],
+  [levels.length===4,"4 деңгей"],
+  [oral.length===25,"25 жеке тапсырма"],
+  [quiz.length===15,"15 ойын сұрағы"],
+  [slides.length===29,"29 бет"],
+  [elements.length===118,"118 элемент"],
+  [calculate("7*3")===21,"Көбейту"],
+  [calculate("(2+3)*4")===20,"Жақша"],
+  [calculate("142.5/95")===1.5,"Бөлшек есеп"]
+ ];
+
+ for(const [ok,name] of checks){
+  if(!ok){
+   throw Error(name+" қатесі");
+  }
+ }
+
+ buildTable();
+ tick();
+ draw();
+
+ console.log(
+  "§84 — бастапқы тексерулер өтті"
+ );
+}catch(error){
+ console.error(error);
+
+ const box=document.createElement("div");
+ box.className="note";
+ box.textContent="Сайт қатесі: "+error.message;
+
+ $("slide").appendChild(box);
+}
+</script>
+</body>
+</html>
